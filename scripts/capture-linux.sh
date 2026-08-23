@@ -115,13 +115,19 @@ done
 
 echo "captured $((PAGE)) pages; harness exit=$HARNESS_EXIT"
 
-# Pass 2 over all captured pages.
+# Pass 2 over all captured pages. Exit 1 = legitimate per-glyph verification
+# failures — the verdicts are the deliverable, so only usage/internal errors
+# (>= 2) fail the run.
 PNG_ARGS=()
 for f in "$OUT_DIR"/pages/shot_page_*.png; do PNG_ARGS+=(--png "$f"); done
+rc=0
 ./target/debug/pixel-assert \
     "${PNG_ARGS[@]}" \
     --sidecar "$OUT_DIR/artifacts/sidecar.json" \
     --pass1 "$OUT_DIR/artifacts/pass1.json" \
-    --out "$OUT_DIR/verdicts.json"
+    --out "$OUT_DIR/verdicts.json" || rc=$?
+if [ "$rc" -ge 2 ]; then
+    exit "$rc"
+fi
 
 rm -rf "$SYNC_DIR"

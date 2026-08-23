@@ -27,11 +27,12 @@ impl Default for CaptureGate {
     fn default() -> Self {
         // Calibrated against real failure modes: flat swapchain surfaces /
         // blank desktops have zero entropy spread and zero luminance
-        // deviation. Crisp monochrome text renders legitimately have *low*
-        // entropy (~0.5 bits), so the floors stay conservative — deeper
-        // implausibility is caught by band matching downstream.
+        // deviation. Crisp monochrome text on a pure-black background (xterm,
+        // conhost) legitimately measures ~0.1 bits — the floor only has to
+        // separate those from *flat* frames. Deeper implausibility is caught
+        // by band matching downstream.
         Self {
-            min_entropy_bits: 0.3,
+            min_entropy_bits: 0.02,
             min_luminance_std_dev: 8.0,
             min_unique_colors: 2,
         }

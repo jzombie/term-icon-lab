@@ -7,7 +7,7 @@
 //! boundary, so non-integer cell widths (e.g. 9.33 px) cannot accumulate
 //! quantization drift across a line.
 
-use image::GrayImage;
+use image::{GrayImage, Luma};
 
 /// Foreground/background separation model.
 #[derive(Clone, Copy, Debug)]
@@ -26,23 +26,70 @@ impl FgModel {
     }
 }
 
-/// Estimate background luminance from the outermost 2-pixel frame of the
-/// capture (the area around the rendered matrix is guaranteed bare SGR
-/// background by the harness).
+/// Estimate background luminance as the modal grayscale value.
+///
+/// The terminal background dominates any capture — the matrix occupies a
+/// small fraction of the frame. Frame sampling is unreliable here: window
+/// captures (macOS Terminal.app) carry title-bar chrome, alpha padding, and
+/// rounded corners whose pixels are not bare SGR background.
 #[must_use]
 pub fn estimate_background(gray: &GrayImage) -> f32 {
+    let mut hist = [0u64; 256];
+    for p in gray.pixels() {
+        hist[p[0] as usize] += 1;
+    }
+    let (val, _) = hist
+        .iter()
+        .enumerate()
+        .max_by_key(|&(_, n)| *n)
+        .unwrap_or((0, &0));
+    f32::from(val as u8)
+}
+
+/// Longest foreground run along an axis spanning more than this fraction of
+/// the image is window chrome — borders, scrollbars, title-bar rules — not
+/// glyph ink, which is bounded by the line pitch.
+const STRUCTURAL_RUN_RATIO: f64 = 0.3;
+
+/// Blank out window chrome that survives capture: full-height vertical lines
+/// (window borders, scrollbars) and full-width horizontal lines (title bars,
+/// separator rules). Without this, chrome bridges the gaps between text rows
+/// and band detection merges the whole frame into one band.
+#[must_use]
+pub fn suppress_structural_lines(gray: &GrayImage, model: &FgModel) -> GrayImage {
     let (w, h) = gray.dimensions();
-    let mut sum = 0.0f64;
-    let mut n = 0u64;
-    for y in 0..h {
-        for x in 0..w {
-            if x < 2 || y < 2 || x >= w.saturating_sub(2) || y >= h.saturating_sub(2) {
-                sum += f64::from(gray.get_pixel(x, y)[0]);
-                n += 1;
+    let mut out = gray.clone();
+    let bg = model.bg.round().clamp(0.0, 255.0) as u8;
+    let limit_h = (f64::from(h) * STRUCTURAL_RUN_RATIO) as u64;
+    let limit_w = (f64::from(w) * STRUCTURAL_RUN_RATIO) as u64;
+
+    for x in 0..w {
+        let mut run = 0u64;
+        let mut worst = 0u64;
+        for y in 0..h {
+            run = if model.is_fg(gray, x, y) { run + 1 } else { 0 };
+            worst = worst.max(run);
+        }
+        if worst > limit_h {
+            for y in 0..h {
+                out.put_pixel(x, y, Luma([bg]));
             }
         }
     }
-    if n == 0 { 0.0 } else { (sum / n as f64) as f32 }
+    for y in 0..h {
+        let mut run = 0u64;
+        let mut worst = 0u64;
+        for x in 0..w {
+            run = if model.is_fg(gray, x, y) { run + 1 } else { 0 };
+            worst = worst.max(run);
+        }
+        if worst > limit_w {
+            for x in 0..w {
+                out.put_pixel(x, y, Luma([bg]));
+            }
+        }
+    }
+    out
 }
 
 /// A horizontal run of rows containing foreground ink (inclusive bounds).
@@ -52,16 +99,55 @@ pub struct Band {
     pub bottom: u32,
 }
 
-/// Scan for text bands: consecutive rows whose ink-pixel count reaches
-/// `min_ink`.
+/// Detect rendered rows via the boundary-bar strip: the leftmost column
+/// cluster whose ink **run count** reaches `expected_rows` (a bar produces
+/// one short run per rendered row; braille dot columns fragment into more
+/// runs but sit right of the bar, and columns of stacked full-cell glyphs
+/// produce one long run).
+///
+/// The bars are vertically isolated by the line pitch — unlike full-cell
+/// glyphs (█), whose ink bridges adjacent rows and defeats whole-row
+/// projection.
 #[must_use]
-pub fn find_bands(gray: &GrayImage, model: &FgModel, min_ink: usize) -> Vec<Band> {
+pub fn find_text_bands(gray: &GrayImage, model: &FgModel, expected_rows: usize) -> Vec<Band> {
+    if expected_rows == 0 {
+        return Vec::new();
+    }
     let (w, h) = gray.dimensions();
+    let mut run_counts = vec![0u32; w as usize];
+    for x in 0..w {
+        let mut len = 0u32;
+        for y in 0..h {
+            if model.is_fg(gray, x, y) {
+                len += 1;
+            } else {
+                if len >= 2 {
+                    run_counts[x as usize] += 1;
+                }
+                len = 0;
+            }
+        }
+        if len >= 2 {
+            run_counts[x as usize] += 1;
+        }
+    }
+    let high = (expected_rows * 3 / 4).max(1) as u32;
+    let low = (expected_rows / 4).max(1) as u32;
+    let Some(x0) = run_counts.iter().position(|&r| r >= high) else {
+        return Vec::new();
+    };
+    let mut x1 = x0;
+    while x1 + 1 < w as usize && run_counts[x1 + 1] >= low && x1 - x0 < 5 {
+        x1 += 1;
+    }
+
     let mut bands = Vec::new();
     let mut current: Option<u32> = None;
     for y in 0..h {
-        let ink = (0..w).filter(|&x| model.is_fg(gray, x, y)).count();
-        if ink >= min_ink {
+        let ink = (x0 as u32..=x1 as u32)
+            .filter(|&x| model.is_fg(gray, x, y))
+            .count();
+        if ink >= 1 {
             if current.is_none() {
                 current = Some(y);
             }
@@ -79,6 +165,39 @@ pub fn find_bands(gray: &GrayImage, model: &FgModel, min_ink: usize) -> Vec<Band
         });
     }
     bands
+}
+
+/// When chrome remnants survive suppression as extra bands, keep the
+/// consecutive run of `expected` bands with the most uniform pitch — the
+/// rendered grid is perfectly regular, chrome is not.
+#[must_use]
+pub fn select_grid_bands(bands: &[Band], expected: usize) -> Vec<Band> {
+    if expected == 0 || bands.len() <= expected {
+        return bands.to_vec();
+    }
+    let mut best: Option<(f64, usize)> = None;
+    for s in 0..=(bands.len() - expected) {
+        let grp = &bands[s..s + expected];
+        let pitches: Vec<f64> = grp
+            .windows(2)
+            .map(|p| f64::from(p[1].top) - f64::from(p[0].top))
+            .collect();
+        if pitches.is_empty() {
+            if best.is_none() {
+                best = Some((0.0, s));
+            }
+            continue;
+        }
+        let mean = pitches.iter().sum::<f64>() / pitches.len() as f64;
+        let var = pitches.iter().map(|p| (p - mean).powi(2)).sum::<f64>() / pitches.len() as f64;
+        if best.is_none() || var < best.expect("checked above").0 {
+            best = Some((var, s));
+        }
+    }
+    match best {
+        Some((_, s)) => bands[s..s + expected].to_vec(),
+        None => bands.to_vec(),
+    }
 }
 
 /// Horizontal cluster `(start_x, end_x)` of ink columns within a band,
@@ -285,9 +404,7 @@ mod tests {
             bg: 10.0,
             delta: 60.0,
         };
-        let bands = find_bands(&img, &model, 2);
-        assert_eq!(bands.len(), 1);
-        let cal = calibrate(&img, &model, &bands[0]).expect("calibration");
+        let cal = calibrate(&img, &model, &Band { top: 4, bottom: 15 }).expect("calibration");
         assert!((cal.origin_x - 12.0).abs() < 1.0, "{:?}", cal.origin_x);
         assert!((cal.pitch - 10.0).abs() < 1.0, "{:?}", cal.pitch);
     }
@@ -300,8 +417,7 @@ mod tests {
             bg: 10.0,
             delta: 60.0,
         };
-        let bands = find_bands(&img, &model, 2);
-        let cal = calibrate(&img, &model, &bands[0]).unwrap();
+        let cal = calibrate(&img, &model, &Band { top: 6, bottom: 19 }).unwrap();
         assert!((cal.pitch - 9.33).abs() < 0.5, "{:?}", cal.pitch);
 
         // Boxes of adjacent cells must never overlap each other's centers,
@@ -356,5 +472,165 @@ mod tests {
             calibrate(&img, &model, &band),
             Err(GeometryError::BarsTooWide)
         );
+    }
+
+    /// Draw `rows` text lines of ink height `ink` at pitch `pitch`, plus
+    /// optional window chrome: a border rectangle, a title-bar slab, and a
+    /// scrollbar thumb.
+    fn draw_chrome_capture(
+        rows: usize,
+        pitch: u32,
+        ink: u32,
+        border: bool,
+        titlebar: bool,
+        scrollbar: bool,
+    ) -> GrayImage {
+        let h = 40 + rows as u32 * pitch + 30;
+        let mut img = GrayImage::new(400, h);
+        for p in img.pixels_mut() {
+            *p = Luma([10]);
+        }
+        for r in 0..rows {
+            let top = 40 + r as u32 * pitch;
+            for y in top..top + ink {
+                for x in 20..60 {
+                    img.put_pixel(x, y, Luma([220]));
+                }
+            }
+        }
+        if border {
+            for x in 0..400 {
+                img.put_pixel(x, 0, Luma([128]));
+                img.put_pixel(x, h - 1, Luma([128]));
+            }
+            for y in 0..h {
+                img.put_pixel(0, y, Luma([128]));
+                img.put_pixel(399, y, Luma([128]));
+            }
+        }
+        if titlebar {
+            for y in 4..30 {
+                for x in 30..370 {
+                    img.put_pixel(x, y, Luma([200]));
+                }
+            }
+        }
+        if scrollbar {
+            for y in 35..155 {
+                img.put_pixel(390, y, Luma([180]));
+            }
+        }
+        img
+    }
+
+    #[test]
+    fn chrome_is_suppressed_and_rows_survive() {
+        let model = FgModel {
+            bg: 10.0,
+            delta: 60.0,
+        };
+        let img = draw_chrome_capture(24, 15, 13, true, true, true);
+        let clean = suppress_structural_lines(&img, &model);
+        let bands = find_text_bands(&clean, &model, 24);
+        assert_eq!(bands.len(), 24, "chrome must not merge or add bands");
+        // Pitch must be preserved for the grid arithmetic.
+        let pitches: Vec<u32> = bands.windows(2).map(|p| p[1].top - p[0].top).collect();
+        assert!(pitches.iter().all(|&p| p == 15), "{pitches:?}");
+    }
+
+    #[test]
+    fn bridged_glyph_rows_found_via_bar_strip() {
+        // Full-cell glyph ink that touches across the inter-row gap: whole-row
+        // projection would fuse everything, the bar strip must not.
+        let model = FgModel {
+            bg: 10.0,
+            delta: 60.0,
+        };
+        let mut img = draw_chrome_capture(6, 15, 13, false, false, false);
+        for r in 0..6 {
+            let top = 40 + r as u32 * 15;
+            for y in top..top + 15 {
+                for x in 70..90 {
+                    img.put_pixel(x, y, Luma([220]));
+                }
+            }
+        }
+        let bands = find_text_bands(&img, &model, 6);
+        assert_eq!(bands.len(), 6);
+    }
+
+    #[test]
+    fn selection_keeps_most_uniform_run() {
+        // Chrome band above the grid, grid, speck below: the consecutive run
+        // of 24 with uniform 15px pitch must win.
+        let mut bands = vec![Band { top: 2, bottom: 20 }];
+        for r in 0..24 {
+            let top = 40 + r as u32 * 15;
+            bands.push(Band {
+                top,
+                bottom: top + 12,
+            });
+        }
+        bands.push(Band {
+            top: 40 + 24 * 15,
+            bottom: 40 + 24 * 15 + 2,
+        });
+        let sel = select_grid_bands(&bands, 24);
+        assert_eq!(sel.len(), 24);
+        assert_eq!(sel[0].top, 40);
+        let pitches: Vec<u32> = sel.windows(2).map(|p| p[1].top - p[0].top).collect();
+        assert!(pitches.iter().all(|&p| p == 15), "{pitches:?}");
+        // Fewer bands than expected: returned unchanged, caller fails on count.
+        assert_eq!(select_grid_bands(&bands[..23], 24).len(), 23);
+    }
+
+    /// Regression: real CI capture (linux/xterm, full desktop incl. window
+    /// border) previously collapsed to 1 band.
+    #[test]
+    fn linux_ci_capture_yields_grid() {
+        let bytes = include_bytes!("../tests/fixtures/linux_ci_page0.png");
+        let img = image::load_from_memory(bytes).expect("decode").to_luma8();
+        let model = FgModel {
+            bg: estimate_background(&img),
+            delta: 60.0,
+        };
+        let clean = suppress_structural_lines(&img, &model);
+        let bands = find_text_bands(&clean, &model, 24);
+        assert_eq!(bands.len(), 24);
+        calibrate(&clean, &model, &bands[0]).expect("control row must calibrate");
+    }
+
+    /// Regression: real CI capture (macOS Terminal.app, title bar + scrollbar
+    /// + alpha padding) previously collapsed to 1-3 bands.
+    #[test]
+    fn macos_ci_capture_yields_grid() {
+        let bytes = include_bytes!("../tests/fixtures/macos_ci_page0.png");
+        let img = image::load_from_memory(bytes).expect("decode").to_luma8();
+        let model = FgModel {
+            bg: estimate_background(&img),
+            delta: 60.0,
+        };
+        let clean = suppress_structural_lines(&img, &model);
+        let bands = select_grid_bands(&find_text_bands(&clean, &model, 24), 24);
+        assert_eq!(bands.len(), 24);
+    }
+
+    /// Regression: partial last page (control + 3 candidates) on linux. The
+    /// strip heuristic can latch onto braille dot columns here; production
+    /// recovers through uniform-run selection, so mirror that path.
+    #[test]
+    fn linux_ci_partial_page_yields_rows() {
+        let bytes = include_bytes!("../tests/fixtures/linux_ci_page22.png");
+        let img = image::load_from_memory(bytes).expect("decode").to_luma8();
+        let model = FgModel {
+            bg: estimate_background(&img),
+            delta: 60.0,
+        };
+        let clean = suppress_structural_lines(&img, &model);
+        let mut bands = find_text_bands(&clean, &model, 4);
+        if bands.len() > 4 {
+            bands = select_grid_bands(&bands, 4);
+        }
+        assert_eq!(bands.len(), 4);
     }
 }

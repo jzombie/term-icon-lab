@@ -140,11 +140,9 @@ function Start-HarnessRun {
     $hostName = if ($ViaConhost) { 'conhost' } else { 'wt' }
     @"
 Set-Content -Path '$SyncDir\pid' -Value `$PID
-# PS 5.1 turns native stderr into error records; with Stop (inherited) the
-# first harness stderr byte would abort this wrapper and mask the real
-# failure. Diagnostics belong in the log file, not a terminating error.
-`$ErrorActionPreference = 'Continue'
-& '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName' 2> '$SyncDir\harness.log'
+# PS 5.1 routes native stderr through error records (and can turn it into a
+# terminating error); delegate to cmd for a raw fd redirect into the log.
+cmd /c "`"$Harness`" --sync-dir `"$SyncDir`" --out-dir `"$OutDir\artifacts`" --platform `"windows/$hostName`" --host `"$hostName`" 2>`"$SyncDir\harness.log`""
 exit `$LASTEXITCODE
 "@ | Set-Content -Path $inner -Encoding UTF8
 
@@ -237,6 +235,8 @@ Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" |
     --sidecar "$OutDir\artifacts\sidecar.json" `
     --pass1 "$OutDir\artifacts\pass1.json" `
     --out "$OutDir\verdicts.json"
-if ($LASTEXITCODE -ne 0) { exit 1 }
+# Exit 1 = legitimate per-glyph verification failures — the verdicts are the
+# deliverable; only usage/internal errors (>= 2) fail the run.
+if ($LASTEXITCODE -ge 2) { exit 1 }
 
 Remove-Item -Recurse -Force $SyncDir -ErrorAction SilentlyContinue

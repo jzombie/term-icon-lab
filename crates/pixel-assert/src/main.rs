@@ -17,7 +17,10 @@ use clap::Parser;
 use image::DynamicImage;
 
 use crate::checks::{BleedVerdict, Thresholds};
-use crate::geom::{Band, Calibration, FgModel, calibrate, estimate_background, find_bands};
+use crate::geom::{
+    Band, Calibration, FgModel, calibrate, estimate_background, find_text_bands, select_grid_bands,
+    suppress_structural_lines,
+};
 use crate::schema::{Pass1Status, RowEntry, Sidecar};
 use crate::validate::CaptureGate;
 use crate::verdict::{Verdict, VerdictReport, merge};
@@ -45,7 +48,7 @@ struct Cli {
     out: Option<PathBuf>,
 
     /// Minimum plausible-capture entropy in bits.
-    #[arg(long, default_value_t = 0.3)]
+    #[arg(long, default_value_t = 0.02)]
     min_entropy: f64,
 
     /// Capture-gate-only mode: validate one PNG and exit (0 plausible, 1 not).
@@ -151,8 +154,15 @@ fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
 
         let bg = estimate_background(&gray);
         let model = FgModel { bg, delta: 60.0 };
-        let bands = find_bands(&gray, &model, 2);
+        // Window chrome (borders, scrollbars, title bars) bridges the gaps
+        // between text rows; suppress it, locate rows via the boundary-bar
+        // strip, and keep the most uniform run if remnants survive.
+        let clean = suppress_structural_lines(&gray, &model);
         let expected_rows = sidecar.rows_for_page(page);
+        let mut bands = find_text_bands(&clean, &model, expected_rows.len());
+        if bands.len() > expected_rows.len() {
+            bands = select_grid_bands(&bands, expected_rows.len());
+        }
 
         if bands.len() != expected_rows.len() {
             structural_fail = Some(format!(
@@ -163,7 +173,7 @@ fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
             continue;
         }
 
-        match analyze_page(&gray, &model, &bands, &expected_rows) {
+        match analyze_page(&clean, &model, &bands, &expected_rows) {
             Ok((_cal, outcomes)) => {
                 for outcome in outcomes {
                     let RowEntry::Candidate { id, codepoint, .. } = outcome.entry else {
