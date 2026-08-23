@@ -101,7 +101,23 @@ public static class DispDev {
 }
 
 function Resolve-Hwnd {
+    # Primary: the process we spawned owns its console/window; poll its own
+    # MainWindowHandle (wt.exe may forward to an existing instance and exit —
+    # then the name-scan fallback below takes over).
     $sw = [System.Diagnostics.Stopwatch]::StartNew()
+    while ($sw.ElapsedMilliseconds -lt $HwndTimeoutMs) {
+        if ($script:TermProc) {
+            $script:TermProc.Refresh()
+            if (-not $script:TermProc.HasExited -and
+                $script:TermProc.MainWindowHandle -ne [IntPtr]::Zero) {
+                return $script:TermProc.MainWindowHandle
+            }
+        }
+        Start-Sleep -Milliseconds 100
+    }
+
+    # Fallback: newest windowed terminal-family process.
+    $sw.Restart()
     while ($sw.ElapsedMilliseconds -lt $HwndTimeoutMs) {
         $proc = Get-Process -Name "WindowsTerminal","OpenConsole","conhost","powershell","pwsh" -ErrorAction SilentlyContinue |
             Where-Object { $_.MainWindowHandle -ne [IntPtr]::Zero } |
@@ -123,9 +139,9 @@ exit `$LASTEXITCODE
 "@ | Set-Content -Path $inner -Encoding UTF8
 
     if ($ViaConhost) {
-        Start-Process conhost.exe -ArgumentList "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$inner`""
+        $script:TermProc = Start-Process conhost.exe -PassThru -ArgumentList "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$inner`""
     } else {
-        Start-Process wt.exe -ArgumentList "-w", "_new", "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$inner`""
+        $script:TermProc = Start-Process wt.exe -PassThru -ArgumentList "-w", "_new", "powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$inner`""
     }
 
     # PID marker published by the harness wrapper.
