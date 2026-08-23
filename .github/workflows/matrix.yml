@@ -101,8 +101,10 @@ jobs:
       # Routing inside the script: conhost+GDI backend by default
       # (sidecar-tagged host=conhost); wt/DWM-composed path behind
       # TERM_ICON_WT_EXPERIMENTAL=1 with automatic fallback.
+      # shell=powershell (5.1): System.Drawing is builtin there; pwsh 7
+      # requires extra assembly references.
       - name: Run verification matrix
-        shell: pwsh
+        shell: powershell
         run: ./scripts/capture-windows.ps1 -OutDir target/matrix
       - name: Upload artifacts
         if: always()

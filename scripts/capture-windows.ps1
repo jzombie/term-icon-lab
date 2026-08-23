@@ -26,6 +26,10 @@ param(
 )
 $ErrorActionPreference = "Stop"
 
+# Load GDI+ before any Add-Type compilation so C# blocks referencing
+# System.Drawing resolve their assembly references.
+Add-Type -AssemblyName System.Drawing
+
 Add-Type -AssemblyName System.Drawing
 
 $Repo = (Get-Location).Path
