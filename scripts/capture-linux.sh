@@ -36,12 +36,14 @@ if [ ! -S "/tmp/.X11-unix/X${DISP_NUM}" ]; then
 fi
 
 # Launch harness inside xterm with explicit FreeType rendering. The wrapper
-# publishes the harness PID and tees its output to a log file (the xterm
-# display itself is invisible to CI logs).
+# publishes the harness PID and sends stderr diagnostics to a log file;
+# stdout must stay attached to the pty — the emulator consumes the render
+# and answers its CPR queries there (the xterm display itself is invisible
+# to CI logs).
 xterm \
     -fa "DejaVu Sans Mono" -fs 11 \
     -geometry 120x48 \
-    -e bash -c 'd="$1"; shift; echo $$ > "$d/pid"; exec "$@" >"$d/harness.log" 2>&1' bash \
+    -e bash -c 'd="$1"; shift; echo $$ > "$d/pid"; exec "$@" 2>"$d/harness.log"' bash \
         "$SYNC_DIR" ./target/debug/matrix-harness \
             --sync-dir "$SYNC_DIR" \
             --out-dir "$OUT_DIR/artifacts" \

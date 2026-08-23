@@ -133,12 +133,14 @@ function Resolve-Hwnd {
 }
 
 function Start-HarnessRun {
+    # stdout stays on the console by design: the harness renders there and
+    # waits for CPR replies from the terminal host; only stderr is logged.
     param([bool]$ViaConhost)
     $inner = Join-Path $SyncDir "run.ps1"
     $hostName = if ($ViaConhost) { 'conhost' } else { 'wt' }
     @"
 Set-Content -Path '$SyncDir\pid' -Value `$PID
-& '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName' *> '$SyncDir\harness.log'
+& '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName' 2> '$SyncDir\harness.log'
 exit `$LASTEXITCODE
 "@ | Set-Content -Path $inner -Encoding UTF8
 

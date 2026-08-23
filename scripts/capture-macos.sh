@@ -27,7 +27,7 @@ cat > "$SYNC_DIR/run_matrix.command" <<WRAP
 #!/bin/bash
 echo \$\$ > '$SYNC_DIR/pid'
 cd '$PWD'
-exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST' >'$SYNC_DIR/harness.log' 2>&1
+exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST' 2>'$SYNC_DIR/harness.log'
 WRAP
 chmod +x "$SYNC_DIR/run_matrix.command"
 open -a Terminal "$SYNC_DIR/run_matrix.command"
