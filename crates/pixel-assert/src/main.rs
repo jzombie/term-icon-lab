@@ -34,15 +34,15 @@ struct Cli {
 
     /// Harness sidecar describing the render.
     #[arg(long, required_unless_present = "validate_only")]
-    sidecar: PathBuf,
+    sidecar: Option<PathBuf>,
 
     /// Harness Pass-1 report.
     #[arg(long, required_unless_present = "validate_only")]
-    pass1: PathBuf,
+    pass1: Option<PathBuf>,
 
     /// Output verdicts.json path.
     #[arg(long, required_unless_present = "validate_only")]
-    out: PathBuf,
+    out: Option<PathBuf>,
 
     /// Minimum plausible-capture entropy in bits.
     #[arg(long, default_value_t = 0.3)]
@@ -94,10 +94,23 @@ fn validate_one(cli: &Cli, png: &PathBuf) -> Result<bool, anyhow::Error> {
 }
 
 fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
-    let sidecar: Sidecar = serde_json::from_slice(&std::fs::read(&cli.sidecar)?)
-        .with_context(|| format!("parse {}", cli.sidecar.display()))?;
-    let pass1: schema::Pass1Report = serde_json::from_slice(&std::fs::read(&cli.pass1)?)
-        .with_context(|| format!("parse {}", cli.pass1.display()))?;
+    let sidecar_path = cli
+        .sidecar
+        .as_deref()
+        .expect("--sidecar is required unless --validate-only is set");
+    let pass1_path = cli
+        .pass1
+        .as_deref()
+        .expect("--pass1 is required unless --validate-only is set");
+    let out_path = cli
+        .out
+        .as_deref()
+        .expect("--out is required unless --validate-only is set");
+
+    let sidecar: Sidecar = serde_json::from_slice(&std::fs::read(sidecar_path)?)
+        .with_context(|| format!("parse {}", sidecar_path.display()))?;
+    let pass1: schema::Pass1Report = serde_json::from_slice(&std::fs::read(pass1_path)?)
+        .with_context(|| format!("parse {}", pass1_path.display()))?;
 
     if cli.pngs.len() != sidecar.pages as usize {
         anyhow::bail!(
@@ -201,8 +214,8 @@ fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
     };
 
     let passing = report.passing_ids().len();
-    std::fs::write(&cli.out, serde_json::to_vec_pretty(&report)?)
-        .with_context(|| format!("write {}", cli.out.display()))?;
+    std::fs::write(out_path, serde_json::to_vec_pretty(&report)?)
+        .with_context(|| format!("write {}", out_path.display()))?;
 
     println!(
         "verdicts: {}/{} candidates pass{}",
@@ -494,9 +507,9 @@ mod tests {
 
         let cli = Cli {
             pngs,
-            sidecar: sidecar_path,
-            pass1: pass1_path,
-            out: dir.path().join("verdicts.json"),
+            sidecar: Some(sidecar_path),
+            pass1: Some(pass1_path),
+            out: Some(dir.path().join("verdicts.json")),
             min_entropy: 0.3,
             validate_only: None,
         };
@@ -504,7 +517,7 @@ mod tests {
     }
 
     fn read_verdicts(fx: &Fixture) -> VerdictReport {
-        let raw = std::fs::read(&fx.cli.out).unwrap();
+        let raw = std::fs::read(fx.cli.out.as_deref().unwrap()).unwrap();
         serde_json::from_slice(&raw).unwrap()
     }
 
@@ -622,9 +635,9 @@ mod tests {
 
         let cli = Cli {
             pngs: vec![png],
-            sidecar: sidecar_path,
-            pass1: pass1_path,
-            out: dir.path().join("v.json"),
+            sidecar: Some(sidecar_path),
+            pass1: Some(pass1_path),
+            out: Some(dir.path().join("v.json")),
             min_entropy: 0.3,
             validate_only: None,
         };
