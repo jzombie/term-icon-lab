@@ -36,14 +36,15 @@ if [ ! -S "/tmp/.X11-unix/X${DISP_NUM}" ]; then
 fi
 
 # Launch harness inside xterm with explicit FreeType rendering. The wrapper
-# publishes the harness PID and sends stderr diagnostics to a log file;
-# stdout must stay attached to the pty — the emulator consumes the render
-# and answers its CPR queries there (the xterm display itself is invisible
-# to CI logs).
+# publishes the harness PID, sends stderr diagnostics to a log file, and
+# records the harness exit code (the harness is not our child, so `wait`
+# cannot retrieve its status); stdout must stay attached to the pty — the
+# emulator consumes the render and answers its CPR queries there (the xterm
+# display itself is invisible to CI logs).
 xterm \
     -fa "DejaVu Sans Mono" -fs 11 \
     -geometry 120x48 \
-    -e bash -c 'd="$1"; shift; echo $$ > "$d/pid"; exec "$@" 2>"$d/harness.log"' bash \
+    -e bash -c 'd="$1"; shift; echo $$ > "$d/pid"; "$@" 2>"$d/harness.log"; echo $? > "$d/rc"' bash \
         "$SYNC_DIR" ./target/debug/matrix-harness \
             --sync-dir "$SYNC_DIR" \
             --out-dir "$OUT_DIR/artifacts" \
@@ -83,7 +84,15 @@ done
 
 set +e
 wait "$HARNESS_PID" 2>/dev/null
-HARNESS_EXIT=$?
+# `wait` cannot see a non-child process; the real exit code comes from the
+# wrapper's rc file (poll briefly — it lands just before the pid goes away).
+HARNESS_EXIT=""
+for _ in $(seq 1 50); do
+    [ -f "$SYNC_DIR/rc" ] && break
+    kill -0 "$HARNESS_PID" 2>/dev/null || break
+    sleep 0.1
+done
+[ -z "$HARNESS_EXIT" ] && HARNESS_EXIT="$(cat "$SYNC_DIR/rc" 2>/dev/null || echo unknown)"
 set -e
 
 if [ "$RUN_FAILED" -ne 0 ]; then

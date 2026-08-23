@@ -140,6 +140,10 @@ function Start-HarnessRun {
     $hostName = if ($ViaConhost) { 'conhost' } else { 'wt' }
     @"
 Set-Content -Path '$SyncDir\pid' -Value `$PID
+# PS 5.1 turns native stderr into error records; with Stop (inherited) the
+# first harness stderr byte would abort this wrapper and mask the real
+# failure. Diagnostics belong in the log file, not a terminating error.
+`$ErrorActionPreference = 'Continue'
 & '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName' 2> '$SyncDir\harness.log'
 exit `$LASTEXITCODE
 "@ | Set-Content -Path $inner -Encoding UTF8
@@ -212,6 +216,13 @@ Wait-Process -Id $harnessPid -ErrorAction SilentlyContinue
 
 if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
     Write-Error "harness finished but sidecar.json is missing; harness.log tail:"
+    if (Test-Path "$SyncDir\harness.log") { Get-Content "$SyncDir\harness.log" -Tail 40 | Write-Error }
+    exit 2
+}
+
+$pagesCaptured = @(Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" -ErrorAction SilentlyContinue).Count
+if ($pagesCaptured -eq 0) {
+    Write-Error "no pages were captured; harness.log tail:"
     if (Test-Path "$SyncDir\harness.log") { Get-Content "$SyncDir\harness.log" -Tail 40 | Write-Error }
     exit 2
 }

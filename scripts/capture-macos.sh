@@ -23,11 +23,16 @@ SYNC_DIR="$(mktemp -d)"
 # consent. (The previous `do script` channel died with AppleEvent timeout
 # -1712 on headless runners.) Window bounds are best-effort afterwards; the
 # harness's own viewport guard remains the authority.
+# Launch contract: publish the harness PID for liveness checks, send stderr
+# diagnostics to a log file, record its real exit code (the process is not a
+# child of this script, so `wait` cannot retrieve it), and keep stdout on the
+# Terminal pty — the emulator consumes the render and answers CPR queries.
 cat > "$SYNC_DIR/run_matrix.command" <<WRAP
 #!/bin/bash
 echo \$\$ > '$SYNC_DIR/pid'
 cd '$PWD'
-exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST' 2>'$SYNC_DIR/harness.log'
+'$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST' 2>'$SYNC_DIR/harness.log'
+echo \$? > '$SYNC_DIR/rc'
 WRAP
 chmod +x "$SYNC_DIR/run_matrix.command"
 open -a Terminal "$SYNC_DIR/run_matrix.command"
@@ -122,7 +127,15 @@ done
 
 set +e
 wait "$HARNESS_PID" 2>/dev/null
-HARNESS_EXIT=$?
+# `wait` cannot see a non-child process; the real exit code comes from the
+# wrapper's rc file (poll briefly — it lands just before the pid goes away).
+HARNESS_EXIT=""
+for _ in $(seq 1 50); do
+    [ -f "$SYNC_DIR/rc" ] && break
+    kill -0 "$HARNESS_PID" 2>/dev/null || break
+    sleep 0.1
+done
+[ -z "$HARNESS_EXIT" ] && HARNESS_EXIT="$(cat "$SYNC_DIR/rc" 2>/dev/null || echo unknown)"
 set -e
 
 dump_harness_log() {
