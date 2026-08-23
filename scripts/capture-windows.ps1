@@ -148,7 +148,8 @@ Set-Content -Path '$SyncDir\pid' -Value `$PID
     '--sync-dir', '$SyncDir',
     '--out-dir', '$OutDir\artifacts',
     '--platform', 'windows/$hostName',
-    '--host', '$hostName'
+    '--host', '$hostName',
+    '--handshake-timeout-ms', '5000'
 ) -RedirectStandardError '$SyncDir\harness.log' -NoNewWindow -PassThru -Wait
 exit `$p.ExitCode
 "@ | Set-Content -Path $inner -Encoding UTF8
@@ -220,20 +221,27 @@ while ($true) {
 Wait-Process -Id $harnessPid -ErrorAction SilentlyContinue
 
 if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
-    Write-Error "harness finished but sidecar.json is missing; harness.log tail:"
-    if (Test-Path "$SyncDir\harness.log") { Get-Content "$SyncDir\harness.log" -Tail 40 | Write-Error }
+    $detail = "harness finished but sidecar.json is missing; sync dir contents:"
+    Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
+        ForEach-Object { $detail += "`n  $($_.Name) ($($_.Length) bytes)" }
+    if (Test-Path "$SyncDir\harness.log") {
+        $detail += "`n--- harness.log tail ---`n" +
+            ((Get-Content "$SyncDir\harness.log" -Tail 40) -join "`n")
+    }
+    Write-Error $detail
     exit 2
 }
 
 $pagesCaptured = @(Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" -ErrorAction SilentlyContinue).Count
 if ($pagesCaptured -eq 0) {
-    Write-Error "no pages were captured; sync dir contents:"
+    $detail = "no pages were captured; sync dir contents:"
     Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
-        ForEach-Object { Write-Error ("  {0} ({1} bytes)" -f $_.Name, $_.Length) }
+        ForEach-Object { $detail += "`n  $($_.Name) ($($_.Length) bytes)" }
     if (Test-Path "$SyncDir\harness.log") {
-        Write-Error "harness.log tail:"
-        Get-Content "$SyncDir\harness.log" -Tail 40 | ForEach-Object { Write-Error $_ }
+        $detail += "`n--- harness.log tail ---`n" +
+            ((Get-Content "$SyncDir\harness.log" -Tail 40) -join "`n")
     }
+    Write-Error $detail
     exit 2
 }
 
