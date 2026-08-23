@@ -18,24 +18,36 @@ HARNESS_BIN="./target/debug/matrix-harness"
 mkdir -p "$OUT_DIR/pages" "$OUT_DIR/artifacts"
 SYNC_DIR="$(mktemp -d)"
 
-# Launch Terminal.app running the harness. The wrapper publishes the harness
-# PID; explicit window bounds guarantee the >=30x16 viewport the harness
-# enforces. Colors are pinned by the harness itself (SGR), so no profile
-# mutation happens here.
-osascript <<APPLESCRIPT
-tell application "Terminal"
-    activate
-    set win to do script "cd '$PWD' && echo \$\$ > '$SYNC_DIR/pid' && exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST'"
-    delay 1
-    set bounds of front window to {0, 0, 980, 760}
-end tell
-APPLESCRIPT
+# Launch Terminal.app WITHOUT AppleEvents on the critical path: Terminal
+# executes .command files natively, and `open -a Terminal` needs no Automation
+# consent. (The previous `do script` channel died with AppleEvent timeout
+# -1712 on headless runners.) Window bounds are best-effort afterwards; the
+# harness's own viewport guard remains the authority.
+cat > "$SYNC_DIR/run_matrix.command" <<WRAP
+#!/bin/bash
+echo \$\$ > '$SYNC_DIR/pid'
+cd '$PWD'
+exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST'
+WRAP
+chmod +x "$SYNC_DIR/run_matrix.command"
+open -a Terminal "$SYNC_DIR/run_matrix.command"
 
-for _ in $(seq 1 100); do
+for _ in $(seq 1 150); do
     [ -f "$SYNC_DIR/pid" ] && break
-    sleep 0.1
+    sleep 0.2
 done
+if [ ! -f "$SYNC_DIR/pid" ]; then
+    echo "ERROR: Terminal.app never launched the harness wrapper." >&2
+    exit 2
+fi
 HARNESS_PID="$(cat "$SYNC_DIR/pid")"
+
+# Best-effort resize (needs the Automation channel; failure is non-fatal).
+if ! osascript -e 'with timeout of 30 seconds
+tell application "Terminal" to set bounds of front window to {0, 0, 980, 760}
+end timeout' 2>/dev/null; then
+    echo "WARN: window resize skipped (Automation channel unavailable); relying on harness viewport guard."
+fi
 
 # Resolve the real CGWindowID: Terminal.app's AppleScript `id of window`
 # returns a session GUID string, which screencapture -l cannot consume. A tiny
