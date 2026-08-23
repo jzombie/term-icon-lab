@@ -85,7 +85,16 @@ pub fn generate(entries: &[Entry]) -> String {
     }
 
     // Per-block modules with named constants.
-    for module in ["ascii", "box_drawing", "block_elements", "braille"] {
+    for module in [
+        "ascii",
+        "arrows",
+        "box_drawing",
+        "block_elements",
+        "geometric_shapes",
+        "misc_symbols",
+        "dingbats",
+        "braille",
+    ] {
         let group: Vec<&Entry> = entries.iter().filter(|e| e.module == module).collect();
         out.push('\n');
         out.push_str(&format!("pub mod {module} {{\n"));

@@ -4,7 +4,9 @@
 //!   Block Elements require ≥ 2 % ink coverage, Braille only ≥ 0.2 % (a
 //!   single-dot pattern like `U+2801` covers under 1 % of its cell). The
 //!   tofu-outline heuristic is exempt for Braille — a lone dot is inherently
-//!   a hollow outline.
+//!   a hollow outline — and requires a *rectangular* frame (ink in all four
+//!   bbox corners), so hollow outline glyphs (○ △ ☆ ◇) are never mistaken for
+//!   missing-glyph boxes.
 //! * **Bleed** compares sentinel B's crop against the clean reference from
 //!   the control row and scans the icon→B gutter for intrusion.
 
@@ -91,7 +93,6 @@ pub fn check_visibility(
     }
     Ok(())
 }
-
 fn looks_like_tofu(gray: &GrayImage, model: &FgModel, icon_box: &CellBox, t: &Thresholds) -> bool {
     // Bounding box of ink inside the cell crop.
     let mut min_x = None;
@@ -141,7 +142,17 @@ fn looks_like_tofu(gray: &GrayImage, model: &FgModel, icon_box: &CellBox, t: &Th
             }
         }
     }
-    (interior_ink as f64 / interior_area) <= t.tofu_interior_max_ratio
+    (interior_ink as f64 / interior_area) <= t.tofu_interior_max_ratio && {
+        // A real tofu box is rectangular: its frame passes through all four
+        // corners of the ink bbox. Outline glyphs (circles, triangles, stars,
+        // diamonds) leave the corners empty and must not be classified as
+        // tofu. A hollow square (U+25A1) is pixel-identical to tofu and stays
+        // classified as such — indistinguishable, and purged conservatively.
+        model.is_fg(gray, min_x, min_y)
+            && model.is_fg(gray, max_x, min_y)
+            && model.is_fg(gray, min_x, max_y)
+            && model.is_fg(gray, max_x, max_y)
+    }
 }
 
 /// Result of the bleed check on sentinel B.
@@ -327,6 +338,94 @@ mod tests {
                 &Thresholds::default()
             ),
             Err(InvisibleReason::TofuBox)
+        );
+    }
+
+    #[test]
+    fn hollow_square_in_geometric_shapes_still_reads_as_tofu() {
+        // U+25A1 is pixel-identical to a missing-glyph box: conservatively
+        // purged even though it is a legitimate glyph.
+        let mut c = Canvas::new(60, 24);
+        let band = Band { top: 2, bottom: 21 };
+        let cal = c.cal(5.0, 10.0);
+        let icon = cal.cell_box(3, &band);
+        let (x0, x1) = (icon.left, icon.right);
+        let (y0, y1) = (icon.top + 1, icon.bottom - 1);
+        c.rect(x0, y0, x1, y1, FG);
+        c.rect(x0 + 1, y0 + 1, x1 - 1, y1 - 1, BG);
+        assert_eq!(
+            check_visibility(
+                &c.img,
+                &c.model,
+                &icon,
+                Block::GeometricShapes,
+                &Thresholds::default()
+            ),
+            Err(InvisibleReason::TofuBox)
+        );
+    }
+
+    #[test]
+    fn tofu_requires_corner_ink() {
+        let mut c = Canvas::new(60, 24);
+        let band = Band { top: 2, bottom: 21 };
+        let cal = c.cal(5.0, 10.0);
+        let icon = cal.cell_box(3, &band);
+
+        // Rectangular frame with populated corners: the tofu signature.
+        let (x0, x1) = (icon.left, icon.right);
+        let (y0, y1) = (icon.top + 1, icon.bottom - 1);
+        c.rect(x0, y0, x1, y1, FG);
+        c.rect(x0 + 1, y0 + 1, x1 - 1, y1 - 1, BG);
+        assert!(looks_like_tofu(
+            &c.img,
+            &c.model,
+            &icon,
+            &Thresholds::default()
+        ));
+
+        // Identical ink budget with the four corner pixels cleared: a
+        // rounded/oval outline (○-style) is not rectangular ⇒ not tofu.
+        c.img.put_pixel(x0, y0, Luma([BG]));
+        c.img.put_pixel(x1, y0, Luma([BG]));
+        c.img.put_pixel(x0, y1, Luma([BG]));
+        c.img.put_pixel(x1, y1, Luma([BG]));
+        assert!(!looks_like_tofu(
+            &c.img,
+            &c.model,
+            &icon,
+            &Thresholds::default()
+        ));
+    }
+
+    #[test]
+    fn hollow_diamond_outline_is_not_tofu() {
+        // △/◇-style outline: ink on the four edges, corners empty.
+        let mut c = Canvas::new(60, 24);
+        let band = Band { top: 2, bottom: 21 };
+        let cal = c.cal(5.0, 10.0);
+        let icon = cal.cell_box(3, &band);
+        let cx = f64::from(icon.left + icon.right) / 2.0;
+        let cy = f64::from(icon.top + icon.bottom) / 2.0;
+        let rx = f64::from(icon.right - icon.left) / 2.0 - 1.0;
+        let ry = f64::from(icon.bottom - icon.top) / 2.0 - 1.0;
+        for y in icon.top..=icon.bottom {
+            for x in icon.left..=icon.right {
+                let d = ((f64::from(x) - cx) / rx).abs() + ((f64::from(y) - cy) / ry).abs();
+                if (d - 1.0).abs() <= 0.15 {
+                    c.img.put_pixel(x, y, Luma([FG]));
+                }
+            }
+        }
+        assert_eq!(
+            check_visibility(
+                &c.img,
+                &c.model,
+                &icon,
+                Block::GeometricShapes,
+                &Thresholds::default()
+            ),
+            Ok(())
         );
     }
 

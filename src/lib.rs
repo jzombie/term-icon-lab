@@ -103,8 +103,12 @@ mod tests {
             let c = icon.glyph.chars().next().expect("glyph is one char");
             let cp = c as u32;
             let in_verified_block = (0x21..=0x7E).contains(&cp)
+                || (0x2190..=0x21FF).contains(&cp)
                 || (0x2500..=0x257F).contains(&cp)
                 || (0x2580..=0x259F).contains(&cp)
+                || (0x25A0..=0x25FF).contains(&cp)
+                || (0x2600..=0x26FF).contains(&cp)
+                || (0x2700..=0x27BF).contains(&cp)
                 || (0x2801..=0x28FF).contains(&cp);
             assert!(
                 in_verified_block,

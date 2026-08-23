@@ -77,8 +77,12 @@ fn validate_host(platform: &str, host: &str) -> Result<(), String> {
 fn entry_for(candidate: &icon_catalog::Candidate) -> codegen::Entry {
     let module = match candidate.block {
         Block::Ascii => "ascii",
+        Block::Arrows => "arrows",
         Block::BoxDrawing => "box_drawing",
         Block::BlockElements => "block_elements",
+        Block::GeometricShapes => "geometric_shapes",
+        Block::MiscSymbols => "misc_symbols",
+        Block::Dingbats => "dingbats",
         Block::Braille => "braille",
     };
     codegen::Entry::new(

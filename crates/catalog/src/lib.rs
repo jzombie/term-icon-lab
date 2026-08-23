@@ -7,8 +7,12 @@
 //! | Block | Range | Notes |
 //! |---|---|---|
 //! | Basic ASCII | `U+0021–U+007E` | `U+0020` excluded (blank render) |
+//! | Arrows | `U+2190–U+21FF` | |
 //! | Box Drawing | `U+2500–U+257F` | |
 //! | Block Elements | `U+2580–U+259F` | |
+//! | Geometric Shapes | `U+25A0–U+25FF` | |
+//! | Miscellaneous Symbols | `U+2600–U+26FF` | |
+//! | Dingbats | `U+2700–U+27BF` | |
 //! | Braille Patterns | `U+2801–U+28FF` | `U+2800 BRAILLE PATTERN BLANK` excluded (blank render) |
 
 use serde::{Deserialize, Serialize};
@@ -18,6 +22,10 @@ use std::sync::OnceLock;
 pub const ASCII_START: u32 = 0x21;
 /// End of the Basic ASCII candidate range.
 pub const ASCII_END: u32 = 0x7E;
+/// Start of the Arrows candidate range.
+pub const ARROWS_START: u32 = 0x2190;
+/// End of the Arrows candidate range.
+pub const ARROWS_END: u32 = 0x21FF;
 /// Start of the Box Drawing candidate range.
 pub const BOX_DRAWING_START: u32 = 0x2500;
 /// End of the Box Drawing candidate range.
@@ -26,6 +34,18 @@ pub const BOX_DRAWING_END: u32 = 0x257F;
 pub const BLOCK_ELEMENTS_START: u32 = 0x2580;
 /// End of the Block Elements candidate range.
 pub const BLOCK_ELEMENTS_END: u32 = 0x259F;
+/// Start of the Geometric Shapes candidate range.
+pub const GEOMETRIC_SHAPES_START: u32 = 0x25A0;
+/// End of the Geometric Shapes candidate range.
+pub const GEOMETRIC_SHAPES_END: u32 = 0x25FF;
+/// Start of the Miscellaneous Symbols candidate range.
+pub const MISC_SYMBOLS_START: u32 = 0x2600;
+/// End of the Miscellaneous Symbols candidate range.
+pub const MISC_SYMBOLS_END: u32 = 0x26FF;
+/// Start of the Dingbats candidate range.
+pub const DINGBATS_START: u32 = 0x2700;
+/// End of the Dingbats candidate range.
+pub const DINGBATS_END: u32 = 0x27BF;
 /// Start of the Braille Patterns candidate range.
 ///
 /// `U+2800 BRAILLE PATTERN BLANK` is deliberately excluded: it renders zero
@@ -40,20 +60,32 @@ pub const BRAILLE_END: u32 = 0x28FF;
 pub enum Block {
     /// Basic ASCII (`U+0021–U+007E`).
     Ascii,
+    /// Arrows (`U+2190–U+21FF`).
+    Arrows,
     /// Box Drawing (`U+2500–U+257F`).
     BoxDrawing,
     /// Block Elements (`U+2580–U+259F`).
     BlockElements,
+    /// Geometric Shapes (`U+25A0–U+25FF`).
+    GeometricShapes,
+    /// Miscellaneous Symbols (`U+2600–U+26FF`).
+    MiscSymbols,
+    /// Dingbats (`U+2700–U+27BF`).
+    Dingbats,
     /// Braille Patterns (`U+2801–U+28FF`).
     Braille,
 }
 
 impl Block {
     /// All blocks, in manifest order.
-    pub const ALL: [Block; 4] = [
+    pub const ALL: [Block; 8] = [
         Block::Ascii,
+        Block::Arrows,
         Block::BoxDrawing,
         Block::BlockElements,
+        Block::GeometricShapes,
+        Block::MiscSymbols,
+        Block::Dingbats,
         Block::Braille,
     ];
 
@@ -61,8 +93,12 @@ impl Block {
     pub fn prefix(self) -> &'static str {
         match self {
             Block::Ascii => "ascii",
+            Block::Arrows => "arrow",
             Block::BoxDrawing => "box",
             Block::BlockElements => "block",
+            Block::GeometricShapes => "geometric",
+            Block::MiscSymbols => "misc",
+            Block::Dingbats => "dingbat",
             Block::Braille => "braille",
         }
     }
@@ -125,25 +161,82 @@ fn block_elements_fallback(cp: u32) -> &'static str {
     }
 }
 
+fn arrows_fallback(cp: u32) -> &'static str {
+    match cp {
+        0x2190 => "<",
+        0x2191 => "^",
+        0x2192 => ">",
+        0x2193 => "v",
+        0x2194 => "-",
+        _ => "*",
+    }
+}
+
+fn geometric_shapes_fallback(cp: u32) -> &'static str {
+    match cp {
+        0x25A0 | 0x25A1 => "#",
+        0x25B2 => "^",
+        0x25BC => "v",
+        0x25B6 => ">",
+        0x25C0 => "<",
+        0x25CB | 0x25CF => "o",
+        0x25C6 => "*",
+        _ => "#",
+    }
+}
+
+fn misc_symbols_fallback(cp: u32) -> &'static str {
+    match cp {
+        0x2605 | 0x2606 => "*",
+        0x2611 => "v",
+        0x2612 => "x",
+        0x2699 => "@",
+        0x26A0 => "!",
+        _ => "*",
+    }
+}
+
+fn dingbats_fallback(cp: u32) -> &'static str {
+    match cp {
+        0x2713 | 0x2714 => "v",
+        0x2715..=0x2718 => "x",
+        0x2702 => "X",
+        0x2794 | 0x27A2 => ">",
+        _ => "*",
+    }
+}
+
 fn fallback_for(block: Block, cp: u32) -> &'static str {
     match block {
         Block::Ascii => "",
+        Block::Arrows => arrows_fallback(cp),
         Block::BoxDrawing => box_drawing_fallback(cp),
         Block::BlockElements => block_elements_fallback(cp),
+        Block::GeometricShapes => geometric_shapes_fallback(cp),
+        Block::MiscSymbols => misc_symbols_fallback(cp),
+        Block::Dingbats => dingbats_fallback(cp),
         Block::Braille => "*",
     }
 }
 
 fn build_candidates() -> Vec<Candidate> {
-    let mut out = Vec::with_capacity(512);
+    let mut out = Vec::with_capacity(2048);
     for &(start, end, block) in &[
         (ASCII_START, ASCII_END, Block::Ascii),
+        (ARROWS_START, ARROWS_END, Block::Arrows),
         (BOX_DRAWING_START, BOX_DRAWING_END, Block::BoxDrawing),
         (
             BLOCK_ELEMENTS_START,
             BLOCK_ELEMENTS_END,
             Block::BlockElements,
         ),
+        (
+            GEOMETRIC_SHAPES_START,
+            GEOMETRIC_SHAPES_END,
+            Block::GeometricShapes,
+        ),
+        (MISC_SYMBOLS_START, MISC_SYMBOLS_END, Block::MiscSymbols),
+        (DINGBATS_START, DINGBATS_END, Block::Dingbats),
         (BRAILLE_START, BRAILLE_END, Block::Braille),
     ] {
         for cp in start..=end {
@@ -184,10 +277,14 @@ mod tests {
     #[test]
     fn exact_per_block_counts() {
         assert_eq!(count_block(Block::Ascii), 94); // 0x21..=0x7E
+        assert_eq!(count_block(Block::Arrows), 112); // 0x2190..=0x21FF
         assert_eq!(count_block(Block::BoxDrawing), 128); // 0x2500..=0x257F
         assert_eq!(count_block(Block::BlockElements), 32); // 0x2580..=0x259F
+        assert_eq!(count_block(Block::GeometricShapes), 96); // 0x25A0..=0x25FF
+        assert_eq!(count_block(Block::MiscSymbols), 256); // 0x2600..=0x26FF
+        assert_eq!(count_block(Block::Dingbats), 192); // 0x2700..=0x27BF
         assert_eq!(count_block(Block::Braille), 255); // 0x2801..=0x28FF
-        assert_eq!(total_count(), 509);
+        assert_eq!(total_count(), 1165);
     }
 
     #[test]
@@ -246,6 +343,13 @@ mod tests {
         assert_eq!(by_cp(0x2588).fallback, "#");
         assert_eq!(by_cp(0x2801).fallback, "*");
         assert_eq!(by_cp(0x0041).fallback, "");
+        assert_eq!(by_cp(0x2190).fallback, "<");
+        assert_eq!(by_cp(0x2192).fallback, ">");
+        assert_eq!(by_cp(0x25B2).fallback, "^");
+        assert_eq!(by_cp(0x25CF).fallback, "o");
+        assert_eq!(by_cp(0x26A0).fallback, "!");
+        assert_eq!(by_cp(0x2714).fallback, "v");
+        assert_eq!(by_cp(0x2717).fallback, "x");
     }
 
     #[test]
