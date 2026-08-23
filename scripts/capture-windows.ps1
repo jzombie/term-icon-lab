@@ -30,8 +30,6 @@ $ErrorActionPreference = "Stop"
 # System.Drawing resolve their assembly references.
 Add-Type -AssemblyName System.Drawing
 
-Add-Type -AssemblyName System.Drawing
-
 $Repo = (Get-Location).Path
 $Harness = Join-Path $Repo "target\debug\matrix-harness.exe"
 $PixelAssert = Join-Path $Repo "target\debug\pixel-assert.exe"
@@ -41,7 +39,9 @@ New-Item -ItemType Directory -Force -Path "$OutDir\pages", "$OutDir\artifacts" |
 $SyncDir = Join-Path ([System.IO.Path]::GetTempPath()) ("term_icon_" + [Guid]::NewGuid().ToString("N"))
 New-Item -ItemType Directory -Force -Path $SyncDir | Out-Null
 
-Add-Type @"
+# Windows PowerShell 5.1 compiles with a fixed default reference set that
+# excludes System.Drawing.dll; loaded assemblies are not compile references.
+Add-Type -ReferencedAssemblies System.Drawing @"
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
