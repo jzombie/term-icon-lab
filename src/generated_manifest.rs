@@ -8,258 +8,73 @@ use crate::SafeIcon;
 pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     ascii::ASCII_0021,
     ascii::ASCII_0022,
-    ascii::ASCII_0023,
-    ascii::ASCII_0024,
-    ascii::ASCII_0025,
-    ascii::ASCII_0026,
     ascii::ASCII_0027,
     ascii::ASCII_0028,
     ascii::ASCII_0029,
-    ascii::ASCII_002A,
-    ascii::ASCII_002B,
     ascii::ASCII_002C,
-    ascii::ASCII_002D,
     ascii::ASCII_002E,
     ascii::ASCII_002F,
-    ascii::ASCII_0030,
-    ascii::ASCII_0031,
-    ascii::ASCII_0032,
-    ascii::ASCII_0033,
-    ascii::ASCII_0034,
-    ascii::ASCII_0035,
-    ascii::ASCII_0036,
-    ascii::ASCII_0037,
-    ascii::ASCII_0038,
-    ascii::ASCII_0039,
     ascii::ASCII_003A,
     ascii::ASCII_003B,
-    ascii::ASCII_003C,
-    ascii::ASCII_003D,
     ascii::ASCII_003E,
     ascii::ASCII_003F,
-    ascii::ASCII_0040,
-    ascii::ASCII_0041,
-    ascii::ASCII_0042,
-    ascii::ASCII_0043,
-    ascii::ASCII_0044,
-    ascii::ASCII_0045,
-    ascii::ASCII_0046,
-    ascii::ASCII_0047,
-    ascii::ASCII_0048,
     ascii::ASCII_0049,
-    ascii::ASCII_004A,
-    ascii::ASCII_004B,
-    ascii::ASCII_004C,
-    ascii::ASCII_004D,
-    ascii::ASCII_004E,
-    ascii::ASCII_004F,
-    ascii::ASCII_0050,
-    ascii::ASCII_0051,
-    ascii::ASCII_0052,
-    ascii::ASCII_0053,
-    ascii::ASCII_0054,
-    ascii::ASCII_0055,
-    ascii::ASCII_0056,
-    ascii::ASCII_0057,
-    ascii::ASCII_0058,
-    ascii::ASCII_0059,
-    ascii::ASCII_005A,
     ascii::ASCII_005B,
     ascii::ASCII_005C,
     ascii::ASCII_005D,
     ascii::ASCII_005E,
-    ascii::ASCII_005F,
     ascii::ASCII_0060,
     ascii::ASCII_0061,
-    ascii::ASCII_0062,
     ascii::ASCII_0063,
-    ascii::ASCII_0064,
-    ascii::ASCII_0065,
-    ascii::ASCII_0066,
-    ascii::ASCII_0067,
-    ascii::ASCII_0068,
-    ascii::ASCII_0069,
     ascii::ASCII_006A,
-    ascii::ASCII_006B,
-    ascii::ASCII_006C,
-    ascii::ASCII_006D,
-    ascii::ASCII_006E,
-    ascii::ASCII_006F,
-    ascii::ASCII_0070,
-    ascii::ASCII_0071,
-    ascii::ASCII_0072,
     ascii::ASCII_0073,
     ascii::ASCII_0074,
-    ascii::ASCII_0075,
-    ascii::ASCII_0076,
-    ascii::ASCII_0077,
-    ascii::ASCII_0078,
-    ascii::ASCII_0079,
     ascii::ASCII_007A,
     ascii::ASCII_007B,
     ascii::ASCII_007C,
     ascii::ASCII_007D,
-    ascii::ASCII_007E,
-    box_drawing::BOX_2500,
-    box_drawing::BOX_2501,
     box_drawing::BOX_2502,
     box_drawing::BOX_2503,
-    box_drawing::BOX_2504,
-    box_drawing::BOX_2505,
     box_drawing::BOX_2506,
     box_drawing::BOX_2507,
-    box_drawing::BOX_2508,
-    box_drawing::BOX_2509,
     box_drawing::BOX_250A,
     box_drawing::BOX_250B,
-    box_drawing::BOX_250C,
-    box_drawing::BOX_250D,
-    box_drawing::BOX_250E,
-    box_drawing::BOX_250F,
     box_drawing::BOX_2510,
     box_drawing::BOX_2511,
     box_drawing::BOX_2512,
     box_drawing::BOX_2513,
-    box_drawing::BOX_2514,
-    box_drawing::BOX_2515,
-    box_drawing::BOX_2516,
-    box_drawing::BOX_2517,
     box_drawing::BOX_2518,
     box_drawing::BOX_2519,
     box_drawing::BOX_251A,
     box_drawing::BOX_251B,
-    box_drawing::BOX_251C,
-    box_drawing::BOX_251D,
-    box_drawing::BOX_251E,
-    box_drawing::BOX_251F,
-    box_drawing::BOX_2520,
-    box_drawing::BOX_2521,
-    box_drawing::BOX_2522,
-    box_drawing::BOX_2523,
     box_drawing::BOX_2524,
     box_drawing::BOX_2525,
     box_drawing::BOX_2526,
-    box_drawing::BOX_2527,
-    box_drawing::BOX_2528,
     box_drawing::BOX_2529,
     box_drawing::BOX_252A,
-    box_drawing::BOX_252B,
-    box_drawing::BOX_252C,
-    box_drawing::BOX_252D,
-    box_drawing::BOX_252E,
-    box_drawing::BOX_252F,
-    box_drawing::BOX_2530,
-    box_drawing::BOX_2531,
-    box_drawing::BOX_2532,
-    box_drawing::BOX_2533,
-    box_drawing::BOX_2534,
-    box_drawing::BOX_2535,
-    box_drawing::BOX_2536,
-    box_drawing::BOX_2537,
-    box_drawing::BOX_2538,
-    box_drawing::BOX_2539,
-    box_drawing::BOX_253A,
-    box_drawing::BOX_253B,
-    box_drawing::BOX_253C,
-    box_drawing::BOX_253D,
-    box_drawing::BOX_253E,
-    box_drawing::BOX_253F,
-    box_drawing::BOX_2540,
-    box_drawing::BOX_2541,
-    box_drawing::BOX_2542,
-    box_drawing::BOX_2543,
-    box_drawing::BOX_2544,
-    box_drawing::BOX_2545,
-    box_drawing::BOX_2546,
-    box_drawing::BOX_2547,
-    box_drawing::BOX_2548,
-    box_drawing::BOX_2549,
-    box_drawing::BOX_254A,
-    box_drawing::BOX_254B,
-    box_drawing::BOX_254C,
-    box_drawing::BOX_254D,
     box_drawing::BOX_254E,
     box_drawing::BOX_254F,
-    box_drawing::BOX_2550,
     box_drawing::BOX_2551,
-    box_drawing::BOX_2552,
-    box_drawing::BOX_2553,
-    box_drawing::BOX_2554,
     box_drawing::BOX_2555,
     box_drawing::BOX_2556,
     box_drawing::BOX_2557,
-    box_drawing::BOX_2558,
-    box_drawing::BOX_2559,
-    box_drawing::BOX_255A,
     box_drawing::BOX_255B,
     box_drawing::BOX_255C,
     box_drawing::BOX_255D,
-    box_drawing::BOX_255E,
-    box_drawing::BOX_255F,
-    box_drawing::BOX_2560,
     box_drawing::BOX_2561,
     box_drawing::BOX_2562,
     box_drawing::BOX_2563,
-    box_drawing::BOX_2564,
-    box_drawing::BOX_2565,
-    box_drawing::BOX_2566,
-    box_drawing::BOX_2567,
-    box_drawing::BOX_2568,
-    box_drawing::BOX_2569,
-    box_drawing::BOX_256A,
-    box_drawing::BOX_256B,
-    box_drawing::BOX_256C,
-    box_drawing::BOX_256D,
     box_drawing::BOX_256E,
     box_drawing::BOX_256F,
-    box_drawing::BOX_2570,
-    box_drawing::BOX_2571,
-    box_drawing::BOX_2572,
-    box_drawing::BOX_2573,
     box_drawing::BOX_2574,
     box_drawing::BOX_2575,
-    box_drawing::BOX_2576,
     box_drawing::BOX_2577,
     box_drawing::BOX_2578,
     box_drawing::BOX_2579,
-    box_drawing::BOX_257A,
     box_drawing::BOX_257B,
-    box_drawing::BOX_257C,
     box_drawing::BOX_257D,
-    box_drawing::BOX_257E,
     box_drawing::BOX_257F,
-    block_elements::BLOCK_2580,
-    block_elements::BLOCK_2581,
-    block_elements::BLOCK_2582,
-    block_elements::BLOCK_2583,
-    block_elements::BLOCK_2584,
-    block_elements::BLOCK_2585,
-    block_elements::BLOCK_2586,
-    block_elements::BLOCK_2587,
-    block_elements::BLOCK_2588,
-    block_elements::BLOCK_2589,
-    block_elements::BLOCK_258A,
-    block_elements::BLOCK_258B,
     block_elements::BLOCK_258C,
-    block_elements::BLOCK_258D,
-    block_elements::BLOCK_258E,
-    block_elements::BLOCK_258F,
-    block_elements::BLOCK_2590,
-    block_elements::BLOCK_2591,
-    block_elements::BLOCK_2592,
-    block_elements::BLOCK_2593,
-    block_elements::BLOCK_2594,
-    block_elements::BLOCK_2595,
-    block_elements::BLOCK_2596,
-    block_elements::BLOCK_2597,
-    block_elements::BLOCK_2598,
-    block_elements::BLOCK_2599,
-    block_elements::BLOCK_259A,
-    block_elements::BLOCK_259B,
-    block_elements::BLOCK_259C,
-    block_elements::BLOCK_259D,
-    block_elements::BLOCK_259E,
-    block_elements::BLOCK_259F,
     braille::BRAILLE_2801,
     braille::BRAILLE_2802,
     braille::BRAILLE_2803,
@@ -267,62 +82,6 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2805,
     braille::BRAILLE_2806,
     braille::BRAILLE_2807,
-    braille::BRAILLE_2808,
-    braille::BRAILLE_2809,
-    braille::BRAILLE_280A,
-    braille::BRAILLE_280B,
-    braille::BRAILLE_280C,
-    braille::BRAILLE_280D,
-    braille::BRAILLE_280E,
-    braille::BRAILLE_280F,
-    braille::BRAILLE_2810,
-    braille::BRAILLE_2811,
-    braille::BRAILLE_2812,
-    braille::BRAILLE_2813,
-    braille::BRAILLE_2814,
-    braille::BRAILLE_2815,
-    braille::BRAILLE_2816,
-    braille::BRAILLE_2817,
-    braille::BRAILLE_2818,
-    braille::BRAILLE_2819,
-    braille::BRAILLE_281A,
-    braille::BRAILLE_281B,
-    braille::BRAILLE_281C,
-    braille::BRAILLE_281D,
-    braille::BRAILLE_281E,
-    braille::BRAILLE_281F,
-    braille::BRAILLE_2820,
-    braille::BRAILLE_2821,
-    braille::BRAILLE_2822,
-    braille::BRAILLE_2823,
-    braille::BRAILLE_2824,
-    braille::BRAILLE_2825,
-    braille::BRAILLE_2826,
-    braille::BRAILLE_2827,
-    braille::BRAILLE_2828,
-    braille::BRAILLE_2829,
-    braille::BRAILLE_282A,
-    braille::BRAILLE_282B,
-    braille::BRAILLE_282C,
-    braille::BRAILLE_282D,
-    braille::BRAILLE_282E,
-    braille::BRAILLE_282F,
-    braille::BRAILLE_2830,
-    braille::BRAILLE_2831,
-    braille::BRAILLE_2832,
-    braille::BRAILLE_2833,
-    braille::BRAILLE_2834,
-    braille::BRAILLE_2835,
-    braille::BRAILLE_2836,
-    braille::BRAILLE_2837,
-    braille::BRAILLE_2838,
-    braille::BRAILLE_2839,
-    braille::BRAILLE_283A,
-    braille::BRAILLE_283B,
-    braille::BRAILLE_283C,
-    braille::BRAILLE_283D,
-    braille::BRAILLE_283E,
-    braille::BRAILLE_283F,
     braille::BRAILLE_2840,
     braille::BRAILLE_2841,
     braille::BRAILLE_2842,
@@ -331,62 +90,6 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2845,
     braille::BRAILLE_2846,
     braille::BRAILLE_2847,
-    braille::BRAILLE_2848,
-    braille::BRAILLE_2849,
-    braille::BRAILLE_284A,
-    braille::BRAILLE_284B,
-    braille::BRAILLE_284C,
-    braille::BRAILLE_284D,
-    braille::BRAILLE_284E,
-    braille::BRAILLE_284F,
-    braille::BRAILLE_2850,
-    braille::BRAILLE_2851,
-    braille::BRAILLE_2852,
-    braille::BRAILLE_2853,
-    braille::BRAILLE_2854,
-    braille::BRAILLE_2855,
-    braille::BRAILLE_2856,
-    braille::BRAILLE_2857,
-    braille::BRAILLE_2858,
-    braille::BRAILLE_2859,
-    braille::BRAILLE_285A,
-    braille::BRAILLE_285B,
-    braille::BRAILLE_285C,
-    braille::BRAILLE_285D,
-    braille::BRAILLE_285E,
-    braille::BRAILLE_285F,
-    braille::BRAILLE_2860,
-    braille::BRAILLE_2861,
-    braille::BRAILLE_2862,
-    braille::BRAILLE_2863,
-    braille::BRAILLE_2864,
-    braille::BRAILLE_2865,
-    braille::BRAILLE_2866,
-    braille::BRAILLE_2867,
-    braille::BRAILLE_2868,
-    braille::BRAILLE_2869,
-    braille::BRAILLE_286A,
-    braille::BRAILLE_286B,
-    braille::BRAILLE_286C,
-    braille::BRAILLE_286D,
-    braille::BRAILLE_286E,
-    braille::BRAILLE_286F,
-    braille::BRAILLE_2870,
-    braille::BRAILLE_2871,
-    braille::BRAILLE_2872,
-    braille::BRAILLE_2873,
-    braille::BRAILLE_2874,
-    braille::BRAILLE_2875,
-    braille::BRAILLE_2876,
-    braille::BRAILLE_2877,
-    braille::BRAILLE_2878,
-    braille::BRAILLE_2879,
-    braille::BRAILLE_287A,
-    braille::BRAILLE_287B,
-    braille::BRAILLE_287C,
-    braille::BRAILLE_287D,
-    braille::BRAILLE_287E,
-    braille::BRAILLE_287F,
     braille::BRAILLE_2880,
     braille::BRAILLE_2881,
     braille::BRAILLE_2882,
@@ -395,62 +98,6 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2885,
     braille::BRAILLE_2886,
     braille::BRAILLE_2887,
-    braille::BRAILLE_2888,
-    braille::BRAILLE_2889,
-    braille::BRAILLE_288A,
-    braille::BRAILLE_288B,
-    braille::BRAILLE_288C,
-    braille::BRAILLE_288D,
-    braille::BRAILLE_288E,
-    braille::BRAILLE_288F,
-    braille::BRAILLE_2890,
-    braille::BRAILLE_2891,
-    braille::BRAILLE_2892,
-    braille::BRAILLE_2893,
-    braille::BRAILLE_2894,
-    braille::BRAILLE_2895,
-    braille::BRAILLE_2896,
-    braille::BRAILLE_2897,
-    braille::BRAILLE_2898,
-    braille::BRAILLE_2899,
-    braille::BRAILLE_289A,
-    braille::BRAILLE_289B,
-    braille::BRAILLE_289C,
-    braille::BRAILLE_289D,
-    braille::BRAILLE_289E,
-    braille::BRAILLE_289F,
-    braille::BRAILLE_28A0,
-    braille::BRAILLE_28A1,
-    braille::BRAILLE_28A2,
-    braille::BRAILLE_28A3,
-    braille::BRAILLE_28A4,
-    braille::BRAILLE_28A5,
-    braille::BRAILLE_28A6,
-    braille::BRAILLE_28A7,
-    braille::BRAILLE_28A8,
-    braille::BRAILLE_28A9,
-    braille::BRAILLE_28AA,
-    braille::BRAILLE_28AB,
-    braille::BRAILLE_28AC,
-    braille::BRAILLE_28AD,
-    braille::BRAILLE_28AE,
-    braille::BRAILLE_28AF,
-    braille::BRAILLE_28B0,
-    braille::BRAILLE_28B1,
-    braille::BRAILLE_28B2,
-    braille::BRAILLE_28B3,
-    braille::BRAILLE_28B4,
-    braille::BRAILLE_28B5,
-    braille::BRAILLE_28B6,
-    braille::BRAILLE_28B7,
-    braille::BRAILLE_28B8,
-    braille::BRAILLE_28B9,
-    braille::BRAILLE_28BA,
-    braille::BRAILLE_28BB,
-    braille::BRAILLE_28BC,
-    braille::BRAILLE_28BD,
-    braille::BRAILLE_28BE,
-    braille::BRAILLE_28BF,
     braille::BRAILLE_28C0,
     braille::BRAILLE_28C1,
     braille::BRAILLE_28C2,
@@ -459,328 +106,87 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_28C5,
     braille::BRAILLE_28C6,
     braille::BRAILLE_28C7,
-    braille::BRAILLE_28C8,
-    braille::BRAILLE_28C9,
-    braille::BRAILLE_28CA,
-    braille::BRAILLE_28CB,
-    braille::BRAILLE_28CC,
-    braille::BRAILLE_28CD,
-    braille::BRAILLE_28CE,
-    braille::BRAILLE_28CF,
-    braille::BRAILLE_28D0,
-    braille::BRAILLE_28D1,
-    braille::BRAILLE_28D2,
-    braille::BRAILLE_28D3,
-    braille::BRAILLE_28D4,
-    braille::BRAILLE_28D5,
-    braille::BRAILLE_28D6,
-    braille::BRAILLE_28D7,
-    braille::BRAILLE_28D8,
-    braille::BRAILLE_28D9,
-    braille::BRAILLE_28DA,
-    braille::BRAILLE_28DB,
-    braille::BRAILLE_28DC,
-    braille::BRAILLE_28DD,
-    braille::BRAILLE_28DE,
-    braille::BRAILLE_28DF,
-    braille::BRAILLE_28E0,
-    braille::BRAILLE_28E1,
-    braille::BRAILLE_28E2,
-    braille::BRAILLE_28E3,
-    braille::BRAILLE_28E4,
-    braille::BRAILLE_28E5,
-    braille::BRAILLE_28E6,
-    braille::BRAILLE_28E7,
-    braille::BRAILLE_28E8,
-    braille::BRAILLE_28E9,
-    braille::BRAILLE_28EA,
-    braille::BRAILLE_28EB,
-    braille::BRAILLE_28EC,
-    braille::BRAILLE_28ED,
-    braille::BRAILLE_28EE,
-    braille::BRAILLE_28EF,
-    braille::BRAILLE_28F0,
-    braille::BRAILLE_28F1,
-    braille::BRAILLE_28F2,
-    braille::BRAILLE_28F3,
-    braille::BRAILLE_28F4,
-    braille::BRAILLE_28F5,
-    braille::BRAILLE_28F6,
-    braille::BRAILLE_28F7,
-    braille::BRAILLE_28F8,
-    braille::BRAILLE_28F9,
-    braille::BRAILLE_28FA,
-    braille::BRAILLE_28FB,
-    braille::BRAILLE_28FC,
-    braille::BRAILLE_28FD,
-    braille::BRAILLE_28FE,
-    braille::BRAILLE_28FF,
 ];
 
 pub mod ascii {
     use crate::SafeIcon;
     pub const ASCII_0021: SafeIcon = SafeIcon::new("!", "");
     pub const ASCII_0022: SafeIcon = SafeIcon::new("\"", "");
-    pub const ASCII_0023: SafeIcon = SafeIcon::new("#", "");
-    pub const ASCII_0024: SafeIcon = SafeIcon::new("$", "");
-    pub const ASCII_0025: SafeIcon = SafeIcon::new("%", "");
-    pub const ASCII_0026: SafeIcon = SafeIcon::new("&", "");
     pub const ASCII_0027: SafeIcon = SafeIcon::new("'", "");
     pub const ASCII_0028: SafeIcon = SafeIcon::new("(", "");
     pub const ASCII_0029: SafeIcon = SafeIcon::new(")", "");
-    pub const ASCII_002A: SafeIcon = SafeIcon::new("*", "");
-    pub const ASCII_002B: SafeIcon = SafeIcon::new("+", "");
     pub const ASCII_002C: SafeIcon = SafeIcon::new(",", "");
-    pub const ASCII_002D: SafeIcon = SafeIcon::new("-", "");
     pub const ASCII_002E: SafeIcon = SafeIcon::new(".", "");
     pub const ASCII_002F: SafeIcon = SafeIcon::new("/", "");
-    pub const ASCII_0030: SafeIcon = SafeIcon::new("0", "");
-    pub const ASCII_0031: SafeIcon = SafeIcon::new("1", "");
-    pub const ASCII_0032: SafeIcon = SafeIcon::new("2", "");
-    pub const ASCII_0033: SafeIcon = SafeIcon::new("3", "");
-    pub const ASCII_0034: SafeIcon = SafeIcon::new("4", "");
-    pub const ASCII_0035: SafeIcon = SafeIcon::new("5", "");
-    pub const ASCII_0036: SafeIcon = SafeIcon::new("6", "");
-    pub const ASCII_0037: SafeIcon = SafeIcon::new("7", "");
-    pub const ASCII_0038: SafeIcon = SafeIcon::new("8", "");
-    pub const ASCII_0039: SafeIcon = SafeIcon::new("9", "");
     pub const ASCII_003A: SafeIcon = SafeIcon::new(":", "");
     pub const ASCII_003B: SafeIcon = SafeIcon::new(";", "");
-    pub const ASCII_003C: SafeIcon = SafeIcon::new("<", "");
-    pub const ASCII_003D: SafeIcon = SafeIcon::new("=", "");
     pub const ASCII_003E: SafeIcon = SafeIcon::new(">", "");
     pub const ASCII_003F: SafeIcon = SafeIcon::new("?", "");
-    pub const ASCII_0040: SafeIcon = SafeIcon::new("@", "");
-    pub const ASCII_0041: SafeIcon = SafeIcon::new("A", "");
-    pub const ASCII_0042: SafeIcon = SafeIcon::new("B", "");
-    pub const ASCII_0043: SafeIcon = SafeIcon::new("C", "");
-    pub const ASCII_0044: SafeIcon = SafeIcon::new("D", "");
-    pub const ASCII_0045: SafeIcon = SafeIcon::new("E", "");
-    pub const ASCII_0046: SafeIcon = SafeIcon::new("F", "");
-    pub const ASCII_0047: SafeIcon = SafeIcon::new("G", "");
-    pub const ASCII_0048: SafeIcon = SafeIcon::new("H", "");
     pub const ASCII_0049: SafeIcon = SafeIcon::new("I", "");
-    pub const ASCII_004A: SafeIcon = SafeIcon::new("J", "");
-    pub const ASCII_004B: SafeIcon = SafeIcon::new("K", "");
-    pub const ASCII_004C: SafeIcon = SafeIcon::new("L", "");
-    pub const ASCII_004D: SafeIcon = SafeIcon::new("M", "");
-    pub const ASCII_004E: SafeIcon = SafeIcon::new("N", "");
-    pub const ASCII_004F: SafeIcon = SafeIcon::new("O", "");
-    pub const ASCII_0050: SafeIcon = SafeIcon::new("P", "");
-    pub const ASCII_0051: SafeIcon = SafeIcon::new("Q", "");
-    pub const ASCII_0052: SafeIcon = SafeIcon::new("R", "");
-    pub const ASCII_0053: SafeIcon = SafeIcon::new("S", "");
-    pub const ASCII_0054: SafeIcon = SafeIcon::new("T", "");
-    pub const ASCII_0055: SafeIcon = SafeIcon::new("U", "");
-    pub const ASCII_0056: SafeIcon = SafeIcon::new("V", "");
-    pub const ASCII_0057: SafeIcon = SafeIcon::new("W", "");
-    pub const ASCII_0058: SafeIcon = SafeIcon::new("X", "");
-    pub const ASCII_0059: SafeIcon = SafeIcon::new("Y", "");
-    pub const ASCII_005A: SafeIcon = SafeIcon::new("Z", "");
     pub const ASCII_005B: SafeIcon = SafeIcon::new("[", "");
     pub const ASCII_005C: SafeIcon = SafeIcon::new("\\", "");
     pub const ASCII_005D: SafeIcon = SafeIcon::new("]", "");
     pub const ASCII_005E: SafeIcon = SafeIcon::new("^", "");
-    pub const ASCII_005F: SafeIcon = SafeIcon::new("_", "");
     pub const ASCII_0060: SafeIcon = SafeIcon::new("`", "");
     pub const ASCII_0061: SafeIcon = SafeIcon::new("a", "");
-    pub const ASCII_0062: SafeIcon = SafeIcon::new("b", "");
     pub const ASCII_0063: SafeIcon = SafeIcon::new("c", "");
-    pub const ASCII_0064: SafeIcon = SafeIcon::new("d", "");
-    pub const ASCII_0065: SafeIcon = SafeIcon::new("e", "");
-    pub const ASCII_0066: SafeIcon = SafeIcon::new("f", "");
-    pub const ASCII_0067: SafeIcon = SafeIcon::new("g", "");
-    pub const ASCII_0068: SafeIcon = SafeIcon::new("h", "");
-    pub const ASCII_0069: SafeIcon = SafeIcon::new("i", "");
     pub const ASCII_006A: SafeIcon = SafeIcon::new("j", "");
-    pub const ASCII_006B: SafeIcon = SafeIcon::new("k", "");
-    pub const ASCII_006C: SafeIcon = SafeIcon::new("l", "");
-    pub const ASCII_006D: SafeIcon = SafeIcon::new("m", "");
-    pub const ASCII_006E: SafeIcon = SafeIcon::new("n", "");
-    pub const ASCII_006F: SafeIcon = SafeIcon::new("o", "");
-    pub const ASCII_0070: SafeIcon = SafeIcon::new("p", "");
-    pub const ASCII_0071: SafeIcon = SafeIcon::new("q", "");
-    pub const ASCII_0072: SafeIcon = SafeIcon::new("r", "");
     pub const ASCII_0073: SafeIcon = SafeIcon::new("s", "");
     pub const ASCII_0074: SafeIcon = SafeIcon::new("t", "");
-    pub const ASCII_0075: SafeIcon = SafeIcon::new("u", "");
-    pub const ASCII_0076: SafeIcon = SafeIcon::new("v", "");
-    pub const ASCII_0077: SafeIcon = SafeIcon::new("w", "");
-    pub const ASCII_0078: SafeIcon = SafeIcon::new("x", "");
-    pub const ASCII_0079: SafeIcon = SafeIcon::new("y", "");
     pub const ASCII_007A: SafeIcon = SafeIcon::new("z", "");
     pub const ASCII_007B: SafeIcon = SafeIcon::new("{", "");
     pub const ASCII_007C: SafeIcon = SafeIcon::new("|", "");
     pub const ASCII_007D: SafeIcon = SafeIcon::new("}", "");
-    pub const ASCII_007E: SafeIcon = SafeIcon::new("~", "");
 }
 
 pub mod box_drawing {
     use crate::SafeIcon;
-    pub const BOX_2500: SafeIcon = SafeIcon::new("─", "-");
-    pub const BOX_2501: SafeIcon = SafeIcon::new("━", "+");
     pub const BOX_2502: SafeIcon = SafeIcon::new("│", "|");
     pub const BOX_2503: SafeIcon = SafeIcon::new("┃", "+");
-    pub const BOX_2504: SafeIcon = SafeIcon::new("┄", "+");
-    pub const BOX_2505: SafeIcon = SafeIcon::new("┅", "+");
     pub const BOX_2506: SafeIcon = SafeIcon::new("┆", "+");
     pub const BOX_2507: SafeIcon = SafeIcon::new("┇", "+");
-    pub const BOX_2508: SafeIcon = SafeIcon::new("┈", "+");
-    pub const BOX_2509: SafeIcon = SafeIcon::new("┉", "+");
     pub const BOX_250A: SafeIcon = SafeIcon::new("┊", "+");
     pub const BOX_250B: SafeIcon = SafeIcon::new("┋", "+");
-    pub const BOX_250C: SafeIcon = SafeIcon::new("┌", "+");
-    pub const BOX_250D: SafeIcon = SafeIcon::new("┍", "+");
-    pub const BOX_250E: SafeIcon = SafeIcon::new("┎", "+");
-    pub const BOX_250F: SafeIcon = SafeIcon::new("┏", "+");
     pub const BOX_2510: SafeIcon = SafeIcon::new("┐", "+");
     pub const BOX_2511: SafeIcon = SafeIcon::new("┑", "+");
     pub const BOX_2512: SafeIcon = SafeIcon::new("┒", "+");
     pub const BOX_2513: SafeIcon = SafeIcon::new("┓", "+");
-    pub const BOX_2514: SafeIcon = SafeIcon::new("└", "+");
-    pub const BOX_2515: SafeIcon = SafeIcon::new("┕", "+");
-    pub const BOX_2516: SafeIcon = SafeIcon::new("┖", "+");
-    pub const BOX_2517: SafeIcon = SafeIcon::new("┗", "+");
     pub const BOX_2518: SafeIcon = SafeIcon::new("┘", "+");
     pub const BOX_2519: SafeIcon = SafeIcon::new("┙", "+");
     pub const BOX_251A: SafeIcon = SafeIcon::new("┚", "+");
     pub const BOX_251B: SafeIcon = SafeIcon::new("┛", "+");
-    pub const BOX_251C: SafeIcon = SafeIcon::new("├", "+");
-    pub const BOX_251D: SafeIcon = SafeIcon::new("┝", "+");
-    pub const BOX_251E: SafeIcon = SafeIcon::new("┞", "+");
-    pub const BOX_251F: SafeIcon = SafeIcon::new("┟", "+");
-    pub const BOX_2520: SafeIcon = SafeIcon::new("┠", "+");
-    pub const BOX_2521: SafeIcon = SafeIcon::new("┡", "+");
-    pub const BOX_2522: SafeIcon = SafeIcon::new("┢", "+");
-    pub const BOX_2523: SafeIcon = SafeIcon::new("┣", "+");
     pub const BOX_2524: SafeIcon = SafeIcon::new("┤", "+");
     pub const BOX_2525: SafeIcon = SafeIcon::new("┥", "+");
     pub const BOX_2526: SafeIcon = SafeIcon::new("┦", "+");
-    pub const BOX_2527: SafeIcon = SafeIcon::new("┧", "+");
-    pub const BOX_2528: SafeIcon = SafeIcon::new("┨", "+");
     pub const BOX_2529: SafeIcon = SafeIcon::new("┩", "+");
     pub const BOX_252A: SafeIcon = SafeIcon::new("┪", "+");
-    pub const BOX_252B: SafeIcon = SafeIcon::new("┫", "+");
-    pub const BOX_252C: SafeIcon = SafeIcon::new("┬", "+");
-    pub const BOX_252D: SafeIcon = SafeIcon::new("┭", "+");
-    pub const BOX_252E: SafeIcon = SafeIcon::new("┮", "+");
-    pub const BOX_252F: SafeIcon = SafeIcon::new("┯", "+");
-    pub const BOX_2530: SafeIcon = SafeIcon::new("┰", "+");
-    pub const BOX_2531: SafeIcon = SafeIcon::new("┱", "+");
-    pub const BOX_2532: SafeIcon = SafeIcon::new("┲", "+");
-    pub const BOX_2533: SafeIcon = SafeIcon::new("┳", "+");
-    pub const BOX_2534: SafeIcon = SafeIcon::new("┴", "+");
-    pub const BOX_2535: SafeIcon = SafeIcon::new("┵", "+");
-    pub const BOX_2536: SafeIcon = SafeIcon::new("┶", "+");
-    pub const BOX_2537: SafeIcon = SafeIcon::new("┷", "+");
-    pub const BOX_2538: SafeIcon = SafeIcon::new("┸", "+");
-    pub const BOX_2539: SafeIcon = SafeIcon::new("┹", "+");
-    pub const BOX_253A: SafeIcon = SafeIcon::new("┺", "+");
-    pub const BOX_253B: SafeIcon = SafeIcon::new("┻", "+");
-    pub const BOX_253C: SafeIcon = SafeIcon::new("┼", "+");
-    pub const BOX_253D: SafeIcon = SafeIcon::new("┽", "+");
-    pub const BOX_253E: SafeIcon = SafeIcon::new("┾", "+");
-    pub const BOX_253F: SafeIcon = SafeIcon::new("┿", "+");
-    pub const BOX_2540: SafeIcon = SafeIcon::new("╀", "+");
-    pub const BOX_2541: SafeIcon = SafeIcon::new("╁", "+");
-    pub const BOX_2542: SafeIcon = SafeIcon::new("╂", "+");
-    pub const BOX_2543: SafeIcon = SafeIcon::new("╃", "+");
-    pub const BOX_2544: SafeIcon = SafeIcon::new("╄", "+");
-    pub const BOX_2545: SafeIcon = SafeIcon::new("╅", "+");
-    pub const BOX_2546: SafeIcon = SafeIcon::new("╆", "+");
-    pub const BOX_2547: SafeIcon = SafeIcon::new("╇", "+");
-    pub const BOX_2548: SafeIcon = SafeIcon::new("╈", "+");
-    pub const BOX_2549: SafeIcon = SafeIcon::new("╉", "+");
-    pub const BOX_254A: SafeIcon = SafeIcon::new("╊", "+");
-    pub const BOX_254B: SafeIcon = SafeIcon::new("╋", "+");
-    pub const BOX_254C: SafeIcon = SafeIcon::new("╌", "+");
-    pub const BOX_254D: SafeIcon = SafeIcon::new("╍", "+");
     pub const BOX_254E: SafeIcon = SafeIcon::new("╎", "+");
     pub const BOX_254F: SafeIcon = SafeIcon::new("╏", "+");
-    pub const BOX_2550: SafeIcon = SafeIcon::new("═", "=");
     pub const BOX_2551: SafeIcon = SafeIcon::new("║", "|");
-    pub const BOX_2552: SafeIcon = SafeIcon::new("╒", "+");
-    pub const BOX_2553: SafeIcon = SafeIcon::new("╓", "+");
-    pub const BOX_2554: SafeIcon = SafeIcon::new("╔", "+");
     pub const BOX_2555: SafeIcon = SafeIcon::new("╕", "+");
     pub const BOX_2556: SafeIcon = SafeIcon::new("╖", "+");
     pub const BOX_2557: SafeIcon = SafeIcon::new("╗", "+");
-    pub const BOX_2558: SafeIcon = SafeIcon::new("╘", "+");
-    pub const BOX_2559: SafeIcon = SafeIcon::new("╙", "+");
-    pub const BOX_255A: SafeIcon = SafeIcon::new("╚", "+");
     pub const BOX_255B: SafeIcon = SafeIcon::new("╛", "+");
     pub const BOX_255C: SafeIcon = SafeIcon::new("╜", "+");
     pub const BOX_255D: SafeIcon = SafeIcon::new("╝", "+");
-    pub const BOX_255E: SafeIcon = SafeIcon::new("╞", "+");
-    pub const BOX_255F: SafeIcon = SafeIcon::new("╟", "+");
-    pub const BOX_2560: SafeIcon = SafeIcon::new("╠", "+");
     pub const BOX_2561: SafeIcon = SafeIcon::new("╡", "+");
     pub const BOX_2562: SafeIcon = SafeIcon::new("╢", "+");
     pub const BOX_2563: SafeIcon = SafeIcon::new("╣", "+");
-    pub const BOX_2564: SafeIcon = SafeIcon::new("╤", "+");
-    pub const BOX_2565: SafeIcon = SafeIcon::new("╥", "+");
-    pub const BOX_2566: SafeIcon = SafeIcon::new("╦", "+");
-    pub const BOX_2567: SafeIcon = SafeIcon::new("╧", "+");
-    pub const BOX_2568: SafeIcon = SafeIcon::new("╨", "+");
-    pub const BOX_2569: SafeIcon = SafeIcon::new("╩", "+");
-    pub const BOX_256A: SafeIcon = SafeIcon::new("╪", "+");
-    pub const BOX_256B: SafeIcon = SafeIcon::new("╫", "+");
-    pub const BOX_256C: SafeIcon = SafeIcon::new("╬", "+");
-    pub const BOX_256D: SafeIcon = SafeIcon::new("╭", "+");
     pub const BOX_256E: SafeIcon = SafeIcon::new("╮", "+");
     pub const BOX_256F: SafeIcon = SafeIcon::new("╯", "+");
-    pub const BOX_2570: SafeIcon = SafeIcon::new("╰", "+");
-    pub const BOX_2571: SafeIcon = SafeIcon::new("╱", "/");
-    pub const BOX_2572: SafeIcon = SafeIcon::new("╲", "\\");
-    pub const BOX_2573: SafeIcon = SafeIcon::new("╳", "x");
     pub const BOX_2574: SafeIcon = SafeIcon::new("╴", "+");
     pub const BOX_2575: SafeIcon = SafeIcon::new("╵", "+");
-    pub const BOX_2576: SafeIcon = SafeIcon::new("╶", "+");
     pub const BOX_2577: SafeIcon = SafeIcon::new("╷", "+");
     pub const BOX_2578: SafeIcon = SafeIcon::new("╸", "+");
     pub const BOX_2579: SafeIcon = SafeIcon::new("╹", "+");
-    pub const BOX_257A: SafeIcon = SafeIcon::new("╺", "+");
     pub const BOX_257B: SafeIcon = SafeIcon::new("╻", "+");
-    pub const BOX_257C: SafeIcon = SafeIcon::new("╼", "+");
     pub const BOX_257D: SafeIcon = SafeIcon::new("╽", "+");
-    pub const BOX_257E: SafeIcon = SafeIcon::new("╾", "+");
     pub const BOX_257F: SafeIcon = SafeIcon::new("╿", "+");
 }
 
 pub mod block_elements {
     use crate::SafeIcon;
-    pub const BLOCK_2580: SafeIcon = SafeIcon::new("▀", "^");
-    pub const BLOCK_2581: SafeIcon = SafeIcon::new("▁", "#");
-    pub const BLOCK_2582: SafeIcon = SafeIcon::new("▂", "#");
-    pub const BLOCK_2583: SafeIcon = SafeIcon::new("▃", "#");
-    pub const BLOCK_2584: SafeIcon = SafeIcon::new("▄", "_");
-    pub const BLOCK_2585: SafeIcon = SafeIcon::new("▅", "#");
-    pub const BLOCK_2586: SafeIcon = SafeIcon::new("▆", "#");
-    pub const BLOCK_2587: SafeIcon = SafeIcon::new("▇", "#");
-    pub const BLOCK_2588: SafeIcon = SafeIcon::new("█", "#");
-    pub const BLOCK_2589: SafeIcon = SafeIcon::new("▉", "#");
-    pub const BLOCK_258A: SafeIcon = SafeIcon::new("▊", "#");
-    pub const BLOCK_258B: SafeIcon = SafeIcon::new("▋", "#");
     pub const BLOCK_258C: SafeIcon = SafeIcon::new("▌", "[");
-    pub const BLOCK_258D: SafeIcon = SafeIcon::new("▍", "#");
-    pub const BLOCK_258E: SafeIcon = SafeIcon::new("▎", "#");
-    pub const BLOCK_258F: SafeIcon = SafeIcon::new("▏", "#");
-    pub const BLOCK_2590: SafeIcon = SafeIcon::new("▐", "]");
-    pub const BLOCK_2591: SafeIcon = SafeIcon::new("░", ".");
-    pub const BLOCK_2592: SafeIcon = SafeIcon::new("▒", ":");
-    pub const BLOCK_2593: SafeIcon = SafeIcon::new("▓", "#");
-    pub const BLOCK_2594: SafeIcon = SafeIcon::new("▔", "#");
-    pub const BLOCK_2595: SafeIcon = SafeIcon::new("▕", "#");
-    pub const BLOCK_2596: SafeIcon = SafeIcon::new("▖", "#");
-    pub const BLOCK_2597: SafeIcon = SafeIcon::new("▗", "#");
-    pub const BLOCK_2598: SafeIcon = SafeIcon::new("▘", "#");
-    pub const BLOCK_2599: SafeIcon = SafeIcon::new("▙", "#");
-    pub const BLOCK_259A: SafeIcon = SafeIcon::new("▚", "#");
-    pub const BLOCK_259B: SafeIcon = SafeIcon::new("▛", "#");
-    pub const BLOCK_259C: SafeIcon = SafeIcon::new("▜", "#");
-    pub const BLOCK_259D: SafeIcon = SafeIcon::new("▝", "#");
-    pub const BLOCK_259E: SafeIcon = SafeIcon::new("▞", "#");
-    pub const BLOCK_259F: SafeIcon = SafeIcon::new("▟", "#");
 }
 
 pub mod braille {
@@ -792,62 +198,6 @@ pub mod braille {
     pub const BRAILLE_2805: SafeIcon = SafeIcon::new("⠅", "*");
     pub const BRAILLE_2806: SafeIcon = SafeIcon::new("⠆", "*");
     pub const BRAILLE_2807: SafeIcon = SafeIcon::new("⠇", "*");
-    pub const BRAILLE_2808: SafeIcon = SafeIcon::new("⠈", "*");
-    pub const BRAILLE_2809: SafeIcon = SafeIcon::new("⠉", "*");
-    pub const BRAILLE_280A: SafeIcon = SafeIcon::new("⠊", "*");
-    pub const BRAILLE_280B: SafeIcon = SafeIcon::new("⠋", "*");
-    pub const BRAILLE_280C: SafeIcon = SafeIcon::new("⠌", "*");
-    pub const BRAILLE_280D: SafeIcon = SafeIcon::new("⠍", "*");
-    pub const BRAILLE_280E: SafeIcon = SafeIcon::new("⠎", "*");
-    pub const BRAILLE_280F: SafeIcon = SafeIcon::new("⠏", "*");
-    pub const BRAILLE_2810: SafeIcon = SafeIcon::new("⠐", "*");
-    pub const BRAILLE_2811: SafeIcon = SafeIcon::new("⠑", "*");
-    pub const BRAILLE_2812: SafeIcon = SafeIcon::new("⠒", "*");
-    pub const BRAILLE_2813: SafeIcon = SafeIcon::new("⠓", "*");
-    pub const BRAILLE_2814: SafeIcon = SafeIcon::new("⠔", "*");
-    pub const BRAILLE_2815: SafeIcon = SafeIcon::new("⠕", "*");
-    pub const BRAILLE_2816: SafeIcon = SafeIcon::new("⠖", "*");
-    pub const BRAILLE_2817: SafeIcon = SafeIcon::new("⠗", "*");
-    pub const BRAILLE_2818: SafeIcon = SafeIcon::new("⠘", "*");
-    pub const BRAILLE_2819: SafeIcon = SafeIcon::new("⠙", "*");
-    pub const BRAILLE_281A: SafeIcon = SafeIcon::new("⠚", "*");
-    pub const BRAILLE_281B: SafeIcon = SafeIcon::new("⠛", "*");
-    pub const BRAILLE_281C: SafeIcon = SafeIcon::new("⠜", "*");
-    pub const BRAILLE_281D: SafeIcon = SafeIcon::new("⠝", "*");
-    pub const BRAILLE_281E: SafeIcon = SafeIcon::new("⠞", "*");
-    pub const BRAILLE_281F: SafeIcon = SafeIcon::new("⠟", "*");
-    pub const BRAILLE_2820: SafeIcon = SafeIcon::new("⠠", "*");
-    pub const BRAILLE_2821: SafeIcon = SafeIcon::new("⠡", "*");
-    pub const BRAILLE_2822: SafeIcon = SafeIcon::new("⠢", "*");
-    pub const BRAILLE_2823: SafeIcon = SafeIcon::new("⠣", "*");
-    pub const BRAILLE_2824: SafeIcon = SafeIcon::new("⠤", "*");
-    pub const BRAILLE_2825: SafeIcon = SafeIcon::new("⠥", "*");
-    pub const BRAILLE_2826: SafeIcon = SafeIcon::new("⠦", "*");
-    pub const BRAILLE_2827: SafeIcon = SafeIcon::new("⠧", "*");
-    pub const BRAILLE_2828: SafeIcon = SafeIcon::new("⠨", "*");
-    pub const BRAILLE_2829: SafeIcon = SafeIcon::new("⠩", "*");
-    pub const BRAILLE_282A: SafeIcon = SafeIcon::new("⠪", "*");
-    pub const BRAILLE_282B: SafeIcon = SafeIcon::new("⠫", "*");
-    pub const BRAILLE_282C: SafeIcon = SafeIcon::new("⠬", "*");
-    pub const BRAILLE_282D: SafeIcon = SafeIcon::new("⠭", "*");
-    pub const BRAILLE_282E: SafeIcon = SafeIcon::new("⠮", "*");
-    pub const BRAILLE_282F: SafeIcon = SafeIcon::new("⠯", "*");
-    pub const BRAILLE_2830: SafeIcon = SafeIcon::new("⠰", "*");
-    pub const BRAILLE_2831: SafeIcon = SafeIcon::new("⠱", "*");
-    pub const BRAILLE_2832: SafeIcon = SafeIcon::new("⠲", "*");
-    pub const BRAILLE_2833: SafeIcon = SafeIcon::new("⠳", "*");
-    pub const BRAILLE_2834: SafeIcon = SafeIcon::new("⠴", "*");
-    pub const BRAILLE_2835: SafeIcon = SafeIcon::new("⠵", "*");
-    pub const BRAILLE_2836: SafeIcon = SafeIcon::new("⠶", "*");
-    pub const BRAILLE_2837: SafeIcon = SafeIcon::new("⠷", "*");
-    pub const BRAILLE_2838: SafeIcon = SafeIcon::new("⠸", "*");
-    pub const BRAILLE_2839: SafeIcon = SafeIcon::new("⠹", "*");
-    pub const BRAILLE_283A: SafeIcon = SafeIcon::new("⠺", "*");
-    pub const BRAILLE_283B: SafeIcon = SafeIcon::new("⠻", "*");
-    pub const BRAILLE_283C: SafeIcon = SafeIcon::new("⠼", "*");
-    pub const BRAILLE_283D: SafeIcon = SafeIcon::new("⠽", "*");
-    pub const BRAILLE_283E: SafeIcon = SafeIcon::new("⠾", "*");
-    pub const BRAILLE_283F: SafeIcon = SafeIcon::new("⠿", "*");
     pub const BRAILLE_2840: SafeIcon = SafeIcon::new("⡀", "*");
     pub const BRAILLE_2841: SafeIcon = SafeIcon::new("⡁", "*");
     pub const BRAILLE_2842: SafeIcon = SafeIcon::new("⡂", "*");
@@ -856,62 +206,6 @@ pub mod braille {
     pub const BRAILLE_2845: SafeIcon = SafeIcon::new("⡅", "*");
     pub const BRAILLE_2846: SafeIcon = SafeIcon::new("⡆", "*");
     pub const BRAILLE_2847: SafeIcon = SafeIcon::new("⡇", "*");
-    pub const BRAILLE_2848: SafeIcon = SafeIcon::new("⡈", "*");
-    pub const BRAILLE_2849: SafeIcon = SafeIcon::new("⡉", "*");
-    pub const BRAILLE_284A: SafeIcon = SafeIcon::new("⡊", "*");
-    pub const BRAILLE_284B: SafeIcon = SafeIcon::new("⡋", "*");
-    pub const BRAILLE_284C: SafeIcon = SafeIcon::new("⡌", "*");
-    pub const BRAILLE_284D: SafeIcon = SafeIcon::new("⡍", "*");
-    pub const BRAILLE_284E: SafeIcon = SafeIcon::new("⡎", "*");
-    pub const BRAILLE_284F: SafeIcon = SafeIcon::new("⡏", "*");
-    pub const BRAILLE_2850: SafeIcon = SafeIcon::new("⡐", "*");
-    pub const BRAILLE_2851: SafeIcon = SafeIcon::new("⡑", "*");
-    pub const BRAILLE_2852: SafeIcon = SafeIcon::new("⡒", "*");
-    pub const BRAILLE_2853: SafeIcon = SafeIcon::new("⡓", "*");
-    pub const BRAILLE_2854: SafeIcon = SafeIcon::new("⡔", "*");
-    pub const BRAILLE_2855: SafeIcon = SafeIcon::new("⡕", "*");
-    pub const BRAILLE_2856: SafeIcon = SafeIcon::new("⡖", "*");
-    pub const BRAILLE_2857: SafeIcon = SafeIcon::new("⡗", "*");
-    pub const BRAILLE_2858: SafeIcon = SafeIcon::new("⡘", "*");
-    pub const BRAILLE_2859: SafeIcon = SafeIcon::new("⡙", "*");
-    pub const BRAILLE_285A: SafeIcon = SafeIcon::new("⡚", "*");
-    pub const BRAILLE_285B: SafeIcon = SafeIcon::new("⡛", "*");
-    pub const BRAILLE_285C: SafeIcon = SafeIcon::new("⡜", "*");
-    pub const BRAILLE_285D: SafeIcon = SafeIcon::new("⡝", "*");
-    pub const BRAILLE_285E: SafeIcon = SafeIcon::new("⡞", "*");
-    pub const BRAILLE_285F: SafeIcon = SafeIcon::new("⡟", "*");
-    pub const BRAILLE_2860: SafeIcon = SafeIcon::new("⡠", "*");
-    pub const BRAILLE_2861: SafeIcon = SafeIcon::new("⡡", "*");
-    pub const BRAILLE_2862: SafeIcon = SafeIcon::new("⡢", "*");
-    pub const BRAILLE_2863: SafeIcon = SafeIcon::new("⡣", "*");
-    pub const BRAILLE_2864: SafeIcon = SafeIcon::new("⡤", "*");
-    pub const BRAILLE_2865: SafeIcon = SafeIcon::new("⡥", "*");
-    pub const BRAILLE_2866: SafeIcon = SafeIcon::new("⡦", "*");
-    pub const BRAILLE_2867: SafeIcon = SafeIcon::new("⡧", "*");
-    pub const BRAILLE_2868: SafeIcon = SafeIcon::new("⡨", "*");
-    pub const BRAILLE_2869: SafeIcon = SafeIcon::new("⡩", "*");
-    pub const BRAILLE_286A: SafeIcon = SafeIcon::new("⡪", "*");
-    pub const BRAILLE_286B: SafeIcon = SafeIcon::new("⡫", "*");
-    pub const BRAILLE_286C: SafeIcon = SafeIcon::new("⡬", "*");
-    pub const BRAILLE_286D: SafeIcon = SafeIcon::new("⡭", "*");
-    pub const BRAILLE_286E: SafeIcon = SafeIcon::new("⡮", "*");
-    pub const BRAILLE_286F: SafeIcon = SafeIcon::new("⡯", "*");
-    pub const BRAILLE_2870: SafeIcon = SafeIcon::new("⡰", "*");
-    pub const BRAILLE_2871: SafeIcon = SafeIcon::new("⡱", "*");
-    pub const BRAILLE_2872: SafeIcon = SafeIcon::new("⡲", "*");
-    pub const BRAILLE_2873: SafeIcon = SafeIcon::new("⡳", "*");
-    pub const BRAILLE_2874: SafeIcon = SafeIcon::new("⡴", "*");
-    pub const BRAILLE_2875: SafeIcon = SafeIcon::new("⡵", "*");
-    pub const BRAILLE_2876: SafeIcon = SafeIcon::new("⡶", "*");
-    pub const BRAILLE_2877: SafeIcon = SafeIcon::new("⡷", "*");
-    pub const BRAILLE_2878: SafeIcon = SafeIcon::new("⡸", "*");
-    pub const BRAILLE_2879: SafeIcon = SafeIcon::new("⡹", "*");
-    pub const BRAILLE_287A: SafeIcon = SafeIcon::new("⡺", "*");
-    pub const BRAILLE_287B: SafeIcon = SafeIcon::new("⡻", "*");
-    pub const BRAILLE_287C: SafeIcon = SafeIcon::new("⡼", "*");
-    pub const BRAILLE_287D: SafeIcon = SafeIcon::new("⡽", "*");
-    pub const BRAILLE_287E: SafeIcon = SafeIcon::new("⡾", "*");
-    pub const BRAILLE_287F: SafeIcon = SafeIcon::new("⡿", "*");
     pub const BRAILLE_2880: SafeIcon = SafeIcon::new("⢀", "*");
     pub const BRAILLE_2881: SafeIcon = SafeIcon::new("⢁", "*");
     pub const BRAILLE_2882: SafeIcon = SafeIcon::new("⢂", "*");
@@ -920,62 +214,6 @@ pub mod braille {
     pub const BRAILLE_2885: SafeIcon = SafeIcon::new("⢅", "*");
     pub const BRAILLE_2886: SafeIcon = SafeIcon::new("⢆", "*");
     pub const BRAILLE_2887: SafeIcon = SafeIcon::new("⢇", "*");
-    pub const BRAILLE_2888: SafeIcon = SafeIcon::new("⢈", "*");
-    pub const BRAILLE_2889: SafeIcon = SafeIcon::new("⢉", "*");
-    pub const BRAILLE_288A: SafeIcon = SafeIcon::new("⢊", "*");
-    pub const BRAILLE_288B: SafeIcon = SafeIcon::new("⢋", "*");
-    pub const BRAILLE_288C: SafeIcon = SafeIcon::new("⢌", "*");
-    pub const BRAILLE_288D: SafeIcon = SafeIcon::new("⢍", "*");
-    pub const BRAILLE_288E: SafeIcon = SafeIcon::new("⢎", "*");
-    pub const BRAILLE_288F: SafeIcon = SafeIcon::new("⢏", "*");
-    pub const BRAILLE_2890: SafeIcon = SafeIcon::new("⢐", "*");
-    pub const BRAILLE_2891: SafeIcon = SafeIcon::new("⢑", "*");
-    pub const BRAILLE_2892: SafeIcon = SafeIcon::new("⢒", "*");
-    pub const BRAILLE_2893: SafeIcon = SafeIcon::new("⢓", "*");
-    pub const BRAILLE_2894: SafeIcon = SafeIcon::new("⢔", "*");
-    pub const BRAILLE_2895: SafeIcon = SafeIcon::new("⢕", "*");
-    pub const BRAILLE_2896: SafeIcon = SafeIcon::new("⢖", "*");
-    pub const BRAILLE_2897: SafeIcon = SafeIcon::new("⢗", "*");
-    pub const BRAILLE_2898: SafeIcon = SafeIcon::new("⢘", "*");
-    pub const BRAILLE_2899: SafeIcon = SafeIcon::new("⢙", "*");
-    pub const BRAILLE_289A: SafeIcon = SafeIcon::new("⢚", "*");
-    pub const BRAILLE_289B: SafeIcon = SafeIcon::new("⢛", "*");
-    pub const BRAILLE_289C: SafeIcon = SafeIcon::new("⢜", "*");
-    pub const BRAILLE_289D: SafeIcon = SafeIcon::new("⢝", "*");
-    pub const BRAILLE_289E: SafeIcon = SafeIcon::new("⢞", "*");
-    pub const BRAILLE_289F: SafeIcon = SafeIcon::new("⢟", "*");
-    pub const BRAILLE_28A0: SafeIcon = SafeIcon::new("⢠", "*");
-    pub const BRAILLE_28A1: SafeIcon = SafeIcon::new("⢡", "*");
-    pub const BRAILLE_28A2: SafeIcon = SafeIcon::new("⢢", "*");
-    pub const BRAILLE_28A3: SafeIcon = SafeIcon::new("⢣", "*");
-    pub const BRAILLE_28A4: SafeIcon = SafeIcon::new("⢤", "*");
-    pub const BRAILLE_28A5: SafeIcon = SafeIcon::new("⢥", "*");
-    pub const BRAILLE_28A6: SafeIcon = SafeIcon::new("⢦", "*");
-    pub const BRAILLE_28A7: SafeIcon = SafeIcon::new("⢧", "*");
-    pub const BRAILLE_28A8: SafeIcon = SafeIcon::new("⢨", "*");
-    pub const BRAILLE_28A9: SafeIcon = SafeIcon::new("⢩", "*");
-    pub const BRAILLE_28AA: SafeIcon = SafeIcon::new("⢪", "*");
-    pub const BRAILLE_28AB: SafeIcon = SafeIcon::new("⢫", "*");
-    pub const BRAILLE_28AC: SafeIcon = SafeIcon::new("⢬", "*");
-    pub const BRAILLE_28AD: SafeIcon = SafeIcon::new("⢭", "*");
-    pub const BRAILLE_28AE: SafeIcon = SafeIcon::new("⢮", "*");
-    pub const BRAILLE_28AF: SafeIcon = SafeIcon::new("⢯", "*");
-    pub const BRAILLE_28B0: SafeIcon = SafeIcon::new("⢰", "*");
-    pub const BRAILLE_28B1: SafeIcon = SafeIcon::new("⢱", "*");
-    pub const BRAILLE_28B2: SafeIcon = SafeIcon::new("⢲", "*");
-    pub const BRAILLE_28B3: SafeIcon = SafeIcon::new("⢳", "*");
-    pub const BRAILLE_28B4: SafeIcon = SafeIcon::new("⢴", "*");
-    pub const BRAILLE_28B5: SafeIcon = SafeIcon::new("⢵", "*");
-    pub const BRAILLE_28B6: SafeIcon = SafeIcon::new("⢶", "*");
-    pub const BRAILLE_28B7: SafeIcon = SafeIcon::new("⢷", "*");
-    pub const BRAILLE_28B8: SafeIcon = SafeIcon::new("⢸", "*");
-    pub const BRAILLE_28B9: SafeIcon = SafeIcon::new("⢹", "*");
-    pub const BRAILLE_28BA: SafeIcon = SafeIcon::new("⢺", "*");
-    pub const BRAILLE_28BB: SafeIcon = SafeIcon::new("⢻", "*");
-    pub const BRAILLE_28BC: SafeIcon = SafeIcon::new("⢼", "*");
-    pub const BRAILLE_28BD: SafeIcon = SafeIcon::new("⢽", "*");
-    pub const BRAILLE_28BE: SafeIcon = SafeIcon::new("⢾", "*");
-    pub const BRAILLE_28BF: SafeIcon = SafeIcon::new("⢿", "*");
     pub const BRAILLE_28C0: SafeIcon = SafeIcon::new("⣀", "*");
     pub const BRAILLE_28C1: SafeIcon = SafeIcon::new("⣁", "*");
     pub const BRAILLE_28C2: SafeIcon = SafeIcon::new("⣂", "*");
@@ -984,62 +222,6 @@ pub mod braille {
     pub const BRAILLE_28C5: SafeIcon = SafeIcon::new("⣅", "*");
     pub const BRAILLE_28C6: SafeIcon = SafeIcon::new("⣆", "*");
     pub const BRAILLE_28C7: SafeIcon = SafeIcon::new("⣇", "*");
-    pub const BRAILLE_28C8: SafeIcon = SafeIcon::new("⣈", "*");
-    pub const BRAILLE_28C9: SafeIcon = SafeIcon::new("⣉", "*");
-    pub const BRAILLE_28CA: SafeIcon = SafeIcon::new("⣊", "*");
-    pub const BRAILLE_28CB: SafeIcon = SafeIcon::new("⣋", "*");
-    pub const BRAILLE_28CC: SafeIcon = SafeIcon::new("⣌", "*");
-    pub const BRAILLE_28CD: SafeIcon = SafeIcon::new("⣍", "*");
-    pub const BRAILLE_28CE: SafeIcon = SafeIcon::new("⣎", "*");
-    pub const BRAILLE_28CF: SafeIcon = SafeIcon::new("⣏", "*");
-    pub const BRAILLE_28D0: SafeIcon = SafeIcon::new("⣐", "*");
-    pub const BRAILLE_28D1: SafeIcon = SafeIcon::new("⣑", "*");
-    pub const BRAILLE_28D2: SafeIcon = SafeIcon::new("⣒", "*");
-    pub const BRAILLE_28D3: SafeIcon = SafeIcon::new("⣓", "*");
-    pub const BRAILLE_28D4: SafeIcon = SafeIcon::new("⣔", "*");
-    pub const BRAILLE_28D5: SafeIcon = SafeIcon::new("⣕", "*");
-    pub const BRAILLE_28D6: SafeIcon = SafeIcon::new("⣖", "*");
-    pub const BRAILLE_28D7: SafeIcon = SafeIcon::new("⣗", "*");
-    pub const BRAILLE_28D8: SafeIcon = SafeIcon::new("⣘", "*");
-    pub const BRAILLE_28D9: SafeIcon = SafeIcon::new("⣙", "*");
-    pub const BRAILLE_28DA: SafeIcon = SafeIcon::new("⣚", "*");
-    pub const BRAILLE_28DB: SafeIcon = SafeIcon::new("⣛", "*");
-    pub const BRAILLE_28DC: SafeIcon = SafeIcon::new("⣜", "*");
-    pub const BRAILLE_28DD: SafeIcon = SafeIcon::new("⣝", "*");
-    pub const BRAILLE_28DE: SafeIcon = SafeIcon::new("⣞", "*");
-    pub const BRAILLE_28DF: SafeIcon = SafeIcon::new("⣟", "*");
-    pub const BRAILLE_28E0: SafeIcon = SafeIcon::new("⣠", "*");
-    pub const BRAILLE_28E1: SafeIcon = SafeIcon::new("⣡", "*");
-    pub const BRAILLE_28E2: SafeIcon = SafeIcon::new("⣢", "*");
-    pub const BRAILLE_28E3: SafeIcon = SafeIcon::new("⣣", "*");
-    pub const BRAILLE_28E4: SafeIcon = SafeIcon::new("⣤", "*");
-    pub const BRAILLE_28E5: SafeIcon = SafeIcon::new("⣥", "*");
-    pub const BRAILLE_28E6: SafeIcon = SafeIcon::new("⣦", "*");
-    pub const BRAILLE_28E7: SafeIcon = SafeIcon::new("⣧", "*");
-    pub const BRAILLE_28E8: SafeIcon = SafeIcon::new("⣨", "*");
-    pub const BRAILLE_28E9: SafeIcon = SafeIcon::new("⣩", "*");
-    pub const BRAILLE_28EA: SafeIcon = SafeIcon::new("⣪", "*");
-    pub const BRAILLE_28EB: SafeIcon = SafeIcon::new("⣫", "*");
-    pub const BRAILLE_28EC: SafeIcon = SafeIcon::new("⣬", "*");
-    pub const BRAILLE_28ED: SafeIcon = SafeIcon::new("⣭", "*");
-    pub const BRAILLE_28EE: SafeIcon = SafeIcon::new("⣮", "*");
-    pub const BRAILLE_28EF: SafeIcon = SafeIcon::new("⣯", "*");
-    pub const BRAILLE_28F0: SafeIcon = SafeIcon::new("⣰", "*");
-    pub const BRAILLE_28F1: SafeIcon = SafeIcon::new("⣱", "*");
-    pub const BRAILLE_28F2: SafeIcon = SafeIcon::new("⣲", "*");
-    pub const BRAILLE_28F3: SafeIcon = SafeIcon::new("⣳", "*");
-    pub const BRAILLE_28F4: SafeIcon = SafeIcon::new("⣴", "*");
-    pub const BRAILLE_28F5: SafeIcon = SafeIcon::new("⣵", "*");
-    pub const BRAILLE_28F6: SafeIcon = SafeIcon::new("⣶", "*");
-    pub const BRAILLE_28F7: SafeIcon = SafeIcon::new("⣷", "*");
-    pub const BRAILLE_28F8: SafeIcon = SafeIcon::new("⣸", "*");
-    pub const BRAILLE_28F9: SafeIcon = SafeIcon::new("⣹", "*");
-    pub const BRAILLE_28FA: SafeIcon = SafeIcon::new("⣺", "*");
-    pub const BRAILLE_28FB: SafeIcon = SafeIcon::new("⣻", "*");
-    pub const BRAILLE_28FC: SafeIcon = SafeIcon::new("⣼", "*");
-    pub const BRAILLE_28FD: SafeIcon = SafeIcon::new("⣽", "*");
-    pub const BRAILLE_28FE: SafeIcon = SafeIcon::new("⣾", "*");
-    pub const BRAILLE_28FF: SafeIcon = SafeIcon::new("⣿", "*");
 }
 
 /// Look up a verified icon by its catalog id (e.g. `"box_2502"`).
@@ -1048,258 +230,73 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
     match id {
         "ascii_0021" =>          Some(ascii::ASCII_0021),
         "ascii_0022" =>          Some(ascii::ASCII_0022),
-        "ascii_0023" =>          Some(ascii::ASCII_0023),
-        "ascii_0024" =>          Some(ascii::ASCII_0024),
-        "ascii_0025" =>          Some(ascii::ASCII_0025),
-        "ascii_0026" =>          Some(ascii::ASCII_0026),
         "ascii_0027" =>          Some(ascii::ASCII_0027),
         "ascii_0028" =>          Some(ascii::ASCII_0028),
         "ascii_0029" =>          Some(ascii::ASCII_0029),
-        "ascii_002A" =>          Some(ascii::ASCII_002A),
-        "ascii_002B" =>          Some(ascii::ASCII_002B),
         "ascii_002C" =>          Some(ascii::ASCII_002C),
-        "ascii_002D" =>          Some(ascii::ASCII_002D),
         "ascii_002E" =>          Some(ascii::ASCII_002E),
         "ascii_002F" =>          Some(ascii::ASCII_002F),
-        "ascii_0030" =>          Some(ascii::ASCII_0030),
-        "ascii_0031" =>          Some(ascii::ASCII_0031),
-        "ascii_0032" =>          Some(ascii::ASCII_0032),
-        "ascii_0033" =>          Some(ascii::ASCII_0033),
-        "ascii_0034" =>          Some(ascii::ASCII_0034),
-        "ascii_0035" =>          Some(ascii::ASCII_0035),
-        "ascii_0036" =>          Some(ascii::ASCII_0036),
-        "ascii_0037" =>          Some(ascii::ASCII_0037),
-        "ascii_0038" =>          Some(ascii::ASCII_0038),
-        "ascii_0039" =>          Some(ascii::ASCII_0039),
         "ascii_003A" =>          Some(ascii::ASCII_003A),
         "ascii_003B" =>          Some(ascii::ASCII_003B),
-        "ascii_003C" =>          Some(ascii::ASCII_003C),
-        "ascii_003D" =>          Some(ascii::ASCII_003D),
         "ascii_003E" =>          Some(ascii::ASCII_003E),
         "ascii_003F" =>          Some(ascii::ASCII_003F),
-        "ascii_0040" =>          Some(ascii::ASCII_0040),
-        "ascii_0041" =>          Some(ascii::ASCII_0041),
-        "ascii_0042" =>          Some(ascii::ASCII_0042),
-        "ascii_0043" =>          Some(ascii::ASCII_0043),
-        "ascii_0044" =>          Some(ascii::ASCII_0044),
-        "ascii_0045" =>          Some(ascii::ASCII_0045),
-        "ascii_0046" =>          Some(ascii::ASCII_0046),
-        "ascii_0047" =>          Some(ascii::ASCII_0047),
-        "ascii_0048" =>          Some(ascii::ASCII_0048),
         "ascii_0049" =>          Some(ascii::ASCII_0049),
-        "ascii_004A" =>          Some(ascii::ASCII_004A),
-        "ascii_004B" =>          Some(ascii::ASCII_004B),
-        "ascii_004C" =>          Some(ascii::ASCII_004C),
-        "ascii_004D" =>          Some(ascii::ASCII_004D),
-        "ascii_004E" =>          Some(ascii::ASCII_004E),
-        "ascii_004F" =>          Some(ascii::ASCII_004F),
-        "ascii_0050" =>          Some(ascii::ASCII_0050),
-        "ascii_0051" =>          Some(ascii::ASCII_0051),
-        "ascii_0052" =>          Some(ascii::ASCII_0052),
-        "ascii_0053" =>          Some(ascii::ASCII_0053),
-        "ascii_0054" =>          Some(ascii::ASCII_0054),
-        "ascii_0055" =>          Some(ascii::ASCII_0055),
-        "ascii_0056" =>          Some(ascii::ASCII_0056),
-        "ascii_0057" =>          Some(ascii::ASCII_0057),
-        "ascii_0058" =>          Some(ascii::ASCII_0058),
-        "ascii_0059" =>          Some(ascii::ASCII_0059),
-        "ascii_005A" =>          Some(ascii::ASCII_005A),
         "ascii_005B" =>          Some(ascii::ASCII_005B),
         "ascii_005C" =>          Some(ascii::ASCII_005C),
         "ascii_005D" =>          Some(ascii::ASCII_005D),
         "ascii_005E" =>          Some(ascii::ASCII_005E),
-        "ascii_005F" =>          Some(ascii::ASCII_005F),
         "ascii_0060" =>          Some(ascii::ASCII_0060),
         "ascii_0061" =>          Some(ascii::ASCII_0061),
-        "ascii_0062" =>          Some(ascii::ASCII_0062),
         "ascii_0063" =>          Some(ascii::ASCII_0063),
-        "ascii_0064" =>          Some(ascii::ASCII_0064),
-        "ascii_0065" =>          Some(ascii::ASCII_0065),
-        "ascii_0066" =>          Some(ascii::ASCII_0066),
-        "ascii_0067" =>          Some(ascii::ASCII_0067),
-        "ascii_0068" =>          Some(ascii::ASCII_0068),
-        "ascii_0069" =>          Some(ascii::ASCII_0069),
         "ascii_006A" =>          Some(ascii::ASCII_006A),
-        "ascii_006B" =>          Some(ascii::ASCII_006B),
-        "ascii_006C" =>          Some(ascii::ASCII_006C),
-        "ascii_006D" =>          Some(ascii::ASCII_006D),
-        "ascii_006E" =>          Some(ascii::ASCII_006E),
-        "ascii_006F" =>          Some(ascii::ASCII_006F),
-        "ascii_0070" =>          Some(ascii::ASCII_0070),
-        "ascii_0071" =>          Some(ascii::ASCII_0071),
-        "ascii_0072" =>          Some(ascii::ASCII_0072),
         "ascii_0073" =>          Some(ascii::ASCII_0073),
         "ascii_0074" =>          Some(ascii::ASCII_0074),
-        "ascii_0075" =>          Some(ascii::ASCII_0075),
-        "ascii_0076" =>          Some(ascii::ASCII_0076),
-        "ascii_0077" =>          Some(ascii::ASCII_0077),
-        "ascii_0078" =>          Some(ascii::ASCII_0078),
-        "ascii_0079" =>          Some(ascii::ASCII_0079),
         "ascii_007A" =>          Some(ascii::ASCII_007A),
         "ascii_007B" =>          Some(ascii::ASCII_007B),
         "ascii_007C" =>          Some(ascii::ASCII_007C),
         "ascii_007D" =>          Some(ascii::ASCII_007D),
-        "ascii_007E" =>          Some(ascii::ASCII_007E),
-        "box_2500" =>            Some(box_drawing::BOX_2500),
-        "box_2501" =>            Some(box_drawing::BOX_2501),
         "box_2502" =>            Some(box_drawing::BOX_2502),
         "box_2503" =>            Some(box_drawing::BOX_2503),
-        "box_2504" =>            Some(box_drawing::BOX_2504),
-        "box_2505" =>            Some(box_drawing::BOX_2505),
         "box_2506" =>            Some(box_drawing::BOX_2506),
         "box_2507" =>            Some(box_drawing::BOX_2507),
-        "box_2508" =>            Some(box_drawing::BOX_2508),
-        "box_2509" =>            Some(box_drawing::BOX_2509),
         "box_250A" =>            Some(box_drawing::BOX_250A),
         "box_250B" =>            Some(box_drawing::BOX_250B),
-        "box_250C" =>            Some(box_drawing::BOX_250C),
-        "box_250D" =>            Some(box_drawing::BOX_250D),
-        "box_250E" =>            Some(box_drawing::BOX_250E),
-        "box_250F" =>            Some(box_drawing::BOX_250F),
         "box_2510" =>            Some(box_drawing::BOX_2510),
         "box_2511" =>            Some(box_drawing::BOX_2511),
         "box_2512" =>            Some(box_drawing::BOX_2512),
         "box_2513" =>            Some(box_drawing::BOX_2513),
-        "box_2514" =>            Some(box_drawing::BOX_2514),
-        "box_2515" =>            Some(box_drawing::BOX_2515),
-        "box_2516" =>            Some(box_drawing::BOX_2516),
-        "box_2517" =>            Some(box_drawing::BOX_2517),
         "box_2518" =>            Some(box_drawing::BOX_2518),
         "box_2519" =>            Some(box_drawing::BOX_2519),
         "box_251A" =>            Some(box_drawing::BOX_251A),
         "box_251B" =>            Some(box_drawing::BOX_251B),
-        "box_251C" =>            Some(box_drawing::BOX_251C),
-        "box_251D" =>            Some(box_drawing::BOX_251D),
-        "box_251E" =>            Some(box_drawing::BOX_251E),
-        "box_251F" =>            Some(box_drawing::BOX_251F),
-        "box_2520" =>            Some(box_drawing::BOX_2520),
-        "box_2521" =>            Some(box_drawing::BOX_2521),
-        "box_2522" =>            Some(box_drawing::BOX_2522),
-        "box_2523" =>            Some(box_drawing::BOX_2523),
         "box_2524" =>            Some(box_drawing::BOX_2524),
         "box_2525" =>            Some(box_drawing::BOX_2525),
         "box_2526" =>            Some(box_drawing::BOX_2526),
-        "box_2527" =>            Some(box_drawing::BOX_2527),
-        "box_2528" =>            Some(box_drawing::BOX_2528),
         "box_2529" =>            Some(box_drawing::BOX_2529),
         "box_252A" =>            Some(box_drawing::BOX_252A),
-        "box_252B" =>            Some(box_drawing::BOX_252B),
-        "box_252C" =>            Some(box_drawing::BOX_252C),
-        "box_252D" =>            Some(box_drawing::BOX_252D),
-        "box_252E" =>            Some(box_drawing::BOX_252E),
-        "box_252F" =>            Some(box_drawing::BOX_252F),
-        "box_2530" =>            Some(box_drawing::BOX_2530),
-        "box_2531" =>            Some(box_drawing::BOX_2531),
-        "box_2532" =>            Some(box_drawing::BOX_2532),
-        "box_2533" =>            Some(box_drawing::BOX_2533),
-        "box_2534" =>            Some(box_drawing::BOX_2534),
-        "box_2535" =>            Some(box_drawing::BOX_2535),
-        "box_2536" =>            Some(box_drawing::BOX_2536),
-        "box_2537" =>            Some(box_drawing::BOX_2537),
-        "box_2538" =>            Some(box_drawing::BOX_2538),
-        "box_2539" =>            Some(box_drawing::BOX_2539),
-        "box_253A" =>            Some(box_drawing::BOX_253A),
-        "box_253B" =>            Some(box_drawing::BOX_253B),
-        "box_253C" =>            Some(box_drawing::BOX_253C),
-        "box_253D" =>            Some(box_drawing::BOX_253D),
-        "box_253E" =>            Some(box_drawing::BOX_253E),
-        "box_253F" =>            Some(box_drawing::BOX_253F),
-        "box_2540" =>            Some(box_drawing::BOX_2540),
-        "box_2541" =>            Some(box_drawing::BOX_2541),
-        "box_2542" =>            Some(box_drawing::BOX_2542),
-        "box_2543" =>            Some(box_drawing::BOX_2543),
-        "box_2544" =>            Some(box_drawing::BOX_2544),
-        "box_2545" =>            Some(box_drawing::BOX_2545),
-        "box_2546" =>            Some(box_drawing::BOX_2546),
-        "box_2547" =>            Some(box_drawing::BOX_2547),
-        "box_2548" =>            Some(box_drawing::BOX_2548),
-        "box_2549" =>            Some(box_drawing::BOX_2549),
-        "box_254A" =>            Some(box_drawing::BOX_254A),
-        "box_254B" =>            Some(box_drawing::BOX_254B),
-        "box_254C" =>            Some(box_drawing::BOX_254C),
-        "box_254D" =>            Some(box_drawing::BOX_254D),
         "box_254E" =>            Some(box_drawing::BOX_254E),
         "box_254F" =>            Some(box_drawing::BOX_254F),
-        "box_2550" =>            Some(box_drawing::BOX_2550),
         "box_2551" =>            Some(box_drawing::BOX_2551),
-        "box_2552" =>            Some(box_drawing::BOX_2552),
-        "box_2553" =>            Some(box_drawing::BOX_2553),
-        "box_2554" =>            Some(box_drawing::BOX_2554),
         "box_2555" =>            Some(box_drawing::BOX_2555),
         "box_2556" =>            Some(box_drawing::BOX_2556),
         "box_2557" =>            Some(box_drawing::BOX_2557),
-        "box_2558" =>            Some(box_drawing::BOX_2558),
-        "box_2559" =>            Some(box_drawing::BOX_2559),
-        "box_255A" =>            Some(box_drawing::BOX_255A),
         "box_255B" =>            Some(box_drawing::BOX_255B),
         "box_255C" =>            Some(box_drawing::BOX_255C),
         "box_255D" =>            Some(box_drawing::BOX_255D),
-        "box_255E" =>            Some(box_drawing::BOX_255E),
-        "box_255F" =>            Some(box_drawing::BOX_255F),
-        "box_2560" =>            Some(box_drawing::BOX_2560),
         "box_2561" =>            Some(box_drawing::BOX_2561),
         "box_2562" =>            Some(box_drawing::BOX_2562),
         "box_2563" =>            Some(box_drawing::BOX_2563),
-        "box_2564" =>            Some(box_drawing::BOX_2564),
-        "box_2565" =>            Some(box_drawing::BOX_2565),
-        "box_2566" =>            Some(box_drawing::BOX_2566),
-        "box_2567" =>            Some(box_drawing::BOX_2567),
-        "box_2568" =>            Some(box_drawing::BOX_2568),
-        "box_2569" =>            Some(box_drawing::BOX_2569),
-        "box_256A" =>            Some(box_drawing::BOX_256A),
-        "box_256B" =>            Some(box_drawing::BOX_256B),
-        "box_256C" =>            Some(box_drawing::BOX_256C),
-        "box_256D" =>            Some(box_drawing::BOX_256D),
         "box_256E" =>            Some(box_drawing::BOX_256E),
         "box_256F" =>            Some(box_drawing::BOX_256F),
-        "box_2570" =>            Some(box_drawing::BOX_2570),
-        "box_2571" =>            Some(box_drawing::BOX_2571),
-        "box_2572" =>            Some(box_drawing::BOX_2572),
-        "box_2573" =>            Some(box_drawing::BOX_2573),
         "box_2574" =>            Some(box_drawing::BOX_2574),
         "box_2575" =>            Some(box_drawing::BOX_2575),
-        "box_2576" =>            Some(box_drawing::BOX_2576),
         "box_2577" =>            Some(box_drawing::BOX_2577),
         "box_2578" =>            Some(box_drawing::BOX_2578),
         "box_2579" =>            Some(box_drawing::BOX_2579),
-        "box_257A" =>            Some(box_drawing::BOX_257A),
         "box_257B" =>            Some(box_drawing::BOX_257B),
-        "box_257C" =>            Some(box_drawing::BOX_257C),
         "box_257D" =>            Some(box_drawing::BOX_257D),
-        "box_257E" =>            Some(box_drawing::BOX_257E),
         "box_257F" =>            Some(box_drawing::BOX_257F),
-        "block_2580" =>          Some(block_elements::BLOCK_2580),
-        "block_2581" =>          Some(block_elements::BLOCK_2581),
-        "block_2582" =>          Some(block_elements::BLOCK_2582),
-        "block_2583" =>          Some(block_elements::BLOCK_2583),
-        "block_2584" =>          Some(block_elements::BLOCK_2584),
-        "block_2585" =>          Some(block_elements::BLOCK_2585),
-        "block_2586" =>          Some(block_elements::BLOCK_2586),
-        "block_2587" =>          Some(block_elements::BLOCK_2587),
-        "block_2588" =>          Some(block_elements::BLOCK_2588),
-        "block_2589" =>          Some(block_elements::BLOCK_2589),
-        "block_258A" =>          Some(block_elements::BLOCK_258A),
-        "block_258B" =>          Some(block_elements::BLOCK_258B),
         "block_258C" =>          Some(block_elements::BLOCK_258C),
-        "block_258D" =>          Some(block_elements::BLOCK_258D),
-        "block_258E" =>          Some(block_elements::BLOCK_258E),
-        "block_258F" =>          Some(block_elements::BLOCK_258F),
-        "block_2590" =>          Some(block_elements::BLOCK_2590),
-        "block_2591" =>          Some(block_elements::BLOCK_2591),
-        "block_2592" =>          Some(block_elements::BLOCK_2592),
-        "block_2593" =>          Some(block_elements::BLOCK_2593),
-        "block_2594" =>          Some(block_elements::BLOCK_2594),
-        "block_2595" =>          Some(block_elements::BLOCK_2595),
-        "block_2596" =>          Some(block_elements::BLOCK_2596),
-        "block_2597" =>          Some(block_elements::BLOCK_2597),
-        "block_2598" =>          Some(block_elements::BLOCK_2598),
-        "block_2599" =>          Some(block_elements::BLOCK_2599),
-        "block_259A" =>          Some(block_elements::BLOCK_259A),
-        "block_259B" =>          Some(block_elements::BLOCK_259B),
-        "block_259C" =>          Some(block_elements::BLOCK_259C),
-        "block_259D" =>          Some(block_elements::BLOCK_259D),
-        "block_259E" =>          Some(block_elements::BLOCK_259E),
-        "block_259F" =>          Some(block_elements::BLOCK_259F),
         "braille_2801" =>        Some(braille::BRAILLE_2801),
         "braille_2802" =>        Some(braille::BRAILLE_2802),
         "braille_2803" =>        Some(braille::BRAILLE_2803),
@@ -1307,62 +304,6 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2805" =>        Some(braille::BRAILLE_2805),
         "braille_2806" =>        Some(braille::BRAILLE_2806),
         "braille_2807" =>        Some(braille::BRAILLE_2807),
-        "braille_2808" =>        Some(braille::BRAILLE_2808),
-        "braille_2809" =>        Some(braille::BRAILLE_2809),
-        "braille_280A" =>        Some(braille::BRAILLE_280A),
-        "braille_280B" =>        Some(braille::BRAILLE_280B),
-        "braille_280C" =>        Some(braille::BRAILLE_280C),
-        "braille_280D" =>        Some(braille::BRAILLE_280D),
-        "braille_280E" =>        Some(braille::BRAILLE_280E),
-        "braille_280F" =>        Some(braille::BRAILLE_280F),
-        "braille_2810" =>        Some(braille::BRAILLE_2810),
-        "braille_2811" =>        Some(braille::BRAILLE_2811),
-        "braille_2812" =>        Some(braille::BRAILLE_2812),
-        "braille_2813" =>        Some(braille::BRAILLE_2813),
-        "braille_2814" =>        Some(braille::BRAILLE_2814),
-        "braille_2815" =>        Some(braille::BRAILLE_2815),
-        "braille_2816" =>        Some(braille::BRAILLE_2816),
-        "braille_2817" =>        Some(braille::BRAILLE_2817),
-        "braille_2818" =>        Some(braille::BRAILLE_2818),
-        "braille_2819" =>        Some(braille::BRAILLE_2819),
-        "braille_281A" =>        Some(braille::BRAILLE_281A),
-        "braille_281B" =>        Some(braille::BRAILLE_281B),
-        "braille_281C" =>        Some(braille::BRAILLE_281C),
-        "braille_281D" =>        Some(braille::BRAILLE_281D),
-        "braille_281E" =>        Some(braille::BRAILLE_281E),
-        "braille_281F" =>        Some(braille::BRAILLE_281F),
-        "braille_2820" =>        Some(braille::BRAILLE_2820),
-        "braille_2821" =>        Some(braille::BRAILLE_2821),
-        "braille_2822" =>        Some(braille::BRAILLE_2822),
-        "braille_2823" =>        Some(braille::BRAILLE_2823),
-        "braille_2824" =>        Some(braille::BRAILLE_2824),
-        "braille_2825" =>        Some(braille::BRAILLE_2825),
-        "braille_2826" =>        Some(braille::BRAILLE_2826),
-        "braille_2827" =>        Some(braille::BRAILLE_2827),
-        "braille_2828" =>        Some(braille::BRAILLE_2828),
-        "braille_2829" =>        Some(braille::BRAILLE_2829),
-        "braille_282A" =>        Some(braille::BRAILLE_282A),
-        "braille_282B" =>        Some(braille::BRAILLE_282B),
-        "braille_282C" =>        Some(braille::BRAILLE_282C),
-        "braille_282D" =>        Some(braille::BRAILLE_282D),
-        "braille_282E" =>        Some(braille::BRAILLE_282E),
-        "braille_282F" =>        Some(braille::BRAILLE_282F),
-        "braille_2830" =>        Some(braille::BRAILLE_2830),
-        "braille_2831" =>        Some(braille::BRAILLE_2831),
-        "braille_2832" =>        Some(braille::BRAILLE_2832),
-        "braille_2833" =>        Some(braille::BRAILLE_2833),
-        "braille_2834" =>        Some(braille::BRAILLE_2834),
-        "braille_2835" =>        Some(braille::BRAILLE_2835),
-        "braille_2836" =>        Some(braille::BRAILLE_2836),
-        "braille_2837" =>        Some(braille::BRAILLE_2837),
-        "braille_2838" =>        Some(braille::BRAILLE_2838),
-        "braille_2839" =>        Some(braille::BRAILLE_2839),
-        "braille_283A" =>        Some(braille::BRAILLE_283A),
-        "braille_283B" =>        Some(braille::BRAILLE_283B),
-        "braille_283C" =>        Some(braille::BRAILLE_283C),
-        "braille_283D" =>        Some(braille::BRAILLE_283D),
-        "braille_283E" =>        Some(braille::BRAILLE_283E),
-        "braille_283F" =>        Some(braille::BRAILLE_283F),
         "braille_2840" =>        Some(braille::BRAILLE_2840),
         "braille_2841" =>        Some(braille::BRAILLE_2841),
         "braille_2842" =>        Some(braille::BRAILLE_2842),
@@ -1371,62 +312,6 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2845" =>        Some(braille::BRAILLE_2845),
         "braille_2846" =>        Some(braille::BRAILLE_2846),
         "braille_2847" =>        Some(braille::BRAILLE_2847),
-        "braille_2848" =>        Some(braille::BRAILLE_2848),
-        "braille_2849" =>        Some(braille::BRAILLE_2849),
-        "braille_284A" =>        Some(braille::BRAILLE_284A),
-        "braille_284B" =>        Some(braille::BRAILLE_284B),
-        "braille_284C" =>        Some(braille::BRAILLE_284C),
-        "braille_284D" =>        Some(braille::BRAILLE_284D),
-        "braille_284E" =>        Some(braille::BRAILLE_284E),
-        "braille_284F" =>        Some(braille::BRAILLE_284F),
-        "braille_2850" =>        Some(braille::BRAILLE_2850),
-        "braille_2851" =>        Some(braille::BRAILLE_2851),
-        "braille_2852" =>        Some(braille::BRAILLE_2852),
-        "braille_2853" =>        Some(braille::BRAILLE_2853),
-        "braille_2854" =>        Some(braille::BRAILLE_2854),
-        "braille_2855" =>        Some(braille::BRAILLE_2855),
-        "braille_2856" =>        Some(braille::BRAILLE_2856),
-        "braille_2857" =>        Some(braille::BRAILLE_2857),
-        "braille_2858" =>        Some(braille::BRAILLE_2858),
-        "braille_2859" =>        Some(braille::BRAILLE_2859),
-        "braille_285A" =>        Some(braille::BRAILLE_285A),
-        "braille_285B" =>        Some(braille::BRAILLE_285B),
-        "braille_285C" =>        Some(braille::BRAILLE_285C),
-        "braille_285D" =>        Some(braille::BRAILLE_285D),
-        "braille_285E" =>        Some(braille::BRAILLE_285E),
-        "braille_285F" =>        Some(braille::BRAILLE_285F),
-        "braille_2860" =>        Some(braille::BRAILLE_2860),
-        "braille_2861" =>        Some(braille::BRAILLE_2861),
-        "braille_2862" =>        Some(braille::BRAILLE_2862),
-        "braille_2863" =>        Some(braille::BRAILLE_2863),
-        "braille_2864" =>        Some(braille::BRAILLE_2864),
-        "braille_2865" =>        Some(braille::BRAILLE_2865),
-        "braille_2866" =>        Some(braille::BRAILLE_2866),
-        "braille_2867" =>        Some(braille::BRAILLE_2867),
-        "braille_2868" =>        Some(braille::BRAILLE_2868),
-        "braille_2869" =>        Some(braille::BRAILLE_2869),
-        "braille_286A" =>        Some(braille::BRAILLE_286A),
-        "braille_286B" =>        Some(braille::BRAILLE_286B),
-        "braille_286C" =>        Some(braille::BRAILLE_286C),
-        "braille_286D" =>        Some(braille::BRAILLE_286D),
-        "braille_286E" =>        Some(braille::BRAILLE_286E),
-        "braille_286F" =>        Some(braille::BRAILLE_286F),
-        "braille_2870" =>        Some(braille::BRAILLE_2870),
-        "braille_2871" =>        Some(braille::BRAILLE_2871),
-        "braille_2872" =>        Some(braille::BRAILLE_2872),
-        "braille_2873" =>        Some(braille::BRAILLE_2873),
-        "braille_2874" =>        Some(braille::BRAILLE_2874),
-        "braille_2875" =>        Some(braille::BRAILLE_2875),
-        "braille_2876" =>        Some(braille::BRAILLE_2876),
-        "braille_2877" =>        Some(braille::BRAILLE_2877),
-        "braille_2878" =>        Some(braille::BRAILLE_2878),
-        "braille_2879" =>        Some(braille::BRAILLE_2879),
-        "braille_287A" =>        Some(braille::BRAILLE_287A),
-        "braille_287B" =>        Some(braille::BRAILLE_287B),
-        "braille_287C" =>        Some(braille::BRAILLE_287C),
-        "braille_287D" =>        Some(braille::BRAILLE_287D),
-        "braille_287E" =>        Some(braille::BRAILLE_287E),
-        "braille_287F" =>        Some(braille::BRAILLE_287F),
         "braille_2880" =>        Some(braille::BRAILLE_2880),
         "braille_2881" =>        Some(braille::BRAILLE_2881),
         "braille_2882" =>        Some(braille::BRAILLE_2882),
@@ -1435,62 +320,6 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2885" =>        Some(braille::BRAILLE_2885),
         "braille_2886" =>        Some(braille::BRAILLE_2886),
         "braille_2887" =>        Some(braille::BRAILLE_2887),
-        "braille_2888" =>        Some(braille::BRAILLE_2888),
-        "braille_2889" =>        Some(braille::BRAILLE_2889),
-        "braille_288A" =>        Some(braille::BRAILLE_288A),
-        "braille_288B" =>        Some(braille::BRAILLE_288B),
-        "braille_288C" =>        Some(braille::BRAILLE_288C),
-        "braille_288D" =>        Some(braille::BRAILLE_288D),
-        "braille_288E" =>        Some(braille::BRAILLE_288E),
-        "braille_288F" =>        Some(braille::BRAILLE_288F),
-        "braille_2890" =>        Some(braille::BRAILLE_2890),
-        "braille_2891" =>        Some(braille::BRAILLE_2891),
-        "braille_2892" =>        Some(braille::BRAILLE_2892),
-        "braille_2893" =>        Some(braille::BRAILLE_2893),
-        "braille_2894" =>        Some(braille::BRAILLE_2894),
-        "braille_2895" =>        Some(braille::BRAILLE_2895),
-        "braille_2896" =>        Some(braille::BRAILLE_2896),
-        "braille_2897" =>        Some(braille::BRAILLE_2897),
-        "braille_2898" =>        Some(braille::BRAILLE_2898),
-        "braille_2899" =>        Some(braille::BRAILLE_2899),
-        "braille_289A" =>        Some(braille::BRAILLE_289A),
-        "braille_289B" =>        Some(braille::BRAILLE_289B),
-        "braille_289C" =>        Some(braille::BRAILLE_289C),
-        "braille_289D" =>        Some(braille::BRAILLE_289D),
-        "braille_289E" =>        Some(braille::BRAILLE_289E),
-        "braille_289F" =>        Some(braille::BRAILLE_289F),
-        "braille_28A0" =>        Some(braille::BRAILLE_28A0),
-        "braille_28A1" =>        Some(braille::BRAILLE_28A1),
-        "braille_28A2" =>        Some(braille::BRAILLE_28A2),
-        "braille_28A3" =>        Some(braille::BRAILLE_28A3),
-        "braille_28A4" =>        Some(braille::BRAILLE_28A4),
-        "braille_28A5" =>        Some(braille::BRAILLE_28A5),
-        "braille_28A6" =>        Some(braille::BRAILLE_28A6),
-        "braille_28A7" =>        Some(braille::BRAILLE_28A7),
-        "braille_28A8" =>        Some(braille::BRAILLE_28A8),
-        "braille_28A9" =>        Some(braille::BRAILLE_28A9),
-        "braille_28AA" =>        Some(braille::BRAILLE_28AA),
-        "braille_28AB" =>        Some(braille::BRAILLE_28AB),
-        "braille_28AC" =>        Some(braille::BRAILLE_28AC),
-        "braille_28AD" =>        Some(braille::BRAILLE_28AD),
-        "braille_28AE" =>        Some(braille::BRAILLE_28AE),
-        "braille_28AF" =>        Some(braille::BRAILLE_28AF),
-        "braille_28B0" =>        Some(braille::BRAILLE_28B0),
-        "braille_28B1" =>        Some(braille::BRAILLE_28B1),
-        "braille_28B2" =>        Some(braille::BRAILLE_28B2),
-        "braille_28B3" =>        Some(braille::BRAILLE_28B3),
-        "braille_28B4" =>        Some(braille::BRAILLE_28B4),
-        "braille_28B5" =>        Some(braille::BRAILLE_28B5),
-        "braille_28B6" =>        Some(braille::BRAILLE_28B6),
-        "braille_28B7" =>        Some(braille::BRAILLE_28B7),
-        "braille_28B8" =>        Some(braille::BRAILLE_28B8),
-        "braille_28B9" =>        Some(braille::BRAILLE_28B9),
-        "braille_28BA" =>        Some(braille::BRAILLE_28BA),
-        "braille_28BB" =>        Some(braille::BRAILLE_28BB),
-        "braille_28BC" =>        Some(braille::BRAILLE_28BC),
-        "braille_28BD" =>        Some(braille::BRAILLE_28BD),
-        "braille_28BE" =>        Some(braille::BRAILLE_28BE),
-        "braille_28BF" =>        Some(braille::BRAILLE_28BF),
         "braille_28C0" =>        Some(braille::BRAILLE_28C0),
         "braille_28C1" =>        Some(braille::BRAILLE_28C1),
         "braille_28C2" =>        Some(braille::BRAILLE_28C2),
@@ -1499,62 +328,6 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_28C5" =>        Some(braille::BRAILLE_28C5),
         "braille_28C6" =>        Some(braille::BRAILLE_28C6),
         "braille_28C7" =>        Some(braille::BRAILLE_28C7),
-        "braille_28C8" =>        Some(braille::BRAILLE_28C8),
-        "braille_28C9" =>        Some(braille::BRAILLE_28C9),
-        "braille_28CA" =>        Some(braille::BRAILLE_28CA),
-        "braille_28CB" =>        Some(braille::BRAILLE_28CB),
-        "braille_28CC" =>        Some(braille::BRAILLE_28CC),
-        "braille_28CD" =>        Some(braille::BRAILLE_28CD),
-        "braille_28CE" =>        Some(braille::BRAILLE_28CE),
-        "braille_28CF" =>        Some(braille::BRAILLE_28CF),
-        "braille_28D0" =>        Some(braille::BRAILLE_28D0),
-        "braille_28D1" =>        Some(braille::BRAILLE_28D1),
-        "braille_28D2" =>        Some(braille::BRAILLE_28D2),
-        "braille_28D3" =>        Some(braille::BRAILLE_28D3),
-        "braille_28D4" =>        Some(braille::BRAILLE_28D4),
-        "braille_28D5" =>        Some(braille::BRAILLE_28D5),
-        "braille_28D6" =>        Some(braille::BRAILLE_28D6),
-        "braille_28D7" =>        Some(braille::BRAILLE_28D7),
-        "braille_28D8" =>        Some(braille::BRAILLE_28D8),
-        "braille_28D9" =>        Some(braille::BRAILLE_28D9),
-        "braille_28DA" =>        Some(braille::BRAILLE_28DA),
-        "braille_28DB" =>        Some(braille::BRAILLE_28DB),
-        "braille_28DC" =>        Some(braille::BRAILLE_28DC),
-        "braille_28DD" =>        Some(braille::BRAILLE_28DD),
-        "braille_28DE" =>        Some(braille::BRAILLE_28DE),
-        "braille_28DF" =>        Some(braille::BRAILLE_28DF),
-        "braille_28E0" =>        Some(braille::BRAILLE_28E0),
-        "braille_28E1" =>        Some(braille::BRAILLE_28E1),
-        "braille_28E2" =>        Some(braille::BRAILLE_28E2),
-        "braille_28E3" =>        Some(braille::BRAILLE_28E3),
-        "braille_28E4" =>        Some(braille::BRAILLE_28E4),
-        "braille_28E5" =>        Some(braille::BRAILLE_28E5),
-        "braille_28E6" =>        Some(braille::BRAILLE_28E6),
-        "braille_28E7" =>        Some(braille::BRAILLE_28E7),
-        "braille_28E8" =>        Some(braille::BRAILLE_28E8),
-        "braille_28E9" =>        Some(braille::BRAILLE_28E9),
-        "braille_28EA" =>        Some(braille::BRAILLE_28EA),
-        "braille_28EB" =>        Some(braille::BRAILLE_28EB),
-        "braille_28EC" =>        Some(braille::BRAILLE_28EC),
-        "braille_28ED" =>        Some(braille::BRAILLE_28ED),
-        "braille_28EE" =>        Some(braille::BRAILLE_28EE),
-        "braille_28EF" =>        Some(braille::BRAILLE_28EF),
-        "braille_28F0" =>        Some(braille::BRAILLE_28F0),
-        "braille_28F1" =>        Some(braille::BRAILLE_28F1),
-        "braille_28F2" =>        Some(braille::BRAILLE_28F2),
-        "braille_28F3" =>        Some(braille::BRAILLE_28F3),
-        "braille_28F4" =>        Some(braille::BRAILLE_28F4),
-        "braille_28F5" =>        Some(braille::BRAILLE_28F5),
-        "braille_28F6" =>        Some(braille::BRAILLE_28F6),
-        "braille_28F7" =>        Some(braille::BRAILLE_28F7),
-        "braille_28F8" =>        Some(braille::BRAILLE_28F8),
-        "braille_28F9" =>        Some(braille::BRAILLE_28F9),
-        "braille_28FA" =>        Some(braille::BRAILLE_28FA),
-        "braille_28FB" =>        Some(braille::BRAILLE_28FB),
-        "braille_28FC" =>        Some(braille::BRAILLE_28FC),
-        "braille_28FD" =>        Some(braille::BRAILLE_28FD),
-        "braille_28FE" =>        Some(braille::BRAILLE_28FE),
-        "braille_28FF" =>        Some(braille::BRAILLE_28FF),
         _ => None,
     }
 }

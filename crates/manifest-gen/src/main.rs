@@ -32,7 +32,7 @@ const EXPECTED_HOSTS: &[(&str, &[&str])] = &[
 )]
 struct Cli {
     /// Per-platform verdicts.json files to intersect.
-    #[arg(long, required_unless_present = "from_catalog")]
+    #[arg(long, required_unless_present = "from_catalog", num_args = 1..)]
     inputs: Vec<PathBuf>,
 
     /// Bootstrap mode: assume the whole catalog passes (provisional!).

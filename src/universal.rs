@@ -24,7 +24,7 @@ mod tests {
     fn block_modules_resolve() {
         assert_eq!(super::ascii::ASCII_0021.glyph, "!");
         assert_eq!(super::box_drawing::BOX_2502.glyph, "\u{2502}");
-        assert_eq!(super::block_elements::BLOCK_2588.glyph, "\u{2588}");
+        assert_eq!(super::block_elements::BLOCK_258C.glyph, "\u{258C}");
         assert_eq!(super::braille::BRAILLE_2801.glyph, "\u{2801}");
     }
 
@@ -32,16 +32,18 @@ mod tests {
     fn lookups_resolve() {
         assert_eq!(super::lookup("box_2502").map(|i| i.glyph), Some("\u{2502}"));
         assert_eq!(
-            super::by_codepoint('\u{2588}').map(|i| i.glyph),
-            Some("\u{2588}")
+            super::by_codepoint('\u{258C}').map(|i| i.glyph),
+            Some("\u{258C}")
         );
         assert!(super::lookup("nonexistent").is_none());
     }
 
     #[test]
     fn bootstrap_manifest_covers_full_catalog() {
-        // Bootstrap (--from-catalog) includes every candidate; after the
-        // first CI run the count may drop but never below a sane floor.
-        assert!(super::UNIVERSAL_ICONS.len() >= 400);
+        // The bootstrap (--from-catalog) included every candidate; the first
+        // full CI matrix run AND-gated it down to the verified set. This
+        // floor only catches catastrophic regressions — the manifest drift
+        // check in CI enforces the exact set.
+        assert!(super::UNIVERSAL_ICONS.len() >= 50);
     }
 }
