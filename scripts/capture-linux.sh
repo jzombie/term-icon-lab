@@ -36,11 +36,12 @@ if [ ! -S "/tmp/.X11-unix/X${DISP_NUM}" ]; then
 fi
 
 # Launch harness inside xterm with explicit FreeType rendering. The wrapper
-# publishes the harness PID for liveness polling.
+# publishes the harness PID and tees its output to a log file (the xterm
+# display itself is invisible to CI logs).
 xterm \
     -fa "DejaVu Sans Mono" -fs 11 \
     -geometry 120x48 \
-    -e bash -c 'echo $$ > "$1/pid"; shift 2>/dev/null || true; exec "$@"' bash \
+    -e bash -c 'd="$1"; shift; echo $$ > "$d/pid"; exec "$@" >"$d/harness.log" 2>&1' bash \
         "$SYNC_DIR" ./target/debug/matrix-harness \
             --sync-dir "$SYNC_DIR" \
             --out-dir "$OUT_DIR/artifacts" \
@@ -61,18 +62,47 @@ capture_page() {
 }
 
 # The page count is only known from the catalog; drive the loop until the
-# harness exits, capturing every signaled page in order.
+# harness exits, capturing every signaled page in order. A liveness failure
+# (rc=3) after the final page is the graceful end-of-run, not an error —
+# verified below via exit code + artifacts.
 PAGE=0
-SECONDS=0
+RUN_FAILED=0
 while kill -0 "$HARNESS_PID" 2>/dev/null; do
-    wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page || {
-        STATUS=$?; kill "$HARNESS_PID" 2>/dev/null || true; exit "$STATUS";
-    }
+    if ! wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page; then
+        RC=$?
+        if [ "$RC" -ne 3 ]; then
+            RUN_FAILED=$RC
+            kill "$HARNESS_PID" 2>/dev/null || true
+        fi
+        break
+    fi
     PAGE=$((PAGE + 1))
 done
-wait "$HARNESS_PID" 2>/dev/null || true
 
-echo "captured $((PAGE)) pages"
+set +e
+wait "$HARNESS_PID" 2>/dev/null
+HARNESS_EXIT=$?
+set -e
+
+if [ "$RUN_FAILED" -ne 0 ]; then
+    echo "=== harness.log tail ===" >&2
+    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+    exit "$RUN_FAILED"
+fi
+if [ "$HARNESS_EXIT" -ne 0 ]; then
+    echo "ERROR: matrix-harness exited with code $HARNESS_EXIT." >&2
+    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+    exit 2
+fi
+for f in sidecar.json pass1.json; do
+    if [ ! -f "$OUT_DIR/artifacts/$f" ]; then
+        echo "ERROR: harness finished but $f is missing." >&2
+        tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+        exit 2
+    fi
+done
+
+echo "captured $((PAGE)) pages; harness exit=$HARNESS_EXIT"
 
 # Pass 2 over all captured pages.
 PNG_ARGS=()

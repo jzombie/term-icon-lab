@@ -14,6 +14,9 @@ HARNESS_ACK_TIMEOUT_SECS="${HARNESS_ACK_TIMEOUT_SECS:-60}"
 
 wait_ready_and_acknowledge() {
     # $1 = sync dir, $2 = harness pid, $3 = page number, $4 = capture command
+    # Return codes: 0 = acked; 2 = timed out waiting for .ready;
+    #               3 = harness process died (caller decides if that is the
+    #                   graceful end-of-run or a mid-run failure).
     local sync_dir="$1" harness_pid="$2" page="$3" capture_cmd="$4"
     local ready ack
     ready="$(find "$sync_dir" -name "term_icon_*_page_${page}.ready" 2>/dev/null | head -n1 || true)"
@@ -22,8 +25,8 @@ wait_ready_and_acknowledge() {
     local deadline=$((SECONDS + HARNESS_ACK_TIMEOUT_SECS))
     while [ -z "$ready" ]; do
         if ! kill -0 "$harness_pid" 2>/dev/null; then
-            echo "ERROR: matrix-harness pid $harness_pid exited before signaling page ${page}." >&2
-            return 2
+            echo "NOTE: matrix-harness pid $harness_pid exited before signaling page ${page}." >&2
+            return 3
         fi
         if (( SECONDS >= deadline )); then
             echo "ERROR: timed out waiting for page ${page} .ready signal." >&2

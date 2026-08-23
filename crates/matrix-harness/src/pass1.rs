@@ -33,6 +33,14 @@ impl DrainStats {
     }
 }
 
+/// One page's slice of the report log.
+#[derive(Clone, Copy, Debug)]
+pub struct PageWindow {
+    pub page: u32,
+    /// Index of the first report emitted while rendering this page.
+    pub start: usize,
+}
+
 /// Wait until the footer sentinel reply for `page_start_index` arrives or the
 /// deadline expires.
 ///
@@ -58,12 +66,20 @@ pub fn wait_footer(
     }
 }
 
-/// Correlate every candidate with the accumulated report log.
+/// Correlate every candidate with the accumulated report log, scoped to
+/// per-page windows.
 ///
-/// Footer replies (`row 25`) are excluded from candidate data by construction:
-/// they normalize to page_row 24 which no candidate occupies.
+/// Rows repeat on every page (each page renders `page_row` 1..24), so an
+/// unscoped search would let a missing response on page N steal an unrelated
+/// same-row report from another page. Each candidate searches only
+/// `[window.start, next_window.start)`; footer replies normalize to page_row
+/// 24, which no candidate occupies.
 #[must_use]
-pub fn correlate(log: &ReportLog, sidecar: &crate::sidecar::Sidecar) -> Pass1Report {
+pub fn correlate(
+    log: &ReportLog,
+    sidecar: &crate::sidecar::Sidecar,
+    windows: &[PageWindow],
+) -> Pass1Report {
     let mut results = Vec::new();
     let mut correlated = 0usize;
     let mut total = 0usize;
@@ -81,11 +97,21 @@ pub fn correlate(log: &ReportLog, sidecar: &crate::sidecar::Sidecar) -> Pass1Rep
             continue;
         };
         total += 1;
-        // First report whose normalized payload row matches this candidate's
-        // page-relative row. Duplicate/stray same-row reports are ignored
-        // beyond the first hit.
-        let hit = log
-            .reports()
+
+        // This candidate's page slice of the log.
+        let (start, end) = match windows.iter().position(|w| w.page == *page) {
+            Some(i) => {
+                let start = windows[i].start;
+                let end = windows
+                    .get(i + 1)
+                    .map_or(log.reports().len(), |next| next.start)
+                    .max(start);
+                (start, end)
+            }
+            None => (log.reports().len(), log.reports().len()),
+        };
+
+        let hit = log.reports()[start..end]
             .iter()
             .find(|r| r.page_row0() == u32::from(*page_row));
 
@@ -166,7 +192,7 @@ mod tests {
         let sc = sidecar_with(vec![cand("box_2502", 0, 3)]);
         let mut log = ReportLog::new();
         log.feed(b"\x1b[4;8R"); // physical row 4 → page_row 3, col 8 ✓
-        let report = correlate(&log, &sc);
+        let report = correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]);
         assert_eq!(report.results[0].status, Pass1Status::Pass);
         assert_eq!(report.results[0].observed_col, Some(8));
     }
@@ -176,7 +202,10 @@ mod tests {
         let sc = sidecar_with(vec![cand("wide", 0, 3)]);
         let mut log = ReportLog::new();
         log.feed(b"\x1b[4;9R"); // one cell too far: 2-cell glyph
-        assert_eq!(correlate(&log, &sc).results[0].status, Pass1Status::Fail);
+        assert_eq!(
+            correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]).results[0].status,
+            Pass1Status::Fail
+        );
     }
 
     #[test]
@@ -184,7 +213,7 @@ mod tests {
         let sc = sidecar_with(vec![cand("box_2502", 0, 3), cand("box_2500", 0, 4)]);
         let mut log = ReportLog::new();
         log.feed(b"\x1b[5;8R"); // answers row 4 only
-        let report = correlate(&log, &sc);
+        let report = correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]);
         assert_eq!(report.results[0].status, Pass1Status::Inconclusive);
         assert_eq!(report.results[1].status, Pass1Status::Pass);
     }
@@ -194,7 +223,10 @@ mod tests {
         let sc = sidecar_with(vec![cand("box_2502", 0, 0)]);
         let mut log = ReportLog::new();
         log.feed(b"\x1b[?1;2c\x1b[1;8R\x1b[6;3R");
-        assert_eq!(correlate(&log, &sc).results[0].status, Pass1Status::Pass);
+        assert_eq!(
+            correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]).results[0].status,
+            Pass1Status::Pass
+        );
     }
 
     #[test]
@@ -205,7 +237,7 @@ mod tests {
         let mut log = ReportLog::new();
         log.feed(b"\x1b[2;8R"); // a ✓
         log.feed(b"\x1b[4;8R"); // c ✓ (b's report dropped entirely)
-        let report = correlate(&log, &sc);
+        let report = correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]);
         assert_eq!(report.results[0].status, Pass1Status::Pass);
         assert_eq!(report.results[1].status, Pass1Status::Inconclusive);
         assert_eq!(report.results[2].status, Pass1Status::Pass);
@@ -218,8 +250,63 @@ mod tests {
         // Candidate never answered; only the footer reply exists.
         log.feed(b"\x1b[25;1R");
         assert_eq!(
-            correlate(&log, &sc).results[0].status,
+            correlate(&log, &sc, &[PageWindow { page: 0, start: 0 }]).results[0].status,
             Pass1Status::Inconclusive
+        );
+    }
+
+    #[test]
+    fn correlation_is_scoped_to_page_windows() {
+        // Rows repeat on every page; a candidate on page 1 must never match
+        // page 0's same-row report, and vice versa.
+        let sc = sidecar_with(vec![
+            cand("p0_row5", 0, 5),
+            cand("p0_row9", 0, 9),
+            cand("p1_row5", 1, 5),
+            cand("p1_row9", 1, 9),
+        ]);
+        let mut log = ReportLog::new();
+        log.feed(b"\x1b[6;8R\x1b[10;8R"); // page 0 rows 5+9
+        let p1_start = log.reports().len();
+        log.feed(b"\x1b[6;8R"); // page 1 row 5 only (row 9 dropped)
+        let windows = vec![
+            PageWindow { page: 0, start: 0 },
+            PageWindow {
+                page: 1,
+                start: p1_start,
+            },
+        ];
+        let report = correlate(&log, &sc, &windows);
+        assert_eq!(report.results[0].status, Pass1Status::Pass); // p0 r5
+        assert_eq!(report.results[1].status, Pass1Status::Pass); // p0 r9
+        assert_eq!(report.results[2].status, Pass1Status::Pass); // p1 r5
+        assert_eq!(
+            report.results[3].status,
+            Pass1Status::Inconclusive,
+            "page-1 candidate must not steal page-0's response"
+        );
+    }
+
+    #[test]
+    fn footer_replies_inside_windows_never_match_candidates() {
+        let sc = sidecar_with(vec![cand("a", 0, 23), cand("b", 1, 23)]);
+        let mut log = ReportLog::new();
+        log.feed(b"\x1b[25;1R"); // page 0 footer
+        let p1 = log.reports().len();
+        log.feed(b"\x1b[25;1R"); // page 1 footer
+        let report = correlate(
+            &log,
+            &sc,
+            &[
+                PageWindow { page: 0, start: 0 },
+                PageWindow { page: 1, start: p1 },
+            ],
+        );
+        assert!(
+            report
+                .results
+                .iter()
+                .all(|r| r.status == Pass1Status::Inconclusive)
         );
     }
 

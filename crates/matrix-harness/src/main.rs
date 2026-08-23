@@ -250,6 +250,7 @@ fn drive_matrix(
     .ok_or(FailFast::HandshakeTimeout)?;
 
     // Paged render with footer handshakes and file-sync capture points.
+    let mut windows: Vec<pass1::PageWindow> = Vec::with_capacity(pages.len());
     for (page, chunk) in pages.iter().enumerate() {
         let page = page as u32;
         let mut bytes = render::clear_page();
@@ -258,10 +259,12 @@ fn drive_matrix(
             bytes.extend(render::candidate_row((ri + 1) as u16, c.glyph()).into_bytes());
         }
 
-        // Snapshot the log length BEFORE emitting the footer probe so its
-        // reply can only ever be matched inside this page's window.
+        // Snapshot the log length BEFORE emitting this page's queries so both
+        // the footer handshake and Pass-1 correlation are scoped to exactly
+        // this page's window.
         let from = current_len(log);
         bytes.extend(render::footer_probe().into_bytes());
+        windows.push(pass1::PageWindow { page, start: from });
 
         out.write_all(&bytes).map_err(io_fail)?;
         out.flush().map_err(io_fail)?;
@@ -280,7 +283,11 @@ fn drive_matrix(
     // Final drain: collect stragglers until quiescent or deadline.
     drain(log);
 
-    let report = pass1::correlate(&log.lock().expect("reader thread panicked"), sidecar);
+    let report = pass1::correlate(
+        &log.lock().expect("reader thread panicked"),
+        sidecar,
+        &windows,
+    );
     if report.stats.below_half() {
         return Err(FailFast::CircuitBreaker);
     }

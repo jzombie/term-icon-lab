@@ -27,7 +27,7 @@ cat > "$SYNC_DIR/run_matrix.command" <<WRAP
 #!/bin/bash
 echo \$\$ > '$SYNC_DIR/pid'
 cd '$PWD'
-exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST'
+exec '$HARNESS_BIN' --sync-dir '$SYNC_DIR' --out-dir '$OUT_DIR/artifacts' --platform '$PLATFORM' --host '$HOST' >'$SYNC_DIR/harness.log' 2>&1
 WRAP
 chmod +x "$SYNC_DIR/run_matrix.command"
 open -a Terminal "$SYNC_DIR/run_matrix.command"
@@ -107,13 +107,47 @@ capture_page() {
 }
 
 PAGE=0
+RUN_FAILED=0
 while kill -0 "$HARNESS_PID" 2>/dev/null; do
-    wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page || {
-        STATUS=$?; kill "$HARNESS_PID" 2>/dev/null || true; exit "$STATUS";
-    }
+    if ! wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page; then
+        RC=$?
+        if [ "$RC" -ne 3 ]; then
+            RUN_FAILED=$RC
+            kill "$HARNESS_PID" 2>/dev/null || true
+        fi
+        break
+    fi
     PAGE=$((PAGE + 1))
 done
-wait "$HARNESS_PID" 2>/dev/null || true
+
+set +e
+wait "$HARNESS_PID" 2>/dev/null
+HARNESS_EXIT=$?
+set -e
+
+dump_harness_log() {
+    echo "=== harness.log tail ===" >&2
+    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+}
+
+if [ "$RUN_FAILED" -ne 0 ]; then
+    dump_harness_log
+    exit "$RUN_FAILED"
+fi
+if [ "$HARNESS_EXIT" -ne 0 ]; then
+    echo "ERROR: matrix-harness exited with code $HARNESS_EXIT." >&2
+    dump_harness_log
+    exit 2
+fi
+for f in sidecar.json pass1.json; do
+    if [ ! -f "$OUT_DIR/artifacts/$f" ]; then
+        echo "ERROR: harness finished but $f is missing." >&2
+        dump_harness_log
+        exit 2
+    fi
+done
+
+echo "captured $((PAGE)) pages; harness exit=$HARNESS_EXIT"
 
 PNG_ARGS=()
 for f in "$OUT_DIR"/pages/shot_page_*.png; do PNG_ARGS+=(--png "$f"); done

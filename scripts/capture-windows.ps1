@@ -138,7 +138,7 @@ function Start-HarnessRun {
     $hostName = if ($ViaConhost) { 'conhost' } else { 'wt' }
     @"
 Set-Content -Path '$SyncDir\pid' -Value `$PID
-& '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName'
+& '$Harness' --sync-dir '$SyncDir' --out-dir '$OutDir\artifacts' --platform 'windows/$hostName' --host '$hostName' *> '$SyncDir\harness.log'
 exit `$LASTEXITCODE
 "@ | Set-Content -Path $inner -Encoding UTF8
 
@@ -207,6 +207,12 @@ while ($true) {
 }
 
 Wait-Process -Id $harnessPid -ErrorAction SilentlyContinue
+
+if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
+    Write-Error "harness finished but sidecar.json is missing; harness.log tail:"
+    if (Test-Path "$SyncDir\harness.log") { Get-Content "$SyncDir\harness.log" -Tail 40 | Write-Error }
+    exit 2
+}
 
 # Pass 2 over all captured pages (ordered).
 $pngArgs = @()
