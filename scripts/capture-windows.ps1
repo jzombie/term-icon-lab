@@ -252,3 +252,7 @@ Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" |
 if ($LASTEXITCODE -ge 2) { exit 1 }
 
 Remove-Item -Recurse -Force $SyncDir -ErrorAction SilentlyContinue
+
+# powershell -File propagates the last native exit code; end explicitly so a
+# verification-failure exit (1) from pixel-assert does not fail the job.
+exit 0
