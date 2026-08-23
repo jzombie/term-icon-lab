@@ -133,17 +133,24 @@ function Resolve-Hwnd {
 }
 
 function Start-HarnessRun {
-    # stdout stays on the console by design: the harness renders there and
-    # waits for CPR replies from the terminal host; only stderr is logged.
     param([bool]$ViaConhost)
     $inner = Join-Path $SyncDir "run.ps1"
     $hostName = if ($ViaConhost) { 'conhost' } else { 'wt' }
+    # The wrapper publishes its own PID (the main script's liveness anchor),
+    # keeps the harness stdout on the console — it renders there and waits
+    # for CPR replies from the terminal host — and redirects only stderr.
+    # -RedirectStandardError is a raw handle redirect at process creation;
+    # PS 5.1's `2>` operator routes native stderr through error records and
+    # is unreliable under $ErrorActionPreference = 'Stop'.
     @"
 Set-Content -Path '$SyncDir\pid' -Value `$PID
-# PS 5.1 routes native stderr through error records (and can turn it into a
-# terminating error); delegate to cmd for a raw fd redirect into the log.
-cmd /c "`"$Harness`" --sync-dir `"$SyncDir`" --out-dir `"$OutDir\artifacts`" --platform `"windows/$hostName`" --host `"$hostName`" 2>`"$SyncDir\harness.log`""
-exit `$LASTEXITCODE
+`$p = Start-Process -FilePath '$Harness' -ArgumentList @(
+    '--sync-dir', '$SyncDir',
+    '--out-dir', '$OutDir\artifacts',
+    '--platform', 'windows/$hostName',
+    '--host', '$hostName'
+) -RedirectStandardError '$SyncDir\harness.log' -NoNewWindow -PassThru -Wait
+exit `$p.ExitCode
 "@ | Set-Content -Path $inner -Encoding UTF8
 
     if ($ViaConhost) {
@@ -220,8 +227,13 @@ if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
 
 $pagesCaptured = @(Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" -ErrorAction SilentlyContinue).Count
 if ($pagesCaptured -eq 0) {
-    Write-Error "no pages were captured; harness.log tail:"
-    if (Test-Path "$SyncDir\harness.log") { Get-Content "$SyncDir\harness.log" -Tail 40 | Write-Error }
+    Write-Error "no pages were captured; sync dir contents:"
+    Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
+        ForEach-Object { Write-Error ("  {0} ({1} bytes)" -f $_.Name, $_.Length) }
+    if (Test-Path "$SyncDir\harness.log") {
+        Write-Error "harness.log tail:"
+        Get-Content "$SyncDir\harness.log" -Tail 40 | ForEach-Object { Write-Error $_ }
+    }
     exit 2
 }
 
