@@ -1,0 +1,10 @@
+[package]
+name = "icon-catalog"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+description = "Candidate registry of single-cell Unicode codepoints for term-icon verification."
+
+[dependencies]
+serde = { workspace = true }

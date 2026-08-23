@@ -1,0 +1,19 @@
+[package]
+name = "matrix-harness"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+description = "Renders the term-icon candidate matrix inside a real terminal and runs Pass 1 (PTY/CPR) assertions."
+
+[dependencies]
+anyhow = { workspace = true }
+clap = { workspace = true }
+crossterm = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+icon-catalog = { workspace = true }
+
+[[bin]]
+name = "matrix-harness"
+path = "src/main.rs"

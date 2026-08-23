@@ -1,6 +1,37 @@
+[workspace]
+members = [
+    "crates/catalog",
+    "crates/matrix-harness",
+    "crates/pixel-assert",
+    "crates/manifest-gen",
+]
+
 [package]
 name = "term-icon"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.88"
+description = "Strictly verified single-cell (1x1) Unicode icons for terminal UIs, empirically validated across platform default terminals."
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/term-icon/term-icon"
+keywords = ["tui", "terminal", "icons", "unicode", "ratatui"]
+categories = ["command-line-interface", "gui"]
+
+[features]
+default = []
+ratatui = ["dep:ratatui"]
 
 [dependencies]
+ratatui = { version = "0.30", optional = true, default-features = false }
+
+[workspace.dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossterm = "0.29"
+image = { version = "0.25", default-features = false, features = ["png"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+icon-catalog = { path = "crates/catalog" }
+
+[profile.release]
+lto = true

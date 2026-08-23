@@ -1,0 +1,145 @@
+name: matrix
+
+# term-icon verification pipeline:
+#   quality gate → {macos, windows, linux} capture+assert jobs → manifest
+#   drift-check (AND gate across platforms).
+#
+# A glyph enters src/generated_manifest.rs only if its verdict is `pass` in
+# every platform job simultaneously.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Format
+        run: cargo fmt --all --check
+      - name: Clippy
+        run: cargo clippy --workspace --all-targets -- -D warnings
+      - name: Tests (synthetic fixtures carry pipeline logic)
+        run: cargo test --workspace
+      - name: Feature build (ratatui)
+        run: cargo test -p term-icon --features ratatui
+
+  linux:
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install terminal + capture stack (DejaVu explicit — bitmap-font
+          fallback would blind every non-ASCII candidate)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb xterm imagemagick fonts-dejavu-core xdpyinfo
+      - name: Build tools
+        run: cargo build -p matrix-harness -p pixel-assert
+      - name: Run verification matrix
+        run: ./scripts/capture-linux.sh target/matrix
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdicts-linux
+          path: |
+            target/matrix/verdicts.json
+            target/matrix/artifacts/sidecar.json
+            target/matrix/artifacts/pass1.json
+            target/matrix/pages/
+
+  macos:
+    runs-on: macos-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build tools
+        run: cargo build -p matrix-harness -p pixel-assert
+      # No TCC mutation: runner images pre-provision ScreenCapture grants for
+      # the invoking shell; screencapture -x targets the Terminal.app window.
+      - name: Run verification matrix
+        run: ./scripts/capture-macos.sh target/matrix
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdicts-macos
+          path: |
+            target/matrix/verdicts.json
+            target/matrix/artifacts/sidecar.json
+            target/matrix/artifacts/pass1.json
+            target/matrix/pages/
+
+  windows:
+    runs-on: windows-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build tools
+        run: cargo build -p matrix-harness -p pixel-assert
+      # Routing inside the script: conhost+GDI backend by default
+      # (sidecar-tagged host=conhost); wt/DWM-composed path behind
+      # TERM_ICON_WT_EXPERIMENTAL=1 with automatic fallback.
+      - name: Run verification matrix
+        shell: pwsh
+        run: ./scripts/capture-windows.ps1 -OutDir target/matrix
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verdicts-windows
+          path: |
+            target/matrix/verdicts.json
+            target/matrix/artifacts/sidecar.json
+            target/matrix/artifacts/pass1.json
+            target/matrix/pages/
+
+  manifest:
+    runs-on: ubuntu-latest
+    needs: [linux, macos, windows]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Regenerate manifest through the AND gate
+        run: |
+          cargo run -q -p manifest-gen -- \
+            --inputs \
+              artifacts/verdicts-linux/verdicts.json \
+              artifacts/verdicts-macos/verdicts.json \
+              artifacts/verdicts-windows/verdicts.json \
+            --out /tmp/generated_manifest.rs
+      - name: Drift check (committed manifest must match AND-gate output)
+        run: |
+          if ! diff -u src/generated_manifest.rs /tmp/generated_manifest.rs; then
+            echo "::error::generated_manifest.rs drifted from the verified set."
+            echo "Update it locally, commit, and re-run:"
+            echo "  cargo run -p manifest-gen -- --inputs <verdicts...> --out src/generated_manifest.rs"
+            exit 1
+          fi
+      - name: Upload regenerated manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated_manifest
+          path: /tmp/generated_manifest.rs

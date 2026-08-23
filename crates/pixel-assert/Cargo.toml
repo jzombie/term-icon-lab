@@ -1,0 +1,19 @@
+[package]
+name = "pixel-assert"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+description = "Pass 2: pixel-level assertions over captured terminal screenshots using fixed-grid geometry slicing."
+
+[dependencies]
+anyhow = { workspace = true }
+clap = { workspace = true }
+image = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+icon-catalog = { workspace = true }
+
+[[bin]]
+name = "pixel-assert"
+path = "src/main.rs"
