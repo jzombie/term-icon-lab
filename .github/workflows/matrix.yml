@@ -47,7 +47,7 @@ jobs:
           fallback would blind every non-ASCII candidate)
         run: |
           sudo apt-get update
-          sudo apt-get install -y xvfb xterm imagemagick fonts-dejavu-core xdpyinfo
+          sudo apt-get install -y xvfb xterm imagemagick fonts-dejavu-core
       - name: Build tools
         run: cargo build -p matrix-harness -p pixel-assert
       - name: Run verification matrix

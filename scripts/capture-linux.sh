@@ -20,13 +20,19 @@ command -v import >/dev/null || { echo "ImageMagick import missing"; exit 2; }
 mkdir -p "$OUT_DIR/pages" "$OUT_DIR/artifacts"
 SYNC_DIR="$(mktemp -d)"
 
-# Xvfb display: fixed geometry, 24-bit color.
+# Xvfb display: fixed geometry, 24-bit color. Detect an existing server via
+# its Unix socket — no extra packages needed.
 export DISPLAY="${DISPLAY:-:99}"
-if ! xdpyinfo -display "$DISPLAY" >/dev/null 2>&1; then
+DISP_NUM="${DISPLAY#:}"
+DISP_NUM="${DISP_NUM%%.*}"
+if [ ! -S "/tmp/.X11-unix/X${DISP_NUM}" ]; then
     Xvfb "$DISPLAY" -screen 0 1920x1080x24 &
     XVFB_PID=$!
     trap 'kill ${XVFB_PID:-} 2>/dev/null || true' EXIT
-    sleep 1
+    for _ in $(seq 1 50); do
+        [ -S "/tmp/.X11-unix/X${DISP_NUM}" ] && break
+        sleep 0.1
+    done
 fi
 
 # Launch harness inside xterm with explicit FreeType rendering. The wrapper
