@@ -46,8 +46,8 @@ for entry in universal::search("star") {
     );
 }
 
-// Icons are grouped per Unicode block.
-let gear_like = &universal::misc_symbols::MISC_2699;
+// Icons are grouped per Unicode block — every const here is verified.
+let star = &universal::misc_symbols::MISC_2605; // ★ BLACK STAR
 
 // Every icon carries a conservative ASCII fallback for degraded
 // environments (logging, non-Unicode sinks, missing font coverage).
