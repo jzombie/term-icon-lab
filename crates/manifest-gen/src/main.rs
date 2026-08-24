@@ -10,8 +10,8 @@
 
 mod codegen;
 
-use std::collections::HashSet;
-use std::path::PathBuf;
+use std::collections::{HashMap, HashSet};
+use std::path::{Path, PathBuf};
 
 use anyhow::Context;
 use clap::Parser;
@@ -42,6 +42,11 @@ struct Cli {
     /// Output path for the generated Rust source.
     #[arg(long, default_value = "src/generated_manifest.rs")]
     out: PathBuf,
+
+    /// Vendored UnicodeData.txt extract (catalog ranges only) supplying the
+    /// official character names emitted into `IconEntry::unicode_name`.
+    #[arg(long, default_value = concat!(env!("CARGO_MANIFEST_DIR"), "/ucd/UnicodeData.txt"))]
+    ucd: PathBuf,
 }
 
 #[derive(Deserialize)]
@@ -74,7 +79,39 @@ fn validate_host(platform: &str, host: &str) -> Result<(), String> {
     Ok(())
 }
 
-fn entry_for(candidate: &icon_catalog::Candidate) -> codegen::Entry {
+/// Load the vendored UCD extract into a codepoint → official-name map.
+///
+/// Parsing is bounds-checked: fields are pulled from the `;`-split iterator
+/// by `next()`, never by slice indexing — malformed or truncated lines are
+/// skipped with a counted warning rather than panicking.
+fn load_ucd_names(path: &Path) -> Result<HashMap<u32, String>, anyhow::Error> {
+    let raw = std::fs::read_to_string(path)
+        .with_context(|| format!("read UCD extract {}", path.display()))?;
+    let mut names = HashMap::new();
+    let mut skipped = 0usize;
+    for line in raw.lines() {
+        let mut fields = line.split(';');
+        let (Some(raw_cp), Some(name)) = (fields.next(), fields.next()) else {
+            skipped += 1;
+            continue;
+        };
+        match u32::from_str_radix(raw_cp, 16) {
+            Ok(cp) => {
+                names.insert(cp, name.to_string());
+            }
+            Err(_) => skipped += 1,
+        }
+    }
+    if skipped > 0 {
+        eprintln!(
+            "warning: skipped {skipped} malformed UCD lines in {}",
+            path.display()
+        );
+    }
+    Ok(names)
+}
+
+fn entry_for(candidate: &icon_catalog::Candidate, names: &HashMap<u32, String>) -> codegen::Entry {
     let module = match candidate.block {
         Block::Ascii => "ascii",
         Block::Arrows => "arrows",
@@ -92,18 +129,24 @@ fn entry_for(candidate: &icon_catalog::Candidate) -> codegen::Entry {
         candidate.const_name(),
         candidate.glyph(),
         candidate.fallback,
+        names.get(&candidate.codepoint).cloned().unwrap_or_default(),
     )
 }
 
-fn generate_from_catalog() -> Result<Vec<codegen::Entry>, anyhow::Error> {
+fn generate_from_catalog(
+    names: &HashMap<u32, String>,
+) -> Result<Vec<codegen::Entry>, anyhow::Error> {
     eprintln!(
         "WARNING: --from-catalog produces a PROVISIONAL manifest from unverified
 candidates; it is replaced by the first successful CI matrix run."
     );
-    Ok(candidates().iter().map(entry_for).collect())
+    Ok(candidates().iter().map(|c| entry_for(c, names)).collect())
 }
 
-fn generate_from_inputs(inputs: &[PathBuf]) -> Result<Vec<codegen::Entry>, anyhow::Error> {
+fn generate_from_inputs(
+    inputs: &[PathBuf],
+    names: &HashMap<u32, String>,
+) -> Result<Vec<codegen::Entry>, anyhow::Error> {
     let mut passing_sets: Vec<HashSet<String>> = Vec::new();
     let mut universes: Vec<HashSet<String>> = Vec::new();
 
@@ -159,21 +202,38 @@ fn generate_from_inputs(inputs: &[PathBuf]) -> Result<Vec<codegen::Entry>, anyho
     Ok(candidates()
         .iter()
         .filter(|c| survivors.contains(&c.id))
-        .map(entry_for)
+        .map(|c| entry_for(c, names))
         .collect())
 }
 
 fn main() -> std::process::ExitCode {
     let cli = Cli::parse();
 
+    let names = match load_ucd_names(&cli.ucd) {
+        Ok(names) => names,
+        Err(err) => {
+            eprintln!("manifest-gen: {err:#}");
+            return std::process::ExitCode::from(2);
+        }
+    };
+    let missing = candidates()
+        .iter()
+        .filter(|c| !names.contains_key(&c.codepoint))
+        .count();
+    if missing > 0 {
+        eprintln!(
+            "warning: {missing} catalog codepoints have no UCD name (unicode_name will be empty)"
+        );
+    }
+
     let attempted = if cli.from_catalog {
-        generate_from_catalog()
+        generate_from_catalog(&names)
     } else if cli.inputs.is_empty() {
         Err(anyhow::anyhow!(
             "provide --inputs <verdicts.json>... or --from-catalog"
         ))
     } else {
-        generate_from_inputs(&cli.inputs)
+        generate_from_inputs(&cli.inputs, &names)
     };
 
     let mut entries = match attempted {
@@ -259,10 +319,34 @@ mod tests {
                 ),
             ],
         );
-        let survivors = generate_from_inputs(&inputs).unwrap();
+        let survivors = generate_from_inputs(&inputs, &HashMap::new()).unwrap();
         let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
         // Only block_2588 passes on ALL three platforms.
         assert_eq!(ids, HashSet::from(["block_2588".to_string()]));
+    }
+
+    #[test]
+    fn unicode_names_resolve_from_vendored_ucd() {
+        let all = ["box_2502"];
+        let inputs = write_inputs(
+            "names",
+            &[
+                ("l.json", verdicts_json("linux/xterm", "xterm", &all, &all)),
+                (
+                    "m.json",
+                    verdicts_json("macos/terminal-app", "terminal-app", &all, &all),
+                ),
+                ("w.json", verdicts_json("windows/wt", "wt", &all, &all)),
+            ],
+        );
+        let names = load_ucd_names(Path::new(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/ucd/UnicodeData.txt"
+        )))
+        .unwrap();
+        let survivors = generate_from_inputs(&inputs, &names).unwrap();
+        assert_eq!(survivors.len(), 1);
+        assert_eq!(survivors[0].unicode_name, "BOX DRAWINGS LIGHT VERTICAL");
     }
 
     #[test]
@@ -274,7 +358,7 @@ mod tests {
                 verdicts_json("windows/wt", "gnome-terminal", &[], &["a"]),
             )],
         );
-        assert!(generate_from_inputs(&inputs).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
     }
 
     #[test]
@@ -285,7 +369,7 @@ mod tests {
             "results": [ {"id": "ascii_0021", "overall": "pass"} ]
         }"#;
         let inputs = write_inputs("degraded", &[("l.json", raw.to_string())]);
-        assert!(generate_from_inputs(&inputs).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
     }
 
     #[test]
@@ -297,7 +381,7 @@ mod tests {
         }"#
         .replace("Some", "\"page 0: bands mismatch\"");
         let inputs = write_inputs("structfail", &[("m.json", raw)]);
-        assert!(generate_from_inputs(&inputs).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
     }
 
     #[test]
@@ -310,7 +394,7 @@ mod tests {
             &["ascii_0021", "box_2502"],
         );
         let inputs = write_inputs("skew", &[("a.json", a), ("b.json", b)]);
-        assert!(generate_from_inputs(&inputs).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
     }
 
     #[test]

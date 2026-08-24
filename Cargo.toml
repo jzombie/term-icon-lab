@@ -4,6 +4,7 @@ members = [
     "crates/matrix-harness",
     "crates/pixel-assert",
     "crates/manifest-gen",
+    "crates/icons",
 ]
 
 [package]

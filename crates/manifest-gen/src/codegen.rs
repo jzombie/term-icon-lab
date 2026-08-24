@@ -34,6 +34,8 @@ pub struct Entry {
     pub const_name: String,
     pub glyph: char,
     pub fallback: &'static str,
+    /// Official Unicode character name, e.g. `BOX DRAWINGS LIGHT VERTICAL`.
+    pub unicode_name: String,
 }
 
 impl Entry {
@@ -45,6 +47,7 @@ impl Entry {
         const_name: String,
         glyph: char,
         fallback: &'static str,
+        unicode_name: String,
     ) -> Self {
         Self {
             id,
@@ -53,6 +56,7 @@ impl Entry {
             const_name,
             glyph,
             fallback,
+            unicode_name,
         }
     }
 }
@@ -110,6 +114,36 @@ pub fn generate(entries: &[Entry]) -> String {
         out.push_str("}\n");
     }
 
+    // Richer per-icon metadata for tooling (gallery/search CLIs). Emitted
+    // after the module constants it references.
+    out.push_str(
+        "\n/// Richer per-icon record for tooling: identity plus official Unicode name.\n",
+    );
+    out.push_str("pub struct IconEntry {\n");
+    out.push_str("    pub icon: SafeIcon,\n");
+    out.push_str("    pub id: &'static str,\n");
+    out.push_str("    pub codepoint: u32,\n");
+    out.push_str("    pub block: &'static str,\n");
+    out.push_str("    pub unicode_name: &'static str,\n");
+    out.push_str("}\n");
+    out.push_str("\n/// Metadata for every verified icon, in codepoint order.\n");
+    if entries.is_empty() {
+        out.push_str("pub static ICON_ENTRIES: &[IconEntry] = &[];\n");
+    } else {
+        out.push_str("pub static ICON_ENTRIES: &[IconEntry] = &[\n");
+        for e in entries {
+            out.push_str(&format!(
+                "    IconEntry {{ icon: {}, id: {}, codepoint: {}, block: {}, unicode_name: {} }},\n",
+                master_expr(e),
+                rust_str(&e.id),
+                e.codepoint,
+                rust_str(&e.module),
+                rust_str(&e.unicode_name),
+            ));
+        }
+        out.push_str("];\n");
+    }
+
     // lookup() by catalog id.
     out.push_str("\n/// Look up a verified icon by its catalog id (e.g. `\"box_2502\"`).\n");
     out.push_str("#[must_use]\npub fn lookup(id: &str) -> Option<SafeIcon> {\n");
@@ -154,6 +188,7 @@ mod tests {
                 "ASCII_0021".into(),
                 '!',
                 "!",
+                "EXCLAMATION MARK".into(),
             ),
             Entry::new(
                 "box_2502".into(),
@@ -162,6 +197,7 @@ mod tests {
                 "BOX_2502".into(),
                 '\u{2502}',
                 "|",
+                "BOX DRAWINGS LIGHT VERTICAL".into(),
             ),
         ]
     }
@@ -197,6 +233,16 @@ mod tests {
                 "leaked: {banned}"
             );
         }
+    }
+
+    #[test]
+    fn metadata_entries_render_with_names() {
+        let src = generate(&sample_entries());
+        assert!(src.contains("pub struct IconEntry {"));
+        assert!(src.contains("pub static ICON_ENTRIES: &[IconEntry] = &["));
+        assert!(src.contains(
+            "IconEntry { icon: box_drawing::BOX_2502, id: \"box_2502\", codepoint: 9474, block: \"box_drawing\", unicode_name: \"BOX DRAWINGS LIGHT VERTICAL\" }"
+        ));
     }
 
     #[test]
