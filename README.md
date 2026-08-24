@@ -29,13 +29,16 @@ id, official Unicode name, and chart position.
 
 ### Cross-platform comparison
 
-<img src="assets/universal-matrix.png" width="120" alt="Per-icon rows comparing macOS, Windows, and Linux renders">
-
 The [full-resolution matrix](assets/universal-matrix.png) shows one row per
 icon with columns pinned `macOS | Windows | Linux` — real screenshots from
 each runner's stock terminal, same ordering everywhere
 ([`universal-grid.png`](assets/universal-grid.png) tiles the canonical
-Linux/xterm rasterization 16 columns wide).
+Linux/xterm rasterization 16 columns wide). Open it at full resolution:
+differences between columns are *authentic* — stock fonts disagree on
+symbol coverage (Windows' fallback renders ⚀–⚅ as broken rectangles), fill
+style (macOS solid-circled digits vs Windows outlined), and metrics
+(macOS `█` is 7 px wide, Linux 9 px at identical cell counts). Those
+differences are the measurement, not an artifact.
 
 The verification matrix runs on every push. A glyph that renders 2 cells
 wide, paints into its neighbor, or doesn't render at all on **any** of the
