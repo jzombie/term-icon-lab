@@ -28,8 +28,10 @@ use crate::sync::SyncChannel;
 /// Minimum usable viewport enforced before rendering begins.
 const MIN_COLS: u16 = 16;
 const MIN_ROWS: u16 = 30;
-/// Deadline for the footer handshake on every page.
-const FOOTER_HANDSHAKE_TIMEOUT: Duration = Duration::from_secs(2);
+/// Deadline for the footer handshake on every page. Generous on purpose: a
+/// loaded CI runner can pause the emulator between page consumption and CPR
+/// reply, and a mid-run timeout discards the whole verification run.
+const FOOTER_HANDSHAKE_TIMEOUT: Duration = Duration::from_secs(10);
 /// End-of-run drain deadline for straggler DSR responses.
 const DRAIN_TIMEOUT: Duration = Duration::from_secs(5);
 /// Quiescence window that ends the drain early.

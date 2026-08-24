@@ -110,10 +110,14 @@ fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
         .as_deref()
         .expect("--out is required unless --validate-only is set");
 
-    let sidecar: Sidecar = serde_json::from_slice(&std::fs::read(sidecar_path)?)
-        .with_context(|| format!("parse {}", sidecar_path.display()))?;
-    let pass1: schema::Pass1Report = serde_json::from_slice(&std::fs::read(pass1_path)?)
-        .with_context(|| format!("parse {}", pass1_path.display()))?;
+    let sidecar: Sidecar = serde_json::from_slice(
+        &std::fs::read(sidecar_path).with_context(|| format!("read {}", sidecar_path.display()))?,
+    )
+    .with_context(|| format!("parse {}", sidecar_path.display()))?;
+    let pass1: schema::Pass1Report = serde_json::from_slice(
+        &std::fs::read(pass1_path).with_context(|| format!("read {}", pass1_path.display()))?,
+    )
+    .with_context(|| format!("parse {}", pass1_path.display()))?;
 
     if cli.pngs.len() != sidecar.pages as usize {
         anyhow::bail!(

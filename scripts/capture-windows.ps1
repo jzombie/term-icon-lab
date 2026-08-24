@@ -220,6 +220,7 @@ while ($true) {
 
 Wait-Process -Id $harnessPid -ErrorAction SilentlyContinue
 
+$pagesCaptured = @(Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" -ErrorAction SilentlyContinue).Count
 if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
     $detail = "harness finished but sidecar.json is missing; sync dir contents:"
     Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
@@ -231,8 +232,20 @@ if (-not (Test-Path "$OutDir\artifacts\sidecar.json")) {
     Write-Error $detail
     exit 2
 }
+if (-not (Test-Path "$OutDir\artifacts\pass1.json")) {
+    # Diagnostic sidecar without a Pass-1 report = the harness fail-fasted
+    # mid-run; the log tail names the page and reason.
+    $detail = "harness produced no pass1.json (mid-run fail-fast); captured $pagesCaptured pages; sync dir contents:"
+    Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
+        ForEach-Object { $detail += "`n  $($_.Name) ($($_.Length) bytes)" }
+    if (Test-Path "$SyncDir\harness.log") {
+        $detail += "`n--- harness.log tail ---`n" +
+            ((Get-Content "$SyncDir\harness.log" -Tail 40) -join "`n")
+    }
+    Write-Error $detail
+    exit 2
+}
 
-$pagesCaptured = @(Get-ChildItem "$OutDir\pages" -Filter "shot_page_*.png" -ErrorAction SilentlyContinue).Count
 if ($pagesCaptured -eq 0) {
     $detail = "no pages were captured; sync dir contents:"
     Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
