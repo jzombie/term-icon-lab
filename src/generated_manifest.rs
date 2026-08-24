@@ -19,6 +19,7 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     ascii::ASCII_003E,
     ascii::ASCII_003F,
     ascii::ASCII_0049,
+    ascii::ASCII_004A,
     ascii::ASCII_005B,
     ascii::ASCII_005C,
     ascii::ASCII_005D,
@@ -33,6 +34,7 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     ascii::ASCII_007B,
     ascii::ASCII_007C,
     ascii::ASCII_007D,
+    arrows::ARROW_21A8,
     box_drawing::BOX_2502,
     box_drawing::BOX_2503,
     box_drawing::BOX_2506,
@@ -50,8 +52,11 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     box_drawing::BOX_2524,
     box_drawing::BOX_2525,
     box_drawing::BOX_2526,
+    box_drawing::BOX_2527,
+    box_drawing::BOX_2528,
     box_drawing::BOX_2529,
     box_drawing::BOX_252A,
+    box_drawing::BOX_252B,
     box_drawing::BOX_254E,
     box_drawing::BOX_254F,
     box_drawing::BOX_2551,
@@ -75,6 +80,26 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     box_drawing::BOX_257D,
     box_drawing::BOX_257F,
     block_elements::BLOCK_258C,
+    geometric_shapes::GEOMETRIC_25AA,
+    geometric_shapes::GEOMETRIC_25AB,
+    geometric_shapes::GEOMETRIC_25B4,
+    geometric_shapes::GEOMETRIC_25B8,
+    geometric_shapes::GEOMETRIC_25BE,
+    geometric_shapes::GEOMETRIC_25C2,
+    misc_symbols::MISC_2607,
+    misc_symbols::MISC_2613,
+    misc_symbols::MISC_2628,
+    misc_symbols::MISC_263E,
+    misc_symbols::MISC_263F,
+    misc_symbols::MISC_2644,
+    misc_symbols::MISC_2647,
+    misc_symbols::MISC_266D,
+    misc_symbols::MISC_266F,
+    dingbats::DINGBAT_2758,
+    dingbats::DINGBAT_2759,
+    dingbats::DINGBAT_275A,
+    dingbats::DINGBAT_2761,
+    dingbats::DINGBAT_27A7,
     braille::BRAILLE_2801,
     braille::BRAILLE_2802,
     braille::BRAILLE_2803,
@@ -123,6 +148,7 @@ pub mod ascii {
     pub const ASCII_003E: SafeIcon = SafeIcon::new(">", "");
     pub const ASCII_003F: SafeIcon = SafeIcon::new("?", "");
     pub const ASCII_0049: SafeIcon = SafeIcon::new("I", "");
+    pub const ASCII_004A: SafeIcon = SafeIcon::new("J", "");
     pub const ASCII_005B: SafeIcon = SafeIcon::new("[", "");
     pub const ASCII_005C: SafeIcon = SafeIcon::new("\\", "");
     pub const ASCII_005D: SafeIcon = SafeIcon::new("]", "");
@@ -137,6 +163,11 @@ pub mod ascii {
     pub const ASCII_007B: SafeIcon = SafeIcon::new("{", "");
     pub const ASCII_007C: SafeIcon = SafeIcon::new("|", "");
     pub const ASCII_007D: SafeIcon = SafeIcon::new("}", "");
+}
+
+pub mod arrows {
+    use crate::SafeIcon;
+    pub const ARROW_21A8: SafeIcon = SafeIcon::new("↨", "*");
 }
 
 pub mod box_drawing {
@@ -158,8 +189,11 @@ pub mod box_drawing {
     pub const BOX_2524: SafeIcon = SafeIcon::new("┤", "+");
     pub const BOX_2525: SafeIcon = SafeIcon::new("┥", "+");
     pub const BOX_2526: SafeIcon = SafeIcon::new("┦", "+");
+    pub const BOX_2527: SafeIcon = SafeIcon::new("┧", "+");
+    pub const BOX_2528: SafeIcon = SafeIcon::new("┨", "+");
     pub const BOX_2529: SafeIcon = SafeIcon::new("┩", "+");
     pub const BOX_252A: SafeIcon = SafeIcon::new("┪", "+");
+    pub const BOX_252B: SafeIcon = SafeIcon::new("┫", "+");
     pub const BOX_254E: SafeIcon = SafeIcon::new("╎", "+");
     pub const BOX_254F: SafeIcon = SafeIcon::new("╏", "+");
     pub const BOX_2551: SafeIcon = SafeIcon::new("║", "|");
@@ -187,6 +221,38 @@ pub mod box_drawing {
 pub mod block_elements {
     use crate::SafeIcon;
     pub const BLOCK_258C: SafeIcon = SafeIcon::new("▌", "[");
+}
+
+pub mod geometric_shapes {
+    use crate::SafeIcon;
+    pub const GEOMETRIC_25AA: SafeIcon = SafeIcon::new("▪", "#");
+    pub const GEOMETRIC_25AB: SafeIcon = SafeIcon::new("▫", "#");
+    pub const GEOMETRIC_25B4: SafeIcon = SafeIcon::new("▴", "#");
+    pub const GEOMETRIC_25B8: SafeIcon = SafeIcon::new("▸", "#");
+    pub const GEOMETRIC_25BE: SafeIcon = SafeIcon::new("▾", "#");
+    pub const GEOMETRIC_25C2: SafeIcon = SafeIcon::new("◂", "#");
+}
+
+pub mod misc_symbols {
+    use crate::SafeIcon;
+    pub const MISC_2607: SafeIcon = SafeIcon::new("☇", "*");
+    pub const MISC_2613: SafeIcon = SafeIcon::new("☓", "*");
+    pub const MISC_2628: SafeIcon = SafeIcon::new("☨", "*");
+    pub const MISC_263E: SafeIcon = SafeIcon::new("☾", "*");
+    pub const MISC_263F: SafeIcon = SafeIcon::new("☿", "*");
+    pub const MISC_2644: SafeIcon = SafeIcon::new("♄", "*");
+    pub const MISC_2647: SafeIcon = SafeIcon::new("♇", "*");
+    pub const MISC_266D: SafeIcon = SafeIcon::new("♭", "*");
+    pub const MISC_266F: SafeIcon = SafeIcon::new("♯", "*");
+}
+
+pub mod dingbats {
+    use crate::SafeIcon;
+    pub const DINGBAT_2758: SafeIcon = SafeIcon::new("❘", "*");
+    pub const DINGBAT_2759: SafeIcon = SafeIcon::new("❙", "*");
+    pub const DINGBAT_275A: SafeIcon = SafeIcon::new("❚", "*");
+    pub const DINGBAT_2761: SafeIcon = SafeIcon::new("❡", "*");
+    pub const DINGBAT_27A7: SafeIcon = SafeIcon::new("➧", "*");
 }
 
 pub mod braille {
@@ -241,6 +307,7 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "ascii_003E" =>          Some(ascii::ASCII_003E),
         "ascii_003F" =>          Some(ascii::ASCII_003F),
         "ascii_0049" =>          Some(ascii::ASCII_0049),
+        "ascii_004A" =>          Some(ascii::ASCII_004A),
         "ascii_005B" =>          Some(ascii::ASCII_005B),
         "ascii_005C" =>          Some(ascii::ASCII_005C),
         "ascii_005D" =>          Some(ascii::ASCII_005D),
@@ -255,6 +322,7 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "ascii_007B" =>          Some(ascii::ASCII_007B),
         "ascii_007C" =>          Some(ascii::ASCII_007C),
         "ascii_007D" =>          Some(ascii::ASCII_007D),
+        "arrow_21A8" =>          Some(arrows::ARROW_21A8),
         "box_2502" =>            Some(box_drawing::BOX_2502),
         "box_2503" =>            Some(box_drawing::BOX_2503),
         "box_2506" =>            Some(box_drawing::BOX_2506),
@@ -272,8 +340,11 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "box_2524" =>            Some(box_drawing::BOX_2524),
         "box_2525" =>            Some(box_drawing::BOX_2525),
         "box_2526" =>            Some(box_drawing::BOX_2526),
+        "box_2527" =>            Some(box_drawing::BOX_2527),
+        "box_2528" =>            Some(box_drawing::BOX_2528),
         "box_2529" =>            Some(box_drawing::BOX_2529),
         "box_252A" =>            Some(box_drawing::BOX_252A),
+        "box_252B" =>            Some(box_drawing::BOX_252B),
         "box_254E" =>            Some(box_drawing::BOX_254E),
         "box_254F" =>            Some(box_drawing::BOX_254F),
         "box_2551" =>            Some(box_drawing::BOX_2551),
@@ -297,6 +368,26 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "box_257D" =>            Some(box_drawing::BOX_257D),
         "box_257F" =>            Some(box_drawing::BOX_257F),
         "block_258C" =>          Some(block_elements::BLOCK_258C),
+        "geometric_25AA" =>      Some(geometric_shapes::GEOMETRIC_25AA),
+        "geometric_25AB" =>      Some(geometric_shapes::GEOMETRIC_25AB),
+        "geometric_25B4" =>      Some(geometric_shapes::GEOMETRIC_25B4),
+        "geometric_25B8" =>      Some(geometric_shapes::GEOMETRIC_25B8),
+        "geometric_25BE" =>      Some(geometric_shapes::GEOMETRIC_25BE),
+        "geometric_25C2" =>      Some(geometric_shapes::GEOMETRIC_25C2),
+        "misc_2607" =>           Some(misc_symbols::MISC_2607),
+        "misc_2613" =>           Some(misc_symbols::MISC_2613),
+        "misc_2628" =>           Some(misc_symbols::MISC_2628),
+        "misc_263E" =>           Some(misc_symbols::MISC_263E),
+        "misc_263F" =>           Some(misc_symbols::MISC_263F),
+        "misc_2644" =>           Some(misc_symbols::MISC_2644),
+        "misc_2647" =>           Some(misc_symbols::MISC_2647),
+        "misc_266D" =>           Some(misc_symbols::MISC_266D),
+        "misc_266F" =>           Some(misc_symbols::MISC_266F),
+        "dingbat_2758" =>        Some(dingbats::DINGBAT_2758),
+        "dingbat_2759" =>        Some(dingbats::DINGBAT_2759),
+        "dingbat_275A" =>        Some(dingbats::DINGBAT_275A),
+        "dingbat_2761" =>        Some(dingbats::DINGBAT_2761),
+        "dingbat_27A7" =>        Some(dingbats::DINGBAT_27A7),
         "braille_2801" =>        Some(braille::BRAILLE_2801),
         "braille_2802" =>        Some(braille::BRAILLE_2802),
         "braille_2803" =>        Some(braille::BRAILLE_2803),

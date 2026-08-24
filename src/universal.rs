@@ -10,7 +10,8 @@
 //! first full CI matrix run replaces it via the drift-check.
 
 pub use crate::generated_manifest::{
-    UNIVERSAL_ICONS, ascii, block_elements, box_drawing, braille, by_codepoint, lookup,
+    UNIVERSAL_ICONS, arrows, ascii, block_elements, box_drawing, braille, by_codepoint, dingbats,
+    geometric_shapes, lookup, misc_symbols,
 };
 
 /// Iterator over every verified icon.
@@ -26,6 +27,10 @@ mod tests {
         assert_eq!(super::box_drawing::BOX_2502.glyph, "\u{2502}");
         assert_eq!(super::block_elements::BLOCK_258C.glyph, "\u{258C}");
         assert_eq!(super::braille::BRAILLE_2801.glyph, "\u{2801}");
+        assert_eq!(super::arrows::ARROW_21A8.glyph, "\u{21A8}");
+        assert_eq!(super::geometric_shapes::GEOMETRIC_25AA.glyph, "\u{25AA}");
+        assert_eq!(super::misc_symbols::MISC_2607.glyph, "\u{2607}");
+        assert_eq!(super::dingbats::DINGBAT_2758.glyph, "\u{2758}");
     }
 
     #[test]
@@ -34,6 +39,10 @@ mod tests {
         assert_eq!(
             super::by_codepoint('\u{258C}').map(|i| i.glyph),
             Some("\u{258C}")
+        );
+        assert_eq!(
+            super::lookup("arrow_21A8").map(|i| i.glyph),
+            Some("\u{21A8}")
         );
         assert!(super::lookup("nonexistent").is_none());
     }
