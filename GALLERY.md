@@ -10,7 +10,7 @@ is block order then codepoint. Each tile's exact grid position and official
 Unicode name are mapped in
 [`assets/grid-index.json`](assets/grid-index.json); the per-platform matrix
 (live screenshots from all three terminals) lives in
-[`README-DRAFT.md`](README-DRAFT.md).
+[`README.md`](README.md).
 
 ## ascii
 

@@ -158,6 +158,22 @@ jobs:
             --grid-input macos=artifacts/verdicts-macos \
             --grid-input windows=artifacts/verdicts-windows \
             --grid-ucd crates/manifest-gen/ucd/UnicodeData.txt
+      # Draft branches get the grids committed straight onto the branch so the
+      # rendered README/GALLERY can be previewed without a PR round-trip.
+      # Runs before the drift check on purpose: previews stay in sync with the
+      # gate output even when manifest drift fails the job afterwards.
+      - name: Commit preview grids to draft branch
+        if: github.ref == 'refs/heads/dev--draft'
+        run: |
+          git config user.name "term-icon-ci"
+          git config user.email "term-icon-ci@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then
+            echo "assets unchanged — nothing to commit"
+          else
+            git commit -m "chore(assets): update platform grid previews [skip ci]"
+            git push
+          fi
       - name: Drift check (committed manifest must match AND-gate output)
         run: |
           if ! diff -u src/generated_manifest.rs /tmp/generated_manifest.rs; then
