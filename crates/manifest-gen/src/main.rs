@@ -47,6 +47,12 @@ struct Cli {
     /// official character names emitted into `IconEntry::unicode_name`.
     #[arg(long, default_value = concat!(env!("CARGO_MANIFEST_DIR"), "/ucd/UnicodeData.txt"))]
     ucd: PathBuf,
+
+    /// Previously committed manifest. Hysteresis: an already-verified icon is
+    /// only dropped when it fails on 2+ platforms in the current run, so a
+    /// single-platform borderline flip cannot purge it.
+    #[arg(long)]
+    previous: Option<PathBuf>,
 }
 
 #[derive(Deserialize)]
@@ -143,9 +149,26 @@ candidates; it is replaced by the first successful CI matrix run."
     Ok(candidates().iter().map(|c| entry_for(c, names)).collect())
 }
 
+/// Ids present in a previously committed generated manifest.
+fn previous_ids(path: &Path) -> HashSet<String> {
+    let raw = match std::fs::read_to_string(path) {
+        Ok(raw) => raw,
+        Err(_) => return HashSet::new(),
+    };
+    let mut ids = HashSet::new();
+    for line in raw.lines() {
+        let Some(pos) = line.find("id: \"") else { continue };
+        let rest = &line[pos + 5..];
+        let Some(end) = rest.find('"') else { continue };
+        ids.insert(rest[..end].to_string());
+    }
+    ids
+}
+
 fn generate_from_inputs(
     inputs: &[PathBuf],
     names: &HashMap<u32, String>,
+    previous: &HashSet<String>,
 ) -> Result<Vec<codegen::Entry>, anyhow::Error> {
     let mut passing_sets: Vec<HashSet<String>> = Vec::new();
     let mut universes: Vec<HashSet<String>> = Vec::new();
@@ -193,10 +216,26 @@ fn generate_from_inputs(
         }
     }
 
-    // THE AND GATE: keep ids passing in EVERY platform input.
+    // THE AND GATE, with exit hysteresis: keep ids passing in EVERY platform
+    // input. An incumbent (present in the previous manifest) additionally
+    // survives a single-platform failure — subpixel rendering differences
+    // make borderline glyphs flip on one runner between runs, and the AND
+    // gate would otherwise purge and re-admit them every other run. Genuine
+    // regressions (failing on 2+ platforms) are still removed.
+    let platforms = passing_sets.len();
     let mut survivors: HashSet<String> = passing_sets.first().cloned().unwrap_or_default();
     for passing in &passing_sets {
         survivors = survivors.intersection(passing).cloned().collect();
+    }
+    let mut failure_counts: HashMap<String, usize> = HashMap::new();
+    for id in &universes.first().cloned().unwrap_or_default() {
+        let failures = passing_sets.iter().filter(|p| !p.contains(id.as_str())).count();
+        failure_counts.insert(id.clone(), failures);
+    }
+    for (id, failures) in &failure_counts {
+        if *failures == 1 && platforms > 1 && previous.contains(id) {
+            survivors.insert(id.clone());
+        }
     }
 
     Ok(candidates()
@@ -226,6 +265,12 @@ fn main() -> std::process::ExitCode {
         );
     }
 
+    let previous = cli
+        .previous
+        .as_deref()
+        .map(previous_ids)
+        .unwrap_or_default();
+
     let attempted = if cli.from_catalog {
         generate_from_catalog(&names)
     } else if cli.inputs.is_empty() {
@@ -233,7 +278,7 @@ fn main() -> std::process::ExitCode {
             "provide --inputs <verdicts.json>... or --from-catalog"
         ))
     } else {
-        generate_from_inputs(&cli.inputs, &names)
+        generate_from_inputs(&cli.inputs, &names, &previous)
     };
 
     let mut entries = match attempted {
@@ -319,10 +364,51 @@ mod tests {
                 ),
             ],
         );
-        let survivors = generate_from_inputs(&inputs, &HashMap::new()).unwrap();
+        let survivors = generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).unwrap();
         let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
         // Only block_2588 passes on ALL three platforms.
         assert_eq!(ids, HashSet::from(["block_2588".to_string()]));
+    }
+
+    #[test]
+    fn hysteresis_keeps_incumbent_through_single_platform_flip() {
+        let all = ["ascii_0021", "box_2502"];
+        // box_2502 fails on windows this run (borderline flip), but is an
+        // incumbent in the previous manifest.
+        let inputs = write_inputs(
+            "hyst",
+            &[
+                ("l.json", verdicts_json("linux/xterm", "xterm", &all, &all)),
+                ("m.json", verdicts_json("macos/terminal-app", "terminal-app", &all, &all)),
+                (
+                    "w.json",
+                    verdicts_json("windows/wt", "wt", &["ascii_0021"], &all),
+                ),
+            ],
+        );
+        let previous: HashSet<String> = all.iter().map(|s| s.to_string()).collect();
+        let survivors =
+            generate_from_inputs(&inputs, &HashMap::new(), &previous).unwrap();
+        let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
+        assert_eq!(ids, previous, "incumbent survives a single-platform flip");
+
+        // A non-incumbent failing any platform is still dropped.
+        let survivors = generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).unwrap();
+        let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
+        assert_eq!(ids, HashSet::from(["ascii_0021".to_string()]));
+
+        // Failing on 2+ platforms removes an incumbent too.
+        let inputs = write_inputs(
+            "hyst2",
+            &[
+                ("l.json", verdicts_json("linux/xterm", "xterm", &["ascii_0021"], &all)),
+                ("m.json", verdicts_json("macos/terminal-app", "terminal-app", &["ascii_0021"], &all)),
+                ("w.json", verdicts_json("windows/wt", "wt", &all, &all)),
+            ],
+        );
+        let survivors = generate_from_inputs(&inputs, &HashMap::new(), &previous).unwrap();
+        let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
+        assert_eq!(ids, HashSet::from(["ascii_0021".to_string()]));
     }
 
     #[test]
@@ -344,7 +430,7 @@ mod tests {
             "/ucd/UnicodeData.txt"
         )))
         .unwrap();
-        let survivors = generate_from_inputs(&inputs, &names).unwrap();
+        let survivors = generate_from_inputs(&inputs, &names, &HashSet::new()).unwrap();
         assert_eq!(survivors.len(), 1);
         assert_eq!(survivors[0].unicode_name, "BOX DRAWINGS LIGHT VERTICAL");
     }
@@ -358,7 +444,7 @@ mod tests {
                 verdicts_json("windows/wt", "gnome-terminal", &[], &["a"]),
             )],
         );
-        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).is_err());
     }
 
     #[test]
@@ -369,7 +455,7 @@ mod tests {
             "results": [ {"id": "ascii_0021", "overall": "pass"} ]
         }"#;
         let inputs = write_inputs("degraded", &[("l.json", raw.to_string())]);
-        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).is_err());
     }
 
     #[test]
@@ -381,7 +467,7 @@ mod tests {
         }"#
         .replace("Some", "\"page 0: bands mismatch\"");
         let inputs = write_inputs("structfail", &[("m.json", raw)]);
-        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).is_err());
     }
 
     #[test]
@@ -394,7 +480,7 @@ mod tests {
             &["ascii_0021", "box_2502"],
         );
         let inputs = write_inputs("skew", &[("a.json", a), ("b.json", b)]);
-        assert!(generate_from_inputs(&inputs, &HashMap::new()).is_err());
+        assert!(generate_from_inputs(&inputs, &HashMap::new(), &HashSet::new()).is_err());
     }
 
     #[test]

@@ -131,6 +131,7 @@ jobs:
       - name: Regenerate manifest through the AND gate
         run: |
           cargo run -q -p manifest-gen -- \
+            --previous src/generated_manifest.rs \
             --inputs \
               artifacts/verdicts-linux/verdicts.json \
               artifacts/verdicts-macos/verdicts.json \
