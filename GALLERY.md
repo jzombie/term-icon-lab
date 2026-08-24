@@ -650,20 +650,15 @@ Every glyph below passed dual-pass verification (PTY + pixel) on macOS Terminal.
 
 | Glyph | Id | Codepoint | Unicode name | Fallback |
 |---|---|---|---|---|
-| ✁ | `dingbat_2701` | U+2701 | UPPER BLADE SCISSORS | `*` |
 | ✂ | `dingbat_2702` | U+2702 | BLACK SCISSORS | `X` |
 | ✃ | `dingbat_2703` | U+2703 | LOWER BLADE SCISSORS | `*` |
 | ✄ | `dingbat_2704` | U+2704 | WHITE SCISSORS | `*` |
 | ✆ | `dingbat_2706` | U+2706 | TELEPHONE LOCATION SIGN | `*` |
 | ✇ | `dingbat_2707` | U+2707 | TAPE DRIVE | `*` |
 | ✈ | `dingbat_2708` | U+2708 | AIRPLANE | `*` |
-| ✉ | `dingbat_2709` | U+2709 | ENVELOPE | `*` |
-| ✌ | `dingbat_270C` | U+270C | VICTORY HAND | `*` |
-| ✍ | `dingbat_270D` | U+270D | WRITING HAND | `*` |
 | ✎ | `dingbat_270E` | U+270E | LOWER RIGHT PENCIL | `*` |
 | ✏ | `dingbat_270F` | U+270F | PENCIL | `*` |
 | ✐ | `dingbat_2710` | U+2710 | UPPER RIGHT PENCIL | `*` |
-| ✑ | `dingbat_2711` | U+2711 | WHITE NIB | `*` |
 | ✒ | `dingbat_2712` | U+2712 | BLACK NIB | `*` |
 | ✓ | `dingbat_2713` | U+2713 | CHECK MARK | `v` |
 | ✔ | `dingbat_2714` | U+2714 | HEAVY CHECK MARK | `v` |
