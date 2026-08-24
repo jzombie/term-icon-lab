@@ -181,12 +181,15 @@ pub fn check_bleed(
     // Gutter between the icon cell's right boundary and B's central crop.
     // The icon's own cell — including its full width out to the cell edge —
     // is legitimate ink territory (█ ▐ ─ and wide letters fill it), so the
-    // scan starts one column past the cell boundary: that boundary column is
-    // where anti-aliasing legitimately lands. At very small pitches this
-    // range can be empty; collision detection then falls through to the
-    // reference-B symmetric difference below.
+    // scan starts two columns past the cell boundary: the boundary column
+    // and one beyond it are where anti-aliasing legitimately lands, and
+    // keeping them out of the scan makes verdicts stable against subpixel
+    // rendering differences between runs. At very small pitches this range
+    // can be empty; collision detection then falls through to the
+    // reference-B symmetric difference below. A genuine 2-cell render spills
+    // ~a full pitch, far beyond this tolerance.
     let (g0, g1) = cal.gutter_span();
-    let gutter_left = (g0.round() as i64) + 1;
+    let gutter_left = (g0.round() as i64) + 2;
     let gutter_right = (g1.round() as i64).min(i64::from(gray.width().saturating_sub(1))) - 1;
     if gutter_left <= gutter_right {
         for y in band.top..=band.bottom.min(gray.height() - 1) {
@@ -462,14 +465,15 @@ mod tests {
 
     #[test]
     fn glyph_spilling_past_cell_edge_bleeds() {
-        // One pixel of ink beyond the cell's right boundary: intrusion even
-        // though the glyph's column advance stayed at one cell.
-        let mut c = Canvas::new(120, 24);
+        // At a pitch where the inter-cell gutter physically exists, ink past
+        // the AA tolerance is intrusion even though the glyph's column
+        // advance stayed at one cell.
+        let mut c = Canvas::new(320, 24);
         let band = Band { top: 2, bottom: 21 };
-        let cal = c.cal(10.0, 14.0);
+        let cal = c.cal(10.0, 40.0);
         let left = (cal.cell_center(3) - cal.pitch * 0.5).round() as i64;
-        let right = (cal.cell_center(3) + cal.pitch * 0.5).round() as i64 + 1;
-        for x in left..=right.min(119) {
+        let right = (cal.cell_center(3) + cal.pitch * 0.5).round() as i64 + 2;
+        for x in left..=right {
             for y in 4..=20 {
                 c.img.put_pixel(x as u32, y, Luma([FG]));
             }

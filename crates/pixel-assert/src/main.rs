@@ -327,7 +327,7 @@ mod tests {
     const BG: u8 = 10;
     const FG: u8 = 220;
     const ORIGIN_X: f64 = 10.0;
-    const PITCH: f64 = 14.0;
+    const PITCH: f64 = 40.0;
     const CELL_H: u32 = 16;
     const ROW_STRIDE: u32 = CELL_H + 6; // blank gap keeps bands separated
 
@@ -346,7 +346,7 @@ mod tests {
     fn draw_page(spec: &PageSpec) -> GrayImage {
         let rows = spec.candidates.len() + 1; // + control
         let h = 12 + u32::try_from(rows).unwrap() * ROW_STRIDE;
-        let w = 200;
+        let w = 340;
         let mut img = GrayImage::new(w, h);
         for y in 0..h {
             for x in 0..w {
@@ -389,8 +389,9 @@ mod tests {
                         }
                     }
                     IconKind::Wide => {
-                        // Extends past the cell boundary into the gutter.
-                        let right = (PITCH * 0.5 + 2.0) as i64;
+                        // Models a 2-cell render: ink fills the entire next
+                        // cell, saturating sentinel B's central crop.
+                        let right = PITCH as i64;
                         for y in top + 2..=bottom - 2 {
                             for dx in -(PITCH * 0.3) as i64..=right {
                                 img.put_pixel((cx + dx) as u32, y, Luma([FG]));

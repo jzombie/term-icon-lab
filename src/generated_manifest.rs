@@ -620,15 +620,20 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     misc_symbols::MISC_26F7,
     misc_symbols::MISC_26F8,
     misc_symbols::MISC_26F9,
+    dingbats::DINGBAT_2701,
     dingbats::DINGBAT_2702,
     dingbats::DINGBAT_2703,
     dingbats::DINGBAT_2704,
     dingbats::DINGBAT_2706,
     dingbats::DINGBAT_2707,
     dingbats::DINGBAT_2708,
+    dingbats::DINGBAT_2709,
+    dingbats::DINGBAT_270C,
+    dingbats::DINGBAT_270D,
     dingbats::DINGBAT_270E,
     dingbats::DINGBAT_270F,
     dingbats::DINGBAT_2710,
+    dingbats::DINGBAT_2711,
     dingbats::DINGBAT_2712,
     dingbats::DINGBAT_2713,
     dingbats::DINGBAT_2714,
@@ -1685,15 +1690,20 @@ pub mod misc_symbols {
 
 pub mod dingbats {
     use crate::SafeIcon;
+    pub const DINGBAT_2701: SafeIcon = SafeIcon::new("✁", "*");
     pub const DINGBAT_2702: SafeIcon = SafeIcon::new("✂", "X");
     pub const DINGBAT_2703: SafeIcon = SafeIcon::new("✃", "*");
     pub const DINGBAT_2704: SafeIcon = SafeIcon::new("✄", "*");
     pub const DINGBAT_2706: SafeIcon = SafeIcon::new("✆", "*");
     pub const DINGBAT_2707: SafeIcon = SafeIcon::new("✇", "*");
     pub const DINGBAT_2708: SafeIcon = SafeIcon::new("✈", "*");
+    pub const DINGBAT_2709: SafeIcon = SafeIcon::new("✉", "*");
+    pub const DINGBAT_270C: SafeIcon = SafeIcon::new("✌", "*");
+    pub const DINGBAT_270D: SafeIcon = SafeIcon::new("✍", "*");
     pub const DINGBAT_270E: SafeIcon = SafeIcon::new("✎", "*");
     pub const DINGBAT_270F: SafeIcon = SafeIcon::new("✏", "*");
     pub const DINGBAT_2710: SafeIcon = SafeIcon::new("✐", "*");
+    pub const DINGBAT_2711: SafeIcon = SafeIcon::new("✑", "*");
     pub const DINGBAT_2712: SafeIcon = SafeIcon::new("✒", "*");
     pub const DINGBAT_2713: SafeIcon = SafeIcon::new("✓", "v");
     pub const DINGBAT_2714: SafeIcon = SafeIcon::new("✔", "v");
@@ -2739,15 +2749,20 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: misc_symbols::MISC_26F7, id: "misc_26F7", codepoint: 9975, block: "misc_symbols", unicode_name: "SKIER" },
     IconEntry { icon: misc_symbols::MISC_26F8, id: "misc_26F8", codepoint: 9976, block: "misc_symbols", unicode_name: "ICE SKATE" },
     IconEntry { icon: misc_symbols::MISC_26F9, id: "misc_26F9", codepoint: 9977, block: "misc_symbols", unicode_name: "PERSON WITH BALL" },
+    IconEntry { icon: dingbats::DINGBAT_2701, id: "dingbat_2701", codepoint: 9985, block: "dingbats", unicode_name: "UPPER BLADE SCISSORS" },
     IconEntry { icon: dingbats::DINGBAT_2702, id: "dingbat_2702", codepoint: 9986, block: "dingbats", unicode_name: "BLACK SCISSORS" },
     IconEntry { icon: dingbats::DINGBAT_2703, id: "dingbat_2703", codepoint: 9987, block: "dingbats", unicode_name: "LOWER BLADE SCISSORS" },
     IconEntry { icon: dingbats::DINGBAT_2704, id: "dingbat_2704", codepoint: 9988, block: "dingbats", unicode_name: "WHITE SCISSORS" },
     IconEntry { icon: dingbats::DINGBAT_2706, id: "dingbat_2706", codepoint: 9990, block: "dingbats", unicode_name: "TELEPHONE LOCATION SIGN" },
     IconEntry { icon: dingbats::DINGBAT_2707, id: "dingbat_2707", codepoint: 9991, block: "dingbats", unicode_name: "TAPE DRIVE" },
     IconEntry { icon: dingbats::DINGBAT_2708, id: "dingbat_2708", codepoint: 9992, block: "dingbats", unicode_name: "AIRPLANE" },
+    IconEntry { icon: dingbats::DINGBAT_2709, id: "dingbat_2709", codepoint: 9993, block: "dingbats", unicode_name: "ENVELOPE" },
+    IconEntry { icon: dingbats::DINGBAT_270C, id: "dingbat_270C", codepoint: 9996, block: "dingbats", unicode_name: "VICTORY HAND" },
+    IconEntry { icon: dingbats::DINGBAT_270D, id: "dingbat_270D", codepoint: 9997, block: "dingbats", unicode_name: "WRITING HAND" },
     IconEntry { icon: dingbats::DINGBAT_270E, id: "dingbat_270E", codepoint: 9998, block: "dingbats", unicode_name: "LOWER RIGHT PENCIL" },
     IconEntry { icon: dingbats::DINGBAT_270F, id: "dingbat_270F", codepoint: 9999, block: "dingbats", unicode_name: "PENCIL" },
     IconEntry { icon: dingbats::DINGBAT_2710, id: "dingbat_2710", codepoint: 10000, block: "dingbats", unicode_name: "UPPER RIGHT PENCIL" },
+    IconEntry { icon: dingbats::DINGBAT_2711, id: "dingbat_2711", codepoint: 10001, block: "dingbats", unicode_name: "WHITE NIB" },
     IconEntry { icon: dingbats::DINGBAT_2712, id: "dingbat_2712", codepoint: 10002, block: "dingbats", unicode_name: "BLACK NIB" },
     IconEntry { icon: dingbats::DINGBAT_2713, id: "dingbat_2713", codepoint: 10003, block: "dingbats", unicode_name: "CHECK MARK" },
     IconEntry { icon: dingbats::DINGBAT_2714, id: "dingbat_2714", codepoint: 10004, block: "dingbats", unicode_name: "HEAVY CHECK MARK" },
@@ -3782,15 +3797,20 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "misc_26F7" =>           Some(misc_symbols::MISC_26F7),
         "misc_26F8" =>           Some(misc_symbols::MISC_26F8),
         "misc_26F9" =>           Some(misc_symbols::MISC_26F9),
+        "dingbat_2701" =>        Some(dingbats::DINGBAT_2701),
         "dingbat_2702" =>        Some(dingbats::DINGBAT_2702),
         "dingbat_2703" =>        Some(dingbats::DINGBAT_2703),
         "dingbat_2704" =>        Some(dingbats::DINGBAT_2704),
         "dingbat_2706" =>        Some(dingbats::DINGBAT_2706),
         "dingbat_2707" =>        Some(dingbats::DINGBAT_2707),
         "dingbat_2708" =>        Some(dingbats::DINGBAT_2708),
+        "dingbat_2709" =>        Some(dingbats::DINGBAT_2709),
+        "dingbat_270C" =>        Some(dingbats::DINGBAT_270C),
+        "dingbat_270D" =>        Some(dingbats::DINGBAT_270D),
         "dingbat_270E" =>        Some(dingbats::DINGBAT_270E),
         "dingbat_270F" =>        Some(dingbats::DINGBAT_270F),
         "dingbat_2710" =>        Some(dingbats::DINGBAT_2710),
+        "dingbat_2711" =>        Some(dingbats::DINGBAT_2711),
         "dingbat_2712" =>        Some(dingbats::DINGBAT_2712),
         "dingbat_2713" =>        Some(dingbats::DINGBAT_2713),
         "dingbat_2714" =>        Some(dingbats::DINGBAT_2714),
