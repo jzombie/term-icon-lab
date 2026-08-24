@@ -4,6 +4,7 @@
 //! rejected), `2` usage/internal errors.
 
 mod checks;
+mod font5x7;
 mod geom;
 mod grid;
 mod schema;

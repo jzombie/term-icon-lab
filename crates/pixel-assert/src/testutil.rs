@@ -45,6 +45,9 @@ pub(crate) enum IconKind {
     Blank,
     Wide,
     BrailleDot,
+    /// Ink spans the ENTIRE cell width — models █/─ primitives whose edge
+    /// columns touch the cell boundary exactly.
+    FullSpan,
 }
 
 pub(crate) struct PageSpec {
@@ -112,6 +115,14 @@ pub(crate) fn draw_page(spec: &PageSpec, geom: Geometry) -> GrayImage {
                 }
                 IconKind::BrailleDot => {
                     img.put_pixel(cx as u32, top + geom.cell_h / 2, Luma([FG]));
+                }
+                IconKind::FullSpan => {
+                    let half = (geom.pitch / 2.0).round() as i64;
+                    for y in top..=bottom {
+                        for dx in -half..=half {
+                            img.put_pixel((cx + dx) as u32, y, Luma([FG]));
+                        }
+                    }
                 }
                 IconKind::Blank => {}
             }

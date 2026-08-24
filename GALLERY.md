@@ -2,15 +2,15 @@
 
 Every glyph below passed dual-pass verification (PTY + pixel) on macOS Terminal.app, Windows conhost/WT, and Linux xterm simultaneously.
 
-![Universal icon grid](assets/universal-grid.png)
+<img src="assets/universal-catalog.png" width="440" alt="Specimen chart of every verified icon with its U+ codepoint">
 
-Rendered preview of the full verified set, tiled 16 columns wide in canonical
-Linux/xterm rasterization — one blank row separates Unicode blocks, ordering
-is block order then codepoint. Each tile's exact grid position and official
+Rendered specimen chart of the full verified set: each cell shows the glyph
+as actually rasterized in a CI terminal with the `U+XXXX` codepoint that
+activates it. Ordering follows Unicode block order then codepoint, with a
+blank band between blocks; every cell's exact position, id, and official
 Unicode name are mapped in
-[`assets/grid-index.json`](assets/grid-index.json); the per-platform matrix
-(live screenshots from all three terminals) lives in
-[`README.md`](README.md).
+[`assets/grid-index.json`](assets/grid-index.json). The three-platform
+comparison sheet lives in [`README.md`](README.md).
 
 ## ascii
 

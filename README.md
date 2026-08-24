@@ -15,18 +15,27 @@ character cell (1×1)** with no bleed into neighbors, simultaneously on:
 
 ## What actually renders
 
-![Universal Render Matrix](assets/universal-matrix.png)
+<p>
+  <img src="assets/universal-catalog.png" width="440" alt="Specimen chart of every verified icon with its U+ codepoint">
+</p>
 
-Real screenshots, not font mockups: every row above is one verified icon,
-captured from each platform's terminal in CI — columns are always
-`macOS | Windows | Linux`, rows always follow catalog block order then
-codepoint (see [`assets/grid-index.json`](assets/grid-index.json) for exact
-positions). The pictured set is **exactly** what ships: it is read from
+Every verified icon, captured from a real terminal in CI and labeled with
+the codepoint that activates it (`U+2502` → `char::from_u32(0x2502)`). The
+pictured set is **exactly** what ships: it is generated from
 `src/generated_manifest.rs`, the same file the AND-gate produces, so the
-gallery can never claim more than the last verification run proved.
+chart can never claim more than the last verification run proved.
+[`assets/grid-index.json`](assets/grid-index.json) maps every cell to its
+id, official Unicode name, and chart position.
 
-A companion sheet, [`GALLERY.md`](GALLERY.md), shows all icons tiled in a
-single canonical (Linux/xterm) rasterization.
+### Cross-platform comparison
+
+<img src="assets/universal-matrix.png" width="120" alt="Per-icon rows comparing macOS, Windows, and Linux renders">
+
+The [full-resolution matrix](assets/universal-matrix.png) shows one row per
+icon with columns pinned `macOS | Windows | Linux` — real screenshots from
+each runner's stock terminal, same ordering everywhere
+([`universal-grid.png`](assets/universal-grid.png) tiles the canonical
+Linux/xterm rasterization 16 columns wide).
 
 The verification matrix runs on every push. A glyph that renders 2 cells
 wide, paints into its neighbor, or doesn't render at all on **any** of the

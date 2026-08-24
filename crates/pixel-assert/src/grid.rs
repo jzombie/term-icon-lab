@@ -22,10 +22,12 @@ use std::path::{Path, PathBuf};
 use anyhow::{Context, bail};
 use icon_catalog::{Candidate, candidates};
 use image::GenericImageView;
+use image::imageops::FilterType;
 use image::{Rgb, RgbImage};
 use manifest_gen::{load_ucd_names, previous_ids};
 use serde::Serialize;
 
+use crate::font5x7;
 use crate::geom::{CellBox, FgModel, estimate_background, suppress_structural_lines};
 use crate::schema::{RowEntry, Sidecar};
 use crate::validate::CaptureGate;
@@ -35,11 +37,22 @@ use crate::{Cli, grayscale};
 pub(crate) const GRID_COLUMNS: usize = 16;
 /// Matrix column order — pinned for cross-run comparability.
 pub(crate) const PLATFORM_ORDER: [&str; 3] = ["macos", "windows", "linux"];
-/// Platform whose rasterization fills `universal-grid.png`.
+/// Platform whose rasterization fills display charts (`universal-grid.png`,
+/// `universal-catalog.png`).
 const CANONICAL_TILE_PLATFORM: &str = "linux";
 const INDEX_FILE: &str = "grid-index.json";
 const GRID_PNG: &str = "universal-grid.png";
 const MATRIX_PNG: &str = "universal-matrix.png";
+const SPECIMEN_PNG: &str = "universal-catalog.png";
+
+/// Specimen-chart look constants: nearest-neighbour zoom factor for crops,
+/// target overall width, and cell padding/gap metrics.
+const LABEL_SCALE: u32 = 2;
+const SPECIMEN_TARGET_WIDTH: f64 = 480.0;
+const SPECIMEN_PAD_X: u32 = 6;
+const SPECIMEN_PAD_Y: u32 = 5;
+const SPECIMEN_LABEL_GAP: u32 = 6;
+const LABEL_COLOR: Rgb<u8> = Rgb([200, 200, 200]);
 
 #[derive(Debug)]
 pub(crate) struct GridInput {
@@ -194,7 +207,7 @@ pub(crate) fn export_grid(
                     continue;
                 }
                 let band = &bands[usize::from(row.page_row())];
-                let crop = clamp_crop(&gray, cal.cell_box(3, band));
+                let crop = clamp_crop(&gray, cal.cell_box_full(3, band));
                 crops.insert((input.label.as_str(), id.as_str()), crop);
             }
         }
@@ -215,23 +228,7 @@ pub(crate) fn export_grid(
     };
 
     // -- universal-grid.png: canonical-platform tiles with block separators.
-    let mut placements: Vec<(usize, usize, usize)> = Vec::with_capacity(targets.len()); // (tile, row, col)
-    let mut prev_block = None;
-    let (mut row, mut col) = (0usize, 0usize);
-    for (ti, t) in targets.iter().enumerate() {
-        if prev_block.is_some_and(|pb: icon_catalog::Block| pb != t.block) {
-            row += 2; // skip onto a fully blank separator slot-row
-            col = 0;
-        }
-        placements.push((ti, row, col));
-        prev_block = Some(t.block);
-        col += 1;
-        if col == GRID_COLUMNS {
-            col = 0;
-            row += 1;
-        }
-    }
-    let grid_rows = placements.last().map_or(1, |(_, r, _)| r + 1);
+    let (placements, grid_rows) = block_separated_placements(&targets, GRID_COLUMNS);
     let mut grid_canvas = RgbImage::from_pixel(
         GRID_COLUMNS as u32 * slot_w,
         grid_rows as u32 * slot_h,
@@ -265,6 +262,57 @@ pub(crate) fn export_grid(
         }
     }
 
+    // -- universal-catalog.png: font-repo specimen sheet (~480 px wide).
+    // Each cell = full-cell glyph render (2× nearest-neighbour) above its
+    // `U+XXXX` activation label.
+    let zoomed: Vec<RgbImage> = targets
+        .iter()
+        .map(|t| {
+            let crop = crops
+                .get(&(CANONICAL_TILE_PLATFORM, t.id.as_str()))
+                .with_context(|| format!("missing linux crop for '{}'", t.id))?;
+            Ok(image::imageops::resize(
+                crop,
+                crop.width() * LABEL_SCALE,
+                crop.height() * LABEL_SCALE,
+                FilterType::Nearest,
+            ))
+        })
+        .collect::<anyhow::Result<Vec<_>>>()?;
+    let glyph_w = zoomed.iter().map(RgbImage::width).max().unwrap_or(1);
+    let glyph_h = zoomed.iter().map(RgbImage::height).max().unwrap_or(1);
+    let label_w = font5x7::text_width("U+0000".len(), LABEL_SCALE);
+    let cell_w = glyph_w.max(label_w) + SPECIMEN_PAD_X * 2;
+    let cell_h = glyph_h + SPECIMEN_LABEL_GAP + font5x7::FONT_H * LABEL_SCALE + SPECIMEN_PAD_Y * 2;
+    let specimen_cols = ((SPECIMEN_TARGET_WIDTH / cell_w as f64).floor() as usize).clamp(3, 8);
+    let (spec_place, spec_rows) = block_separated_placements(&targets, specimen_cols);
+    let mut catalog_canvas = RgbImage::from_pixel(
+        specimen_cols as u32 * cell_w,
+        spec_rows as u32 * cell_h,
+        Rgb([0, 0, 0]),
+    );
+    for (ti, r, c) in &spec_place {
+        let t = targets[*ti];
+        let x0 = *c as u32 * cell_w;
+        let y0 = *r as u32 * cell_h;
+        let glyph = &zoomed[*ti];
+        image::imageops::overlay(
+            &mut catalog_canvas,
+            glyph,
+            i64::from(x0 + (cell_w - glyph.width()) / 2),
+            i64::from(y0 + SPECIMEN_PAD_Y),
+        );
+        let text = format!("U+{:04X}", t.codepoint);
+        font5x7::draw_text(
+            &mut catalog_canvas,
+            i64::from(x0 + (cell_w - label_w) / 2),
+            i64::from(y0 + SPECIMEN_PAD_Y + glyph_h + SPECIMEN_LABEL_GAP),
+            &text,
+            LABEL_SCALE,
+            LABEL_COLOR,
+        );
+    }
+
     // -- grid-index.json with the *computed* slot geometry.
     let names = load_ucd_names(&opts.ucd)?;
     let tiles = targets
@@ -272,10 +320,13 @@ pub(crate) fn export_grid(
         .enumerate()
         .map(|(i, t)| {
             let (_, grid_row, grid_col) = placements[i];
+            let (_, specimen_row, specimen_col) = spec_place[i];
             TileMeta {
                 index: i,
                 grid_row,
                 grid_col,
+                specimen_row,
+                specimen_col,
                 id: t.id.as_str(),
                 codepoint: t.codepoint,
                 block: t.block,
@@ -289,8 +340,9 @@ pub(crate) fn export_grid(
         })
         .collect();
     let index = GridIndexFile {
-        schema_version: 2,
+        schema_version: 3,
         columns: GRID_COLUMNS,
+        specimen_columns: specimen_cols,
         cell_width_px: slot_w,
         cell_height_px: slot_h,
         platform_order: PLATFORM_ORDER,
@@ -299,33 +351,60 @@ pub(crate) fn export_grid(
 
     // -- All-or-nothing output: touch disk only after everything composed.
     std::fs::create_dir_all(out_dir).with_context(|| format!("create {}", out_dir.display()))?;
-    image::save_buffer(
-        out_dir.join(GRID_PNG),
-        grid_canvas.as_raw(),
-        grid_canvas.width(),
-        grid_canvas.height(),
-        image::ColorType::Rgb8,
-    )
-    .with_context(|| format!("write {}", out_dir.join(GRID_PNG).display()))?;
-    image::save_buffer(
-        out_dir.join(MATRIX_PNG),
-        matrix_canvas.as_raw(),
-        matrix_canvas.width(),
-        matrix_canvas.height(),
-        image::ColorType::Rgb8,
-    )
-    .with_context(|| format!("write {}", out_dir.join(MATRIX_PNG).display()))?;
+    for (name, canvas) in [
+        (GRID_PNG, &grid_canvas),
+        (MATRIX_PNG, &matrix_canvas),
+        (SPECIMEN_PNG, &catalog_canvas),
+    ] {
+        image::save_buffer(
+            out_dir.join(name),
+            canvas.as_raw(),
+            canvas.width(),
+            canvas.height(),
+            image::ColorType::Rgb8,
+        )
+        .with_context(|| format!("write {}", out_dir.join(name).display()))?;
+    }
     std::fs::write(out_dir.join(INDEX_FILE), serde_json::to_vec_pretty(&index)?)
         .with_context(|| format!("write {}", out_dir.join(INDEX_FILE).display()))?;
 
     println!(
-        "export-grid: {} icons → {}, {}, {}",
+        "export-grid: {} icons → {}, {}, {}, {}",
         targets.len(),
         GRID_PNG,
         MATRIX_PNG,
+        SPECIMEN_PNG,
         INDEX_FILE
     );
     Ok(())
+}
+
+/// Sequential block-separated placement of `targets` into a `cols`-wide
+/// canvas: `(tile_index, row, col)` per target plus total row count. A fully
+/// blank separator slot-row is inserted whenever the Unicode block changes
+/// between consecutive tiles.
+fn block_separated_placements(
+    targets: &[&Candidate],
+    cols: usize,
+) -> (Vec<(usize, usize, usize)>, usize) {
+    let mut placements = Vec::with_capacity(targets.len());
+    let mut prev_block = None;
+    let (mut row, mut col) = (0usize, 0usize);
+    for (ti, t) in targets.iter().enumerate() {
+        if prev_block.is_some_and(|pb: icon_catalog::Block| pb != t.block) {
+            row += 2; // skip onto the blank separator slot-row
+            col = 0;
+        }
+        placements.push((ti, row, col));
+        prev_block = Some(t.block);
+        col += 1;
+        if col == cols {
+            col = 0;
+            row += 1;
+        }
+    }
+    let rows = placements.last().map_or(1, |(_, r, _)| r + 1);
+    (placements, rows)
 }
 
 /// Catalog-block ordering rank (`Block::ALL` manifest order).
@@ -418,6 +497,7 @@ fn tile(crop: &RgbImage, slot_w: u32, slot_h: u32) -> RgbImage {
 struct GridIndexFile<'a> {
     schema_version: u32,
     columns: usize,
+    specimen_columns: usize,
     cell_width_px: u32,
     cell_height_px: u32,
     platform_order: [&'a str; 3],
@@ -429,6 +509,8 @@ struct TileMeta<'a> {
     index: usize,
     grid_row: usize,
     grid_col: usize,
+    specimen_row: usize,
+    specimen_col: usize,
     id: &'a str,
     codepoint: u32,
     block: icon_catalog::Block,
@@ -549,7 +631,7 @@ mod tests {
         export_grid(&inputs, &opts, &out).expect("export succeeds");
 
         let index = read_index(&out);
-        assert_eq!(index["schema_version"], 2);
+        assert_eq!(index["schema_version"], 3);
         assert_eq!(index["columns"], 16);
         assert_eq!(
             index["platform_order"],
@@ -582,6 +664,25 @@ mod tests {
         assert_eq!(tiles[1]["grid_col"], 1);
         assert_eq!(tiles[2]["grid_row"], 2);
         assert_eq!(tiles[3]["grid_row"], 4);
+
+        // Specimen chart: ~480 px wide, same block-separated layout, and
+        // every tile carries its specimen coordinates.
+        assert!(out.join(SPECIMEN_PNG).is_file(), "catalog chart written");
+        let spec_cols = index["specimen_columns"].as_u64().unwrap() as u32;
+        assert!((3..=8).contains(&spec_cols));
+        let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap();
+        assert!(
+            (400..=520).contains(&catalog.width()),
+            "specimen width {} outside font-repo range",
+            catalog.width()
+        );
+        assert_eq!(tiles[0]["specimen_row"], 0);
+        assert_eq!(tiles[0]["specimen_col"], 0);
+        assert_eq!(
+            tiles[2]["specimen_row"], 2,
+            "block separator before geometric"
+        );
+        assert_eq!(tiles[3]["specimen_row"], 4, "block separator before misc");
     }
 
     /// `universal-grid.png` must be composed from the canonical (linux)
@@ -752,6 +853,50 @@ mod tests {
     }
 
     #[test]
+    fn full_cell_crops_keep_edge_ink_of_full_width_glyphs() {
+        // Regression: export used the assertion window (central 70% of the
+        // cell), guillotining full-width primitives. Display crops must span
+        // the entire cell and retain ink at both extreme columns.
+        use crate::geom::{FgModel, estimate_background, suppress_structural_lines};
+        let pages = vec![PageSpec {
+            candidates: vec![(
+                0x2588,
+                icon_catalog::Block::BlockElements,
+                IconKind::FullSpan,
+            )],
+        }];
+        let root = capture_root("fulledge", &pages, LINUX_GEOM);
+        let img = image::open(root.path().join("pages").join("shot_page_0.png")).unwrap();
+        let gray = crate::grayscale(&img);
+        let model = FgModel {
+            bg: estimate_background(&gray),
+            delta: 60.0,
+        };
+        let clean = suppress_structural_lines(&gray, &model);
+        let sc: Sidecar = serde_json::from_value(crate::testutil::sidecar_json(&pages)).unwrap();
+        let rows = sc.rows_for_page(0);
+        let (cal, bands) =
+            crate::page_geometry(&clean, &model, &rows).expect("fixture page must calibrate");
+
+        let full = cal.cell_box_full(3, &bands[1]);
+        let crop = clamp_crop(&gray, full);
+        assert!(crop.width() >= 2 && crop.height() >= 2);
+        let mid = crop.height() / 2;
+        assert!(
+            crop.get_pixel(0, mid)[0] > 128,
+            "leftmost display column lost its ink"
+        );
+        assert!(
+            crop.get_pixel(crop.width() - 1, mid)[0] > 128,
+            "rightmost display column lost its ink"
+        );
+
+        // The old assertion window would NOT have covered the edges:
+        let inner = cal.cell_box(3, &bands[1]);
+        assert!(inner.left > full.left || inner.right < full.right);
+    }
+
+    #[test]
     fn repeated_exports_are_byte_identical() {
         let pages = fixture_pages();
         let roots = three_roots("det", &pages);
@@ -765,7 +910,7 @@ mod tests {
         export_grid(&inputs, &opts, &dir.path().join("a")).unwrap();
         export_grid(&inputs, &opts, &dir.path().join("b")).unwrap();
 
-        for f in [GRID_PNG, MATRIX_PNG, INDEX_FILE] {
+        for f in [GRID_PNG, MATRIX_PNG, SPECIMEN_PNG, INDEX_FILE] {
             let a = std::fs::read(dir.path().join("a").join(f)).unwrap();
             let b = std::fs::read(dir.path().join("b").join(f)).unwrap();
             assert_eq!(a, b, "{f} must be byte-deterministic");
