@@ -319,11 +319,13 @@ pub(crate) fn export_grid(
         header_rows.insert(canvas_row, (block_display_name(block).to_string(), y));
         y += HEADER_BAND_H;
         canvas_row += 1;
-        for chunk in targets[run_start..ti].chunks(specimen_cols) {
-            for (k, _) in chunk.iter().enumerate() {
+        for (row_idx, chunk) in targets[run_start..ti].chunks(specimen_cols).enumerate() {
+            for (col_idx, _t) in chunk.iter().enumerate() {
+                // Global index: run offset + row-major position within the run.
+                let target_idx = run_start + (row_idx * specimen_cols) + col_idx;
                 spec_tiles.push(SpecimenTile {
-                    ti: run_start + k,
-                    col: k,
+                    ti: target_idx,
+                    col: col_idx,
                     canvas_row,
                     pixel_y: y,
                 });
@@ -864,6 +866,109 @@ mod tests {
     /// a `FullSpan` glyph scales linearly with each platform's pitch, so the
     /// three cell thirds must carry strictly ordered ink widths — and the
     /// legend must label every column.
+    /// A block run LONGER than one specimen row must wrap onto new rows
+    /// without re-rendering its first row — the chunk-offset bug shipped
+    /// identical glyphs repeated vertically down long blocks.
+    #[test]
+    fn long_block_run_wraps_without_duplicates() {
+        // 7 BoxDrawing candidates ⇒ chunks of 3/3/1 at specimen_cols = 3.
+        let pages = vec![PageSpec {
+            candidates: (0x2500u32..=0x2506)
+                .map(|cp| (cp, icon_catalog::Block::BoxDrawing, IconKind::FullSpan))
+                .collect(),
+        }];
+        let roots = three_roots("wrap", &pages);
+        let inputs = inputs_from(&roots);
+        let dir = tempfile_guard::DirGuard::new("wrap_out");
+        let opts = opts_in(
+            &dir,
+            &[
+                "box_2500", "box_2501", "box_2502", "box_2503", "box_2504", "box_2505", "box_2506",
+            ],
+        );
+        let out = dir.path().join("assets");
+
+        export_grid(&inputs, &opts, &out).unwrap();
+
+        let index = read_index(&out);
+        assert_eq!(index["schema_version"], 4);
+        let tiles = index["tiles"].as_array().unwrap().clone();
+        assert_eq!(tiles.len(), 7, "every target rendered exactly once");
+        let ids: Vec<&str> = tiles.iter().map(|t| t["id"].as_str().unwrap()).collect();
+        assert_eq!(
+            ids,
+            [
+                "box_2500", "box_2501", "box_2502", "box_2503", "box_2504", "box_2505", "box_2506"
+            ],
+            "no duplicates; codepoint order preserved across wrapped rows"
+        );
+        // Anti-bug pin: the first tile of row 2 is the FOURTH codepoint —
+        // under the chunk-offset bug it was a repeat of the first.
+        assert_eq!(tiles[3]["id"], "box_2503");
+        let cols_seq: Vec<u64> = tiles
+            .iter()
+            .map(|t| t["specimen_col"].as_u64().unwrap())
+            .collect();
+        assert_eq!(cols_seq, [0, 1, 2, 0, 1, 2, 0]);
+        let rows_seq: Vec<u64> = tiles
+            .iter()
+            .map(|t| t["canvas_row"].as_u64().unwrap())
+            .collect();
+        assert_eq!(rows_seq, [2, 2, 2, 3, 3, 3, 4]);
+        // Same block ⇒ consecutive rows, no separators between chunks.
+
+        // Specimen cell height from fixture metrics: tallest native cell is
+        // WINDOWS_GEOM.cell_h = 24 ⇒ zoomed 48; + gap 6 + label 14 + pad 10.
+        let spec_cell_h = 78u64;
+        let pys: Vec<u64> = tiles
+            .iter()
+            .map(|t| t["pixel_y"].as_u64().unwrap())
+            .collect();
+        // Rows hold 3/3/1 tiles; each row starts one spec_cell_h after the
+        // previous, following the single header band.
+        let r0 = LEGEND_BAND_H as u64 + HEADER_BAND_H as u64;
+        let expected_pys = [
+            r0,
+            r0,
+            r0,
+            r0 + spec_cell_h,
+            r0 + spec_cell_h,
+            r0 + spec_cell_h,
+            r0 + 2 * spec_cell_h,
+        ];
+        assert_eq!(pys, expected_pys);
+
+        // Pixel-level anti-duplication: each label strip encodes its own id,
+        // so identical strips would mean duplicate renders.
+        let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap().to_rgb8();
+        let col_w = catalog.width() / 3;
+        let mut label_strips: Vec<Vec<u8>> = Vec::new();
+        for t in &tiles {
+            // Tallest zoomed glyph band = WINDOWS native cell_h 24 ×2.
+            let py =
+                t["pixel_y"].as_u64().unwrap() as u32 + SPECIMEN_PAD_Y + 48 + SPECIMEN_LABEL_GAP;
+            // Sample the FULL centred label — clipping it would leave only
+            // the shared `U+25…` prefix and mask id differences.
+            let lx = t["specimen_col"].as_u64().unwrap() as u32 * col_w
+                + (col_w - font5x7::text_width(6, LABEL_SCALE)) / 2;
+            let mut strip: Vec<u8> = Vec::new();
+            for y in py..py + font5x7::FONT_H * LABEL_SCALE {
+                for x in lx..lx + font5x7::text_width(6, LABEL_SCALE) {
+                    strip.push(catalog.get_pixel(x, y)[0]);
+                }
+            }
+            label_strips.push(strip);
+        }
+        for (i, a) in label_strips.iter().enumerate() {
+            for (j, b) in label_strips.iter().enumerate().skip(i + 1) {
+                assert_ne!(a, b, "tiles {i} and {j} rendered identical pixels");
+            }
+        }
+    }
+
+    /// Specimen chart basics on a single-tile export: all three platform
+    /// renders present in their ordered slots, M/W/L legend across every
+    /// column, named block header band drawn.
     #[test]
     fn catalog_cells_show_all_three_platforms_with_legend() {
         let pages = vec![PageSpec {
@@ -882,27 +987,50 @@ mod tests {
         export_grid(&inputs, &opts, &out).unwrap();
 
         let index = read_index(&out);
-        let spec_cols = index["specimen_columns"].as_u64().unwrap() as usize;
-        assert_eq!(spec_cols, 3);
+        assert_eq!(index["schema_version"], 4);
+        assert_eq!(index["specimen_columns"], 3);
+        assert_eq!(
+            index["block_header_rows"],
+            serde_json::json!({ "1": "BLOCK ELEMENTS" })
+        );
+        let tile = &index["tiles"][0];
+        assert_eq!(tile["canvas_row"], 2);
+        assert_eq!(tile["pixel_y"], LEGEND_BAND_H + HEADER_BAND_H);
+        assert_eq!(tile["specimen_col"], 0);
+
         let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap().to_rgb8();
 
-        // Cell geometry recomputed from fixture metrics (see testutil):
-        // FullSpan native crop widths at pitch 14/18/22 are 14/18/22 px
-        // ⇒ zoomed (×LABEL_SCALE) 28/36/44; the widest anchors glyph_w.
-        let glyph_w = 22u32 * LABEL_SCALE; // windows FullSpan native width
-        let gap = INNER_GAP;
+        // Platform slots by pitch: macOS 28px < Linux 36px < Windows 44px
+        // of ink (FullSpan zoomed ×LABEL_SCALE), left → right.
+        let mut widths = Vec::new();
+        for p in 0..3usize {
+            let x0 = SPECIMEN_PAD_X + p as u32 * (glyph_w_for_specimen() + INNER_GAP);
+            let mut min_x = None;
+            let mut max_x = None;
+            let top = tile["pixel_y"].as_u64().unwrap() as u32 + SPECIMEN_PAD_Y;
+            for y in top..top + 48 {
+                for dx in 0..glyph_w_for_specimen() {
+                    if catalog.get_pixel(x0 + dx, y)[0] > 128 {
+                        min_x = Some(min_x.map_or(dx, |v: u32| v.min(dx)));
+                        max_x = Some(max_x.map_or(dx, |v: u32| v.max(dx)));
+                    }
+                }
+            }
+            widths.push(max_x.unwrap() - min_x.unwrap() + 1);
+        }
+        assert_eq!(widths, vec![28, 44, 36], "slots follow PLATFORM_ORDER");
 
-        // Legend letters present over EVERY column's three slots.
-        let col_w = catalog.width() / spec_cols as u32;
-        for c in 0..spec_cols {
+        // Legend letters M/W/L over every column's three slots.
+        let col_w = catalog.width() / 3;
+        for c in 0..3usize {
             for p in 0..3usize {
-                let x0 = c as u32 * col_w
+                let lx = c as u32 * col_w
                     + SPECIMEN_PAD_X
-                    + p as u32 * (glyph_w + gap)
-                    + (glyph_w.saturating_sub(font5x7::FONT_W)) / 2;
+                    + p as u32 * (glyph_w_for_specimen() + INNER_GAP)
+                    + (glyph_w_for_specimen().saturating_sub(font5x7::FONT_W)) / 2;
                 let mut strip: Vec<u8> = Vec::new();
                 for y in 0..LEGEND_BAND_H {
-                    for x in x0..x0 + font5x7::FONT_W {
+                    for x in lx..lx + font5x7::FONT_W {
                         strip.push(catalog.get_pixel(x, y)[0]);
                     }
                 }
@@ -913,40 +1041,9 @@ mod tests {
             }
         }
 
-        // Ink bbox width per platform SLOT — strictly ordered like the
-        // fixture pitches (macos 14px < linux 18px < windows 22px native,
-        // ×LABEL_SCALE when zoomed).
-        let tile = &index["tiles"][0];
-        let pixel_y = tile["pixel_y"].as_u64().unwrap() as u32;
-        let mut widths = Vec::new();
-        for p in 0..3usize {
-            let x0 = SPECIMEN_PAD_X + p as u32 * (glyph_w + gap);
-            let mut min_x = None;
-            let mut max_x = None;
-            for y in pixel_y + SPECIMEN_PAD_Y..pixel_y + SPECIMEN_PAD_Y + 40 {
-                for dx in 0..glyph_w {
-                    if catalog.get_pixel(x0 + dx, y)[0] > 128 {
-                        min_x = Some(min_x.map_or(dx, |v: u32| v.min(dx)));
-                        max_x = Some(max_x.map_or(dx, |v: u32| v.max(dx)));
-                    }
-                }
-            }
-            let w = max_x.unwrap() - min_x.unwrap() + 1;
-            widths.push(w);
-        }
-        assert_eq!(
-            widths,
-            vec![28, 44, 36],
-            "platform slots follow PLATFORM_ORDER by pitch"
-        );
-
-        // Header band for BLOCK ELEMENTS carries text ink near its start;
-        // the first header band begins immediately after the legend strip.
-        let header_row = index["block_header_rows"]["1"].as_str().unwrap();
-        assert_eq!(header_row, "BLOCK ELEMENTS");
-        let header_y = LEGEND_BAND_H; // first header starts right after legend
+        // Header band carries rendered text.
         let mut strip: Vec<u8> = Vec::new();
-        for y in header_y..header_y + HEADER_BAND_H {
+        for y in LEGEND_BAND_H..LEGEND_BAND_H + HEADER_BAND_H {
             for x in SPECIMEN_PAD_X..SPECIMEN_PAD_X + 60 {
                 strip.push(catalog.get_pixel(x, y)[0]);
             }
@@ -955,6 +1052,12 @@ mod tests {
             strip.iter().any(|v| *v > 128),
             "block header band must contain rendered text"
         );
+    }
+
+    /// Zoomed width of the widest platform crop in the specimen chart
+    /// (windows FullSpan native 22 px × LABEL_SCALE).
+    fn glyph_w_for_specimen() -> u32 {
+        22 * LABEL_SCALE
     }
 
     #[test]

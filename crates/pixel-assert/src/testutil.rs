@@ -221,7 +221,13 @@ pub(crate) mod tempfile_guard {
     pub(crate) struct DirGuard(PathBuf);
     impl DirGuard {
         pub(crate) fn new(name: &str) -> Self {
-            let dir = std::env::temp_dir().join(format!("ti_px_{name}_{}", std::process::id()));
+            // Unique per construction: pid alone can be recycled by the OS
+            // while a slow sibling test process still holds the same path.
+            use std::sync::atomic::{AtomicU64, Ordering};
+            static SEQ: std::sync::atomic::AtomicU64 = AtomicU64::new(0);
+            let seq = SEQ.fetch_add(1, Ordering::Relaxed);
+            let dir =
+                std::env::temp_dir().join(format!("ti_px_{name}_{}_{}", std::process::id(), seq));
             let _ = fs::remove_dir_all(&dir);
             fs::create_dir_all(&dir).unwrap();
             DirGuard(dir)
