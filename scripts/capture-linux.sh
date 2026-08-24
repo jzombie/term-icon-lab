@@ -51,6 +51,7 @@ xterm \
             --platform "$PLATFORM" \
             --host "$HOST" &
 XTERM_PID=$!
+trap 'kill ${XVFB_PID:-} ${XTERM_PID:-} 2>/dev/null || true' EXIT
 
 for _ in $(seq 1 100); do
     [ -f "$SYNC_DIR/pid" ] && break
@@ -59,9 +60,39 @@ for _ in $(seq 1 100); do
 done
 HARNESS_PID="$(cat "$SYNC_DIR/pid")"
 
+# Wall-clock watchdog: a hung emulator is killed and reported distinctly
+# (exit 3) instead of burning the per-page ack deadlines.
+HARNESS_BUDGET_SECS="${HARNESS_BUDGET_SECS:-600}"
+WATCHDOG_DEADLINE=$((SECONDS + HARNESS_BUDGET_SECS))
+
+# Kill the harness (child of the wrapper) and the wrapper itself.
+kill_harness_tree() {
+    pkill -P "$HARNESS_PID" 2>/dev/null || true
+    kill "$HARNESS_PID" 2>/dev/null || true
+}
+
+dump_harness_log() {
+    echo "=== harness.log tail ===" >&2
+    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+}
+
 capture_page() {
     local page="$1"
-    import -window root "${OUT_DIR}/pages/shot_page_${page}.png"
+    local shot="${OUT_DIR}/pages/shot_page_${page}.png"
+    import -window root "$shot"
+
+    # Validation gate: reject blank/implausible frames, retry once, then
+    # fail loudly with diagnostics (parity with capture-macos.sh).
+    if ! ./target/debug/pixel-assert --validate-only "$shot" >/dev/null; then
+        sleep 1
+        import -window root "$shot"
+        if ! ./target/debug/pixel-assert --validate-only "$shot" >/dev/null; then
+            echo "ERROR: capture validation failed twice for page ${page}." >&2
+            dump_harness_log
+            kill_harness_tree
+            exit 2
+        fi
+    fi
 }
 
 # The page count is only known from the catalog; drive the loop until the
@@ -71,6 +102,12 @@ capture_page() {
 PAGE=0
 RUN_FAILED=0
 while kill -0 "$HARNESS_PID" 2>/dev/null; do
+    if (( SECONDS >= WATCHDOG_DEADLINE )); then
+        echo "ERROR: watchdog budget (${HARNESS_BUDGET_SECS}s) exceeded; killing harness." >&2
+        dump_harness_log
+        kill_harness_tree
+        exit 3
+    fi
     if ! wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page; then
         RC=$?
         if [ "$RC" -ne 3 ]; then
@@ -96,19 +133,18 @@ done
 set -e
 
 if [ "$RUN_FAILED" -ne 0 ]; then
-    echo "=== harness.log tail ===" >&2
-    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+    dump_harness_log
     exit "$RUN_FAILED"
 fi
 if [ "$HARNESS_EXIT" -ne 0 ]; then
     echo "ERROR: matrix-harness exited with code $HARNESS_EXIT." >&2
-    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+    dump_harness_log
     exit 2
 fi
 for f in sidecar.json pass1.json; do
     if [ ! -f "$OUT_DIR/artifacts/$f" ]; then
         echo "ERROR: harness finished but $f is missing." >&2
-        tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+        dump_harness_log
         exit 2
     fi
 done

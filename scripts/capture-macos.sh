@@ -47,6 +47,24 @@ if [ ! -f "$SYNC_DIR/pid" ]; then
 fi
 HARNESS_PID="$(cat "$SYNC_DIR/pid")"
 
+# Failure-path teardown: the wrapper PID orphans the harness child, and
+# Terminal.app outlives both — kill the tree and the app itself.
+teardown() {
+    pkill -P "$HARNESS_PID" 2>/dev/null || true
+    kill "$HARNESS_PID" 2>/dev/null || true
+    pkill -x Terminal 2>/dev/null || true
+}
+
+# Wall-clock watchdog: a hung emulator is killed and reported distinctly
+# (exit 3) instead of burning the per-page ack deadlines.
+HARNESS_BUDGET_SECS="${HARNESS_BUDGET_SECS:-600}"
+WATCHDOG_DEADLINE=$((SECONDS + HARNESS_BUDGET_SECS))
+
+dump_harness_log() {
+    echo "=== harness.log tail ===" >&2
+    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
+}
+
 # Best-effort resize (needs the Automation channel; failure is non-fatal).
 if ! osascript -e 'with timeout of 30 seconds
 tell application "Terminal" to set bounds of front window to {0, 0, 980, 760}
@@ -90,7 +108,7 @@ if [ -z "${WIN_ID:-}" ] || ! [[ "$WIN_ID" =~ ^[0-9]+$ ]]; then
     echo "ERROR: could not resolve numeric CGWindowID for Terminal.app." >&2
     echo "Diagnostics — on-screen windows:" >&2
     "$SYNC_DIR/winidtool" 2>&1 || true
-    kill "$HARNESS_PID" 2>/dev/null || true
+    teardown
     exit 2
 fi
 
@@ -105,7 +123,7 @@ capture_page() {
         screencapture -x -l "$WIN_ID" "$shot"
         if ! ./target/debug/pixel-assert --validate-only "$shot"; then
             echo "ERROR: capture validation failed twice for page ${page}." >&2
-            kill "$HARNESS_PID" 2>/dev/null || true
+            teardown
             exit 2
         fi
     fi
@@ -114,6 +132,12 @@ capture_page() {
 PAGE=0
 RUN_FAILED=0
 while kill -0 "$HARNESS_PID" 2>/dev/null; do
+    if (( SECONDS >= WATCHDOG_DEADLINE )); then
+        echo "ERROR: watchdog budget (${HARNESS_BUDGET_SECS}s) exceeded; killing harness." >&2
+        dump_harness_log
+        teardown
+        exit 3
+    fi
     if ! wait_ready_and_acknowledge "$SYNC_DIR" "$HARNESS_PID" "$PAGE" capture_page; then
         RC=$?
         if [ "$RC" -ne 3 ]; then
@@ -137,11 +161,6 @@ for _ in $(seq 1 50); do
 done
 [ -z "$HARNESS_EXIT" ] && HARNESS_EXIT="$(cat "$SYNC_DIR/rc" 2>/dev/null || echo unknown)"
 set -e
-
-dump_harness_log() {
-    echo "=== harness.log tail ===" >&2
-    tail -n 40 "$SYNC_DIR/harness.log" 2>/dev/null || true >&2
-}
 
 if [ "$RUN_FAILED" -ne 0 ]; then
     dump_harness_log

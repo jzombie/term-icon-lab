@@ -22,7 +22,8 @@
 [CmdletBinding()]
 param(
     [string]$OutDir = "target/matrix",
-    [int]$HwndTimeoutMs = 10000
+    [int]$HwndTimeoutMs = 10000,
+    [int]$HarnessBudgetSeconds = 600
 )
 $ErrorActionPreference = "Stop"
 
@@ -184,10 +185,25 @@ function Invoke-Capture {
     return ($LASTEXITCODE -eq 0)
 }
 
-# Page loop: capture every signaled page until the harness exits.
+# Page loop: capture every signaled page until the harness exits. A
+# wall-clock watchdog kills a hung harness distinctly (exit 3) instead of
+# burning the per-page ack deadlines.
+$captureWatch = [System.Diagnostics.Stopwatch]::StartNew()
 $page = 0
 $conhostRetried = $false
 while ($true) {
+    if ($captureWatch.Elapsed.TotalSeconds -gt $HarnessBudgetSeconds) {
+        $detail = "watchdog budget (${HarnessBudgetSeconds}s) exceeded; sync dir contents:"
+        Get-ChildItem $SyncDir -ErrorAction SilentlyContinue |
+            ForEach-Object { $detail += "`n  $($_.Name) ($($_.Length) bytes)" }
+        if (Test-Path "$SyncDir\harness.log") {
+            $detail += "`n--- harness.log tail ---`n" +
+                ((Get-Content "$SyncDir\harness.log" -Tail 40) -join "`n")
+        }
+        Stop-Process -Id $harnessPid -Force -ErrorAction SilentlyContinue
+        Write-Error $detail
+        exit 3
+    }
     $ready = Get-ChildItem $SyncDir -Filter "*_page_${page}.ready" -ErrorAction SilentlyContinue |
         Select-Object -First 1
     if ($ready) {
