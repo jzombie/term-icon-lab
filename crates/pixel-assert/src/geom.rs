@@ -337,12 +337,15 @@ impl Calibration {
         }
     }
 
-    /// The open gutter between the icon cell's central crop and sentinel B's
-    /// central crop — any ink here means the candidate intruded toward B.
+    /// The gutter between the icon cell's right **boundary** and sentinel B's
+    /// central crop — any ink here means the candidate rendered past its own
+    /// cell. The icon's full cell width (out to `center3 + pitch/2`) is
+    /// legitimate ink territory: full-width primitives (█ ▐ ─) and wide
+    /// letters fill it completely.
     #[must_use]
     pub fn gutter_span(&self) -> (f64, f64) {
         (
-            self.cell_center(3) + self.pitch * 0.35,
+            self.cell_center(3) + self.pitch * 0.5,
             self.cell_center(4) - self.pitch * 0.35,
         )
     }

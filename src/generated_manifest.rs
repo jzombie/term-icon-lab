@@ -8,47 +8,244 @@ use crate::SafeIcon;
 pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     ascii::ASCII_0021,
     ascii::ASCII_0022,
+    ascii::ASCII_0023,
+    ascii::ASCII_0024,
+    ascii::ASCII_0025,
+    ascii::ASCII_0026,
     ascii::ASCII_0027,
     ascii::ASCII_0028,
     ascii::ASCII_0029,
+    ascii::ASCII_002A,
+    ascii::ASCII_002B,
     ascii::ASCII_002C,
+    ascii::ASCII_002D,
     ascii::ASCII_002E,
     ascii::ASCII_002F,
+    ascii::ASCII_0030,
+    ascii::ASCII_0031,
+    ascii::ASCII_0032,
+    ascii::ASCII_0033,
+    ascii::ASCII_0034,
+    ascii::ASCII_0035,
+    ascii::ASCII_0036,
+    ascii::ASCII_0037,
+    ascii::ASCII_0038,
+    ascii::ASCII_0039,
     ascii::ASCII_003A,
     ascii::ASCII_003B,
+    ascii::ASCII_003C,
+    ascii::ASCII_003D,
     ascii::ASCII_003E,
     ascii::ASCII_003F,
+    ascii::ASCII_0040,
+    ascii::ASCII_0041,
+    ascii::ASCII_0042,
+    ascii::ASCII_0043,
+    ascii::ASCII_0044,
+    ascii::ASCII_0045,
+    ascii::ASCII_0046,
+    ascii::ASCII_0047,
     ascii::ASCII_0049,
     ascii::ASCII_004A,
+    ascii::ASCII_004B,
+    ascii::ASCII_004C,
+    ascii::ASCII_004D,
+    ascii::ASCII_004E,
+    ascii::ASCII_004F,
+    ascii::ASCII_0050,
+    ascii::ASCII_0051,
+    ascii::ASCII_0052,
+    ascii::ASCII_0053,
+    ascii::ASCII_0054,
+    ascii::ASCII_0056,
+    ascii::ASCII_0057,
+    ascii::ASCII_0058,
+    ascii::ASCII_0059,
+    ascii::ASCII_005A,
     ascii::ASCII_005B,
     ascii::ASCII_005C,
     ascii::ASCII_005D,
     ascii::ASCII_005E,
+    ascii::ASCII_005F,
     ascii::ASCII_0060,
     ascii::ASCII_0061,
+    ascii::ASCII_0062,
     ascii::ASCII_0063,
+    ascii::ASCII_0064,
+    ascii::ASCII_0065,
+    ascii::ASCII_0066,
+    ascii::ASCII_0067,
+    ascii::ASCII_0068,
+    ascii::ASCII_0069,
     ascii::ASCII_006A,
+    ascii::ASCII_006B,
+    ascii::ASCII_006C,
+    ascii::ASCII_006D,
+    ascii::ASCII_006E,
+    ascii::ASCII_006F,
+    ascii::ASCII_0070,
+    ascii::ASCII_0071,
+    ascii::ASCII_0072,
     ascii::ASCII_0073,
     ascii::ASCII_0074,
+    ascii::ASCII_0075,
+    ascii::ASCII_0076,
+    ascii::ASCII_0077,
+    ascii::ASCII_0078,
+    ascii::ASCII_0079,
     ascii::ASCII_007A,
     ascii::ASCII_007B,
     ascii::ASCII_007C,
     ascii::ASCII_007D,
+    ascii::ASCII_007E,
+    arrows::ARROW_2190,
+    arrows::ARROW_2191,
+    arrows::ARROW_2192,
+    arrows::ARROW_2193,
+    arrows::ARROW_2194,
+    arrows::ARROW_2195,
+    arrows::ARROW_2196,
+    arrows::ARROW_2197,
+    arrows::ARROW_2198,
+    arrows::ARROW_2199,
+    arrows::ARROW_219A,
+    arrows::ARROW_219B,
+    arrows::ARROW_219C,
+    arrows::ARROW_219D,
+    arrows::ARROW_219E,
+    arrows::ARROW_219F,
+    arrows::ARROW_21A0,
+    arrows::ARROW_21A1,
+    arrows::ARROW_21A2,
+    arrows::ARROW_21A3,
+    arrows::ARROW_21A4,
+    arrows::ARROW_21A5,
+    arrows::ARROW_21A6,
+    arrows::ARROW_21A7,
     arrows::ARROW_21A8,
+    arrows::ARROW_21A9,
+    arrows::ARROW_21AA,
+    arrows::ARROW_21AB,
+    arrows::ARROW_21AC,
+    arrows::ARROW_21AD,
+    arrows::ARROW_21AE,
+    arrows::ARROW_21AF,
+    arrows::ARROW_21B0,
+    arrows::ARROW_21B1,
+    arrows::ARROW_21B2,
+    arrows::ARROW_21B3,
+    arrows::ARROW_21B4,
+    arrows::ARROW_21B5,
+    arrows::ARROW_21B6,
+    arrows::ARROW_21B7,
+    arrows::ARROW_21B8,
+    arrows::ARROW_21B9,
+    arrows::ARROW_21BA,
+    arrows::ARROW_21BB,
+    arrows::ARROW_21BC,
+    arrows::ARROW_21BD,
+    arrows::ARROW_21BE,
+    arrows::ARROW_21BF,
+    arrows::ARROW_21C0,
+    arrows::ARROW_21C1,
+    arrows::ARROW_21C2,
+    arrows::ARROW_21C3,
+    arrows::ARROW_21C4,
+    arrows::ARROW_21C5,
+    arrows::ARROW_21C6,
+    arrows::ARROW_21C7,
+    arrows::ARROW_21C8,
+    arrows::ARROW_21C9,
+    arrows::ARROW_21CA,
+    arrows::ARROW_21CB,
+    arrows::ARROW_21CC,
+    arrows::ARROW_21CD,
+    arrows::ARROW_21CE,
+    arrows::ARROW_21CF,
+    arrows::ARROW_21D0,
+    arrows::ARROW_21D1,
+    arrows::ARROW_21D2,
+    arrows::ARROW_21D3,
+    arrows::ARROW_21D4,
+    arrows::ARROW_21D5,
+    arrows::ARROW_21D6,
+    arrows::ARROW_21D7,
+    arrows::ARROW_21D8,
+    arrows::ARROW_21D9,
+    arrows::ARROW_21DA,
+    arrows::ARROW_21DB,
+    arrows::ARROW_21DC,
+    arrows::ARROW_21DD,
+    arrows::ARROW_21DE,
+    arrows::ARROW_21DF,
+    arrows::ARROW_21E0,
+    arrows::ARROW_21E1,
+    arrows::ARROW_21E2,
+    arrows::ARROW_21E3,
+    arrows::ARROW_21E4,
+    arrows::ARROW_21E5,
+    arrows::ARROW_21E6,
+    arrows::ARROW_21E7,
+    arrows::ARROW_21E8,
+    arrows::ARROW_21E9,
+    arrows::ARROW_21EA,
+    arrows::ARROW_21EB,
+    arrows::ARROW_21EC,
+    arrows::ARROW_21ED,
+    arrows::ARROW_21EE,
+    arrows::ARROW_21EF,
+    arrows::ARROW_21F0,
+    arrows::ARROW_21F1,
+    arrows::ARROW_21F2,
+    arrows::ARROW_21F3,
+    arrows::ARROW_21F4,
+    arrows::ARROW_21F5,
+    arrows::ARROW_21F6,
+    arrows::ARROW_21F7,
+    arrows::ARROW_21F8,
+    arrows::ARROW_21F9,
+    arrows::ARROW_21FA,
+    arrows::ARROW_21FB,
+    arrows::ARROW_21FC,
+    arrows::ARROW_21FD,
+    arrows::ARROW_21FE,
+    arrows::ARROW_21FF,
+    box_drawing::BOX_2500,
+    box_drawing::BOX_2501,
     box_drawing::BOX_2502,
     box_drawing::BOX_2503,
+    box_drawing::BOX_2504,
+    box_drawing::BOX_2505,
     box_drawing::BOX_2506,
     box_drawing::BOX_2507,
+    box_drawing::BOX_2508,
+    box_drawing::BOX_2509,
     box_drawing::BOX_250A,
     box_drawing::BOX_250B,
+    box_drawing::BOX_250C,
+    box_drawing::BOX_250D,
+    box_drawing::BOX_250E,
+    box_drawing::BOX_250F,
     box_drawing::BOX_2510,
     box_drawing::BOX_2511,
     box_drawing::BOX_2512,
     box_drawing::BOX_2513,
+    box_drawing::BOX_2514,
+    box_drawing::BOX_2515,
+    box_drawing::BOX_2516,
+    box_drawing::BOX_2517,
     box_drawing::BOX_2518,
     box_drawing::BOX_2519,
     box_drawing::BOX_251A,
     box_drawing::BOX_251B,
+    box_drawing::BOX_251C,
+    box_drawing::BOX_251D,
+    box_drawing::BOX_251E,
+    box_drawing::BOX_251F,
+    box_drawing::BOX_2520,
+    box_drawing::BOX_2521,
+    box_drawing::BOX_2522,
+    box_drawing::BOX_2523,
     box_drawing::BOX_2524,
     box_drawing::BOX_2525,
     box_drawing::BOX_2526,
@@ -57,49 +254,545 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     box_drawing::BOX_2529,
     box_drawing::BOX_252A,
     box_drawing::BOX_252B,
+    box_drawing::BOX_252C,
+    box_drawing::BOX_252D,
+    box_drawing::BOX_252E,
+    box_drawing::BOX_252F,
+    box_drawing::BOX_2530,
+    box_drawing::BOX_2531,
+    box_drawing::BOX_2532,
+    box_drawing::BOX_2533,
+    box_drawing::BOX_2534,
+    box_drawing::BOX_2535,
+    box_drawing::BOX_2536,
+    box_drawing::BOX_2537,
+    box_drawing::BOX_2538,
+    box_drawing::BOX_2539,
+    box_drawing::BOX_253A,
+    box_drawing::BOX_253B,
+    box_drawing::BOX_253C,
+    box_drawing::BOX_253D,
+    box_drawing::BOX_253E,
+    box_drawing::BOX_253F,
+    box_drawing::BOX_2540,
+    box_drawing::BOX_2541,
+    box_drawing::BOX_2542,
+    box_drawing::BOX_2543,
+    box_drawing::BOX_2544,
+    box_drawing::BOX_2545,
+    box_drawing::BOX_2546,
+    box_drawing::BOX_2547,
+    box_drawing::BOX_2548,
+    box_drawing::BOX_2549,
+    box_drawing::BOX_254A,
+    box_drawing::BOX_254B,
+    box_drawing::BOX_254C,
+    box_drawing::BOX_254D,
     box_drawing::BOX_254E,
     box_drawing::BOX_254F,
+    box_drawing::BOX_2550,
     box_drawing::BOX_2551,
+    box_drawing::BOX_2552,
+    box_drawing::BOX_2553,
+    box_drawing::BOX_2554,
     box_drawing::BOX_2555,
     box_drawing::BOX_2556,
     box_drawing::BOX_2557,
+    box_drawing::BOX_2558,
+    box_drawing::BOX_2559,
+    box_drawing::BOX_255A,
     box_drawing::BOX_255B,
     box_drawing::BOX_255C,
     box_drawing::BOX_255D,
+    box_drawing::BOX_255E,
+    box_drawing::BOX_255F,
+    box_drawing::BOX_2560,
     box_drawing::BOX_2561,
     box_drawing::BOX_2562,
     box_drawing::BOX_2563,
+    box_drawing::BOX_2564,
+    box_drawing::BOX_2565,
+    box_drawing::BOX_2566,
+    box_drawing::BOX_2567,
+    box_drawing::BOX_2568,
+    box_drawing::BOX_2569,
+    box_drawing::BOX_256A,
+    box_drawing::BOX_256B,
+    box_drawing::BOX_256C,
+    box_drawing::BOX_256D,
     box_drawing::BOX_256E,
     box_drawing::BOX_256F,
+    box_drawing::BOX_2570,
+    box_drawing::BOX_2571,
+    box_drawing::BOX_2572,
+    box_drawing::BOX_2573,
     box_drawing::BOX_2574,
     box_drawing::BOX_2575,
+    box_drawing::BOX_2576,
     box_drawing::BOX_2577,
     box_drawing::BOX_2578,
     box_drawing::BOX_2579,
+    box_drawing::BOX_257A,
     box_drawing::BOX_257B,
+    box_drawing::BOX_257C,
     box_drawing::BOX_257D,
+    box_drawing::BOX_257E,
     box_drawing::BOX_257F,
+    block_elements::BLOCK_2580,
+    block_elements::BLOCK_2581,
+    block_elements::BLOCK_2582,
+    block_elements::BLOCK_2583,
+    block_elements::BLOCK_2584,
+    block_elements::BLOCK_2585,
+    block_elements::BLOCK_2586,
+    block_elements::BLOCK_2587,
+    block_elements::BLOCK_2588,
+    block_elements::BLOCK_2589,
+    block_elements::BLOCK_258A,
+    block_elements::BLOCK_258B,
     block_elements::BLOCK_258C,
+    block_elements::BLOCK_258D,
+    block_elements::BLOCK_258E,
+    block_elements::BLOCK_2590,
+    block_elements::BLOCK_2591,
+    block_elements::BLOCK_2592,
+    block_elements::BLOCK_2593,
+    block_elements::BLOCK_2596,
+    block_elements::BLOCK_2597,
+    block_elements::BLOCK_2598,
+    block_elements::BLOCK_2599,
+    block_elements::BLOCK_259A,
+    block_elements::BLOCK_259B,
+    block_elements::BLOCK_259C,
+    block_elements::BLOCK_259D,
+    block_elements::BLOCK_259E,
+    block_elements::BLOCK_259F,
+    geometric_shapes::GEOMETRIC_25A0,
+    geometric_shapes::GEOMETRIC_25A2,
+    geometric_shapes::GEOMETRIC_25A3,
+    geometric_shapes::GEOMETRIC_25A4,
+    geometric_shapes::GEOMETRIC_25A5,
+    geometric_shapes::GEOMETRIC_25A6,
+    geometric_shapes::GEOMETRIC_25A7,
+    geometric_shapes::GEOMETRIC_25A8,
+    geometric_shapes::GEOMETRIC_25A9,
     geometric_shapes::GEOMETRIC_25AA,
     geometric_shapes::GEOMETRIC_25AB,
+    geometric_shapes::GEOMETRIC_25AC,
+    geometric_shapes::GEOMETRIC_25AD,
+    geometric_shapes::GEOMETRIC_25AE,
+    geometric_shapes::GEOMETRIC_25B0,
+    geometric_shapes::GEOMETRIC_25B1,
+    geometric_shapes::GEOMETRIC_25B2,
+    geometric_shapes::GEOMETRIC_25B3,
     geometric_shapes::GEOMETRIC_25B4,
+    geometric_shapes::GEOMETRIC_25B5,
+    geometric_shapes::GEOMETRIC_25B6,
+    geometric_shapes::GEOMETRIC_25B7,
     geometric_shapes::GEOMETRIC_25B8,
+    geometric_shapes::GEOMETRIC_25B9,
+    geometric_shapes::GEOMETRIC_25BA,
+    geometric_shapes::GEOMETRIC_25BB,
+    geometric_shapes::GEOMETRIC_25BC,
+    geometric_shapes::GEOMETRIC_25BD,
     geometric_shapes::GEOMETRIC_25BE,
+    geometric_shapes::GEOMETRIC_25BF,
+    geometric_shapes::GEOMETRIC_25C0,
+    geometric_shapes::GEOMETRIC_25C1,
     geometric_shapes::GEOMETRIC_25C2,
+    geometric_shapes::GEOMETRIC_25C3,
+    geometric_shapes::GEOMETRIC_25C4,
+    geometric_shapes::GEOMETRIC_25C5,
+    geometric_shapes::GEOMETRIC_25C6,
+    geometric_shapes::GEOMETRIC_25C7,
+    geometric_shapes::GEOMETRIC_25C8,
+    geometric_shapes::GEOMETRIC_25C9,
+    geometric_shapes::GEOMETRIC_25CA,
+    geometric_shapes::GEOMETRIC_25CB,
+    geometric_shapes::GEOMETRIC_25CC,
+    geometric_shapes::GEOMETRIC_25CD,
+    geometric_shapes::GEOMETRIC_25CE,
+    geometric_shapes::GEOMETRIC_25CF,
+    geometric_shapes::GEOMETRIC_25D0,
+    geometric_shapes::GEOMETRIC_25D1,
+    geometric_shapes::GEOMETRIC_25D2,
+    geometric_shapes::GEOMETRIC_25D3,
+    geometric_shapes::GEOMETRIC_25D4,
+    geometric_shapes::GEOMETRIC_25D5,
+    geometric_shapes::GEOMETRIC_25D6,
+    geometric_shapes::GEOMETRIC_25D7,
+    geometric_shapes::GEOMETRIC_25D8,
+    geometric_shapes::GEOMETRIC_25D9,
+    geometric_shapes::GEOMETRIC_25DA,
+    geometric_shapes::GEOMETRIC_25DB,
+    geometric_shapes::GEOMETRIC_25DC,
+    geometric_shapes::GEOMETRIC_25DD,
+    geometric_shapes::GEOMETRIC_25DE,
+    geometric_shapes::GEOMETRIC_25DF,
+    geometric_shapes::GEOMETRIC_25E0,
+    geometric_shapes::GEOMETRIC_25E1,
+    geometric_shapes::GEOMETRIC_25E2,
+    geometric_shapes::GEOMETRIC_25E3,
+    geometric_shapes::GEOMETRIC_25E4,
+    geometric_shapes::GEOMETRIC_25E5,
+    geometric_shapes::GEOMETRIC_25E6,
+    geometric_shapes::GEOMETRIC_25E7,
+    geometric_shapes::GEOMETRIC_25E8,
+    geometric_shapes::GEOMETRIC_25E9,
+    geometric_shapes::GEOMETRIC_25EA,
+    geometric_shapes::GEOMETRIC_25EB,
+    geometric_shapes::GEOMETRIC_25EC,
+    geometric_shapes::GEOMETRIC_25ED,
+    geometric_shapes::GEOMETRIC_25EE,
+    geometric_shapes::GEOMETRIC_25EF,
+    geometric_shapes::GEOMETRIC_25F3,
+    geometric_shapes::GEOMETRIC_25F4,
+    geometric_shapes::GEOMETRIC_25F5,
+    geometric_shapes::GEOMETRIC_25F6,
+    geometric_shapes::GEOMETRIC_25F7,
+    geometric_shapes::GEOMETRIC_25F8,
+    geometric_shapes::GEOMETRIC_25F9,
+    geometric_shapes::GEOMETRIC_25FA,
+    geometric_shapes::GEOMETRIC_25FB,
+    geometric_shapes::GEOMETRIC_25FC,
+    geometric_shapes::GEOMETRIC_25FF,
+    misc_symbols::MISC_2600,
+    misc_symbols::MISC_2601,
+    misc_symbols::MISC_2602,
+    misc_symbols::MISC_2603,
+    misc_symbols::MISC_2604,
+    misc_symbols::MISC_2605,
+    misc_symbols::MISC_2606,
     misc_symbols::MISC_2607,
+    misc_symbols::MISC_2608,
+    misc_symbols::MISC_2609,
+    misc_symbols::MISC_260A,
+    misc_symbols::MISC_260B,
+    misc_symbols::MISC_260C,
+    misc_symbols::MISC_260D,
+    misc_symbols::MISC_260E,
+    misc_symbols::MISC_260F,
     misc_symbols::MISC_2613,
+    misc_symbols::MISC_2616,
+    misc_symbols::MISC_2617,
+    misc_symbols::MISC_2618,
+    misc_symbols::MISC_2619,
+    misc_symbols::MISC_261A,
+    misc_symbols::MISC_261B,
+    misc_symbols::MISC_261C,
+    misc_symbols::MISC_261D,
+    misc_symbols::MISC_261E,
+    misc_symbols::MISC_261F,
+    misc_symbols::MISC_2620,
+    misc_symbols::MISC_2621,
+    misc_symbols::MISC_2622,
+    misc_symbols::MISC_2623,
+    misc_symbols::MISC_2624,
+    misc_symbols::MISC_2625,
+    misc_symbols::MISC_2626,
+    misc_symbols::MISC_2627,
     misc_symbols::MISC_2628,
+    misc_symbols::MISC_2629,
+    misc_symbols::MISC_262A,
+    misc_symbols::MISC_262B,
+    misc_symbols::MISC_262C,
+    misc_symbols::MISC_262D,
+    misc_symbols::MISC_262E,
+    misc_symbols::MISC_262F,
+    misc_symbols::MISC_2638,
+    misc_symbols::MISC_2639,
+    misc_symbols::MISC_263A,
+    misc_symbols::MISC_263B,
+    misc_symbols::MISC_263C,
+    misc_symbols::MISC_263D,
     misc_symbols::MISC_263E,
     misc_symbols::MISC_263F,
+    misc_symbols::MISC_2640,
+    misc_symbols::MISC_2641,
+    misc_symbols::MISC_2642,
+    misc_symbols::MISC_2643,
     misc_symbols::MISC_2644,
+    misc_symbols::MISC_2645,
+    misc_symbols::MISC_2646,
     misc_symbols::MISC_2647,
+    misc_symbols::MISC_2654,
+    misc_symbols::MISC_2655,
+    misc_symbols::MISC_2656,
+    misc_symbols::MISC_2657,
+    misc_symbols::MISC_2658,
+    misc_symbols::MISC_2659,
+    misc_symbols::MISC_265A,
+    misc_symbols::MISC_265B,
+    misc_symbols::MISC_265C,
+    misc_symbols::MISC_265D,
+    misc_symbols::MISC_265E,
+    misc_symbols::MISC_265F,
+    misc_symbols::MISC_2660,
+    misc_symbols::MISC_2661,
+    misc_symbols::MISC_2662,
+    misc_symbols::MISC_2663,
+    misc_symbols::MISC_2664,
+    misc_symbols::MISC_2665,
+    misc_symbols::MISC_2666,
+    misc_symbols::MISC_2667,
+    misc_symbols::MISC_2668,
+    misc_symbols::MISC_2669,
+    misc_symbols::MISC_266A,
+    misc_symbols::MISC_266B,
+    misc_symbols::MISC_266C,
     misc_symbols::MISC_266D,
+    misc_symbols::MISC_266E,
     misc_symbols::MISC_266F,
+    misc_symbols::MISC_2670,
+    misc_symbols::MISC_2671,
+    misc_symbols::MISC_2672,
+    misc_symbols::MISC_2673,
+    misc_symbols::MISC_2674,
+    misc_symbols::MISC_2675,
+    misc_symbols::MISC_2676,
+    misc_symbols::MISC_2677,
+    misc_symbols::MISC_2678,
+    misc_symbols::MISC_2679,
+    misc_symbols::MISC_267A,
+    misc_symbols::MISC_267B,
+    misc_symbols::MISC_267C,
+    misc_symbols::MISC_267D,
+    misc_symbols::MISC_267E,
+    misc_symbols::MISC_2680,
+    misc_symbols::MISC_2681,
+    misc_symbols::MISC_2682,
+    misc_symbols::MISC_2683,
+    misc_symbols::MISC_2684,
+    misc_symbols::MISC_2685,
+    misc_symbols::MISC_2686,
+    misc_symbols::MISC_2687,
+    misc_symbols::MISC_2688,
+    misc_symbols::MISC_2689,
+    misc_symbols::MISC_2690,
+    misc_symbols::MISC_2691,
+    misc_symbols::MISC_2692,
+    misc_symbols::MISC_2694,
+    misc_symbols::MISC_2695,
+    misc_symbols::MISC_2696,
+    misc_symbols::MISC_2697,
+    misc_symbols::MISC_2698,
+    misc_symbols::MISC_2699,
+    misc_symbols::MISC_269A,
+    misc_symbols::MISC_269B,
+    misc_symbols::MISC_269C,
+    misc_symbols::MISC_269E,
+    misc_symbols::MISC_269F,
+    misc_symbols::MISC_26A0,
+    misc_symbols::MISC_26A2,
+    misc_symbols::MISC_26A3,
+    misc_symbols::MISC_26A4,
+    misc_symbols::MISC_26A5,
+    misc_symbols::MISC_26A6,
+    misc_symbols::MISC_26A7,
+    misc_symbols::MISC_26A8,
+    misc_symbols::MISC_26A9,
+    misc_symbols::MISC_26AC,
+    misc_symbols::MISC_26AD,
+    misc_symbols::MISC_26AE,
+    misc_symbols::MISC_26AF,
+    misc_symbols::MISC_26B0,
+    misc_symbols::MISC_26B1,
+    misc_symbols::MISC_26B2,
+    misc_symbols::MISC_26B3,
+    misc_symbols::MISC_26B4,
+    misc_symbols::MISC_26B5,
+    misc_symbols::MISC_26B6,
+    misc_symbols::MISC_26B7,
+    misc_symbols::MISC_26B8,
+    misc_symbols::MISC_26C0,
+    misc_symbols::MISC_26C1,
+    misc_symbols::MISC_26C2,
+    misc_symbols::MISC_26C3,
+    misc_symbols::MISC_26C8,
+    misc_symbols::MISC_26CF,
+    misc_symbols::MISC_26D1,
+    misc_symbols::MISC_26D3,
+    misc_symbols::MISC_26E2,
+    misc_symbols::MISC_26E9,
+    misc_symbols::MISC_26F0,
+    misc_symbols::MISC_26F1,
+    misc_symbols::MISC_26F4,
+    misc_symbols::MISC_26F7,
+    misc_symbols::MISC_26F8,
+    misc_symbols::MISC_26F9,
+    dingbats::DINGBAT_2701,
+    dingbats::DINGBAT_2702,
+    dingbats::DINGBAT_2703,
+    dingbats::DINGBAT_2704,
+    dingbats::DINGBAT_2706,
+    dingbats::DINGBAT_2707,
+    dingbats::DINGBAT_2708,
+    dingbats::DINGBAT_2709,
+    dingbats::DINGBAT_270C,
+    dingbats::DINGBAT_270D,
+    dingbats::DINGBAT_270E,
+    dingbats::DINGBAT_270F,
+    dingbats::DINGBAT_2710,
+    dingbats::DINGBAT_2711,
+    dingbats::DINGBAT_2712,
+    dingbats::DINGBAT_2713,
+    dingbats::DINGBAT_2714,
+    dingbats::DINGBAT_2715,
+    dingbats::DINGBAT_2716,
+    dingbats::DINGBAT_2717,
+    dingbats::DINGBAT_2718,
+    dingbats::DINGBAT_2719,
+    dingbats::DINGBAT_271A,
+    dingbats::DINGBAT_271B,
+    dingbats::DINGBAT_271C,
+    dingbats::DINGBAT_271D,
+    dingbats::DINGBAT_271E,
+    dingbats::DINGBAT_271F,
+    dingbats::DINGBAT_2720,
+    dingbats::DINGBAT_2721,
+    dingbats::DINGBAT_2722,
+    dingbats::DINGBAT_2723,
+    dingbats::DINGBAT_2724,
+    dingbats::DINGBAT_2725,
+    dingbats::DINGBAT_2726,
+    dingbats::DINGBAT_2727,
+    dingbats::DINGBAT_2729,
+    dingbats::DINGBAT_272A,
+    dingbats::DINGBAT_272B,
+    dingbats::DINGBAT_272C,
+    dingbats::DINGBAT_272D,
+    dingbats::DINGBAT_272E,
+    dingbats::DINGBAT_272F,
+    dingbats::DINGBAT_2730,
+    dingbats::DINGBAT_2731,
+    dingbats::DINGBAT_2732,
+    dingbats::DINGBAT_2733,
+    dingbats::DINGBAT_2734,
+    dingbats::DINGBAT_2735,
+    dingbats::DINGBAT_2736,
+    dingbats::DINGBAT_2737,
+    dingbats::DINGBAT_2738,
+    dingbats::DINGBAT_2739,
+    dingbats::DINGBAT_273A,
+    dingbats::DINGBAT_273B,
+    dingbats::DINGBAT_273C,
+    dingbats::DINGBAT_273D,
+    dingbats::DINGBAT_273E,
+    dingbats::DINGBAT_273F,
+    dingbats::DINGBAT_2740,
+    dingbats::DINGBAT_2741,
+    dingbats::DINGBAT_2742,
+    dingbats::DINGBAT_2743,
+    dingbats::DINGBAT_2744,
+    dingbats::DINGBAT_2745,
+    dingbats::DINGBAT_2746,
+    dingbats::DINGBAT_2747,
+    dingbats::DINGBAT_2748,
+    dingbats::DINGBAT_2749,
+    dingbats::DINGBAT_274A,
+    dingbats::DINGBAT_274B,
+    dingbats::DINGBAT_274D,
+    dingbats::DINGBAT_274F,
+    dingbats::DINGBAT_2750,
+    dingbats::DINGBAT_2752,
+    dingbats::DINGBAT_2756,
     dingbats::DINGBAT_2758,
     dingbats::DINGBAT_2759,
     dingbats::DINGBAT_275A,
+    dingbats::DINGBAT_275B,
+    dingbats::DINGBAT_275C,
+    dingbats::DINGBAT_275D,
+    dingbats::DINGBAT_275E,
     dingbats::DINGBAT_2761,
+    dingbats::DINGBAT_2762,
+    dingbats::DINGBAT_2763,
+    dingbats::DINGBAT_2764,
+    dingbats::DINGBAT_2765,
+    dingbats::DINGBAT_2766,
+    dingbats::DINGBAT_2767,
+    dingbats::DINGBAT_2768,
+    dingbats::DINGBAT_2769,
+    dingbats::DINGBAT_276A,
+    dingbats::DINGBAT_276B,
+    dingbats::DINGBAT_276C,
+    dingbats::DINGBAT_276D,
+    dingbats::DINGBAT_276E,
+    dingbats::DINGBAT_276F,
+    dingbats::DINGBAT_2770,
+    dingbats::DINGBAT_2771,
+    dingbats::DINGBAT_2772,
+    dingbats::DINGBAT_2773,
+    dingbats::DINGBAT_2774,
+    dingbats::DINGBAT_2775,
+    dingbats::DINGBAT_2776,
+    dingbats::DINGBAT_2777,
+    dingbats::DINGBAT_2778,
+    dingbats::DINGBAT_2779,
+    dingbats::DINGBAT_277A,
+    dingbats::DINGBAT_277B,
+    dingbats::DINGBAT_277C,
+    dingbats::DINGBAT_277D,
+    dingbats::DINGBAT_277E,
+    dingbats::DINGBAT_277F,
+    dingbats::DINGBAT_2780,
+    dingbats::DINGBAT_2781,
+    dingbats::DINGBAT_2782,
+    dingbats::DINGBAT_2783,
+    dingbats::DINGBAT_2784,
+    dingbats::DINGBAT_2785,
+    dingbats::DINGBAT_2786,
+    dingbats::DINGBAT_2787,
+    dingbats::DINGBAT_2788,
+    dingbats::DINGBAT_2789,
+    dingbats::DINGBAT_278A,
+    dingbats::DINGBAT_278B,
+    dingbats::DINGBAT_278C,
+    dingbats::DINGBAT_278D,
+    dingbats::DINGBAT_278E,
+    dingbats::DINGBAT_278F,
+    dingbats::DINGBAT_2790,
+    dingbats::DINGBAT_2791,
+    dingbats::DINGBAT_2792,
+    dingbats::DINGBAT_2793,
+    dingbats::DINGBAT_2794,
+    dingbats::DINGBAT_2798,
+    dingbats::DINGBAT_2799,
+    dingbats::DINGBAT_279A,
+    dingbats::DINGBAT_279B,
+    dingbats::DINGBAT_279C,
+    dingbats::DINGBAT_279D,
+    dingbats::DINGBAT_279E,
+    dingbats::DINGBAT_279F,
+    dingbats::DINGBAT_27A0,
+    dingbats::DINGBAT_27A1,
+    dingbats::DINGBAT_27A2,
+    dingbats::DINGBAT_27A3,
+    dingbats::DINGBAT_27A4,
+    dingbats::DINGBAT_27A5,
+    dingbats::DINGBAT_27A6,
     dingbats::DINGBAT_27A7,
+    dingbats::DINGBAT_27A8,
+    dingbats::DINGBAT_27A9,
+    dingbats::DINGBAT_27AA,
+    dingbats::DINGBAT_27AB,
+    dingbats::DINGBAT_27AC,
+    dingbats::DINGBAT_27AD,
+    dingbats::DINGBAT_27AE,
+    dingbats::DINGBAT_27AF,
+    dingbats::DINGBAT_27B1,
+    dingbats::DINGBAT_27B2,
+    dingbats::DINGBAT_27B3,
+    dingbats::DINGBAT_27B4,
+    dingbats::DINGBAT_27B5,
+    dingbats::DINGBAT_27B6,
+    dingbats::DINGBAT_27B7,
+    dingbats::DINGBAT_27B8,
+    dingbats::DINGBAT_27B9,
+    dingbats::DINGBAT_27BA,
+    dingbats::DINGBAT_27BB,
+    dingbats::DINGBAT_27BC,
+    dingbats::DINGBAT_27BD,
+    dingbats::DINGBAT_27BE,
     braille::BRAILLE_2801,
     braille::BRAILLE_2802,
     braille::BRAILLE_2803,
@@ -107,6 +800,62 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2805,
     braille::BRAILLE_2806,
     braille::BRAILLE_2807,
+    braille::BRAILLE_2808,
+    braille::BRAILLE_2809,
+    braille::BRAILLE_280A,
+    braille::BRAILLE_280B,
+    braille::BRAILLE_280C,
+    braille::BRAILLE_280D,
+    braille::BRAILLE_280E,
+    braille::BRAILLE_280F,
+    braille::BRAILLE_2810,
+    braille::BRAILLE_2811,
+    braille::BRAILLE_2812,
+    braille::BRAILLE_2813,
+    braille::BRAILLE_2814,
+    braille::BRAILLE_2815,
+    braille::BRAILLE_2816,
+    braille::BRAILLE_2817,
+    braille::BRAILLE_2818,
+    braille::BRAILLE_2819,
+    braille::BRAILLE_281A,
+    braille::BRAILLE_281B,
+    braille::BRAILLE_281C,
+    braille::BRAILLE_281D,
+    braille::BRAILLE_281E,
+    braille::BRAILLE_281F,
+    braille::BRAILLE_2820,
+    braille::BRAILLE_2821,
+    braille::BRAILLE_2822,
+    braille::BRAILLE_2823,
+    braille::BRAILLE_2824,
+    braille::BRAILLE_2825,
+    braille::BRAILLE_2826,
+    braille::BRAILLE_2827,
+    braille::BRAILLE_2828,
+    braille::BRAILLE_2829,
+    braille::BRAILLE_282A,
+    braille::BRAILLE_282B,
+    braille::BRAILLE_282C,
+    braille::BRAILLE_282D,
+    braille::BRAILLE_282E,
+    braille::BRAILLE_282F,
+    braille::BRAILLE_2830,
+    braille::BRAILLE_2831,
+    braille::BRAILLE_2832,
+    braille::BRAILLE_2833,
+    braille::BRAILLE_2834,
+    braille::BRAILLE_2835,
+    braille::BRAILLE_2836,
+    braille::BRAILLE_2837,
+    braille::BRAILLE_2838,
+    braille::BRAILLE_2839,
+    braille::BRAILLE_283A,
+    braille::BRAILLE_283B,
+    braille::BRAILLE_283C,
+    braille::BRAILLE_283D,
+    braille::BRAILLE_283E,
+    braille::BRAILLE_283F,
     braille::BRAILLE_2840,
     braille::BRAILLE_2841,
     braille::BRAILLE_2842,
@@ -115,6 +864,62 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2845,
     braille::BRAILLE_2846,
     braille::BRAILLE_2847,
+    braille::BRAILLE_2848,
+    braille::BRAILLE_2849,
+    braille::BRAILLE_284A,
+    braille::BRAILLE_284B,
+    braille::BRAILLE_284C,
+    braille::BRAILLE_284D,
+    braille::BRAILLE_284E,
+    braille::BRAILLE_284F,
+    braille::BRAILLE_2850,
+    braille::BRAILLE_2851,
+    braille::BRAILLE_2852,
+    braille::BRAILLE_2853,
+    braille::BRAILLE_2854,
+    braille::BRAILLE_2855,
+    braille::BRAILLE_2856,
+    braille::BRAILLE_2857,
+    braille::BRAILLE_2858,
+    braille::BRAILLE_2859,
+    braille::BRAILLE_285A,
+    braille::BRAILLE_285B,
+    braille::BRAILLE_285C,
+    braille::BRAILLE_285D,
+    braille::BRAILLE_285E,
+    braille::BRAILLE_285F,
+    braille::BRAILLE_2860,
+    braille::BRAILLE_2861,
+    braille::BRAILLE_2862,
+    braille::BRAILLE_2863,
+    braille::BRAILLE_2864,
+    braille::BRAILLE_2865,
+    braille::BRAILLE_2866,
+    braille::BRAILLE_2867,
+    braille::BRAILLE_2868,
+    braille::BRAILLE_2869,
+    braille::BRAILLE_286A,
+    braille::BRAILLE_286B,
+    braille::BRAILLE_286C,
+    braille::BRAILLE_286D,
+    braille::BRAILLE_286E,
+    braille::BRAILLE_286F,
+    braille::BRAILLE_2870,
+    braille::BRAILLE_2871,
+    braille::BRAILLE_2872,
+    braille::BRAILLE_2873,
+    braille::BRAILLE_2874,
+    braille::BRAILLE_2875,
+    braille::BRAILLE_2876,
+    braille::BRAILLE_2877,
+    braille::BRAILLE_2878,
+    braille::BRAILLE_2879,
+    braille::BRAILLE_287A,
+    braille::BRAILLE_287B,
+    braille::BRAILLE_287C,
+    braille::BRAILLE_287D,
+    braille::BRAILLE_287E,
+    braille::BRAILLE_287F,
     braille::BRAILLE_2880,
     braille::BRAILLE_2881,
     braille::BRAILLE_2882,
@@ -123,6 +928,62 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_2885,
     braille::BRAILLE_2886,
     braille::BRAILLE_2887,
+    braille::BRAILLE_2888,
+    braille::BRAILLE_2889,
+    braille::BRAILLE_288A,
+    braille::BRAILLE_288B,
+    braille::BRAILLE_288C,
+    braille::BRAILLE_288D,
+    braille::BRAILLE_288E,
+    braille::BRAILLE_288F,
+    braille::BRAILLE_2890,
+    braille::BRAILLE_2891,
+    braille::BRAILLE_2892,
+    braille::BRAILLE_2893,
+    braille::BRAILLE_2894,
+    braille::BRAILLE_2895,
+    braille::BRAILLE_2896,
+    braille::BRAILLE_2897,
+    braille::BRAILLE_2898,
+    braille::BRAILLE_2899,
+    braille::BRAILLE_289A,
+    braille::BRAILLE_289B,
+    braille::BRAILLE_289C,
+    braille::BRAILLE_289D,
+    braille::BRAILLE_289E,
+    braille::BRAILLE_289F,
+    braille::BRAILLE_28A0,
+    braille::BRAILLE_28A1,
+    braille::BRAILLE_28A2,
+    braille::BRAILLE_28A3,
+    braille::BRAILLE_28A4,
+    braille::BRAILLE_28A5,
+    braille::BRAILLE_28A6,
+    braille::BRAILLE_28A7,
+    braille::BRAILLE_28A8,
+    braille::BRAILLE_28A9,
+    braille::BRAILLE_28AA,
+    braille::BRAILLE_28AB,
+    braille::BRAILLE_28AC,
+    braille::BRAILLE_28AD,
+    braille::BRAILLE_28AE,
+    braille::BRAILLE_28AF,
+    braille::BRAILLE_28B0,
+    braille::BRAILLE_28B1,
+    braille::BRAILLE_28B2,
+    braille::BRAILLE_28B3,
+    braille::BRAILLE_28B4,
+    braille::BRAILLE_28B5,
+    braille::BRAILLE_28B6,
+    braille::BRAILLE_28B7,
+    braille::BRAILLE_28B8,
+    braille::BRAILLE_28B9,
+    braille::BRAILLE_28BA,
+    braille::BRAILLE_28BB,
+    braille::BRAILLE_28BC,
+    braille::BRAILLE_28BD,
+    braille::BRAILLE_28BE,
+    braille::BRAILLE_28BF,
     braille::BRAILLE_28C0,
     braille::BRAILLE_28C1,
     braille::BRAILLE_28C2,
@@ -131,61 +992,314 @@ pub static UNIVERSAL_ICONS: &[SafeIcon] = &[
     braille::BRAILLE_28C5,
     braille::BRAILLE_28C6,
     braille::BRAILLE_28C7,
+    braille::BRAILLE_28C8,
+    braille::BRAILLE_28C9,
+    braille::BRAILLE_28CA,
+    braille::BRAILLE_28CB,
+    braille::BRAILLE_28CC,
+    braille::BRAILLE_28CD,
+    braille::BRAILLE_28CE,
+    braille::BRAILLE_28CF,
+    braille::BRAILLE_28D0,
+    braille::BRAILLE_28D1,
+    braille::BRAILLE_28D2,
+    braille::BRAILLE_28D3,
+    braille::BRAILLE_28D4,
+    braille::BRAILLE_28D5,
+    braille::BRAILLE_28D6,
+    braille::BRAILLE_28D7,
+    braille::BRAILLE_28D8,
+    braille::BRAILLE_28D9,
+    braille::BRAILLE_28DA,
+    braille::BRAILLE_28DB,
+    braille::BRAILLE_28DC,
+    braille::BRAILLE_28DD,
+    braille::BRAILLE_28DE,
+    braille::BRAILLE_28DF,
+    braille::BRAILLE_28E0,
+    braille::BRAILLE_28E1,
+    braille::BRAILLE_28E2,
+    braille::BRAILLE_28E3,
+    braille::BRAILLE_28E4,
+    braille::BRAILLE_28E5,
+    braille::BRAILLE_28E6,
+    braille::BRAILLE_28E7,
+    braille::BRAILLE_28E8,
+    braille::BRAILLE_28E9,
+    braille::BRAILLE_28EA,
+    braille::BRAILLE_28EB,
+    braille::BRAILLE_28EC,
+    braille::BRAILLE_28ED,
+    braille::BRAILLE_28EE,
+    braille::BRAILLE_28EF,
+    braille::BRAILLE_28F0,
+    braille::BRAILLE_28F1,
+    braille::BRAILLE_28F2,
+    braille::BRAILLE_28F3,
+    braille::BRAILLE_28F4,
+    braille::BRAILLE_28F5,
+    braille::BRAILLE_28F6,
+    braille::BRAILLE_28F7,
+    braille::BRAILLE_28F8,
+    braille::BRAILLE_28F9,
+    braille::BRAILLE_28FA,
+    braille::BRAILLE_28FB,
+    braille::BRAILLE_28FC,
+    braille::BRAILLE_28FD,
+    braille::BRAILLE_28FE,
+    braille::BRAILLE_28FF,
 ];
 
 pub mod ascii {
     use crate::SafeIcon;
     pub const ASCII_0021: SafeIcon = SafeIcon::new("!", "");
     pub const ASCII_0022: SafeIcon = SafeIcon::new("\"", "");
+    pub const ASCII_0023: SafeIcon = SafeIcon::new("#", "");
+    pub const ASCII_0024: SafeIcon = SafeIcon::new("$", "");
+    pub const ASCII_0025: SafeIcon = SafeIcon::new("%", "");
+    pub const ASCII_0026: SafeIcon = SafeIcon::new("&", "");
     pub const ASCII_0027: SafeIcon = SafeIcon::new("'", "");
     pub const ASCII_0028: SafeIcon = SafeIcon::new("(", "");
     pub const ASCII_0029: SafeIcon = SafeIcon::new(")", "");
+    pub const ASCII_002A: SafeIcon = SafeIcon::new("*", "");
+    pub const ASCII_002B: SafeIcon = SafeIcon::new("+", "");
     pub const ASCII_002C: SafeIcon = SafeIcon::new(",", "");
+    pub const ASCII_002D: SafeIcon = SafeIcon::new("-", "");
     pub const ASCII_002E: SafeIcon = SafeIcon::new(".", "");
     pub const ASCII_002F: SafeIcon = SafeIcon::new("/", "");
+    pub const ASCII_0030: SafeIcon = SafeIcon::new("0", "");
+    pub const ASCII_0031: SafeIcon = SafeIcon::new("1", "");
+    pub const ASCII_0032: SafeIcon = SafeIcon::new("2", "");
+    pub const ASCII_0033: SafeIcon = SafeIcon::new("3", "");
+    pub const ASCII_0034: SafeIcon = SafeIcon::new("4", "");
+    pub const ASCII_0035: SafeIcon = SafeIcon::new("5", "");
+    pub const ASCII_0036: SafeIcon = SafeIcon::new("6", "");
+    pub const ASCII_0037: SafeIcon = SafeIcon::new("7", "");
+    pub const ASCII_0038: SafeIcon = SafeIcon::new("8", "");
+    pub const ASCII_0039: SafeIcon = SafeIcon::new("9", "");
     pub const ASCII_003A: SafeIcon = SafeIcon::new(":", "");
     pub const ASCII_003B: SafeIcon = SafeIcon::new(";", "");
+    pub const ASCII_003C: SafeIcon = SafeIcon::new("<", "");
+    pub const ASCII_003D: SafeIcon = SafeIcon::new("=", "");
     pub const ASCII_003E: SafeIcon = SafeIcon::new(">", "");
     pub const ASCII_003F: SafeIcon = SafeIcon::new("?", "");
+    pub const ASCII_0040: SafeIcon = SafeIcon::new("@", "");
+    pub const ASCII_0041: SafeIcon = SafeIcon::new("A", "");
+    pub const ASCII_0042: SafeIcon = SafeIcon::new("B", "");
+    pub const ASCII_0043: SafeIcon = SafeIcon::new("C", "");
+    pub const ASCII_0044: SafeIcon = SafeIcon::new("D", "");
+    pub const ASCII_0045: SafeIcon = SafeIcon::new("E", "");
+    pub const ASCII_0046: SafeIcon = SafeIcon::new("F", "");
+    pub const ASCII_0047: SafeIcon = SafeIcon::new("G", "");
     pub const ASCII_0049: SafeIcon = SafeIcon::new("I", "");
     pub const ASCII_004A: SafeIcon = SafeIcon::new("J", "");
+    pub const ASCII_004B: SafeIcon = SafeIcon::new("K", "");
+    pub const ASCII_004C: SafeIcon = SafeIcon::new("L", "");
+    pub const ASCII_004D: SafeIcon = SafeIcon::new("M", "");
+    pub const ASCII_004E: SafeIcon = SafeIcon::new("N", "");
+    pub const ASCII_004F: SafeIcon = SafeIcon::new("O", "");
+    pub const ASCII_0050: SafeIcon = SafeIcon::new("P", "");
+    pub const ASCII_0051: SafeIcon = SafeIcon::new("Q", "");
+    pub const ASCII_0052: SafeIcon = SafeIcon::new("R", "");
+    pub const ASCII_0053: SafeIcon = SafeIcon::new("S", "");
+    pub const ASCII_0054: SafeIcon = SafeIcon::new("T", "");
+    pub const ASCII_0056: SafeIcon = SafeIcon::new("V", "");
+    pub const ASCII_0057: SafeIcon = SafeIcon::new("W", "");
+    pub const ASCII_0058: SafeIcon = SafeIcon::new("X", "");
+    pub const ASCII_0059: SafeIcon = SafeIcon::new("Y", "");
+    pub const ASCII_005A: SafeIcon = SafeIcon::new("Z", "");
     pub const ASCII_005B: SafeIcon = SafeIcon::new("[", "");
     pub const ASCII_005C: SafeIcon = SafeIcon::new("\\", "");
     pub const ASCII_005D: SafeIcon = SafeIcon::new("]", "");
     pub const ASCII_005E: SafeIcon = SafeIcon::new("^", "");
+    pub const ASCII_005F: SafeIcon = SafeIcon::new("_", "");
     pub const ASCII_0060: SafeIcon = SafeIcon::new("`", "");
     pub const ASCII_0061: SafeIcon = SafeIcon::new("a", "");
+    pub const ASCII_0062: SafeIcon = SafeIcon::new("b", "");
     pub const ASCII_0063: SafeIcon = SafeIcon::new("c", "");
+    pub const ASCII_0064: SafeIcon = SafeIcon::new("d", "");
+    pub const ASCII_0065: SafeIcon = SafeIcon::new("e", "");
+    pub const ASCII_0066: SafeIcon = SafeIcon::new("f", "");
+    pub const ASCII_0067: SafeIcon = SafeIcon::new("g", "");
+    pub const ASCII_0068: SafeIcon = SafeIcon::new("h", "");
+    pub const ASCII_0069: SafeIcon = SafeIcon::new("i", "");
     pub const ASCII_006A: SafeIcon = SafeIcon::new("j", "");
+    pub const ASCII_006B: SafeIcon = SafeIcon::new("k", "");
+    pub const ASCII_006C: SafeIcon = SafeIcon::new("l", "");
+    pub const ASCII_006D: SafeIcon = SafeIcon::new("m", "");
+    pub const ASCII_006E: SafeIcon = SafeIcon::new("n", "");
+    pub const ASCII_006F: SafeIcon = SafeIcon::new("o", "");
+    pub const ASCII_0070: SafeIcon = SafeIcon::new("p", "");
+    pub const ASCII_0071: SafeIcon = SafeIcon::new("q", "");
+    pub const ASCII_0072: SafeIcon = SafeIcon::new("r", "");
     pub const ASCII_0073: SafeIcon = SafeIcon::new("s", "");
     pub const ASCII_0074: SafeIcon = SafeIcon::new("t", "");
+    pub const ASCII_0075: SafeIcon = SafeIcon::new("u", "");
+    pub const ASCII_0076: SafeIcon = SafeIcon::new("v", "");
+    pub const ASCII_0077: SafeIcon = SafeIcon::new("w", "");
+    pub const ASCII_0078: SafeIcon = SafeIcon::new("x", "");
+    pub const ASCII_0079: SafeIcon = SafeIcon::new("y", "");
     pub const ASCII_007A: SafeIcon = SafeIcon::new("z", "");
     pub const ASCII_007B: SafeIcon = SafeIcon::new("{", "");
     pub const ASCII_007C: SafeIcon = SafeIcon::new("|", "");
     pub const ASCII_007D: SafeIcon = SafeIcon::new("}", "");
+    pub const ASCII_007E: SafeIcon = SafeIcon::new("~", "");
 }
 
 pub mod arrows {
     use crate::SafeIcon;
+    pub const ARROW_2190: SafeIcon = SafeIcon::new("←", "<");
+    pub const ARROW_2191: SafeIcon = SafeIcon::new("↑", "^");
+    pub const ARROW_2192: SafeIcon = SafeIcon::new("→", ">");
+    pub const ARROW_2193: SafeIcon = SafeIcon::new("↓", "v");
+    pub const ARROW_2194: SafeIcon = SafeIcon::new("↔", "-");
+    pub const ARROW_2195: SafeIcon = SafeIcon::new("↕", "*");
+    pub const ARROW_2196: SafeIcon = SafeIcon::new("↖", "*");
+    pub const ARROW_2197: SafeIcon = SafeIcon::new("↗", "*");
+    pub const ARROW_2198: SafeIcon = SafeIcon::new("↘", "*");
+    pub const ARROW_2199: SafeIcon = SafeIcon::new("↙", "*");
+    pub const ARROW_219A: SafeIcon = SafeIcon::new("↚", "*");
+    pub const ARROW_219B: SafeIcon = SafeIcon::new("↛", "*");
+    pub const ARROW_219C: SafeIcon = SafeIcon::new("↜", "*");
+    pub const ARROW_219D: SafeIcon = SafeIcon::new("↝", "*");
+    pub const ARROW_219E: SafeIcon = SafeIcon::new("↞", "*");
+    pub const ARROW_219F: SafeIcon = SafeIcon::new("↟", "*");
+    pub const ARROW_21A0: SafeIcon = SafeIcon::new("↠", "*");
+    pub const ARROW_21A1: SafeIcon = SafeIcon::new("↡", "*");
+    pub const ARROW_21A2: SafeIcon = SafeIcon::new("↢", "*");
+    pub const ARROW_21A3: SafeIcon = SafeIcon::new("↣", "*");
+    pub const ARROW_21A4: SafeIcon = SafeIcon::new("↤", "*");
+    pub const ARROW_21A5: SafeIcon = SafeIcon::new("↥", "*");
+    pub const ARROW_21A6: SafeIcon = SafeIcon::new("↦", "*");
+    pub const ARROW_21A7: SafeIcon = SafeIcon::new("↧", "*");
     pub const ARROW_21A8: SafeIcon = SafeIcon::new("↨", "*");
+    pub const ARROW_21A9: SafeIcon = SafeIcon::new("↩", "*");
+    pub const ARROW_21AA: SafeIcon = SafeIcon::new("↪", "*");
+    pub const ARROW_21AB: SafeIcon = SafeIcon::new("↫", "*");
+    pub const ARROW_21AC: SafeIcon = SafeIcon::new("↬", "*");
+    pub const ARROW_21AD: SafeIcon = SafeIcon::new("↭", "*");
+    pub const ARROW_21AE: SafeIcon = SafeIcon::new("↮", "*");
+    pub const ARROW_21AF: SafeIcon = SafeIcon::new("↯", "*");
+    pub const ARROW_21B0: SafeIcon = SafeIcon::new("↰", "*");
+    pub const ARROW_21B1: SafeIcon = SafeIcon::new("↱", "*");
+    pub const ARROW_21B2: SafeIcon = SafeIcon::new("↲", "*");
+    pub const ARROW_21B3: SafeIcon = SafeIcon::new("↳", "*");
+    pub const ARROW_21B4: SafeIcon = SafeIcon::new("↴", "*");
+    pub const ARROW_21B5: SafeIcon = SafeIcon::new("↵", "*");
+    pub const ARROW_21B6: SafeIcon = SafeIcon::new("↶", "*");
+    pub const ARROW_21B7: SafeIcon = SafeIcon::new("↷", "*");
+    pub const ARROW_21B8: SafeIcon = SafeIcon::new("↸", "*");
+    pub const ARROW_21B9: SafeIcon = SafeIcon::new("↹", "*");
+    pub const ARROW_21BA: SafeIcon = SafeIcon::new("↺", "*");
+    pub const ARROW_21BB: SafeIcon = SafeIcon::new("↻", "*");
+    pub const ARROW_21BC: SafeIcon = SafeIcon::new("↼", "*");
+    pub const ARROW_21BD: SafeIcon = SafeIcon::new("↽", "*");
+    pub const ARROW_21BE: SafeIcon = SafeIcon::new("↾", "*");
+    pub const ARROW_21BF: SafeIcon = SafeIcon::new("↿", "*");
+    pub const ARROW_21C0: SafeIcon = SafeIcon::new("⇀", "*");
+    pub const ARROW_21C1: SafeIcon = SafeIcon::new("⇁", "*");
+    pub const ARROW_21C2: SafeIcon = SafeIcon::new("⇂", "*");
+    pub const ARROW_21C3: SafeIcon = SafeIcon::new("⇃", "*");
+    pub const ARROW_21C4: SafeIcon = SafeIcon::new("⇄", "*");
+    pub const ARROW_21C5: SafeIcon = SafeIcon::new("⇅", "*");
+    pub const ARROW_21C6: SafeIcon = SafeIcon::new("⇆", "*");
+    pub const ARROW_21C7: SafeIcon = SafeIcon::new("⇇", "*");
+    pub const ARROW_21C8: SafeIcon = SafeIcon::new("⇈", "*");
+    pub const ARROW_21C9: SafeIcon = SafeIcon::new("⇉", "*");
+    pub const ARROW_21CA: SafeIcon = SafeIcon::new("⇊", "*");
+    pub const ARROW_21CB: SafeIcon = SafeIcon::new("⇋", "*");
+    pub const ARROW_21CC: SafeIcon = SafeIcon::new("⇌", "*");
+    pub const ARROW_21CD: SafeIcon = SafeIcon::new("⇍", "*");
+    pub const ARROW_21CE: SafeIcon = SafeIcon::new("⇎", "*");
+    pub const ARROW_21CF: SafeIcon = SafeIcon::new("⇏", "*");
+    pub const ARROW_21D0: SafeIcon = SafeIcon::new("⇐", "*");
+    pub const ARROW_21D1: SafeIcon = SafeIcon::new("⇑", "*");
+    pub const ARROW_21D2: SafeIcon = SafeIcon::new("⇒", "*");
+    pub const ARROW_21D3: SafeIcon = SafeIcon::new("⇓", "*");
+    pub const ARROW_21D4: SafeIcon = SafeIcon::new("⇔", "*");
+    pub const ARROW_21D5: SafeIcon = SafeIcon::new("⇕", "*");
+    pub const ARROW_21D6: SafeIcon = SafeIcon::new("⇖", "*");
+    pub const ARROW_21D7: SafeIcon = SafeIcon::new("⇗", "*");
+    pub const ARROW_21D8: SafeIcon = SafeIcon::new("⇘", "*");
+    pub const ARROW_21D9: SafeIcon = SafeIcon::new("⇙", "*");
+    pub const ARROW_21DA: SafeIcon = SafeIcon::new("⇚", "*");
+    pub const ARROW_21DB: SafeIcon = SafeIcon::new("⇛", "*");
+    pub const ARROW_21DC: SafeIcon = SafeIcon::new("⇜", "*");
+    pub const ARROW_21DD: SafeIcon = SafeIcon::new("⇝", "*");
+    pub const ARROW_21DE: SafeIcon = SafeIcon::new("⇞", "*");
+    pub const ARROW_21DF: SafeIcon = SafeIcon::new("⇟", "*");
+    pub const ARROW_21E0: SafeIcon = SafeIcon::new("⇠", "*");
+    pub const ARROW_21E1: SafeIcon = SafeIcon::new("⇡", "*");
+    pub const ARROW_21E2: SafeIcon = SafeIcon::new("⇢", "*");
+    pub const ARROW_21E3: SafeIcon = SafeIcon::new("⇣", "*");
+    pub const ARROW_21E4: SafeIcon = SafeIcon::new("⇤", "*");
+    pub const ARROW_21E5: SafeIcon = SafeIcon::new("⇥", "*");
+    pub const ARROW_21E6: SafeIcon = SafeIcon::new("⇦", "*");
+    pub const ARROW_21E7: SafeIcon = SafeIcon::new("⇧", "*");
+    pub const ARROW_21E8: SafeIcon = SafeIcon::new("⇨", "*");
+    pub const ARROW_21E9: SafeIcon = SafeIcon::new("⇩", "*");
+    pub const ARROW_21EA: SafeIcon = SafeIcon::new("⇪", "*");
+    pub const ARROW_21EB: SafeIcon = SafeIcon::new("⇫", "*");
+    pub const ARROW_21EC: SafeIcon = SafeIcon::new("⇬", "*");
+    pub const ARROW_21ED: SafeIcon = SafeIcon::new("⇭", "*");
+    pub const ARROW_21EE: SafeIcon = SafeIcon::new("⇮", "*");
+    pub const ARROW_21EF: SafeIcon = SafeIcon::new("⇯", "*");
+    pub const ARROW_21F0: SafeIcon = SafeIcon::new("⇰", "*");
+    pub const ARROW_21F1: SafeIcon = SafeIcon::new("⇱", "*");
+    pub const ARROW_21F2: SafeIcon = SafeIcon::new("⇲", "*");
+    pub const ARROW_21F3: SafeIcon = SafeIcon::new("⇳", "*");
+    pub const ARROW_21F4: SafeIcon = SafeIcon::new("⇴", "*");
+    pub const ARROW_21F5: SafeIcon = SafeIcon::new("⇵", "*");
+    pub const ARROW_21F6: SafeIcon = SafeIcon::new("⇶", "*");
+    pub const ARROW_21F7: SafeIcon = SafeIcon::new("⇷", "*");
+    pub const ARROW_21F8: SafeIcon = SafeIcon::new("⇸", "*");
+    pub const ARROW_21F9: SafeIcon = SafeIcon::new("⇹", "*");
+    pub const ARROW_21FA: SafeIcon = SafeIcon::new("⇺", "*");
+    pub const ARROW_21FB: SafeIcon = SafeIcon::new("⇻", "*");
+    pub const ARROW_21FC: SafeIcon = SafeIcon::new("⇼", "*");
+    pub const ARROW_21FD: SafeIcon = SafeIcon::new("⇽", "*");
+    pub const ARROW_21FE: SafeIcon = SafeIcon::new("⇾", "*");
+    pub const ARROW_21FF: SafeIcon = SafeIcon::new("⇿", "*");
 }
 
 pub mod box_drawing {
     use crate::SafeIcon;
+    pub const BOX_2500: SafeIcon = SafeIcon::new("─", "-");
+    pub const BOX_2501: SafeIcon = SafeIcon::new("━", "+");
     pub const BOX_2502: SafeIcon = SafeIcon::new("│", "|");
     pub const BOX_2503: SafeIcon = SafeIcon::new("┃", "+");
+    pub const BOX_2504: SafeIcon = SafeIcon::new("┄", "+");
+    pub const BOX_2505: SafeIcon = SafeIcon::new("┅", "+");
     pub const BOX_2506: SafeIcon = SafeIcon::new("┆", "+");
     pub const BOX_2507: SafeIcon = SafeIcon::new("┇", "+");
+    pub const BOX_2508: SafeIcon = SafeIcon::new("┈", "+");
+    pub const BOX_2509: SafeIcon = SafeIcon::new("┉", "+");
     pub const BOX_250A: SafeIcon = SafeIcon::new("┊", "+");
     pub const BOX_250B: SafeIcon = SafeIcon::new("┋", "+");
+    pub const BOX_250C: SafeIcon = SafeIcon::new("┌", "+");
+    pub const BOX_250D: SafeIcon = SafeIcon::new("┍", "+");
+    pub const BOX_250E: SafeIcon = SafeIcon::new("┎", "+");
+    pub const BOX_250F: SafeIcon = SafeIcon::new("┏", "+");
     pub const BOX_2510: SafeIcon = SafeIcon::new("┐", "+");
     pub const BOX_2511: SafeIcon = SafeIcon::new("┑", "+");
     pub const BOX_2512: SafeIcon = SafeIcon::new("┒", "+");
     pub const BOX_2513: SafeIcon = SafeIcon::new("┓", "+");
+    pub const BOX_2514: SafeIcon = SafeIcon::new("└", "+");
+    pub const BOX_2515: SafeIcon = SafeIcon::new("┕", "+");
+    pub const BOX_2516: SafeIcon = SafeIcon::new("┖", "+");
+    pub const BOX_2517: SafeIcon = SafeIcon::new("┗", "+");
     pub const BOX_2518: SafeIcon = SafeIcon::new("┘", "+");
     pub const BOX_2519: SafeIcon = SafeIcon::new("┙", "+");
     pub const BOX_251A: SafeIcon = SafeIcon::new("┚", "+");
     pub const BOX_251B: SafeIcon = SafeIcon::new("┛", "+");
+    pub const BOX_251C: SafeIcon = SafeIcon::new("├", "+");
+    pub const BOX_251D: SafeIcon = SafeIcon::new("┝", "+");
+    pub const BOX_251E: SafeIcon = SafeIcon::new("┞", "+");
+    pub const BOX_251F: SafeIcon = SafeIcon::new("┟", "+");
+    pub const BOX_2520: SafeIcon = SafeIcon::new("┠", "+");
+    pub const BOX_2521: SafeIcon = SafeIcon::new("┡", "+");
+    pub const BOX_2522: SafeIcon = SafeIcon::new("┢", "+");
+    pub const BOX_2523: SafeIcon = SafeIcon::new("┣", "+");
     pub const BOX_2524: SafeIcon = SafeIcon::new("┤", "+");
     pub const BOX_2525: SafeIcon = SafeIcon::new("┥", "+");
     pub const BOX_2526: SafeIcon = SafeIcon::new("┦", "+");
@@ -194,65 +1308,561 @@ pub mod box_drawing {
     pub const BOX_2529: SafeIcon = SafeIcon::new("┩", "+");
     pub const BOX_252A: SafeIcon = SafeIcon::new("┪", "+");
     pub const BOX_252B: SafeIcon = SafeIcon::new("┫", "+");
+    pub const BOX_252C: SafeIcon = SafeIcon::new("┬", "+");
+    pub const BOX_252D: SafeIcon = SafeIcon::new("┭", "+");
+    pub const BOX_252E: SafeIcon = SafeIcon::new("┮", "+");
+    pub const BOX_252F: SafeIcon = SafeIcon::new("┯", "+");
+    pub const BOX_2530: SafeIcon = SafeIcon::new("┰", "+");
+    pub const BOX_2531: SafeIcon = SafeIcon::new("┱", "+");
+    pub const BOX_2532: SafeIcon = SafeIcon::new("┲", "+");
+    pub const BOX_2533: SafeIcon = SafeIcon::new("┳", "+");
+    pub const BOX_2534: SafeIcon = SafeIcon::new("┴", "+");
+    pub const BOX_2535: SafeIcon = SafeIcon::new("┵", "+");
+    pub const BOX_2536: SafeIcon = SafeIcon::new("┶", "+");
+    pub const BOX_2537: SafeIcon = SafeIcon::new("┷", "+");
+    pub const BOX_2538: SafeIcon = SafeIcon::new("┸", "+");
+    pub const BOX_2539: SafeIcon = SafeIcon::new("┹", "+");
+    pub const BOX_253A: SafeIcon = SafeIcon::new("┺", "+");
+    pub const BOX_253B: SafeIcon = SafeIcon::new("┻", "+");
+    pub const BOX_253C: SafeIcon = SafeIcon::new("┼", "+");
+    pub const BOX_253D: SafeIcon = SafeIcon::new("┽", "+");
+    pub const BOX_253E: SafeIcon = SafeIcon::new("┾", "+");
+    pub const BOX_253F: SafeIcon = SafeIcon::new("┿", "+");
+    pub const BOX_2540: SafeIcon = SafeIcon::new("╀", "+");
+    pub const BOX_2541: SafeIcon = SafeIcon::new("╁", "+");
+    pub const BOX_2542: SafeIcon = SafeIcon::new("╂", "+");
+    pub const BOX_2543: SafeIcon = SafeIcon::new("╃", "+");
+    pub const BOX_2544: SafeIcon = SafeIcon::new("╄", "+");
+    pub const BOX_2545: SafeIcon = SafeIcon::new("╅", "+");
+    pub const BOX_2546: SafeIcon = SafeIcon::new("╆", "+");
+    pub const BOX_2547: SafeIcon = SafeIcon::new("╇", "+");
+    pub const BOX_2548: SafeIcon = SafeIcon::new("╈", "+");
+    pub const BOX_2549: SafeIcon = SafeIcon::new("╉", "+");
+    pub const BOX_254A: SafeIcon = SafeIcon::new("╊", "+");
+    pub const BOX_254B: SafeIcon = SafeIcon::new("╋", "+");
+    pub const BOX_254C: SafeIcon = SafeIcon::new("╌", "+");
+    pub const BOX_254D: SafeIcon = SafeIcon::new("╍", "+");
     pub const BOX_254E: SafeIcon = SafeIcon::new("╎", "+");
     pub const BOX_254F: SafeIcon = SafeIcon::new("╏", "+");
+    pub const BOX_2550: SafeIcon = SafeIcon::new("═", "=");
     pub const BOX_2551: SafeIcon = SafeIcon::new("║", "|");
+    pub const BOX_2552: SafeIcon = SafeIcon::new("╒", "+");
+    pub const BOX_2553: SafeIcon = SafeIcon::new("╓", "+");
+    pub const BOX_2554: SafeIcon = SafeIcon::new("╔", "+");
     pub const BOX_2555: SafeIcon = SafeIcon::new("╕", "+");
     pub const BOX_2556: SafeIcon = SafeIcon::new("╖", "+");
     pub const BOX_2557: SafeIcon = SafeIcon::new("╗", "+");
+    pub const BOX_2558: SafeIcon = SafeIcon::new("╘", "+");
+    pub const BOX_2559: SafeIcon = SafeIcon::new("╙", "+");
+    pub const BOX_255A: SafeIcon = SafeIcon::new("╚", "+");
     pub const BOX_255B: SafeIcon = SafeIcon::new("╛", "+");
     pub const BOX_255C: SafeIcon = SafeIcon::new("╜", "+");
     pub const BOX_255D: SafeIcon = SafeIcon::new("╝", "+");
+    pub const BOX_255E: SafeIcon = SafeIcon::new("╞", "+");
+    pub const BOX_255F: SafeIcon = SafeIcon::new("╟", "+");
+    pub const BOX_2560: SafeIcon = SafeIcon::new("╠", "+");
     pub const BOX_2561: SafeIcon = SafeIcon::new("╡", "+");
     pub const BOX_2562: SafeIcon = SafeIcon::new("╢", "+");
     pub const BOX_2563: SafeIcon = SafeIcon::new("╣", "+");
+    pub const BOX_2564: SafeIcon = SafeIcon::new("╤", "+");
+    pub const BOX_2565: SafeIcon = SafeIcon::new("╥", "+");
+    pub const BOX_2566: SafeIcon = SafeIcon::new("╦", "+");
+    pub const BOX_2567: SafeIcon = SafeIcon::new("╧", "+");
+    pub const BOX_2568: SafeIcon = SafeIcon::new("╨", "+");
+    pub const BOX_2569: SafeIcon = SafeIcon::new("╩", "+");
+    pub const BOX_256A: SafeIcon = SafeIcon::new("╪", "+");
+    pub const BOX_256B: SafeIcon = SafeIcon::new("╫", "+");
+    pub const BOX_256C: SafeIcon = SafeIcon::new("╬", "+");
+    pub const BOX_256D: SafeIcon = SafeIcon::new("╭", "+");
     pub const BOX_256E: SafeIcon = SafeIcon::new("╮", "+");
     pub const BOX_256F: SafeIcon = SafeIcon::new("╯", "+");
+    pub const BOX_2570: SafeIcon = SafeIcon::new("╰", "+");
+    pub const BOX_2571: SafeIcon = SafeIcon::new("╱", "/");
+    pub const BOX_2572: SafeIcon = SafeIcon::new("╲", "\\");
+    pub const BOX_2573: SafeIcon = SafeIcon::new("╳", "x");
     pub const BOX_2574: SafeIcon = SafeIcon::new("╴", "+");
     pub const BOX_2575: SafeIcon = SafeIcon::new("╵", "+");
+    pub const BOX_2576: SafeIcon = SafeIcon::new("╶", "+");
     pub const BOX_2577: SafeIcon = SafeIcon::new("╷", "+");
     pub const BOX_2578: SafeIcon = SafeIcon::new("╸", "+");
     pub const BOX_2579: SafeIcon = SafeIcon::new("╹", "+");
+    pub const BOX_257A: SafeIcon = SafeIcon::new("╺", "+");
     pub const BOX_257B: SafeIcon = SafeIcon::new("╻", "+");
+    pub const BOX_257C: SafeIcon = SafeIcon::new("╼", "+");
     pub const BOX_257D: SafeIcon = SafeIcon::new("╽", "+");
+    pub const BOX_257E: SafeIcon = SafeIcon::new("╾", "+");
     pub const BOX_257F: SafeIcon = SafeIcon::new("╿", "+");
 }
 
 pub mod block_elements {
     use crate::SafeIcon;
+    pub const BLOCK_2580: SafeIcon = SafeIcon::new("▀", "^");
+    pub const BLOCK_2581: SafeIcon = SafeIcon::new("▁", "#");
+    pub const BLOCK_2582: SafeIcon = SafeIcon::new("▂", "#");
+    pub const BLOCK_2583: SafeIcon = SafeIcon::new("▃", "#");
+    pub const BLOCK_2584: SafeIcon = SafeIcon::new("▄", "_");
+    pub const BLOCK_2585: SafeIcon = SafeIcon::new("▅", "#");
+    pub const BLOCK_2586: SafeIcon = SafeIcon::new("▆", "#");
+    pub const BLOCK_2587: SafeIcon = SafeIcon::new("▇", "#");
+    pub const BLOCK_2588: SafeIcon = SafeIcon::new("█", "#");
+    pub const BLOCK_2589: SafeIcon = SafeIcon::new("▉", "#");
+    pub const BLOCK_258A: SafeIcon = SafeIcon::new("▊", "#");
+    pub const BLOCK_258B: SafeIcon = SafeIcon::new("▋", "#");
     pub const BLOCK_258C: SafeIcon = SafeIcon::new("▌", "[");
+    pub const BLOCK_258D: SafeIcon = SafeIcon::new("▍", "#");
+    pub const BLOCK_258E: SafeIcon = SafeIcon::new("▎", "#");
+    pub const BLOCK_2590: SafeIcon = SafeIcon::new("▐", "]");
+    pub const BLOCK_2591: SafeIcon = SafeIcon::new("░", ".");
+    pub const BLOCK_2592: SafeIcon = SafeIcon::new("▒", ":");
+    pub const BLOCK_2593: SafeIcon = SafeIcon::new("▓", "#");
+    pub const BLOCK_2596: SafeIcon = SafeIcon::new("▖", "#");
+    pub const BLOCK_2597: SafeIcon = SafeIcon::new("▗", "#");
+    pub const BLOCK_2598: SafeIcon = SafeIcon::new("▘", "#");
+    pub const BLOCK_2599: SafeIcon = SafeIcon::new("▙", "#");
+    pub const BLOCK_259A: SafeIcon = SafeIcon::new("▚", "#");
+    pub const BLOCK_259B: SafeIcon = SafeIcon::new("▛", "#");
+    pub const BLOCK_259C: SafeIcon = SafeIcon::new("▜", "#");
+    pub const BLOCK_259D: SafeIcon = SafeIcon::new("▝", "#");
+    pub const BLOCK_259E: SafeIcon = SafeIcon::new("▞", "#");
+    pub const BLOCK_259F: SafeIcon = SafeIcon::new("▟", "#");
 }
 
 pub mod geometric_shapes {
     use crate::SafeIcon;
+    pub const GEOMETRIC_25A0: SafeIcon = SafeIcon::new("■", "#");
+    pub const GEOMETRIC_25A2: SafeIcon = SafeIcon::new("▢", "#");
+    pub const GEOMETRIC_25A3: SafeIcon = SafeIcon::new("▣", "#");
+    pub const GEOMETRIC_25A4: SafeIcon = SafeIcon::new("▤", "#");
+    pub const GEOMETRIC_25A5: SafeIcon = SafeIcon::new("▥", "#");
+    pub const GEOMETRIC_25A6: SafeIcon = SafeIcon::new("▦", "#");
+    pub const GEOMETRIC_25A7: SafeIcon = SafeIcon::new("▧", "#");
+    pub const GEOMETRIC_25A8: SafeIcon = SafeIcon::new("▨", "#");
+    pub const GEOMETRIC_25A9: SafeIcon = SafeIcon::new("▩", "#");
     pub const GEOMETRIC_25AA: SafeIcon = SafeIcon::new("▪", "#");
     pub const GEOMETRIC_25AB: SafeIcon = SafeIcon::new("▫", "#");
+    pub const GEOMETRIC_25AC: SafeIcon = SafeIcon::new("▬", "#");
+    pub const GEOMETRIC_25AD: SafeIcon = SafeIcon::new("▭", "#");
+    pub const GEOMETRIC_25AE: SafeIcon = SafeIcon::new("▮", "#");
+    pub const GEOMETRIC_25B0: SafeIcon = SafeIcon::new("▰", "#");
+    pub const GEOMETRIC_25B1: SafeIcon = SafeIcon::new("▱", "#");
+    pub const GEOMETRIC_25B2: SafeIcon = SafeIcon::new("▲", "^");
+    pub const GEOMETRIC_25B3: SafeIcon = SafeIcon::new("△", "#");
     pub const GEOMETRIC_25B4: SafeIcon = SafeIcon::new("▴", "#");
+    pub const GEOMETRIC_25B5: SafeIcon = SafeIcon::new("▵", "#");
+    pub const GEOMETRIC_25B6: SafeIcon = SafeIcon::new("▶", ">");
+    pub const GEOMETRIC_25B7: SafeIcon = SafeIcon::new("▷", "#");
     pub const GEOMETRIC_25B8: SafeIcon = SafeIcon::new("▸", "#");
+    pub const GEOMETRIC_25B9: SafeIcon = SafeIcon::new("▹", "#");
+    pub const GEOMETRIC_25BA: SafeIcon = SafeIcon::new("►", "#");
+    pub const GEOMETRIC_25BB: SafeIcon = SafeIcon::new("▻", "#");
+    pub const GEOMETRIC_25BC: SafeIcon = SafeIcon::new("▼", "v");
+    pub const GEOMETRIC_25BD: SafeIcon = SafeIcon::new("▽", "#");
     pub const GEOMETRIC_25BE: SafeIcon = SafeIcon::new("▾", "#");
+    pub const GEOMETRIC_25BF: SafeIcon = SafeIcon::new("▿", "#");
+    pub const GEOMETRIC_25C0: SafeIcon = SafeIcon::new("◀", "<");
+    pub const GEOMETRIC_25C1: SafeIcon = SafeIcon::new("◁", "#");
     pub const GEOMETRIC_25C2: SafeIcon = SafeIcon::new("◂", "#");
+    pub const GEOMETRIC_25C3: SafeIcon = SafeIcon::new("◃", "#");
+    pub const GEOMETRIC_25C4: SafeIcon = SafeIcon::new("◄", "#");
+    pub const GEOMETRIC_25C5: SafeIcon = SafeIcon::new("◅", "#");
+    pub const GEOMETRIC_25C6: SafeIcon = SafeIcon::new("◆", "*");
+    pub const GEOMETRIC_25C7: SafeIcon = SafeIcon::new("◇", "#");
+    pub const GEOMETRIC_25C8: SafeIcon = SafeIcon::new("◈", "#");
+    pub const GEOMETRIC_25C9: SafeIcon = SafeIcon::new("◉", "#");
+    pub const GEOMETRIC_25CA: SafeIcon = SafeIcon::new("◊", "#");
+    pub const GEOMETRIC_25CB: SafeIcon = SafeIcon::new("○", "o");
+    pub const GEOMETRIC_25CC: SafeIcon = SafeIcon::new("◌", "#");
+    pub const GEOMETRIC_25CD: SafeIcon = SafeIcon::new("◍", "#");
+    pub const GEOMETRIC_25CE: SafeIcon = SafeIcon::new("◎", "#");
+    pub const GEOMETRIC_25CF: SafeIcon = SafeIcon::new("●", "o");
+    pub const GEOMETRIC_25D0: SafeIcon = SafeIcon::new("◐", "#");
+    pub const GEOMETRIC_25D1: SafeIcon = SafeIcon::new("◑", "#");
+    pub const GEOMETRIC_25D2: SafeIcon = SafeIcon::new("◒", "#");
+    pub const GEOMETRIC_25D3: SafeIcon = SafeIcon::new("◓", "#");
+    pub const GEOMETRIC_25D4: SafeIcon = SafeIcon::new("◔", "#");
+    pub const GEOMETRIC_25D5: SafeIcon = SafeIcon::new("◕", "#");
+    pub const GEOMETRIC_25D6: SafeIcon = SafeIcon::new("◖", "#");
+    pub const GEOMETRIC_25D7: SafeIcon = SafeIcon::new("◗", "#");
+    pub const GEOMETRIC_25D8: SafeIcon = SafeIcon::new("◘", "#");
+    pub const GEOMETRIC_25D9: SafeIcon = SafeIcon::new("◙", "#");
+    pub const GEOMETRIC_25DA: SafeIcon = SafeIcon::new("◚", "#");
+    pub const GEOMETRIC_25DB: SafeIcon = SafeIcon::new("◛", "#");
+    pub const GEOMETRIC_25DC: SafeIcon = SafeIcon::new("◜", "#");
+    pub const GEOMETRIC_25DD: SafeIcon = SafeIcon::new("◝", "#");
+    pub const GEOMETRIC_25DE: SafeIcon = SafeIcon::new("◞", "#");
+    pub const GEOMETRIC_25DF: SafeIcon = SafeIcon::new("◟", "#");
+    pub const GEOMETRIC_25E0: SafeIcon = SafeIcon::new("◠", "#");
+    pub const GEOMETRIC_25E1: SafeIcon = SafeIcon::new("◡", "#");
+    pub const GEOMETRIC_25E2: SafeIcon = SafeIcon::new("◢", "#");
+    pub const GEOMETRIC_25E3: SafeIcon = SafeIcon::new("◣", "#");
+    pub const GEOMETRIC_25E4: SafeIcon = SafeIcon::new("◤", "#");
+    pub const GEOMETRIC_25E5: SafeIcon = SafeIcon::new("◥", "#");
+    pub const GEOMETRIC_25E6: SafeIcon = SafeIcon::new("◦", "#");
+    pub const GEOMETRIC_25E7: SafeIcon = SafeIcon::new("◧", "#");
+    pub const GEOMETRIC_25E8: SafeIcon = SafeIcon::new("◨", "#");
+    pub const GEOMETRIC_25E9: SafeIcon = SafeIcon::new("◩", "#");
+    pub const GEOMETRIC_25EA: SafeIcon = SafeIcon::new("◪", "#");
+    pub const GEOMETRIC_25EB: SafeIcon = SafeIcon::new("◫", "#");
+    pub const GEOMETRIC_25EC: SafeIcon = SafeIcon::new("◬", "#");
+    pub const GEOMETRIC_25ED: SafeIcon = SafeIcon::new("◭", "#");
+    pub const GEOMETRIC_25EE: SafeIcon = SafeIcon::new("◮", "#");
+    pub const GEOMETRIC_25EF: SafeIcon = SafeIcon::new("◯", "#");
+    pub const GEOMETRIC_25F3: SafeIcon = SafeIcon::new("◳", "#");
+    pub const GEOMETRIC_25F4: SafeIcon = SafeIcon::new("◴", "#");
+    pub const GEOMETRIC_25F5: SafeIcon = SafeIcon::new("◵", "#");
+    pub const GEOMETRIC_25F6: SafeIcon = SafeIcon::new("◶", "#");
+    pub const GEOMETRIC_25F7: SafeIcon = SafeIcon::new("◷", "#");
+    pub const GEOMETRIC_25F8: SafeIcon = SafeIcon::new("◸", "#");
+    pub const GEOMETRIC_25F9: SafeIcon = SafeIcon::new("◹", "#");
+    pub const GEOMETRIC_25FA: SafeIcon = SafeIcon::new("◺", "#");
+    pub const GEOMETRIC_25FB: SafeIcon = SafeIcon::new("◻", "#");
+    pub const GEOMETRIC_25FC: SafeIcon = SafeIcon::new("◼", "#");
+    pub const GEOMETRIC_25FF: SafeIcon = SafeIcon::new("◿", "#");
 }
 
 pub mod misc_symbols {
     use crate::SafeIcon;
+    pub const MISC_2600: SafeIcon = SafeIcon::new("☀", "*");
+    pub const MISC_2601: SafeIcon = SafeIcon::new("☁", "*");
+    pub const MISC_2602: SafeIcon = SafeIcon::new("☂", "*");
+    pub const MISC_2603: SafeIcon = SafeIcon::new("☃", "*");
+    pub const MISC_2604: SafeIcon = SafeIcon::new("☄", "*");
+    pub const MISC_2605: SafeIcon = SafeIcon::new("★", "*");
+    pub const MISC_2606: SafeIcon = SafeIcon::new("☆", "*");
     pub const MISC_2607: SafeIcon = SafeIcon::new("☇", "*");
+    pub const MISC_2608: SafeIcon = SafeIcon::new("☈", "*");
+    pub const MISC_2609: SafeIcon = SafeIcon::new("☉", "*");
+    pub const MISC_260A: SafeIcon = SafeIcon::new("☊", "*");
+    pub const MISC_260B: SafeIcon = SafeIcon::new("☋", "*");
+    pub const MISC_260C: SafeIcon = SafeIcon::new("☌", "*");
+    pub const MISC_260D: SafeIcon = SafeIcon::new("☍", "*");
+    pub const MISC_260E: SafeIcon = SafeIcon::new("☎", "*");
+    pub const MISC_260F: SafeIcon = SafeIcon::new("☏", "*");
     pub const MISC_2613: SafeIcon = SafeIcon::new("☓", "*");
+    pub const MISC_2616: SafeIcon = SafeIcon::new("☖", "*");
+    pub const MISC_2617: SafeIcon = SafeIcon::new("☗", "*");
+    pub const MISC_2618: SafeIcon = SafeIcon::new("☘", "*");
+    pub const MISC_2619: SafeIcon = SafeIcon::new("☙", "*");
+    pub const MISC_261A: SafeIcon = SafeIcon::new("☚", "*");
+    pub const MISC_261B: SafeIcon = SafeIcon::new("☛", "*");
+    pub const MISC_261C: SafeIcon = SafeIcon::new("☜", "*");
+    pub const MISC_261D: SafeIcon = SafeIcon::new("☝", "*");
+    pub const MISC_261E: SafeIcon = SafeIcon::new("☞", "*");
+    pub const MISC_261F: SafeIcon = SafeIcon::new("☟", "*");
+    pub const MISC_2620: SafeIcon = SafeIcon::new("☠", "*");
+    pub const MISC_2621: SafeIcon = SafeIcon::new("☡", "*");
+    pub const MISC_2622: SafeIcon = SafeIcon::new("☢", "*");
+    pub const MISC_2623: SafeIcon = SafeIcon::new("☣", "*");
+    pub const MISC_2624: SafeIcon = SafeIcon::new("☤", "*");
+    pub const MISC_2625: SafeIcon = SafeIcon::new("☥", "*");
+    pub const MISC_2626: SafeIcon = SafeIcon::new("☦", "*");
+    pub const MISC_2627: SafeIcon = SafeIcon::new("☧", "*");
     pub const MISC_2628: SafeIcon = SafeIcon::new("☨", "*");
+    pub const MISC_2629: SafeIcon = SafeIcon::new("☩", "*");
+    pub const MISC_262A: SafeIcon = SafeIcon::new("☪", "*");
+    pub const MISC_262B: SafeIcon = SafeIcon::new("☫", "*");
+    pub const MISC_262C: SafeIcon = SafeIcon::new("☬", "*");
+    pub const MISC_262D: SafeIcon = SafeIcon::new("☭", "*");
+    pub const MISC_262E: SafeIcon = SafeIcon::new("☮", "*");
+    pub const MISC_262F: SafeIcon = SafeIcon::new("☯", "*");
+    pub const MISC_2638: SafeIcon = SafeIcon::new("☸", "*");
+    pub const MISC_2639: SafeIcon = SafeIcon::new("☹", "*");
+    pub const MISC_263A: SafeIcon = SafeIcon::new("☺", "*");
+    pub const MISC_263B: SafeIcon = SafeIcon::new("☻", "*");
+    pub const MISC_263C: SafeIcon = SafeIcon::new("☼", "*");
+    pub const MISC_263D: SafeIcon = SafeIcon::new("☽", "*");
     pub const MISC_263E: SafeIcon = SafeIcon::new("☾", "*");
     pub const MISC_263F: SafeIcon = SafeIcon::new("☿", "*");
+    pub const MISC_2640: SafeIcon = SafeIcon::new("♀", "*");
+    pub const MISC_2641: SafeIcon = SafeIcon::new("♁", "*");
+    pub const MISC_2642: SafeIcon = SafeIcon::new("♂", "*");
+    pub const MISC_2643: SafeIcon = SafeIcon::new("♃", "*");
     pub const MISC_2644: SafeIcon = SafeIcon::new("♄", "*");
+    pub const MISC_2645: SafeIcon = SafeIcon::new("♅", "*");
+    pub const MISC_2646: SafeIcon = SafeIcon::new("♆", "*");
     pub const MISC_2647: SafeIcon = SafeIcon::new("♇", "*");
+    pub const MISC_2654: SafeIcon = SafeIcon::new("♔", "*");
+    pub const MISC_2655: SafeIcon = SafeIcon::new("♕", "*");
+    pub const MISC_2656: SafeIcon = SafeIcon::new("♖", "*");
+    pub const MISC_2657: SafeIcon = SafeIcon::new("♗", "*");
+    pub const MISC_2658: SafeIcon = SafeIcon::new("♘", "*");
+    pub const MISC_2659: SafeIcon = SafeIcon::new("♙", "*");
+    pub const MISC_265A: SafeIcon = SafeIcon::new("♚", "*");
+    pub const MISC_265B: SafeIcon = SafeIcon::new("♛", "*");
+    pub const MISC_265C: SafeIcon = SafeIcon::new("♜", "*");
+    pub const MISC_265D: SafeIcon = SafeIcon::new("♝", "*");
+    pub const MISC_265E: SafeIcon = SafeIcon::new("♞", "*");
+    pub const MISC_265F: SafeIcon = SafeIcon::new("♟", "*");
+    pub const MISC_2660: SafeIcon = SafeIcon::new("♠", "*");
+    pub const MISC_2661: SafeIcon = SafeIcon::new("♡", "*");
+    pub const MISC_2662: SafeIcon = SafeIcon::new("♢", "*");
+    pub const MISC_2663: SafeIcon = SafeIcon::new("♣", "*");
+    pub const MISC_2664: SafeIcon = SafeIcon::new("♤", "*");
+    pub const MISC_2665: SafeIcon = SafeIcon::new("♥", "*");
+    pub const MISC_2666: SafeIcon = SafeIcon::new("♦", "*");
+    pub const MISC_2667: SafeIcon = SafeIcon::new("♧", "*");
+    pub const MISC_2668: SafeIcon = SafeIcon::new("♨", "*");
+    pub const MISC_2669: SafeIcon = SafeIcon::new("♩", "*");
+    pub const MISC_266A: SafeIcon = SafeIcon::new("♪", "*");
+    pub const MISC_266B: SafeIcon = SafeIcon::new("♫", "*");
+    pub const MISC_266C: SafeIcon = SafeIcon::new("♬", "*");
     pub const MISC_266D: SafeIcon = SafeIcon::new("♭", "*");
+    pub const MISC_266E: SafeIcon = SafeIcon::new("♮", "*");
     pub const MISC_266F: SafeIcon = SafeIcon::new("♯", "*");
+    pub const MISC_2670: SafeIcon = SafeIcon::new("♰", "*");
+    pub const MISC_2671: SafeIcon = SafeIcon::new("♱", "*");
+    pub const MISC_2672: SafeIcon = SafeIcon::new("♲", "*");
+    pub const MISC_2673: SafeIcon = SafeIcon::new("♳", "*");
+    pub const MISC_2674: SafeIcon = SafeIcon::new("♴", "*");
+    pub const MISC_2675: SafeIcon = SafeIcon::new("♵", "*");
+    pub const MISC_2676: SafeIcon = SafeIcon::new("♶", "*");
+    pub const MISC_2677: SafeIcon = SafeIcon::new("♷", "*");
+    pub const MISC_2678: SafeIcon = SafeIcon::new("♸", "*");
+    pub const MISC_2679: SafeIcon = SafeIcon::new("♹", "*");
+    pub const MISC_267A: SafeIcon = SafeIcon::new("♺", "*");
+    pub const MISC_267B: SafeIcon = SafeIcon::new("♻", "*");
+    pub const MISC_267C: SafeIcon = SafeIcon::new("♼", "*");
+    pub const MISC_267D: SafeIcon = SafeIcon::new("♽", "*");
+    pub const MISC_267E: SafeIcon = SafeIcon::new("♾", "*");
+    pub const MISC_2680: SafeIcon = SafeIcon::new("⚀", "*");
+    pub const MISC_2681: SafeIcon = SafeIcon::new("⚁", "*");
+    pub const MISC_2682: SafeIcon = SafeIcon::new("⚂", "*");
+    pub const MISC_2683: SafeIcon = SafeIcon::new("⚃", "*");
+    pub const MISC_2684: SafeIcon = SafeIcon::new("⚄", "*");
+    pub const MISC_2685: SafeIcon = SafeIcon::new("⚅", "*");
+    pub const MISC_2686: SafeIcon = SafeIcon::new("⚆", "*");
+    pub const MISC_2687: SafeIcon = SafeIcon::new("⚇", "*");
+    pub const MISC_2688: SafeIcon = SafeIcon::new("⚈", "*");
+    pub const MISC_2689: SafeIcon = SafeIcon::new("⚉", "*");
+    pub const MISC_2690: SafeIcon = SafeIcon::new("⚐", "*");
+    pub const MISC_2691: SafeIcon = SafeIcon::new("⚑", "*");
+    pub const MISC_2692: SafeIcon = SafeIcon::new("⚒", "*");
+    pub const MISC_2694: SafeIcon = SafeIcon::new("⚔", "*");
+    pub const MISC_2695: SafeIcon = SafeIcon::new("⚕", "*");
+    pub const MISC_2696: SafeIcon = SafeIcon::new("⚖", "*");
+    pub const MISC_2697: SafeIcon = SafeIcon::new("⚗", "*");
+    pub const MISC_2698: SafeIcon = SafeIcon::new("⚘", "*");
+    pub const MISC_2699: SafeIcon = SafeIcon::new("⚙", "@");
+    pub const MISC_269A: SafeIcon = SafeIcon::new("⚚", "*");
+    pub const MISC_269B: SafeIcon = SafeIcon::new("⚛", "*");
+    pub const MISC_269C: SafeIcon = SafeIcon::new("⚜", "*");
+    pub const MISC_269E: SafeIcon = SafeIcon::new("⚞", "*");
+    pub const MISC_269F: SafeIcon = SafeIcon::new("⚟", "*");
+    pub const MISC_26A0: SafeIcon = SafeIcon::new("⚠", "!");
+    pub const MISC_26A2: SafeIcon = SafeIcon::new("⚢", "*");
+    pub const MISC_26A3: SafeIcon = SafeIcon::new("⚣", "*");
+    pub const MISC_26A4: SafeIcon = SafeIcon::new("⚤", "*");
+    pub const MISC_26A5: SafeIcon = SafeIcon::new("⚥", "*");
+    pub const MISC_26A6: SafeIcon = SafeIcon::new("⚦", "*");
+    pub const MISC_26A7: SafeIcon = SafeIcon::new("⚧", "*");
+    pub const MISC_26A8: SafeIcon = SafeIcon::new("⚨", "*");
+    pub const MISC_26A9: SafeIcon = SafeIcon::new("⚩", "*");
+    pub const MISC_26AC: SafeIcon = SafeIcon::new("⚬", "*");
+    pub const MISC_26AD: SafeIcon = SafeIcon::new("⚭", "*");
+    pub const MISC_26AE: SafeIcon = SafeIcon::new("⚮", "*");
+    pub const MISC_26AF: SafeIcon = SafeIcon::new("⚯", "*");
+    pub const MISC_26B0: SafeIcon = SafeIcon::new("⚰", "*");
+    pub const MISC_26B1: SafeIcon = SafeIcon::new("⚱", "*");
+    pub const MISC_26B2: SafeIcon = SafeIcon::new("⚲", "*");
+    pub const MISC_26B3: SafeIcon = SafeIcon::new("⚳", "*");
+    pub const MISC_26B4: SafeIcon = SafeIcon::new("⚴", "*");
+    pub const MISC_26B5: SafeIcon = SafeIcon::new("⚵", "*");
+    pub const MISC_26B6: SafeIcon = SafeIcon::new("⚶", "*");
+    pub const MISC_26B7: SafeIcon = SafeIcon::new("⚷", "*");
+    pub const MISC_26B8: SafeIcon = SafeIcon::new("⚸", "*");
+    pub const MISC_26C0: SafeIcon = SafeIcon::new("⛀", "*");
+    pub const MISC_26C1: SafeIcon = SafeIcon::new("⛁", "*");
+    pub const MISC_26C2: SafeIcon = SafeIcon::new("⛂", "*");
+    pub const MISC_26C3: SafeIcon = SafeIcon::new("⛃", "*");
+    pub const MISC_26C8: SafeIcon = SafeIcon::new("⛈", "*");
+    pub const MISC_26CF: SafeIcon = SafeIcon::new("⛏", "*");
+    pub const MISC_26D1: SafeIcon = SafeIcon::new("⛑", "*");
+    pub const MISC_26D3: SafeIcon = SafeIcon::new("⛓", "*");
+    pub const MISC_26E2: SafeIcon = SafeIcon::new("⛢", "*");
+    pub const MISC_26E9: SafeIcon = SafeIcon::new("⛩", "*");
+    pub const MISC_26F0: SafeIcon = SafeIcon::new("⛰", "*");
+    pub const MISC_26F1: SafeIcon = SafeIcon::new("⛱", "*");
+    pub const MISC_26F4: SafeIcon = SafeIcon::new("⛴", "*");
+    pub const MISC_26F7: SafeIcon = SafeIcon::new("⛷", "*");
+    pub const MISC_26F8: SafeIcon = SafeIcon::new("⛸", "*");
+    pub const MISC_26F9: SafeIcon = SafeIcon::new("⛹", "*");
 }
 
 pub mod dingbats {
     use crate::SafeIcon;
+    pub const DINGBAT_2701: SafeIcon = SafeIcon::new("✁", "*");
+    pub const DINGBAT_2702: SafeIcon = SafeIcon::new("✂", "X");
+    pub const DINGBAT_2703: SafeIcon = SafeIcon::new("✃", "*");
+    pub const DINGBAT_2704: SafeIcon = SafeIcon::new("✄", "*");
+    pub const DINGBAT_2706: SafeIcon = SafeIcon::new("✆", "*");
+    pub const DINGBAT_2707: SafeIcon = SafeIcon::new("✇", "*");
+    pub const DINGBAT_2708: SafeIcon = SafeIcon::new("✈", "*");
+    pub const DINGBAT_2709: SafeIcon = SafeIcon::new("✉", "*");
+    pub const DINGBAT_270C: SafeIcon = SafeIcon::new("✌", "*");
+    pub const DINGBAT_270D: SafeIcon = SafeIcon::new("✍", "*");
+    pub const DINGBAT_270E: SafeIcon = SafeIcon::new("✎", "*");
+    pub const DINGBAT_270F: SafeIcon = SafeIcon::new("✏", "*");
+    pub const DINGBAT_2710: SafeIcon = SafeIcon::new("✐", "*");
+    pub const DINGBAT_2711: SafeIcon = SafeIcon::new("✑", "*");
+    pub const DINGBAT_2712: SafeIcon = SafeIcon::new("✒", "*");
+    pub const DINGBAT_2713: SafeIcon = SafeIcon::new("✓", "v");
+    pub const DINGBAT_2714: SafeIcon = SafeIcon::new("✔", "v");
+    pub const DINGBAT_2715: SafeIcon = SafeIcon::new("✕", "x");
+    pub const DINGBAT_2716: SafeIcon = SafeIcon::new("✖", "x");
+    pub const DINGBAT_2717: SafeIcon = SafeIcon::new("✗", "x");
+    pub const DINGBAT_2718: SafeIcon = SafeIcon::new("✘", "x");
+    pub const DINGBAT_2719: SafeIcon = SafeIcon::new("✙", "*");
+    pub const DINGBAT_271A: SafeIcon = SafeIcon::new("✚", "*");
+    pub const DINGBAT_271B: SafeIcon = SafeIcon::new("✛", "*");
+    pub const DINGBAT_271C: SafeIcon = SafeIcon::new("✜", "*");
+    pub const DINGBAT_271D: SafeIcon = SafeIcon::new("✝", "*");
+    pub const DINGBAT_271E: SafeIcon = SafeIcon::new("✞", "*");
+    pub const DINGBAT_271F: SafeIcon = SafeIcon::new("✟", "*");
+    pub const DINGBAT_2720: SafeIcon = SafeIcon::new("✠", "*");
+    pub const DINGBAT_2721: SafeIcon = SafeIcon::new("✡", "*");
+    pub const DINGBAT_2722: SafeIcon = SafeIcon::new("✢", "*");
+    pub const DINGBAT_2723: SafeIcon = SafeIcon::new("✣", "*");
+    pub const DINGBAT_2724: SafeIcon = SafeIcon::new("✤", "*");
+    pub const DINGBAT_2725: SafeIcon = SafeIcon::new("✥", "*");
+    pub const DINGBAT_2726: SafeIcon = SafeIcon::new("✦", "*");
+    pub const DINGBAT_2727: SafeIcon = SafeIcon::new("✧", "*");
+    pub const DINGBAT_2729: SafeIcon = SafeIcon::new("✩", "*");
+    pub const DINGBAT_272A: SafeIcon = SafeIcon::new("✪", "*");
+    pub const DINGBAT_272B: SafeIcon = SafeIcon::new("✫", "*");
+    pub const DINGBAT_272C: SafeIcon = SafeIcon::new("✬", "*");
+    pub const DINGBAT_272D: SafeIcon = SafeIcon::new("✭", "*");
+    pub const DINGBAT_272E: SafeIcon = SafeIcon::new("✮", "*");
+    pub const DINGBAT_272F: SafeIcon = SafeIcon::new("✯", "*");
+    pub const DINGBAT_2730: SafeIcon = SafeIcon::new("✰", "*");
+    pub const DINGBAT_2731: SafeIcon = SafeIcon::new("✱", "*");
+    pub const DINGBAT_2732: SafeIcon = SafeIcon::new("✲", "*");
+    pub const DINGBAT_2733: SafeIcon = SafeIcon::new("✳", "*");
+    pub const DINGBAT_2734: SafeIcon = SafeIcon::new("✴", "*");
+    pub const DINGBAT_2735: SafeIcon = SafeIcon::new("✵", "*");
+    pub const DINGBAT_2736: SafeIcon = SafeIcon::new("✶", "*");
+    pub const DINGBAT_2737: SafeIcon = SafeIcon::new("✷", "*");
+    pub const DINGBAT_2738: SafeIcon = SafeIcon::new("✸", "*");
+    pub const DINGBAT_2739: SafeIcon = SafeIcon::new("✹", "*");
+    pub const DINGBAT_273A: SafeIcon = SafeIcon::new("✺", "*");
+    pub const DINGBAT_273B: SafeIcon = SafeIcon::new("✻", "*");
+    pub const DINGBAT_273C: SafeIcon = SafeIcon::new("✼", "*");
+    pub const DINGBAT_273D: SafeIcon = SafeIcon::new("✽", "*");
+    pub const DINGBAT_273E: SafeIcon = SafeIcon::new("✾", "*");
+    pub const DINGBAT_273F: SafeIcon = SafeIcon::new("✿", "*");
+    pub const DINGBAT_2740: SafeIcon = SafeIcon::new("❀", "*");
+    pub const DINGBAT_2741: SafeIcon = SafeIcon::new("❁", "*");
+    pub const DINGBAT_2742: SafeIcon = SafeIcon::new("❂", "*");
+    pub const DINGBAT_2743: SafeIcon = SafeIcon::new("❃", "*");
+    pub const DINGBAT_2744: SafeIcon = SafeIcon::new("❄", "*");
+    pub const DINGBAT_2745: SafeIcon = SafeIcon::new("❅", "*");
+    pub const DINGBAT_2746: SafeIcon = SafeIcon::new("❆", "*");
+    pub const DINGBAT_2747: SafeIcon = SafeIcon::new("❇", "*");
+    pub const DINGBAT_2748: SafeIcon = SafeIcon::new("❈", "*");
+    pub const DINGBAT_2749: SafeIcon = SafeIcon::new("❉", "*");
+    pub const DINGBAT_274A: SafeIcon = SafeIcon::new("❊", "*");
+    pub const DINGBAT_274B: SafeIcon = SafeIcon::new("❋", "*");
+    pub const DINGBAT_274D: SafeIcon = SafeIcon::new("❍", "*");
+    pub const DINGBAT_274F: SafeIcon = SafeIcon::new("❏", "*");
+    pub const DINGBAT_2750: SafeIcon = SafeIcon::new("❐", "*");
+    pub const DINGBAT_2752: SafeIcon = SafeIcon::new("❒", "*");
+    pub const DINGBAT_2756: SafeIcon = SafeIcon::new("❖", "*");
     pub const DINGBAT_2758: SafeIcon = SafeIcon::new("❘", "*");
     pub const DINGBAT_2759: SafeIcon = SafeIcon::new("❙", "*");
     pub const DINGBAT_275A: SafeIcon = SafeIcon::new("❚", "*");
+    pub const DINGBAT_275B: SafeIcon = SafeIcon::new("❛", "*");
+    pub const DINGBAT_275C: SafeIcon = SafeIcon::new("❜", "*");
+    pub const DINGBAT_275D: SafeIcon = SafeIcon::new("❝", "*");
+    pub const DINGBAT_275E: SafeIcon = SafeIcon::new("❞", "*");
     pub const DINGBAT_2761: SafeIcon = SafeIcon::new("❡", "*");
+    pub const DINGBAT_2762: SafeIcon = SafeIcon::new("❢", "*");
+    pub const DINGBAT_2763: SafeIcon = SafeIcon::new("❣", "*");
+    pub const DINGBAT_2764: SafeIcon = SafeIcon::new("❤", "*");
+    pub const DINGBAT_2765: SafeIcon = SafeIcon::new("❥", "*");
+    pub const DINGBAT_2766: SafeIcon = SafeIcon::new("❦", "*");
+    pub const DINGBAT_2767: SafeIcon = SafeIcon::new("❧", "*");
+    pub const DINGBAT_2768: SafeIcon = SafeIcon::new("❨", "*");
+    pub const DINGBAT_2769: SafeIcon = SafeIcon::new("❩", "*");
+    pub const DINGBAT_276A: SafeIcon = SafeIcon::new("❪", "*");
+    pub const DINGBAT_276B: SafeIcon = SafeIcon::new("❫", "*");
+    pub const DINGBAT_276C: SafeIcon = SafeIcon::new("❬", "*");
+    pub const DINGBAT_276D: SafeIcon = SafeIcon::new("❭", "*");
+    pub const DINGBAT_276E: SafeIcon = SafeIcon::new("❮", "*");
+    pub const DINGBAT_276F: SafeIcon = SafeIcon::new("❯", "*");
+    pub const DINGBAT_2770: SafeIcon = SafeIcon::new("❰", "*");
+    pub const DINGBAT_2771: SafeIcon = SafeIcon::new("❱", "*");
+    pub const DINGBAT_2772: SafeIcon = SafeIcon::new("❲", "*");
+    pub const DINGBAT_2773: SafeIcon = SafeIcon::new("❳", "*");
+    pub const DINGBAT_2774: SafeIcon = SafeIcon::new("❴", "*");
+    pub const DINGBAT_2775: SafeIcon = SafeIcon::new("❵", "*");
+    pub const DINGBAT_2776: SafeIcon = SafeIcon::new("❶", "*");
+    pub const DINGBAT_2777: SafeIcon = SafeIcon::new("❷", "*");
+    pub const DINGBAT_2778: SafeIcon = SafeIcon::new("❸", "*");
+    pub const DINGBAT_2779: SafeIcon = SafeIcon::new("❹", "*");
+    pub const DINGBAT_277A: SafeIcon = SafeIcon::new("❺", "*");
+    pub const DINGBAT_277B: SafeIcon = SafeIcon::new("❻", "*");
+    pub const DINGBAT_277C: SafeIcon = SafeIcon::new("❼", "*");
+    pub const DINGBAT_277D: SafeIcon = SafeIcon::new("❽", "*");
+    pub const DINGBAT_277E: SafeIcon = SafeIcon::new("❾", "*");
+    pub const DINGBAT_277F: SafeIcon = SafeIcon::new("❿", "*");
+    pub const DINGBAT_2780: SafeIcon = SafeIcon::new("➀", "*");
+    pub const DINGBAT_2781: SafeIcon = SafeIcon::new("➁", "*");
+    pub const DINGBAT_2782: SafeIcon = SafeIcon::new("➂", "*");
+    pub const DINGBAT_2783: SafeIcon = SafeIcon::new("➃", "*");
+    pub const DINGBAT_2784: SafeIcon = SafeIcon::new("➄", "*");
+    pub const DINGBAT_2785: SafeIcon = SafeIcon::new("➅", "*");
+    pub const DINGBAT_2786: SafeIcon = SafeIcon::new("➆", "*");
+    pub const DINGBAT_2787: SafeIcon = SafeIcon::new("➇", "*");
+    pub const DINGBAT_2788: SafeIcon = SafeIcon::new("➈", "*");
+    pub const DINGBAT_2789: SafeIcon = SafeIcon::new("➉", "*");
+    pub const DINGBAT_278A: SafeIcon = SafeIcon::new("➊", "*");
+    pub const DINGBAT_278B: SafeIcon = SafeIcon::new("➋", "*");
+    pub const DINGBAT_278C: SafeIcon = SafeIcon::new("➌", "*");
+    pub const DINGBAT_278D: SafeIcon = SafeIcon::new("➍", "*");
+    pub const DINGBAT_278E: SafeIcon = SafeIcon::new("➎", "*");
+    pub const DINGBAT_278F: SafeIcon = SafeIcon::new("➏", "*");
+    pub const DINGBAT_2790: SafeIcon = SafeIcon::new("➐", "*");
+    pub const DINGBAT_2791: SafeIcon = SafeIcon::new("➑", "*");
+    pub const DINGBAT_2792: SafeIcon = SafeIcon::new("➒", "*");
+    pub const DINGBAT_2793: SafeIcon = SafeIcon::new("➓", "*");
+    pub const DINGBAT_2794: SafeIcon = SafeIcon::new("➔", ">");
+    pub const DINGBAT_2798: SafeIcon = SafeIcon::new("➘", "*");
+    pub const DINGBAT_2799: SafeIcon = SafeIcon::new("➙", "*");
+    pub const DINGBAT_279A: SafeIcon = SafeIcon::new("➚", "*");
+    pub const DINGBAT_279B: SafeIcon = SafeIcon::new("➛", "*");
+    pub const DINGBAT_279C: SafeIcon = SafeIcon::new("➜", "*");
+    pub const DINGBAT_279D: SafeIcon = SafeIcon::new("➝", "*");
+    pub const DINGBAT_279E: SafeIcon = SafeIcon::new("➞", "*");
+    pub const DINGBAT_279F: SafeIcon = SafeIcon::new("➟", "*");
+    pub const DINGBAT_27A0: SafeIcon = SafeIcon::new("➠", "*");
+    pub const DINGBAT_27A1: SafeIcon = SafeIcon::new("➡", "*");
+    pub const DINGBAT_27A2: SafeIcon = SafeIcon::new("➢", ">");
+    pub const DINGBAT_27A3: SafeIcon = SafeIcon::new("➣", "*");
+    pub const DINGBAT_27A4: SafeIcon = SafeIcon::new("➤", "*");
+    pub const DINGBAT_27A5: SafeIcon = SafeIcon::new("➥", "*");
+    pub const DINGBAT_27A6: SafeIcon = SafeIcon::new("➦", "*");
     pub const DINGBAT_27A7: SafeIcon = SafeIcon::new("➧", "*");
+    pub const DINGBAT_27A8: SafeIcon = SafeIcon::new("➨", "*");
+    pub const DINGBAT_27A9: SafeIcon = SafeIcon::new("➩", "*");
+    pub const DINGBAT_27AA: SafeIcon = SafeIcon::new("➪", "*");
+    pub const DINGBAT_27AB: SafeIcon = SafeIcon::new("➫", "*");
+    pub const DINGBAT_27AC: SafeIcon = SafeIcon::new("➬", "*");
+    pub const DINGBAT_27AD: SafeIcon = SafeIcon::new("➭", "*");
+    pub const DINGBAT_27AE: SafeIcon = SafeIcon::new("➮", "*");
+    pub const DINGBAT_27AF: SafeIcon = SafeIcon::new("➯", "*");
+    pub const DINGBAT_27B1: SafeIcon = SafeIcon::new("➱", "*");
+    pub const DINGBAT_27B2: SafeIcon = SafeIcon::new("➲", "*");
+    pub const DINGBAT_27B3: SafeIcon = SafeIcon::new("➳", "*");
+    pub const DINGBAT_27B4: SafeIcon = SafeIcon::new("➴", "*");
+    pub const DINGBAT_27B5: SafeIcon = SafeIcon::new("➵", "*");
+    pub const DINGBAT_27B6: SafeIcon = SafeIcon::new("➶", "*");
+    pub const DINGBAT_27B7: SafeIcon = SafeIcon::new("➷", "*");
+    pub const DINGBAT_27B8: SafeIcon = SafeIcon::new("➸", "*");
+    pub const DINGBAT_27B9: SafeIcon = SafeIcon::new("➹", "*");
+    pub const DINGBAT_27BA: SafeIcon = SafeIcon::new("➺", "*");
+    pub const DINGBAT_27BB: SafeIcon = SafeIcon::new("➻", "*");
+    pub const DINGBAT_27BC: SafeIcon = SafeIcon::new("➼", "*");
+    pub const DINGBAT_27BD: SafeIcon = SafeIcon::new("➽", "*");
+    pub const DINGBAT_27BE: SafeIcon = SafeIcon::new("➾", "*");
 }
 
 pub mod braille {
@@ -264,6 +1874,62 @@ pub mod braille {
     pub const BRAILLE_2805: SafeIcon = SafeIcon::new("⠅", "*");
     pub const BRAILLE_2806: SafeIcon = SafeIcon::new("⠆", "*");
     pub const BRAILLE_2807: SafeIcon = SafeIcon::new("⠇", "*");
+    pub const BRAILLE_2808: SafeIcon = SafeIcon::new("⠈", "*");
+    pub const BRAILLE_2809: SafeIcon = SafeIcon::new("⠉", "*");
+    pub const BRAILLE_280A: SafeIcon = SafeIcon::new("⠊", "*");
+    pub const BRAILLE_280B: SafeIcon = SafeIcon::new("⠋", "*");
+    pub const BRAILLE_280C: SafeIcon = SafeIcon::new("⠌", "*");
+    pub const BRAILLE_280D: SafeIcon = SafeIcon::new("⠍", "*");
+    pub const BRAILLE_280E: SafeIcon = SafeIcon::new("⠎", "*");
+    pub const BRAILLE_280F: SafeIcon = SafeIcon::new("⠏", "*");
+    pub const BRAILLE_2810: SafeIcon = SafeIcon::new("⠐", "*");
+    pub const BRAILLE_2811: SafeIcon = SafeIcon::new("⠑", "*");
+    pub const BRAILLE_2812: SafeIcon = SafeIcon::new("⠒", "*");
+    pub const BRAILLE_2813: SafeIcon = SafeIcon::new("⠓", "*");
+    pub const BRAILLE_2814: SafeIcon = SafeIcon::new("⠔", "*");
+    pub const BRAILLE_2815: SafeIcon = SafeIcon::new("⠕", "*");
+    pub const BRAILLE_2816: SafeIcon = SafeIcon::new("⠖", "*");
+    pub const BRAILLE_2817: SafeIcon = SafeIcon::new("⠗", "*");
+    pub const BRAILLE_2818: SafeIcon = SafeIcon::new("⠘", "*");
+    pub const BRAILLE_2819: SafeIcon = SafeIcon::new("⠙", "*");
+    pub const BRAILLE_281A: SafeIcon = SafeIcon::new("⠚", "*");
+    pub const BRAILLE_281B: SafeIcon = SafeIcon::new("⠛", "*");
+    pub const BRAILLE_281C: SafeIcon = SafeIcon::new("⠜", "*");
+    pub const BRAILLE_281D: SafeIcon = SafeIcon::new("⠝", "*");
+    pub const BRAILLE_281E: SafeIcon = SafeIcon::new("⠞", "*");
+    pub const BRAILLE_281F: SafeIcon = SafeIcon::new("⠟", "*");
+    pub const BRAILLE_2820: SafeIcon = SafeIcon::new("⠠", "*");
+    pub const BRAILLE_2821: SafeIcon = SafeIcon::new("⠡", "*");
+    pub const BRAILLE_2822: SafeIcon = SafeIcon::new("⠢", "*");
+    pub const BRAILLE_2823: SafeIcon = SafeIcon::new("⠣", "*");
+    pub const BRAILLE_2824: SafeIcon = SafeIcon::new("⠤", "*");
+    pub const BRAILLE_2825: SafeIcon = SafeIcon::new("⠥", "*");
+    pub const BRAILLE_2826: SafeIcon = SafeIcon::new("⠦", "*");
+    pub const BRAILLE_2827: SafeIcon = SafeIcon::new("⠧", "*");
+    pub const BRAILLE_2828: SafeIcon = SafeIcon::new("⠨", "*");
+    pub const BRAILLE_2829: SafeIcon = SafeIcon::new("⠩", "*");
+    pub const BRAILLE_282A: SafeIcon = SafeIcon::new("⠪", "*");
+    pub const BRAILLE_282B: SafeIcon = SafeIcon::new("⠫", "*");
+    pub const BRAILLE_282C: SafeIcon = SafeIcon::new("⠬", "*");
+    pub const BRAILLE_282D: SafeIcon = SafeIcon::new("⠭", "*");
+    pub const BRAILLE_282E: SafeIcon = SafeIcon::new("⠮", "*");
+    pub const BRAILLE_282F: SafeIcon = SafeIcon::new("⠯", "*");
+    pub const BRAILLE_2830: SafeIcon = SafeIcon::new("⠰", "*");
+    pub const BRAILLE_2831: SafeIcon = SafeIcon::new("⠱", "*");
+    pub const BRAILLE_2832: SafeIcon = SafeIcon::new("⠲", "*");
+    pub const BRAILLE_2833: SafeIcon = SafeIcon::new("⠳", "*");
+    pub const BRAILLE_2834: SafeIcon = SafeIcon::new("⠴", "*");
+    pub const BRAILLE_2835: SafeIcon = SafeIcon::new("⠵", "*");
+    pub const BRAILLE_2836: SafeIcon = SafeIcon::new("⠶", "*");
+    pub const BRAILLE_2837: SafeIcon = SafeIcon::new("⠷", "*");
+    pub const BRAILLE_2838: SafeIcon = SafeIcon::new("⠸", "*");
+    pub const BRAILLE_2839: SafeIcon = SafeIcon::new("⠹", "*");
+    pub const BRAILLE_283A: SafeIcon = SafeIcon::new("⠺", "*");
+    pub const BRAILLE_283B: SafeIcon = SafeIcon::new("⠻", "*");
+    pub const BRAILLE_283C: SafeIcon = SafeIcon::new("⠼", "*");
+    pub const BRAILLE_283D: SafeIcon = SafeIcon::new("⠽", "*");
+    pub const BRAILLE_283E: SafeIcon = SafeIcon::new("⠾", "*");
+    pub const BRAILLE_283F: SafeIcon = SafeIcon::new("⠿", "*");
     pub const BRAILLE_2840: SafeIcon = SafeIcon::new("⡀", "*");
     pub const BRAILLE_2841: SafeIcon = SafeIcon::new("⡁", "*");
     pub const BRAILLE_2842: SafeIcon = SafeIcon::new("⡂", "*");
@@ -272,6 +1938,62 @@ pub mod braille {
     pub const BRAILLE_2845: SafeIcon = SafeIcon::new("⡅", "*");
     pub const BRAILLE_2846: SafeIcon = SafeIcon::new("⡆", "*");
     pub const BRAILLE_2847: SafeIcon = SafeIcon::new("⡇", "*");
+    pub const BRAILLE_2848: SafeIcon = SafeIcon::new("⡈", "*");
+    pub const BRAILLE_2849: SafeIcon = SafeIcon::new("⡉", "*");
+    pub const BRAILLE_284A: SafeIcon = SafeIcon::new("⡊", "*");
+    pub const BRAILLE_284B: SafeIcon = SafeIcon::new("⡋", "*");
+    pub const BRAILLE_284C: SafeIcon = SafeIcon::new("⡌", "*");
+    pub const BRAILLE_284D: SafeIcon = SafeIcon::new("⡍", "*");
+    pub const BRAILLE_284E: SafeIcon = SafeIcon::new("⡎", "*");
+    pub const BRAILLE_284F: SafeIcon = SafeIcon::new("⡏", "*");
+    pub const BRAILLE_2850: SafeIcon = SafeIcon::new("⡐", "*");
+    pub const BRAILLE_2851: SafeIcon = SafeIcon::new("⡑", "*");
+    pub const BRAILLE_2852: SafeIcon = SafeIcon::new("⡒", "*");
+    pub const BRAILLE_2853: SafeIcon = SafeIcon::new("⡓", "*");
+    pub const BRAILLE_2854: SafeIcon = SafeIcon::new("⡔", "*");
+    pub const BRAILLE_2855: SafeIcon = SafeIcon::new("⡕", "*");
+    pub const BRAILLE_2856: SafeIcon = SafeIcon::new("⡖", "*");
+    pub const BRAILLE_2857: SafeIcon = SafeIcon::new("⡗", "*");
+    pub const BRAILLE_2858: SafeIcon = SafeIcon::new("⡘", "*");
+    pub const BRAILLE_2859: SafeIcon = SafeIcon::new("⡙", "*");
+    pub const BRAILLE_285A: SafeIcon = SafeIcon::new("⡚", "*");
+    pub const BRAILLE_285B: SafeIcon = SafeIcon::new("⡛", "*");
+    pub const BRAILLE_285C: SafeIcon = SafeIcon::new("⡜", "*");
+    pub const BRAILLE_285D: SafeIcon = SafeIcon::new("⡝", "*");
+    pub const BRAILLE_285E: SafeIcon = SafeIcon::new("⡞", "*");
+    pub const BRAILLE_285F: SafeIcon = SafeIcon::new("⡟", "*");
+    pub const BRAILLE_2860: SafeIcon = SafeIcon::new("⡠", "*");
+    pub const BRAILLE_2861: SafeIcon = SafeIcon::new("⡡", "*");
+    pub const BRAILLE_2862: SafeIcon = SafeIcon::new("⡢", "*");
+    pub const BRAILLE_2863: SafeIcon = SafeIcon::new("⡣", "*");
+    pub const BRAILLE_2864: SafeIcon = SafeIcon::new("⡤", "*");
+    pub const BRAILLE_2865: SafeIcon = SafeIcon::new("⡥", "*");
+    pub const BRAILLE_2866: SafeIcon = SafeIcon::new("⡦", "*");
+    pub const BRAILLE_2867: SafeIcon = SafeIcon::new("⡧", "*");
+    pub const BRAILLE_2868: SafeIcon = SafeIcon::new("⡨", "*");
+    pub const BRAILLE_2869: SafeIcon = SafeIcon::new("⡩", "*");
+    pub const BRAILLE_286A: SafeIcon = SafeIcon::new("⡪", "*");
+    pub const BRAILLE_286B: SafeIcon = SafeIcon::new("⡫", "*");
+    pub const BRAILLE_286C: SafeIcon = SafeIcon::new("⡬", "*");
+    pub const BRAILLE_286D: SafeIcon = SafeIcon::new("⡭", "*");
+    pub const BRAILLE_286E: SafeIcon = SafeIcon::new("⡮", "*");
+    pub const BRAILLE_286F: SafeIcon = SafeIcon::new("⡯", "*");
+    pub const BRAILLE_2870: SafeIcon = SafeIcon::new("⡰", "*");
+    pub const BRAILLE_2871: SafeIcon = SafeIcon::new("⡱", "*");
+    pub const BRAILLE_2872: SafeIcon = SafeIcon::new("⡲", "*");
+    pub const BRAILLE_2873: SafeIcon = SafeIcon::new("⡳", "*");
+    pub const BRAILLE_2874: SafeIcon = SafeIcon::new("⡴", "*");
+    pub const BRAILLE_2875: SafeIcon = SafeIcon::new("⡵", "*");
+    pub const BRAILLE_2876: SafeIcon = SafeIcon::new("⡶", "*");
+    pub const BRAILLE_2877: SafeIcon = SafeIcon::new("⡷", "*");
+    pub const BRAILLE_2878: SafeIcon = SafeIcon::new("⡸", "*");
+    pub const BRAILLE_2879: SafeIcon = SafeIcon::new("⡹", "*");
+    pub const BRAILLE_287A: SafeIcon = SafeIcon::new("⡺", "*");
+    pub const BRAILLE_287B: SafeIcon = SafeIcon::new("⡻", "*");
+    pub const BRAILLE_287C: SafeIcon = SafeIcon::new("⡼", "*");
+    pub const BRAILLE_287D: SafeIcon = SafeIcon::new("⡽", "*");
+    pub const BRAILLE_287E: SafeIcon = SafeIcon::new("⡾", "*");
+    pub const BRAILLE_287F: SafeIcon = SafeIcon::new("⡿", "*");
     pub const BRAILLE_2880: SafeIcon = SafeIcon::new("⢀", "*");
     pub const BRAILLE_2881: SafeIcon = SafeIcon::new("⢁", "*");
     pub const BRAILLE_2882: SafeIcon = SafeIcon::new("⢂", "*");
@@ -280,6 +2002,62 @@ pub mod braille {
     pub const BRAILLE_2885: SafeIcon = SafeIcon::new("⢅", "*");
     pub const BRAILLE_2886: SafeIcon = SafeIcon::new("⢆", "*");
     pub const BRAILLE_2887: SafeIcon = SafeIcon::new("⢇", "*");
+    pub const BRAILLE_2888: SafeIcon = SafeIcon::new("⢈", "*");
+    pub const BRAILLE_2889: SafeIcon = SafeIcon::new("⢉", "*");
+    pub const BRAILLE_288A: SafeIcon = SafeIcon::new("⢊", "*");
+    pub const BRAILLE_288B: SafeIcon = SafeIcon::new("⢋", "*");
+    pub const BRAILLE_288C: SafeIcon = SafeIcon::new("⢌", "*");
+    pub const BRAILLE_288D: SafeIcon = SafeIcon::new("⢍", "*");
+    pub const BRAILLE_288E: SafeIcon = SafeIcon::new("⢎", "*");
+    pub const BRAILLE_288F: SafeIcon = SafeIcon::new("⢏", "*");
+    pub const BRAILLE_2890: SafeIcon = SafeIcon::new("⢐", "*");
+    pub const BRAILLE_2891: SafeIcon = SafeIcon::new("⢑", "*");
+    pub const BRAILLE_2892: SafeIcon = SafeIcon::new("⢒", "*");
+    pub const BRAILLE_2893: SafeIcon = SafeIcon::new("⢓", "*");
+    pub const BRAILLE_2894: SafeIcon = SafeIcon::new("⢔", "*");
+    pub const BRAILLE_2895: SafeIcon = SafeIcon::new("⢕", "*");
+    pub const BRAILLE_2896: SafeIcon = SafeIcon::new("⢖", "*");
+    pub const BRAILLE_2897: SafeIcon = SafeIcon::new("⢗", "*");
+    pub const BRAILLE_2898: SafeIcon = SafeIcon::new("⢘", "*");
+    pub const BRAILLE_2899: SafeIcon = SafeIcon::new("⢙", "*");
+    pub const BRAILLE_289A: SafeIcon = SafeIcon::new("⢚", "*");
+    pub const BRAILLE_289B: SafeIcon = SafeIcon::new("⢛", "*");
+    pub const BRAILLE_289C: SafeIcon = SafeIcon::new("⢜", "*");
+    pub const BRAILLE_289D: SafeIcon = SafeIcon::new("⢝", "*");
+    pub const BRAILLE_289E: SafeIcon = SafeIcon::new("⢞", "*");
+    pub const BRAILLE_289F: SafeIcon = SafeIcon::new("⢟", "*");
+    pub const BRAILLE_28A0: SafeIcon = SafeIcon::new("⢠", "*");
+    pub const BRAILLE_28A1: SafeIcon = SafeIcon::new("⢡", "*");
+    pub const BRAILLE_28A2: SafeIcon = SafeIcon::new("⢢", "*");
+    pub const BRAILLE_28A3: SafeIcon = SafeIcon::new("⢣", "*");
+    pub const BRAILLE_28A4: SafeIcon = SafeIcon::new("⢤", "*");
+    pub const BRAILLE_28A5: SafeIcon = SafeIcon::new("⢥", "*");
+    pub const BRAILLE_28A6: SafeIcon = SafeIcon::new("⢦", "*");
+    pub const BRAILLE_28A7: SafeIcon = SafeIcon::new("⢧", "*");
+    pub const BRAILLE_28A8: SafeIcon = SafeIcon::new("⢨", "*");
+    pub const BRAILLE_28A9: SafeIcon = SafeIcon::new("⢩", "*");
+    pub const BRAILLE_28AA: SafeIcon = SafeIcon::new("⢪", "*");
+    pub const BRAILLE_28AB: SafeIcon = SafeIcon::new("⢫", "*");
+    pub const BRAILLE_28AC: SafeIcon = SafeIcon::new("⢬", "*");
+    pub const BRAILLE_28AD: SafeIcon = SafeIcon::new("⢭", "*");
+    pub const BRAILLE_28AE: SafeIcon = SafeIcon::new("⢮", "*");
+    pub const BRAILLE_28AF: SafeIcon = SafeIcon::new("⢯", "*");
+    pub const BRAILLE_28B0: SafeIcon = SafeIcon::new("⢰", "*");
+    pub const BRAILLE_28B1: SafeIcon = SafeIcon::new("⢱", "*");
+    pub const BRAILLE_28B2: SafeIcon = SafeIcon::new("⢲", "*");
+    pub const BRAILLE_28B3: SafeIcon = SafeIcon::new("⢳", "*");
+    pub const BRAILLE_28B4: SafeIcon = SafeIcon::new("⢴", "*");
+    pub const BRAILLE_28B5: SafeIcon = SafeIcon::new("⢵", "*");
+    pub const BRAILLE_28B6: SafeIcon = SafeIcon::new("⢶", "*");
+    pub const BRAILLE_28B7: SafeIcon = SafeIcon::new("⢷", "*");
+    pub const BRAILLE_28B8: SafeIcon = SafeIcon::new("⢸", "*");
+    pub const BRAILLE_28B9: SafeIcon = SafeIcon::new("⢹", "*");
+    pub const BRAILLE_28BA: SafeIcon = SafeIcon::new("⢺", "*");
+    pub const BRAILLE_28BB: SafeIcon = SafeIcon::new("⢻", "*");
+    pub const BRAILLE_28BC: SafeIcon = SafeIcon::new("⢼", "*");
+    pub const BRAILLE_28BD: SafeIcon = SafeIcon::new("⢽", "*");
+    pub const BRAILLE_28BE: SafeIcon = SafeIcon::new("⢾", "*");
+    pub const BRAILLE_28BF: SafeIcon = SafeIcon::new("⢿", "*");
     pub const BRAILLE_28C0: SafeIcon = SafeIcon::new("⣀", "*");
     pub const BRAILLE_28C1: SafeIcon = SafeIcon::new("⣁", "*");
     pub const BRAILLE_28C2: SafeIcon = SafeIcon::new("⣂", "*");
@@ -288,6 +2066,62 @@ pub mod braille {
     pub const BRAILLE_28C5: SafeIcon = SafeIcon::new("⣅", "*");
     pub const BRAILLE_28C6: SafeIcon = SafeIcon::new("⣆", "*");
     pub const BRAILLE_28C7: SafeIcon = SafeIcon::new("⣇", "*");
+    pub const BRAILLE_28C8: SafeIcon = SafeIcon::new("⣈", "*");
+    pub const BRAILLE_28C9: SafeIcon = SafeIcon::new("⣉", "*");
+    pub const BRAILLE_28CA: SafeIcon = SafeIcon::new("⣊", "*");
+    pub const BRAILLE_28CB: SafeIcon = SafeIcon::new("⣋", "*");
+    pub const BRAILLE_28CC: SafeIcon = SafeIcon::new("⣌", "*");
+    pub const BRAILLE_28CD: SafeIcon = SafeIcon::new("⣍", "*");
+    pub const BRAILLE_28CE: SafeIcon = SafeIcon::new("⣎", "*");
+    pub const BRAILLE_28CF: SafeIcon = SafeIcon::new("⣏", "*");
+    pub const BRAILLE_28D0: SafeIcon = SafeIcon::new("⣐", "*");
+    pub const BRAILLE_28D1: SafeIcon = SafeIcon::new("⣑", "*");
+    pub const BRAILLE_28D2: SafeIcon = SafeIcon::new("⣒", "*");
+    pub const BRAILLE_28D3: SafeIcon = SafeIcon::new("⣓", "*");
+    pub const BRAILLE_28D4: SafeIcon = SafeIcon::new("⣔", "*");
+    pub const BRAILLE_28D5: SafeIcon = SafeIcon::new("⣕", "*");
+    pub const BRAILLE_28D6: SafeIcon = SafeIcon::new("⣖", "*");
+    pub const BRAILLE_28D7: SafeIcon = SafeIcon::new("⣗", "*");
+    pub const BRAILLE_28D8: SafeIcon = SafeIcon::new("⣘", "*");
+    pub const BRAILLE_28D9: SafeIcon = SafeIcon::new("⣙", "*");
+    pub const BRAILLE_28DA: SafeIcon = SafeIcon::new("⣚", "*");
+    pub const BRAILLE_28DB: SafeIcon = SafeIcon::new("⣛", "*");
+    pub const BRAILLE_28DC: SafeIcon = SafeIcon::new("⣜", "*");
+    pub const BRAILLE_28DD: SafeIcon = SafeIcon::new("⣝", "*");
+    pub const BRAILLE_28DE: SafeIcon = SafeIcon::new("⣞", "*");
+    pub const BRAILLE_28DF: SafeIcon = SafeIcon::new("⣟", "*");
+    pub const BRAILLE_28E0: SafeIcon = SafeIcon::new("⣠", "*");
+    pub const BRAILLE_28E1: SafeIcon = SafeIcon::new("⣡", "*");
+    pub const BRAILLE_28E2: SafeIcon = SafeIcon::new("⣢", "*");
+    pub const BRAILLE_28E3: SafeIcon = SafeIcon::new("⣣", "*");
+    pub const BRAILLE_28E4: SafeIcon = SafeIcon::new("⣤", "*");
+    pub const BRAILLE_28E5: SafeIcon = SafeIcon::new("⣥", "*");
+    pub const BRAILLE_28E6: SafeIcon = SafeIcon::new("⣦", "*");
+    pub const BRAILLE_28E7: SafeIcon = SafeIcon::new("⣧", "*");
+    pub const BRAILLE_28E8: SafeIcon = SafeIcon::new("⣨", "*");
+    pub const BRAILLE_28E9: SafeIcon = SafeIcon::new("⣩", "*");
+    pub const BRAILLE_28EA: SafeIcon = SafeIcon::new("⣪", "*");
+    pub const BRAILLE_28EB: SafeIcon = SafeIcon::new("⣫", "*");
+    pub const BRAILLE_28EC: SafeIcon = SafeIcon::new("⣬", "*");
+    pub const BRAILLE_28ED: SafeIcon = SafeIcon::new("⣭", "*");
+    pub const BRAILLE_28EE: SafeIcon = SafeIcon::new("⣮", "*");
+    pub const BRAILLE_28EF: SafeIcon = SafeIcon::new("⣯", "*");
+    pub const BRAILLE_28F0: SafeIcon = SafeIcon::new("⣰", "*");
+    pub const BRAILLE_28F1: SafeIcon = SafeIcon::new("⣱", "*");
+    pub const BRAILLE_28F2: SafeIcon = SafeIcon::new("⣲", "*");
+    pub const BRAILLE_28F3: SafeIcon = SafeIcon::new("⣳", "*");
+    pub const BRAILLE_28F4: SafeIcon = SafeIcon::new("⣴", "*");
+    pub const BRAILLE_28F5: SafeIcon = SafeIcon::new("⣵", "*");
+    pub const BRAILLE_28F6: SafeIcon = SafeIcon::new("⣶", "*");
+    pub const BRAILLE_28F7: SafeIcon = SafeIcon::new("⣷", "*");
+    pub const BRAILLE_28F8: SafeIcon = SafeIcon::new("⣸", "*");
+    pub const BRAILLE_28F9: SafeIcon = SafeIcon::new("⣹", "*");
+    pub const BRAILLE_28FA: SafeIcon = SafeIcon::new("⣺", "*");
+    pub const BRAILLE_28FB: SafeIcon = SafeIcon::new("⣻", "*");
+    pub const BRAILLE_28FC: SafeIcon = SafeIcon::new("⣼", "*");
+    pub const BRAILLE_28FD: SafeIcon = SafeIcon::new("⣽", "*");
+    pub const BRAILLE_28FE: SafeIcon = SafeIcon::new("⣾", "*");
+    pub const BRAILLE_28FF: SafeIcon = SafeIcon::new("⣿", "*");
 }
 
 /// Richer per-icon record for tooling: identity plus official Unicode name.
@@ -303,47 +2137,244 @@ pub struct IconEntry {
 pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: ascii::ASCII_0021, id: "ascii_0021", codepoint: 33, block: "ascii", unicode_name: "EXCLAMATION MARK" },
     IconEntry { icon: ascii::ASCII_0022, id: "ascii_0022", codepoint: 34, block: "ascii", unicode_name: "QUOTATION MARK" },
+    IconEntry { icon: ascii::ASCII_0023, id: "ascii_0023", codepoint: 35, block: "ascii", unicode_name: "NUMBER SIGN" },
+    IconEntry { icon: ascii::ASCII_0024, id: "ascii_0024", codepoint: 36, block: "ascii", unicode_name: "DOLLAR SIGN" },
+    IconEntry { icon: ascii::ASCII_0025, id: "ascii_0025", codepoint: 37, block: "ascii", unicode_name: "PERCENT SIGN" },
+    IconEntry { icon: ascii::ASCII_0026, id: "ascii_0026", codepoint: 38, block: "ascii", unicode_name: "AMPERSAND" },
     IconEntry { icon: ascii::ASCII_0027, id: "ascii_0027", codepoint: 39, block: "ascii", unicode_name: "APOSTROPHE" },
     IconEntry { icon: ascii::ASCII_0028, id: "ascii_0028", codepoint: 40, block: "ascii", unicode_name: "LEFT PARENTHESIS" },
     IconEntry { icon: ascii::ASCII_0029, id: "ascii_0029", codepoint: 41, block: "ascii", unicode_name: "RIGHT PARENTHESIS" },
+    IconEntry { icon: ascii::ASCII_002A, id: "ascii_002A", codepoint: 42, block: "ascii", unicode_name: "ASTERISK" },
+    IconEntry { icon: ascii::ASCII_002B, id: "ascii_002B", codepoint: 43, block: "ascii", unicode_name: "PLUS SIGN" },
     IconEntry { icon: ascii::ASCII_002C, id: "ascii_002C", codepoint: 44, block: "ascii", unicode_name: "COMMA" },
+    IconEntry { icon: ascii::ASCII_002D, id: "ascii_002D", codepoint: 45, block: "ascii", unicode_name: "HYPHEN-MINUS" },
     IconEntry { icon: ascii::ASCII_002E, id: "ascii_002E", codepoint: 46, block: "ascii", unicode_name: "FULL STOP" },
     IconEntry { icon: ascii::ASCII_002F, id: "ascii_002F", codepoint: 47, block: "ascii", unicode_name: "SOLIDUS" },
+    IconEntry { icon: ascii::ASCII_0030, id: "ascii_0030", codepoint: 48, block: "ascii", unicode_name: "DIGIT ZERO" },
+    IconEntry { icon: ascii::ASCII_0031, id: "ascii_0031", codepoint: 49, block: "ascii", unicode_name: "DIGIT ONE" },
+    IconEntry { icon: ascii::ASCII_0032, id: "ascii_0032", codepoint: 50, block: "ascii", unicode_name: "DIGIT TWO" },
+    IconEntry { icon: ascii::ASCII_0033, id: "ascii_0033", codepoint: 51, block: "ascii", unicode_name: "DIGIT THREE" },
+    IconEntry { icon: ascii::ASCII_0034, id: "ascii_0034", codepoint: 52, block: "ascii", unicode_name: "DIGIT FOUR" },
+    IconEntry { icon: ascii::ASCII_0035, id: "ascii_0035", codepoint: 53, block: "ascii", unicode_name: "DIGIT FIVE" },
+    IconEntry { icon: ascii::ASCII_0036, id: "ascii_0036", codepoint: 54, block: "ascii", unicode_name: "DIGIT SIX" },
+    IconEntry { icon: ascii::ASCII_0037, id: "ascii_0037", codepoint: 55, block: "ascii", unicode_name: "DIGIT SEVEN" },
+    IconEntry { icon: ascii::ASCII_0038, id: "ascii_0038", codepoint: 56, block: "ascii", unicode_name: "DIGIT EIGHT" },
+    IconEntry { icon: ascii::ASCII_0039, id: "ascii_0039", codepoint: 57, block: "ascii", unicode_name: "DIGIT NINE" },
     IconEntry { icon: ascii::ASCII_003A, id: "ascii_003A", codepoint: 58, block: "ascii", unicode_name: "COLON" },
     IconEntry { icon: ascii::ASCII_003B, id: "ascii_003B", codepoint: 59, block: "ascii", unicode_name: "SEMICOLON" },
+    IconEntry { icon: ascii::ASCII_003C, id: "ascii_003C", codepoint: 60, block: "ascii", unicode_name: "LESS-THAN SIGN" },
+    IconEntry { icon: ascii::ASCII_003D, id: "ascii_003D", codepoint: 61, block: "ascii", unicode_name: "EQUALS SIGN" },
     IconEntry { icon: ascii::ASCII_003E, id: "ascii_003E", codepoint: 62, block: "ascii", unicode_name: "GREATER-THAN SIGN" },
     IconEntry { icon: ascii::ASCII_003F, id: "ascii_003F", codepoint: 63, block: "ascii", unicode_name: "QUESTION MARK" },
+    IconEntry { icon: ascii::ASCII_0040, id: "ascii_0040", codepoint: 64, block: "ascii", unicode_name: "COMMERCIAL AT" },
+    IconEntry { icon: ascii::ASCII_0041, id: "ascii_0041", codepoint: 65, block: "ascii", unicode_name: "LATIN CAPITAL LETTER A" },
+    IconEntry { icon: ascii::ASCII_0042, id: "ascii_0042", codepoint: 66, block: "ascii", unicode_name: "LATIN CAPITAL LETTER B" },
+    IconEntry { icon: ascii::ASCII_0043, id: "ascii_0043", codepoint: 67, block: "ascii", unicode_name: "LATIN CAPITAL LETTER C" },
+    IconEntry { icon: ascii::ASCII_0044, id: "ascii_0044", codepoint: 68, block: "ascii", unicode_name: "LATIN CAPITAL LETTER D" },
+    IconEntry { icon: ascii::ASCII_0045, id: "ascii_0045", codepoint: 69, block: "ascii", unicode_name: "LATIN CAPITAL LETTER E" },
+    IconEntry { icon: ascii::ASCII_0046, id: "ascii_0046", codepoint: 70, block: "ascii", unicode_name: "LATIN CAPITAL LETTER F" },
+    IconEntry { icon: ascii::ASCII_0047, id: "ascii_0047", codepoint: 71, block: "ascii", unicode_name: "LATIN CAPITAL LETTER G" },
     IconEntry { icon: ascii::ASCII_0049, id: "ascii_0049", codepoint: 73, block: "ascii", unicode_name: "LATIN CAPITAL LETTER I" },
     IconEntry { icon: ascii::ASCII_004A, id: "ascii_004A", codepoint: 74, block: "ascii", unicode_name: "LATIN CAPITAL LETTER J" },
+    IconEntry { icon: ascii::ASCII_004B, id: "ascii_004B", codepoint: 75, block: "ascii", unicode_name: "LATIN CAPITAL LETTER K" },
+    IconEntry { icon: ascii::ASCII_004C, id: "ascii_004C", codepoint: 76, block: "ascii", unicode_name: "LATIN CAPITAL LETTER L" },
+    IconEntry { icon: ascii::ASCII_004D, id: "ascii_004D", codepoint: 77, block: "ascii", unicode_name: "LATIN CAPITAL LETTER M" },
+    IconEntry { icon: ascii::ASCII_004E, id: "ascii_004E", codepoint: 78, block: "ascii", unicode_name: "LATIN CAPITAL LETTER N" },
+    IconEntry { icon: ascii::ASCII_004F, id: "ascii_004F", codepoint: 79, block: "ascii", unicode_name: "LATIN CAPITAL LETTER O" },
+    IconEntry { icon: ascii::ASCII_0050, id: "ascii_0050", codepoint: 80, block: "ascii", unicode_name: "LATIN CAPITAL LETTER P" },
+    IconEntry { icon: ascii::ASCII_0051, id: "ascii_0051", codepoint: 81, block: "ascii", unicode_name: "LATIN CAPITAL LETTER Q" },
+    IconEntry { icon: ascii::ASCII_0052, id: "ascii_0052", codepoint: 82, block: "ascii", unicode_name: "LATIN CAPITAL LETTER R" },
+    IconEntry { icon: ascii::ASCII_0053, id: "ascii_0053", codepoint: 83, block: "ascii", unicode_name: "LATIN CAPITAL LETTER S" },
+    IconEntry { icon: ascii::ASCII_0054, id: "ascii_0054", codepoint: 84, block: "ascii", unicode_name: "LATIN CAPITAL LETTER T" },
+    IconEntry { icon: ascii::ASCII_0056, id: "ascii_0056", codepoint: 86, block: "ascii", unicode_name: "LATIN CAPITAL LETTER V" },
+    IconEntry { icon: ascii::ASCII_0057, id: "ascii_0057", codepoint: 87, block: "ascii", unicode_name: "LATIN CAPITAL LETTER W" },
+    IconEntry { icon: ascii::ASCII_0058, id: "ascii_0058", codepoint: 88, block: "ascii", unicode_name: "LATIN CAPITAL LETTER X" },
+    IconEntry { icon: ascii::ASCII_0059, id: "ascii_0059", codepoint: 89, block: "ascii", unicode_name: "LATIN CAPITAL LETTER Y" },
+    IconEntry { icon: ascii::ASCII_005A, id: "ascii_005A", codepoint: 90, block: "ascii", unicode_name: "LATIN CAPITAL LETTER Z" },
     IconEntry { icon: ascii::ASCII_005B, id: "ascii_005B", codepoint: 91, block: "ascii", unicode_name: "LEFT SQUARE BRACKET" },
     IconEntry { icon: ascii::ASCII_005C, id: "ascii_005C", codepoint: 92, block: "ascii", unicode_name: "REVERSE SOLIDUS" },
     IconEntry { icon: ascii::ASCII_005D, id: "ascii_005D", codepoint: 93, block: "ascii", unicode_name: "RIGHT SQUARE BRACKET" },
     IconEntry { icon: ascii::ASCII_005E, id: "ascii_005E", codepoint: 94, block: "ascii", unicode_name: "CIRCUMFLEX ACCENT" },
+    IconEntry { icon: ascii::ASCII_005F, id: "ascii_005F", codepoint: 95, block: "ascii", unicode_name: "LOW LINE" },
     IconEntry { icon: ascii::ASCII_0060, id: "ascii_0060", codepoint: 96, block: "ascii", unicode_name: "GRAVE ACCENT" },
     IconEntry { icon: ascii::ASCII_0061, id: "ascii_0061", codepoint: 97, block: "ascii", unicode_name: "LATIN SMALL LETTER A" },
+    IconEntry { icon: ascii::ASCII_0062, id: "ascii_0062", codepoint: 98, block: "ascii", unicode_name: "LATIN SMALL LETTER B" },
     IconEntry { icon: ascii::ASCII_0063, id: "ascii_0063", codepoint: 99, block: "ascii", unicode_name: "LATIN SMALL LETTER C" },
+    IconEntry { icon: ascii::ASCII_0064, id: "ascii_0064", codepoint: 100, block: "ascii", unicode_name: "LATIN SMALL LETTER D" },
+    IconEntry { icon: ascii::ASCII_0065, id: "ascii_0065", codepoint: 101, block: "ascii", unicode_name: "LATIN SMALL LETTER E" },
+    IconEntry { icon: ascii::ASCII_0066, id: "ascii_0066", codepoint: 102, block: "ascii", unicode_name: "LATIN SMALL LETTER F" },
+    IconEntry { icon: ascii::ASCII_0067, id: "ascii_0067", codepoint: 103, block: "ascii", unicode_name: "LATIN SMALL LETTER G" },
+    IconEntry { icon: ascii::ASCII_0068, id: "ascii_0068", codepoint: 104, block: "ascii", unicode_name: "LATIN SMALL LETTER H" },
+    IconEntry { icon: ascii::ASCII_0069, id: "ascii_0069", codepoint: 105, block: "ascii", unicode_name: "LATIN SMALL LETTER I" },
     IconEntry { icon: ascii::ASCII_006A, id: "ascii_006A", codepoint: 106, block: "ascii", unicode_name: "LATIN SMALL LETTER J" },
+    IconEntry { icon: ascii::ASCII_006B, id: "ascii_006B", codepoint: 107, block: "ascii", unicode_name: "LATIN SMALL LETTER K" },
+    IconEntry { icon: ascii::ASCII_006C, id: "ascii_006C", codepoint: 108, block: "ascii", unicode_name: "LATIN SMALL LETTER L" },
+    IconEntry { icon: ascii::ASCII_006D, id: "ascii_006D", codepoint: 109, block: "ascii", unicode_name: "LATIN SMALL LETTER M" },
+    IconEntry { icon: ascii::ASCII_006E, id: "ascii_006E", codepoint: 110, block: "ascii", unicode_name: "LATIN SMALL LETTER N" },
+    IconEntry { icon: ascii::ASCII_006F, id: "ascii_006F", codepoint: 111, block: "ascii", unicode_name: "LATIN SMALL LETTER O" },
+    IconEntry { icon: ascii::ASCII_0070, id: "ascii_0070", codepoint: 112, block: "ascii", unicode_name: "LATIN SMALL LETTER P" },
+    IconEntry { icon: ascii::ASCII_0071, id: "ascii_0071", codepoint: 113, block: "ascii", unicode_name: "LATIN SMALL LETTER Q" },
+    IconEntry { icon: ascii::ASCII_0072, id: "ascii_0072", codepoint: 114, block: "ascii", unicode_name: "LATIN SMALL LETTER R" },
     IconEntry { icon: ascii::ASCII_0073, id: "ascii_0073", codepoint: 115, block: "ascii", unicode_name: "LATIN SMALL LETTER S" },
     IconEntry { icon: ascii::ASCII_0074, id: "ascii_0074", codepoint: 116, block: "ascii", unicode_name: "LATIN SMALL LETTER T" },
+    IconEntry { icon: ascii::ASCII_0075, id: "ascii_0075", codepoint: 117, block: "ascii", unicode_name: "LATIN SMALL LETTER U" },
+    IconEntry { icon: ascii::ASCII_0076, id: "ascii_0076", codepoint: 118, block: "ascii", unicode_name: "LATIN SMALL LETTER V" },
+    IconEntry { icon: ascii::ASCII_0077, id: "ascii_0077", codepoint: 119, block: "ascii", unicode_name: "LATIN SMALL LETTER W" },
+    IconEntry { icon: ascii::ASCII_0078, id: "ascii_0078", codepoint: 120, block: "ascii", unicode_name: "LATIN SMALL LETTER X" },
+    IconEntry { icon: ascii::ASCII_0079, id: "ascii_0079", codepoint: 121, block: "ascii", unicode_name: "LATIN SMALL LETTER Y" },
     IconEntry { icon: ascii::ASCII_007A, id: "ascii_007A", codepoint: 122, block: "ascii", unicode_name: "LATIN SMALL LETTER Z" },
     IconEntry { icon: ascii::ASCII_007B, id: "ascii_007B", codepoint: 123, block: "ascii", unicode_name: "LEFT CURLY BRACKET" },
     IconEntry { icon: ascii::ASCII_007C, id: "ascii_007C", codepoint: 124, block: "ascii", unicode_name: "VERTICAL LINE" },
     IconEntry { icon: ascii::ASCII_007D, id: "ascii_007D", codepoint: 125, block: "ascii", unicode_name: "RIGHT CURLY BRACKET" },
+    IconEntry { icon: ascii::ASCII_007E, id: "ascii_007E", codepoint: 126, block: "ascii", unicode_name: "TILDE" },
+    IconEntry { icon: arrows::ARROW_2190, id: "arrow_2190", codepoint: 8592, block: "arrows", unicode_name: "LEFTWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_2191, id: "arrow_2191", codepoint: 8593, block: "arrows", unicode_name: "UPWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_2192, id: "arrow_2192", codepoint: 8594, block: "arrows", unicode_name: "RIGHTWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_2193, id: "arrow_2193", codepoint: 8595, block: "arrows", unicode_name: "DOWNWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_2194, id: "arrow_2194", codepoint: 8596, block: "arrows", unicode_name: "LEFT RIGHT ARROW" },
+    IconEntry { icon: arrows::ARROW_2195, id: "arrow_2195", codepoint: 8597, block: "arrows", unicode_name: "UP DOWN ARROW" },
+    IconEntry { icon: arrows::ARROW_2196, id: "arrow_2196", codepoint: 8598, block: "arrows", unicode_name: "NORTH WEST ARROW" },
+    IconEntry { icon: arrows::ARROW_2197, id: "arrow_2197", codepoint: 8599, block: "arrows", unicode_name: "NORTH EAST ARROW" },
+    IconEntry { icon: arrows::ARROW_2198, id: "arrow_2198", codepoint: 8600, block: "arrows", unicode_name: "SOUTH EAST ARROW" },
+    IconEntry { icon: arrows::ARROW_2199, id: "arrow_2199", codepoint: 8601, block: "arrows", unicode_name: "SOUTH WEST ARROW" },
+    IconEntry { icon: arrows::ARROW_219A, id: "arrow_219A", codepoint: 8602, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_219B, id: "arrow_219B", codepoint: 8603, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_219C, id: "arrow_219C", codepoint: 8604, block: "arrows", unicode_name: "LEFTWARDS WAVE ARROW" },
+    IconEntry { icon: arrows::ARROW_219D, id: "arrow_219D", codepoint: 8605, block: "arrows", unicode_name: "RIGHTWARDS WAVE ARROW" },
+    IconEntry { icon: arrows::ARROW_219E, id: "arrow_219E", codepoint: 8606, block: "arrows", unicode_name: "LEFTWARDS TWO HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_219F, id: "arrow_219F", codepoint: 8607, block: "arrows", unicode_name: "UPWARDS TWO HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_21A0, id: "arrow_21A0", codepoint: 8608, block: "arrows", unicode_name: "RIGHTWARDS TWO HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_21A1, id: "arrow_21A1", codepoint: 8609, block: "arrows", unicode_name: "DOWNWARDS TWO HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_21A2, id: "arrow_21A2", codepoint: 8610, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH TAIL" },
+    IconEntry { icon: arrows::ARROW_21A3, id: "arrow_21A3", codepoint: 8611, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH TAIL" },
+    IconEntry { icon: arrows::ARROW_21A4, id: "arrow_21A4", codepoint: 8612, block: "arrows", unicode_name: "LEFTWARDS ARROW FROM BAR" },
+    IconEntry { icon: arrows::ARROW_21A5, id: "arrow_21A5", codepoint: 8613, block: "arrows", unicode_name: "UPWARDS ARROW FROM BAR" },
+    IconEntry { icon: arrows::ARROW_21A6, id: "arrow_21A6", codepoint: 8614, block: "arrows", unicode_name: "RIGHTWARDS ARROW FROM BAR" },
+    IconEntry { icon: arrows::ARROW_21A7, id: "arrow_21A7", codepoint: 8615, block: "arrows", unicode_name: "DOWNWARDS ARROW FROM BAR" },
     IconEntry { icon: arrows::ARROW_21A8, id: "arrow_21A8", codepoint: 8616, block: "arrows", unicode_name: "UP DOWN ARROW WITH BASE" },
+    IconEntry { icon: arrows::ARROW_21A9, id: "arrow_21A9", codepoint: 8617, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH HOOK" },
+    IconEntry { icon: arrows::ARROW_21AA, id: "arrow_21AA", codepoint: 8618, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH HOOK" },
+    IconEntry { icon: arrows::ARROW_21AB, id: "arrow_21AB", codepoint: 8619, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH LOOP" },
+    IconEntry { icon: arrows::ARROW_21AC, id: "arrow_21AC", codepoint: 8620, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH LOOP" },
+    IconEntry { icon: arrows::ARROW_21AD, id: "arrow_21AD", codepoint: 8621, block: "arrows", unicode_name: "LEFT RIGHT WAVE ARROW" },
+    IconEntry { icon: arrows::ARROW_21AE, id: "arrow_21AE", codepoint: 8622, block: "arrows", unicode_name: "LEFT RIGHT ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_21AF, id: "arrow_21AF", codepoint: 8623, block: "arrows", unicode_name: "DOWNWARDS ZIGZAG ARROW" },
+    IconEntry { icon: arrows::ARROW_21B0, id: "arrow_21B0", codepoint: 8624, block: "arrows", unicode_name: "UPWARDS ARROW WITH TIP LEFTWARDS" },
+    IconEntry { icon: arrows::ARROW_21B1, id: "arrow_21B1", codepoint: 8625, block: "arrows", unicode_name: "UPWARDS ARROW WITH TIP RIGHTWARDS" },
+    IconEntry { icon: arrows::ARROW_21B2, id: "arrow_21B2", codepoint: 8626, block: "arrows", unicode_name: "DOWNWARDS ARROW WITH TIP LEFTWARDS" },
+    IconEntry { icon: arrows::ARROW_21B3, id: "arrow_21B3", codepoint: 8627, block: "arrows", unicode_name: "DOWNWARDS ARROW WITH TIP RIGHTWARDS" },
+    IconEntry { icon: arrows::ARROW_21B4, id: "arrow_21B4", codepoint: 8628, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH CORNER DOWNWARDS" },
+    IconEntry { icon: arrows::ARROW_21B5, id: "arrow_21B5", codepoint: 8629, block: "arrows", unicode_name: "DOWNWARDS ARROW WITH CORNER LEFTWARDS" },
+    IconEntry { icon: arrows::ARROW_21B6, id: "arrow_21B6", codepoint: 8630, block: "arrows", unicode_name: "ANTICLOCKWISE TOP SEMICIRCLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21B7, id: "arrow_21B7", codepoint: 8631, block: "arrows", unicode_name: "CLOCKWISE TOP SEMICIRCLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21B8, id: "arrow_21B8", codepoint: 8632, block: "arrows", unicode_name: "NORTH WEST ARROW TO LONG BAR" },
+    IconEntry { icon: arrows::ARROW_21B9, id: "arrow_21B9", codepoint: 8633, block: "arrows", unicode_name: "LEFTWARDS ARROW TO BAR OVER RIGHTWARDS ARROW TO BAR" },
+    IconEntry { icon: arrows::ARROW_21BA, id: "arrow_21BA", codepoint: 8634, block: "arrows", unicode_name: "ANTICLOCKWISE OPEN CIRCLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21BB, id: "arrow_21BB", codepoint: 8635, block: "arrows", unicode_name: "CLOCKWISE OPEN CIRCLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21BC, id: "arrow_21BC", codepoint: 8636, block: "arrows", unicode_name: "LEFTWARDS HARPOON WITH BARB UPWARDS" },
+    IconEntry { icon: arrows::ARROW_21BD, id: "arrow_21BD", codepoint: 8637, block: "arrows", unicode_name: "LEFTWARDS HARPOON WITH BARB DOWNWARDS" },
+    IconEntry { icon: arrows::ARROW_21BE, id: "arrow_21BE", codepoint: 8638, block: "arrows", unicode_name: "UPWARDS HARPOON WITH BARB RIGHTWARDS" },
+    IconEntry { icon: arrows::ARROW_21BF, id: "arrow_21BF", codepoint: 8639, block: "arrows", unicode_name: "UPWARDS HARPOON WITH BARB LEFTWARDS" },
+    IconEntry { icon: arrows::ARROW_21C0, id: "arrow_21C0", codepoint: 8640, block: "arrows", unicode_name: "RIGHTWARDS HARPOON WITH BARB UPWARDS" },
+    IconEntry { icon: arrows::ARROW_21C1, id: "arrow_21C1", codepoint: 8641, block: "arrows", unicode_name: "RIGHTWARDS HARPOON WITH BARB DOWNWARDS" },
+    IconEntry { icon: arrows::ARROW_21C2, id: "arrow_21C2", codepoint: 8642, block: "arrows", unicode_name: "DOWNWARDS HARPOON WITH BARB RIGHTWARDS" },
+    IconEntry { icon: arrows::ARROW_21C3, id: "arrow_21C3", codepoint: 8643, block: "arrows", unicode_name: "DOWNWARDS HARPOON WITH BARB LEFTWARDS" },
+    IconEntry { icon: arrows::ARROW_21C4, id: "arrow_21C4", codepoint: 8644, block: "arrows", unicode_name: "RIGHTWARDS ARROW OVER LEFTWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_21C5, id: "arrow_21C5", codepoint: 8645, block: "arrows", unicode_name: "UPWARDS ARROW LEFTWARDS OF DOWNWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_21C6, id: "arrow_21C6", codepoint: 8646, block: "arrows", unicode_name: "LEFTWARDS ARROW OVER RIGHTWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_21C7, id: "arrow_21C7", codepoint: 8647, block: "arrows", unicode_name: "LEFTWARDS PAIRED ARROWS" },
+    IconEntry { icon: arrows::ARROW_21C8, id: "arrow_21C8", codepoint: 8648, block: "arrows", unicode_name: "UPWARDS PAIRED ARROWS" },
+    IconEntry { icon: arrows::ARROW_21C9, id: "arrow_21C9", codepoint: 8649, block: "arrows", unicode_name: "RIGHTWARDS PAIRED ARROWS" },
+    IconEntry { icon: arrows::ARROW_21CA, id: "arrow_21CA", codepoint: 8650, block: "arrows", unicode_name: "DOWNWARDS PAIRED ARROWS" },
+    IconEntry { icon: arrows::ARROW_21CB, id: "arrow_21CB", codepoint: 8651, block: "arrows", unicode_name: "LEFTWARDS HARPOON OVER RIGHTWARDS HARPOON" },
+    IconEntry { icon: arrows::ARROW_21CC, id: "arrow_21CC", codepoint: 8652, block: "arrows", unicode_name: "RIGHTWARDS HARPOON OVER LEFTWARDS HARPOON" },
+    IconEntry { icon: arrows::ARROW_21CD, id: "arrow_21CD", codepoint: 8653, block: "arrows", unicode_name: "LEFTWARDS DOUBLE ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_21CE, id: "arrow_21CE", codepoint: 8654, block: "arrows", unicode_name: "LEFT RIGHT DOUBLE ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_21CF, id: "arrow_21CF", codepoint: 8655, block: "arrows", unicode_name: "RIGHTWARDS DOUBLE ARROW WITH STROKE" },
+    IconEntry { icon: arrows::ARROW_21D0, id: "arrow_21D0", codepoint: 8656, block: "arrows", unicode_name: "LEFTWARDS DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D1, id: "arrow_21D1", codepoint: 8657, block: "arrows", unicode_name: "UPWARDS DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D2, id: "arrow_21D2", codepoint: 8658, block: "arrows", unicode_name: "RIGHTWARDS DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D3, id: "arrow_21D3", codepoint: 8659, block: "arrows", unicode_name: "DOWNWARDS DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D4, id: "arrow_21D4", codepoint: 8660, block: "arrows", unicode_name: "LEFT RIGHT DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D5, id: "arrow_21D5", codepoint: 8661, block: "arrows", unicode_name: "UP DOWN DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D6, id: "arrow_21D6", codepoint: 8662, block: "arrows", unicode_name: "NORTH WEST DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D7, id: "arrow_21D7", codepoint: 8663, block: "arrows", unicode_name: "NORTH EAST DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D8, id: "arrow_21D8", codepoint: 8664, block: "arrows", unicode_name: "SOUTH EAST DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21D9, id: "arrow_21D9", codepoint: 8665, block: "arrows", unicode_name: "SOUTH WEST DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21DA, id: "arrow_21DA", codepoint: 8666, block: "arrows", unicode_name: "LEFTWARDS TRIPLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21DB, id: "arrow_21DB", codepoint: 8667, block: "arrows", unicode_name: "RIGHTWARDS TRIPLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21DC, id: "arrow_21DC", codepoint: 8668, block: "arrows", unicode_name: "LEFTWARDS SQUIGGLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21DD, id: "arrow_21DD", codepoint: 8669, block: "arrows", unicode_name: "RIGHTWARDS SQUIGGLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21DE, id: "arrow_21DE", codepoint: 8670, block: "arrows", unicode_name: "UPWARDS ARROW WITH DOUBLE STROKE" },
+    IconEntry { icon: arrows::ARROW_21DF, id: "arrow_21DF", codepoint: 8671, block: "arrows", unicode_name: "DOWNWARDS ARROW WITH DOUBLE STROKE" },
+    IconEntry { icon: arrows::ARROW_21E0, id: "arrow_21E0", codepoint: 8672, block: "arrows", unicode_name: "LEFTWARDS DASHED ARROW" },
+    IconEntry { icon: arrows::ARROW_21E1, id: "arrow_21E1", codepoint: 8673, block: "arrows", unicode_name: "UPWARDS DASHED ARROW" },
+    IconEntry { icon: arrows::ARROW_21E2, id: "arrow_21E2", codepoint: 8674, block: "arrows", unicode_name: "RIGHTWARDS DASHED ARROW" },
+    IconEntry { icon: arrows::ARROW_21E3, id: "arrow_21E3", codepoint: 8675, block: "arrows", unicode_name: "DOWNWARDS DASHED ARROW" },
+    IconEntry { icon: arrows::ARROW_21E4, id: "arrow_21E4", codepoint: 8676, block: "arrows", unicode_name: "LEFTWARDS ARROW TO BAR" },
+    IconEntry { icon: arrows::ARROW_21E5, id: "arrow_21E5", codepoint: 8677, block: "arrows", unicode_name: "RIGHTWARDS ARROW TO BAR" },
+    IconEntry { icon: arrows::ARROW_21E6, id: "arrow_21E6", codepoint: 8678, block: "arrows", unicode_name: "LEFTWARDS WHITE ARROW" },
+    IconEntry { icon: arrows::ARROW_21E7, id: "arrow_21E7", codepoint: 8679, block: "arrows", unicode_name: "UPWARDS WHITE ARROW" },
+    IconEntry { icon: arrows::ARROW_21E8, id: "arrow_21E8", codepoint: 8680, block: "arrows", unicode_name: "RIGHTWARDS WHITE ARROW" },
+    IconEntry { icon: arrows::ARROW_21E9, id: "arrow_21E9", codepoint: 8681, block: "arrows", unicode_name: "DOWNWARDS WHITE ARROW" },
+    IconEntry { icon: arrows::ARROW_21EA, id: "arrow_21EA", codepoint: 8682, block: "arrows", unicode_name: "UPWARDS WHITE ARROW FROM BAR" },
+    IconEntry { icon: arrows::ARROW_21EB, id: "arrow_21EB", codepoint: 8683, block: "arrows", unicode_name: "UPWARDS WHITE ARROW ON PEDESTAL" },
+    IconEntry { icon: arrows::ARROW_21EC, id: "arrow_21EC", codepoint: 8684, block: "arrows", unicode_name: "UPWARDS WHITE ARROW ON PEDESTAL WITH HORIZONTAL BAR" },
+    IconEntry { icon: arrows::ARROW_21ED, id: "arrow_21ED", codepoint: 8685, block: "arrows", unicode_name: "UPWARDS WHITE ARROW ON PEDESTAL WITH VERTICAL BAR" },
+    IconEntry { icon: arrows::ARROW_21EE, id: "arrow_21EE", codepoint: 8686, block: "arrows", unicode_name: "UPWARDS WHITE DOUBLE ARROW" },
+    IconEntry { icon: arrows::ARROW_21EF, id: "arrow_21EF", codepoint: 8687, block: "arrows", unicode_name: "UPWARDS WHITE DOUBLE ARROW ON PEDESTAL" },
+    IconEntry { icon: arrows::ARROW_21F0, id: "arrow_21F0", codepoint: 8688, block: "arrows", unicode_name: "RIGHTWARDS WHITE ARROW FROM WALL" },
+    IconEntry { icon: arrows::ARROW_21F1, id: "arrow_21F1", codepoint: 8689, block: "arrows", unicode_name: "NORTH WEST ARROW TO CORNER" },
+    IconEntry { icon: arrows::ARROW_21F2, id: "arrow_21F2", codepoint: 8690, block: "arrows", unicode_name: "SOUTH EAST ARROW TO CORNER" },
+    IconEntry { icon: arrows::ARROW_21F3, id: "arrow_21F3", codepoint: 8691, block: "arrows", unicode_name: "UP DOWN WHITE ARROW" },
+    IconEntry { icon: arrows::ARROW_21F4, id: "arrow_21F4", codepoint: 8692, block: "arrows", unicode_name: "RIGHT ARROW WITH SMALL CIRCLE" },
+    IconEntry { icon: arrows::ARROW_21F5, id: "arrow_21F5", codepoint: 8693, block: "arrows", unicode_name: "DOWNWARDS ARROW LEFTWARDS OF UPWARDS ARROW" },
+    IconEntry { icon: arrows::ARROW_21F6, id: "arrow_21F6", codepoint: 8694, block: "arrows", unicode_name: "THREE RIGHTWARDS ARROWS" },
+    IconEntry { icon: arrows::ARROW_21F7, id: "arrow_21F7", codepoint: 8695, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21F8, id: "arrow_21F8", codepoint: 8696, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21F9, id: "arrow_21F9", codepoint: 8697, block: "arrows", unicode_name: "LEFT RIGHT ARROW WITH VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21FA, id: "arrow_21FA", codepoint: 8698, block: "arrows", unicode_name: "LEFTWARDS ARROW WITH DOUBLE VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21FB, id: "arrow_21FB", codepoint: 8699, block: "arrows", unicode_name: "RIGHTWARDS ARROW WITH DOUBLE VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21FC, id: "arrow_21FC", codepoint: 8700, block: "arrows", unicode_name: "LEFT RIGHT ARROW WITH DOUBLE VERTICAL STROKE" },
+    IconEntry { icon: arrows::ARROW_21FD, id: "arrow_21FD", codepoint: 8701, block: "arrows", unicode_name: "LEFTWARDS OPEN-HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_21FE, id: "arrow_21FE", codepoint: 8702, block: "arrows", unicode_name: "RIGHTWARDS OPEN-HEADED ARROW" },
+    IconEntry { icon: arrows::ARROW_21FF, id: "arrow_21FF", codepoint: 8703, block: "arrows", unicode_name: "LEFT RIGHT OPEN-HEADED ARROW" },
+    IconEntry { icon: box_drawing::BOX_2500, id: "box_2500", codepoint: 9472, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2501, id: "box_2501", codepoint: 9473, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY HORIZONTAL" },
     IconEntry { icon: box_drawing::BOX_2502, id: "box_2502", codepoint: 9474, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT VERTICAL" },
     IconEntry { icon: box_drawing::BOX_2503, id: "box_2503", codepoint: 9475, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY VERTICAL" },
+    IconEntry { icon: box_drawing::BOX_2504, id: "box_2504", codepoint: 9476, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT TRIPLE DASH HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2505, id: "box_2505", codepoint: 9477, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY TRIPLE DASH HORIZONTAL" },
     IconEntry { icon: box_drawing::BOX_2506, id: "box_2506", codepoint: 9478, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT TRIPLE DASH VERTICAL" },
     IconEntry { icon: box_drawing::BOX_2507, id: "box_2507", codepoint: 9479, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY TRIPLE DASH VERTICAL" },
+    IconEntry { icon: box_drawing::BOX_2508, id: "box_2508", codepoint: 9480, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT QUADRUPLE DASH HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2509, id: "box_2509", codepoint: 9481, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY QUADRUPLE DASH HORIZONTAL" },
     IconEntry { icon: box_drawing::BOX_250A, id: "box_250A", codepoint: 9482, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT QUADRUPLE DASH VERTICAL" },
     IconEntry { icon: box_drawing::BOX_250B, id: "box_250B", codepoint: 9483, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY QUADRUPLE DASH VERTICAL" },
+    IconEntry { icon: box_drawing::BOX_250C, id: "box_250C", codepoint: 9484, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOWN AND RIGHT" },
+    IconEntry { icon: box_drawing::BOX_250D, id: "box_250D", codepoint: 9485, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND RIGHT HEAVY" },
+    IconEntry { icon: box_drawing::BOX_250E, id: "box_250E", codepoint: 9486, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN HEAVY AND RIGHT LIGHT" },
+    IconEntry { icon: box_drawing::BOX_250F, id: "box_250F", codepoint: 9487, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOWN AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_2510, id: "box_2510", codepoint: 9488, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOWN AND LEFT" },
     IconEntry { icon: box_drawing::BOX_2511, id: "box_2511", codepoint: 9489, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND LEFT HEAVY" },
     IconEntry { icon: box_drawing::BOX_2512, id: "box_2512", codepoint: 9490, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN HEAVY AND LEFT LIGHT" },
     IconEntry { icon: box_drawing::BOX_2513, id: "box_2513", codepoint: 9491, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOWN AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_2514, id: "box_2514", codepoint: 9492, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT UP AND RIGHT" },
+    IconEntry { icon: box_drawing::BOX_2515, id: "box_2515", codepoint: 9493, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND RIGHT HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2516, id: "box_2516", codepoint: 9494, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND RIGHT LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2517, id: "box_2517", codepoint: 9495, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY UP AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_2518, id: "box_2518", codepoint: 9496, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT UP AND LEFT" },
     IconEntry { icon: box_drawing::BOX_2519, id: "box_2519", codepoint: 9497, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND LEFT HEAVY" },
     IconEntry { icon: box_drawing::BOX_251A, id: "box_251A", codepoint: 9498, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND LEFT LIGHT" },
     IconEntry { icon: box_drawing::BOX_251B, id: "box_251B", codepoint: 9499, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY UP AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_251C, id: "box_251C", codepoint: 9500, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT VERTICAL AND RIGHT" },
+    IconEntry { icon: box_drawing::BOX_251D, id: "box_251D", codepoint: 9501, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL LIGHT AND RIGHT HEAVY" },
+    IconEntry { icon: box_drawing::BOX_251E, id: "box_251E", codepoint: 9502, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND RIGHT DOWN LIGHT" },
+    IconEntry { icon: box_drawing::BOX_251F, id: "box_251F", codepoint: 9503, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN HEAVY AND RIGHT UP LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2520, id: "box_2520", codepoint: 9504, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL HEAVY AND RIGHT LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2521, id: "box_2521", codepoint: 9505, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND RIGHT UP HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2522, id: "box_2522", codepoint: 9506, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND RIGHT DOWN HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2523, id: "box_2523", codepoint: 9507, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY VERTICAL AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_2524, id: "box_2524", codepoint: 9508, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT VERTICAL AND LEFT" },
     IconEntry { icon: box_drawing::BOX_2525, id: "box_2525", codepoint: 9509, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL LIGHT AND LEFT HEAVY" },
     IconEntry { icon: box_drawing::BOX_2526, id: "box_2526", codepoint: 9510, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND LEFT DOWN LIGHT" },
@@ -352,49 +2383,545 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: box_drawing::BOX_2529, id: "box_2529", codepoint: 9513, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND LEFT UP HEAVY" },
     IconEntry { icon: box_drawing::BOX_252A, id: "box_252A", codepoint: 9514, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND LEFT DOWN HEAVY" },
     IconEntry { icon: box_drawing::BOX_252B, id: "box_252B", codepoint: 9515, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY VERTICAL AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_252C, id: "box_252C", codepoint: 9516, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOWN AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_252D, id: "box_252D", codepoint: 9517, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT HEAVY AND RIGHT DOWN LIGHT" },
+    IconEntry { icon: box_drawing::BOX_252E, id: "box_252E", codepoint: 9518, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT HEAVY AND LEFT DOWN LIGHT" },
+    IconEntry { icon: box_drawing::BOX_252F, id: "box_252F", codepoint: 9519, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND HORIZONTAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2530, id: "box_2530", codepoint: 9520, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN HEAVY AND HORIZONTAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2531, id: "box_2531", codepoint: 9521, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT LIGHT AND LEFT DOWN HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2532, id: "box_2532", codepoint: 9522, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT LIGHT AND RIGHT DOWN HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2533, id: "box_2533", codepoint: 9523, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOWN AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2534, id: "box_2534", codepoint: 9524, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT UP AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2535, id: "box_2535", codepoint: 9525, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT HEAVY AND RIGHT UP LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2536, id: "box_2536", codepoint: 9526, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT HEAVY AND LEFT UP LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2537, id: "box_2537", codepoint: 9527, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND HORIZONTAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2538, id: "box_2538", codepoint: 9528, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND HORIZONTAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2539, id: "box_2539", codepoint: 9529, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT LIGHT AND LEFT UP HEAVY" },
+    IconEntry { icon: box_drawing::BOX_253A, id: "box_253A", codepoint: 9530, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT LIGHT AND RIGHT UP HEAVY" },
+    IconEntry { icon: box_drawing::BOX_253B, id: "box_253B", codepoint: 9531, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY UP AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_253C, id: "box_253C", codepoint: 9532, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_253D, id: "box_253D", codepoint: 9533, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT HEAVY AND RIGHT VERTICAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_253E, id: "box_253E", codepoint: 9534, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT HEAVY AND LEFT VERTICAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_253F, id: "box_253F", codepoint: 9535, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL LIGHT AND HORIZONTAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2540, id: "box_2540", codepoint: 9536, block: "box_drawing", unicode_name: "BOX DRAWINGS UP HEAVY AND DOWN HORIZONTAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2541, id: "box_2541", codepoint: 9537, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN HEAVY AND UP HORIZONTAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2542, id: "box_2542", codepoint: 9538, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL HEAVY AND HORIZONTAL LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2543, id: "box_2543", codepoint: 9539, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT UP HEAVY AND RIGHT DOWN LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2544, id: "box_2544", codepoint: 9540, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT UP HEAVY AND LEFT DOWN LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2545, id: "box_2545", codepoint: 9541, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT DOWN HEAVY AND RIGHT UP LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2546, id: "box_2546", codepoint: 9542, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT DOWN HEAVY AND LEFT UP LIGHT" },
+    IconEntry { icon: box_drawing::BOX_2547, id: "box_2547", codepoint: 9543, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN LIGHT AND UP HORIZONTAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2548, id: "box_2548", codepoint: 9544, block: "box_drawing", unicode_name: "BOX DRAWINGS UP LIGHT AND DOWN HORIZONTAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_2549, id: "box_2549", codepoint: 9545, block: "box_drawing", unicode_name: "BOX DRAWINGS RIGHT LIGHT AND LEFT VERTICAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_254A, id: "box_254A", codepoint: 9546, block: "box_drawing", unicode_name: "BOX DRAWINGS LEFT LIGHT AND RIGHT VERTICAL HEAVY" },
+    IconEntry { icon: box_drawing::BOX_254B, id: "box_254B", codepoint: 9547, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY VERTICAL AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_254C, id: "box_254C", codepoint: 9548, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOUBLE DASH HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_254D, id: "box_254D", codepoint: 9549, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOUBLE DASH HORIZONTAL" },
     IconEntry { icon: box_drawing::BOX_254E, id: "box_254E", codepoint: 9550, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOUBLE DASH VERTICAL" },
     IconEntry { icon: box_drawing::BOX_254F, id: "box_254F", codepoint: 9551, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOUBLE DASH VERTICAL" },
+    IconEntry { icon: box_drawing::BOX_2550, id: "box_2550", codepoint: 9552, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE HORIZONTAL" },
     IconEntry { icon: box_drawing::BOX_2551, id: "box_2551", codepoint: 9553, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE VERTICAL" },
+    IconEntry { icon: box_drawing::BOX_2552, id: "box_2552", codepoint: 9554, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN SINGLE AND RIGHT DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_2553, id: "box_2553", codepoint: 9555, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN DOUBLE AND RIGHT SINGLE" },
+    IconEntry { icon: box_drawing::BOX_2554, id: "box_2554", codepoint: 9556, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE DOWN AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_2555, id: "box_2555", codepoint: 9557, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN SINGLE AND LEFT DOUBLE" },
     IconEntry { icon: box_drawing::BOX_2556, id: "box_2556", codepoint: 9558, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN DOUBLE AND LEFT SINGLE" },
     IconEntry { icon: box_drawing::BOX_2557, id: "box_2557", codepoint: 9559, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE DOWN AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_2558, id: "box_2558", codepoint: 9560, block: "box_drawing", unicode_name: "BOX DRAWINGS UP SINGLE AND RIGHT DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_2559, id: "box_2559", codepoint: 9561, block: "box_drawing", unicode_name: "BOX DRAWINGS UP DOUBLE AND RIGHT SINGLE" },
+    IconEntry { icon: box_drawing::BOX_255A, id: "box_255A", codepoint: 9562, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE UP AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_255B, id: "box_255B", codepoint: 9563, block: "box_drawing", unicode_name: "BOX DRAWINGS UP SINGLE AND LEFT DOUBLE" },
     IconEntry { icon: box_drawing::BOX_255C, id: "box_255C", codepoint: 9564, block: "box_drawing", unicode_name: "BOX DRAWINGS UP DOUBLE AND LEFT SINGLE" },
     IconEntry { icon: box_drawing::BOX_255D, id: "box_255D", codepoint: 9565, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE UP AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_255E, id: "box_255E", codepoint: 9566, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL SINGLE AND RIGHT DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_255F, id: "box_255F", codepoint: 9567, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL DOUBLE AND RIGHT SINGLE" },
+    IconEntry { icon: box_drawing::BOX_2560, id: "box_2560", codepoint: 9568, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE VERTICAL AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_2561, id: "box_2561", codepoint: 9569, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL SINGLE AND LEFT DOUBLE" },
     IconEntry { icon: box_drawing::BOX_2562, id: "box_2562", codepoint: 9570, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL DOUBLE AND LEFT SINGLE" },
     IconEntry { icon: box_drawing::BOX_2563, id: "box_2563", codepoint: 9571, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE VERTICAL AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_2564, id: "box_2564", codepoint: 9572, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN SINGLE AND HORIZONTAL DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_2565, id: "box_2565", codepoint: 9573, block: "box_drawing", unicode_name: "BOX DRAWINGS DOWN DOUBLE AND HORIZONTAL SINGLE" },
+    IconEntry { icon: box_drawing::BOX_2566, id: "box_2566", codepoint: 9574, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE DOWN AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_2567, id: "box_2567", codepoint: 9575, block: "box_drawing", unicode_name: "BOX DRAWINGS UP SINGLE AND HORIZONTAL DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_2568, id: "box_2568", codepoint: 9576, block: "box_drawing", unicode_name: "BOX DRAWINGS UP DOUBLE AND HORIZONTAL SINGLE" },
+    IconEntry { icon: box_drawing::BOX_2569, id: "box_2569", codepoint: 9577, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE UP AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_256A, id: "box_256A", codepoint: 9578, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL SINGLE AND HORIZONTAL DOUBLE" },
+    IconEntry { icon: box_drawing::BOX_256B, id: "box_256B", codepoint: 9579, block: "box_drawing", unicode_name: "BOX DRAWINGS VERTICAL DOUBLE AND HORIZONTAL SINGLE" },
+    IconEntry { icon: box_drawing::BOX_256C, id: "box_256C", codepoint: 9580, block: "box_drawing", unicode_name: "BOX DRAWINGS DOUBLE VERTICAL AND HORIZONTAL" },
+    IconEntry { icon: box_drawing::BOX_256D, id: "box_256D", codepoint: 9581, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT ARC DOWN AND RIGHT" },
     IconEntry { icon: box_drawing::BOX_256E, id: "box_256E", codepoint: 9582, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT ARC DOWN AND LEFT" },
     IconEntry { icon: box_drawing::BOX_256F, id: "box_256F", codepoint: 9583, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT ARC UP AND LEFT" },
+    IconEntry { icon: box_drawing::BOX_2570, id: "box_2570", codepoint: 9584, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT ARC UP AND RIGHT" },
+    IconEntry { icon: box_drawing::BOX_2571, id: "box_2571", codepoint: 9585, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DIAGONAL UPPER RIGHT TO LOWER LEFT" },
+    IconEntry { icon: box_drawing::BOX_2572, id: "box_2572", codepoint: 9586, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DIAGONAL UPPER LEFT TO LOWER RIGHT" },
+    IconEntry { icon: box_drawing::BOX_2573, id: "box_2573", codepoint: 9587, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DIAGONAL CROSS" },
     IconEntry { icon: box_drawing::BOX_2574, id: "box_2574", codepoint: 9588, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT LEFT" },
     IconEntry { icon: box_drawing::BOX_2575, id: "box_2575", codepoint: 9589, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT UP" },
+    IconEntry { icon: box_drawing::BOX_2576, id: "box_2576", codepoint: 9590, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT RIGHT" },
     IconEntry { icon: box_drawing::BOX_2577, id: "box_2577", codepoint: 9591, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT DOWN" },
     IconEntry { icon: box_drawing::BOX_2578, id: "box_2578", codepoint: 9592, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY LEFT" },
     IconEntry { icon: box_drawing::BOX_2579, id: "box_2579", codepoint: 9593, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY UP" },
+    IconEntry { icon: box_drawing::BOX_257A, id: "box_257A", codepoint: 9594, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY RIGHT" },
     IconEntry { icon: box_drawing::BOX_257B, id: "box_257B", codepoint: 9595, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY DOWN" },
+    IconEntry { icon: box_drawing::BOX_257C, id: "box_257C", codepoint: 9596, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT LEFT AND HEAVY RIGHT" },
     IconEntry { icon: box_drawing::BOX_257D, id: "box_257D", codepoint: 9597, block: "box_drawing", unicode_name: "BOX DRAWINGS LIGHT UP AND HEAVY DOWN" },
+    IconEntry { icon: box_drawing::BOX_257E, id: "box_257E", codepoint: 9598, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY LEFT AND LIGHT RIGHT" },
     IconEntry { icon: box_drawing::BOX_257F, id: "box_257F", codepoint: 9599, block: "box_drawing", unicode_name: "BOX DRAWINGS HEAVY UP AND LIGHT DOWN" },
+    IconEntry { icon: block_elements::BLOCK_2580, id: "block_2580", codepoint: 9600, block: "block_elements", unicode_name: "UPPER HALF BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2581, id: "block_2581", codepoint: 9601, block: "block_elements", unicode_name: "LOWER ONE EIGHTH BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2582, id: "block_2582", codepoint: 9602, block: "block_elements", unicode_name: "LOWER ONE QUARTER BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2583, id: "block_2583", codepoint: 9603, block: "block_elements", unicode_name: "LOWER THREE EIGHTHS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2584, id: "block_2584", codepoint: 9604, block: "block_elements", unicode_name: "LOWER HALF BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2585, id: "block_2585", codepoint: 9605, block: "block_elements", unicode_name: "LOWER FIVE EIGHTHS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2586, id: "block_2586", codepoint: 9606, block: "block_elements", unicode_name: "LOWER THREE QUARTERS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2587, id: "block_2587", codepoint: 9607, block: "block_elements", unicode_name: "LOWER SEVEN EIGHTHS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2588, id: "block_2588", codepoint: 9608, block: "block_elements", unicode_name: "FULL BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2589, id: "block_2589", codepoint: 9609, block: "block_elements", unicode_name: "LEFT SEVEN EIGHTHS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_258A, id: "block_258A", codepoint: 9610, block: "block_elements", unicode_name: "LEFT THREE QUARTERS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_258B, id: "block_258B", codepoint: 9611, block: "block_elements", unicode_name: "LEFT FIVE EIGHTHS BLOCK" },
     IconEntry { icon: block_elements::BLOCK_258C, id: "block_258C", codepoint: 9612, block: "block_elements", unicode_name: "LEFT HALF BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_258D, id: "block_258D", codepoint: 9613, block: "block_elements", unicode_name: "LEFT THREE EIGHTHS BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_258E, id: "block_258E", codepoint: 9614, block: "block_elements", unicode_name: "LEFT ONE QUARTER BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2590, id: "block_2590", codepoint: 9616, block: "block_elements", unicode_name: "RIGHT HALF BLOCK" },
+    IconEntry { icon: block_elements::BLOCK_2591, id: "block_2591", codepoint: 9617, block: "block_elements", unicode_name: "LIGHT SHADE" },
+    IconEntry { icon: block_elements::BLOCK_2592, id: "block_2592", codepoint: 9618, block: "block_elements", unicode_name: "MEDIUM SHADE" },
+    IconEntry { icon: block_elements::BLOCK_2593, id: "block_2593", codepoint: 9619, block: "block_elements", unicode_name: "DARK SHADE" },
+    IconEntry { icon: block_elements::BLOCK_2596, id: "block_2596", codepoint: 9622, block: "block_elements", unicode_name: "QUADRANT LOWER LEFT" },
+    IconEntry { icon: block_elements::BLOCK_2597, id: "block_2597", codepoint: 9623, block: "block_elements", unicode_name: "QUADRANT LOWER RIGHT" },
+    IconEntry { icon: block_elements::BLOCK_2598, id: "block_2598", codepoint: 9624, block: "block_elements", unicode_name: "QUADRANT UPPER LEFT" },
+    IconEntry { icon: block_elements::BLOCK_2599, id: "block_2599", codepoint: 9625, block: "block_elements", unicode_name: "QUADRANT UPPER LEFT AND LOWER LEFT AND LOWER RIGHT" },
+    IconEntry { icon: block_elements::BLOCK_259A, id: "block_259A", codepoint: 9626, block: "block_elements", unicode_name: "QUADRANT UPPER LEFT AND LOWER RIGHT" },
+    IconEntry { icon: block_elements::BLOCK_259B, id: "block_259B", codepoint: 9627, block: "block_elements", unicode_name: "QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER LEFT" },
+    IconEntry { icon: block_elements::BLOCK_259C, id: "block_259C", codepoint: 9628, block: "block_elements", unicode_name: "QUADRANT UPPER LEFT AND UPPER RIGHT AND LOWER RIGHT" },
+    IconEntry { icon: block_elements::BLOCK_259D, id: "block_259D", codepoint: 9629, block: "block_elements", unicode_name: "QUADRANT UPPER RIGHT" },
+    IconEntry { icon: block_elements::BLOCK_259E, id: "block_259E", codepoint: 9630, block: "block_elements", unicode_name: "QUADRANT UPPER RIGHT AND LOWER LEFT" },
+    IconEntry { icon: block_elements::BLOCK_259F, id: "block_259F", codepoint: 9631, block: "block_elements", unicode_name: "QUADRANT UPPER RIGHT AND LOWER LEFT AND LOWER RIGHT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A0, id: "geometric_25A0", codepoint: 9632, block: "geometric_shapes", unicode_name: "BLACK SQUARE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A2, id: "geometric_25A2", codepoint: 9634, block: "geometric_shapes", unicode_name: "WHITE SQUARE WITH ROUNDED CORNERS" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A3, id: "geometric_25A3", codepoint: 9635, block: "geometric_shapes", unicode_name: "WHITE SQUARE CONTAINING BLACK SMALL SQUARE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A4, id: "geometric_25A4", codepoint: 9636, block: "geometric_shapes", unicode_name: "SQUARE WITH HORIZONTAL FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A5, id: "geometric_25A5", codepoint: 9637, block: "geometric_shapes", unicode_name: "SQUARE WITH VERTICAL FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A6, id: "geometric_25A6", codepoint: 9638, block: "geometric_shapes", unicode_name: "SQUARE WITH ORTHOGONAL CROSSHATCH FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A7, id: "geometric_25A7", codepoint: 9639, block: "geometric_shapes", unicode_name: "SQUARE WITH UPPER LEFT TO LOWER RIGHT FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A8, id: "geometric_25A8", codepoint: 9640, block: "geometric_shapes", unicode_name: "SQUARE WITH UPPER RIGHT TO LOWER LEFT FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25A9, id: "geometric_25A9", codepoint: 9641, block: "geometric_shapes", unicode_name: "SQUARE WITH DIAGONAL CROSSHATCH FILL" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25AA, id: "geometric_25AA", codepoint: 9642, block: "geometric_shapes", unicode_name: "BLACK SMALL SQUARE" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25AB, id: "geometric_25AB", codepoint: 9643, block: "geometric_shapes", unicode_name: "WHITE SMALL SQUARE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25AC, id: "geometric_25AC", codepoint: 9644, block: "geometric_shapes", unicode_name: "BLACK RECTANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25AD, id: "geometric_25AD", codepoint: 9645, block: "geometric_shapes", unicode_name: "WHITE RECTANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25AE, id: "geometric_25AE", codepoint: 9646, block: "geometric_shapes", unicode_name: "BLACK VERTICAL RECTANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B0, id: "geometric_25B0", codepoint: 9648, block: "geometric_shapes", unicode_name: "BLACK PARALLELOGRAM" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B1, id: "geometric_25B1", codepoint: 9649, block: "geometric_shapes", unicode_name: "WHITE PARALLELOGRAM" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B2, id: "geometric_25B2", codepoint: 9650, block: "geometric_shapes", unicode_name: "BLACK UP-POINTING TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B3, id: "geometric_25B3", codepoint: 9651, block: "geometric_shapes", unicode_name: "WHITE UP-POINTING TRIANGLE" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25B4, id: "geometric_25B4", codepoint: 9652, block: "geometric_shapes", unicode_name: "BLACK UP-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B5, id: "geometric_25B5", codepoint: 9653, block: "geometric_shapes", unicode_name: "WHITE UP-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B6, id: "geometric_25B6", codepoint: 9654, block: "geometric_shapes", unicode_name: "BLACK RIGHT-POINTING TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B7, id: "geometric_25B7", codepoint: 9655, block: "geometric_shapes", unicode_name: "WHITE RIGHT-POINTING TRIANGLE" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25B8, id: "geometric_25B8", codepoint: 9656, block: "geometric_shapes", unicode_name: "BLACK RIGHT-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25B9, id: "geometric_25B9", codepoint: 9657, block: "geometric_shapes", unicode_name: "WHITE RIGHT-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25BA, id: "geometric_25BA", codepoint: 9658, block: "geometric_shapes", unicode_name: "BLACK RIGHT-POINTING POINTER" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25BB, id: "geometric_25BB", codepoint: 9659, block: "geometric_shapes", unicode_name: "WHITE RIGHT-POINTING POINTER" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25BC, id: "geometric_25BC", codepoint: 9660, block: "geometric_shapes", unicode_name: "BLACK DOWN-POINTING TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25BD, id: "geometric_25BD", codepoint: 9661, block: "geometric_shapes", unicode_name: "WHITE DOWN-POINTING TRIANGLE" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25BE, id: "geometric_25BE", codepoint: 9662, block: "geometric_shapes", unicode_name: "BLACK DOWN-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25BF, id: "geometric_25BF", codepoint: 9663, block: "geometric_shapes", unicode_name: "WHITE DOWN-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C0, id: "geometric_25C0", codepoint: 9664, block: "geometric_shapes", unicode_name: "BLACK LEFT-POINTING TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C1, id: "geometric_25C1", codepoint: 9665, block: "geometric_shapes", unicode_name: "WHITE LEFT-POINTING TRIANGLE" },
     IconEntry { icon: geometric_shapes::GEOMETRIC_25C2, id: "geometric_25C2", codepoint: 9666, block: "geometric_shapes", unicode_name: "BLACK LEFT-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C3, id: "geometric_25C3", codepoint: 9667, block: "geometric_shapes", unicode_name: "WHITE LEFT-POINTING SMALL TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C4, id: "geometric_25C4", codepoint: 9668, block: "geometric_shapes", unicode_name: "BLACK LEFT-POINTING POINTER" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C5, id: "geometric_25C5", codepoint: 9669, block: "geometric_shapes", unicode_name: "WHITE LEFT-POINTING POINTER" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C6, id: "geometric_25C6", codepoint: 9670, block: "geometric_shapes", unicode_name: "BLACK DIAMOND" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C7, id: "geometric_25C7", codepoint: 9671, block: "geometric_shapes", unicode_name: "WHITE DIAMOND" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C8, id: "geometric_25C8", codepoint: 9672, block: "geometric_shapes", unicode_name: "WHITE DIAMOND CONTAINING BLACK SMALL DIAMOND" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25C9, id: "geometric_25C9", codepoint: 9673, block: "geometric_shapes", unicode_name: "FISHEYE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CA, id: "geometric_25CA", codepoint: 9674, block: "geometric_shapes", unicode_name: "LOZENGE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CB, id: "geometric_25CB", codepoint: 9675, block: "geometric_shapes", unicode_name: "WHITE CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CC, id: "geometric_25CC", codepoint: 9676, block: "geometric_shapes", unicode_name: "DOTTED CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CD, id: "geometric_25CD", codepoint: 9677, block: "geometric_shapes", unicode_name: "CIRCLE WITH VERTICAL FILL" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CE, id: "geometric_25CE", codepoint: 9678, block: "geometric_shapes", unicode_name: "BULLSEYE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25CF, id: "geometric_25CF", codepoint: 9679, block: "geometric_shapes", unicode_name: "BLACK CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D0, id: "geometric_25D0", codepoint: 9680, block: "geometric_shapes", unicode_name: "CIRCLE WITH LEFT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D1, id: "geometric_25D1", codepoint: 9681, block: "geometric_shapes", unicode_name: "CIRCLE WITH RIGHT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D2, id: "geometric_25D2", codepoint: 9682, block: "geometric_shapes", unicode_name: "CIRCLE WITH LOWER HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D3, id: "geometric_25D3", codepoint: 9683, block: "geometric_shapes", unicode_name: "CIRCLE WITH UPPER HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D4, id: "geometric_25D4", codepoint: 9684, block: "geometric_shapes", unicode_name: "CIRCLE WITH UPPER RIGHT QUADRANT BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D5, id: "geometric_25D5", codepoint: 9685, block: "geometric_shapes", unicode_name: "CIRCLE WITH ALL BUT UPPER LEFT QUADRANT BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D6, id: "geometric_25D6", codepoint: 9686, block: "geometric_shapes", unicode_name: "LEFT HALF BLACK CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D7, id: "geometric_25D7", codepoint: 9687, block: "geometric_shapes", unicode_name: "RIGHT HALF BLACK CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D8, id: "geometric_25D8", codepoint: 9688, block: "geometric_shapes", unicode_name: "INVERSE BULLET" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25D9, id: "geometric_25D9", codepoint: 9689, block: "geometric_shapes", unicode_name: "INVERSE WHITE CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DA, id: "geometric_25DA", codepoint: 9690, block: "geometric_shapes", unicode_name: "UPPER HALF INVERSE WHITE CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DB, id: "geometric_25DB", codepoint: 9691, block: "geometric_shapes", unicode_name: "LOWER HALF INVERSE WHITE CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DC, id: "geometric_25DC", codepoint: 9692, block: "geometric_shapes", unicode_name: "UPPER LEFT QUADRANT CIRCULAR ARC" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DD, id: "geometric_25DD", codepoint: 9693, block: "geometric_shapes", unicode_name: "UPPER RIGHT QUADRANT CIRCULAR ARC" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DE, id: "geometric_25DE", codepoint: 9694, block: "geometric_shapes", unicode_name: "LOWER RIGHT QUADRANT CIRCULAR ARC" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25DF, id: "geometric_25DF", codepoint: 9695, block: "geometric_shapes", unicode_name: "LOWER LEFT QUADRANT CIRCULAR ARC" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E0, id: "geometric_25E0", codepoint: 9696, block: "geometric_shapes", unicode_name: "UPPER HALF CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E1, id: "geometric_25E1", codepoint: 9697, block: "geometric_shapes", unicode_name: "LOWER HALF CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E2, id: "geometric_25E2", codepoint: 9698, block: "geometric_shapes", unicode_name: "BLACK LOWER RIGHT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E3, id: "geometric_25E3", codepoint: 9699, block: "geometric_shapes", unicode_name: "BLACK LOWER LEFT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E4, id: "geometric_25E4", codepoint: 9700, block: "geometric_shapes", unicode_name: "BLACK UPPER LEFT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E5, id: "geometric_25E5", codepoint: 9701, block: "geometric_shapes", unicode_name: "BLACK UPPER RIGHT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E6, id: "geometric_25E6", codepoint: 9702, block: "geometric_shapes", unicode_name: "WHITE BULLET" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E7, id: "geometric_25E7", codepoint: 9703, block: "geometric_shapes", unicode_name: "SQUARE WITH LEFT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E8, id: "geometric_25E8", codepoint: 9704, block: "geometric_shapes", unicode_name: "SQUARE WITH RIGHT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25E9, id: "geometric_25E9", codepoint: 9705, block: "geometric_shapes", unicode_name: "SQUARE WITH UPPER LEFT DIAGONAL HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25EA, id: "geometric_25EA", codepoint: 9706, block: "geometric_shapes", unicode_name: "SQUARE WITH LOWER RIGHT DIAGONAL HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25EB, id: "geometric_25EB", codepoint: 9707, block: "geometric_shapes", unicode_name: "WHITE SQUARE WITH VERTICAL BISECTING LINE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25EC, id: "geometric_25EC", codepoint: 9708, block: "geometric_shapes", unicode_name: "WHITE UP-POINTING TRIANGLE WITH DOT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25ED, id: "geometric_25ED", codepoint: 9709, block: "geometric_shapes", unicode_name: "UP-POINTING TRIANGLE WITH LEFT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25EE, id: "geometric_25EE", codepoint: 9710, block: "geometric_shapes", unicode_name: "UP-POINTING TRIANGLE WITH RIGHT HALF BLACK" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25EF, id: "geometric_25EF", codepoint: 9711, block: "geometric_shapes", unicode_name: "LARGE CIRCLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F3, id: "geometric_25F3", codepoint: 9715, block: "geometric_shapes", unicode_name: "WHITE SQUARE WITH UPPER RIGHT QUADRANT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F4, id: "geometric_25F4", codepoint: 9716, block: "geometric_shapes", unicode_name: "WHITE CIRCLE WITH UPPER LEFT QUADRANT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F5, id: "geometric_25F5", codepoint: 9717, block: "geometric_shapes", unicode_name: "WHITE CIRCLE WITH LOWER LEFT QUADRANT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F6, id: "geometric_25F6", codepoint: 9718, block: "geometric_shapes", unicode_name: "WHITE CIRCLE WITH LOWER RIGHT QUADRANT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F7, id: "geometric_25F7", codepoint: 9719, block: "geometric_shapes", unicode_name: "WHITE CIRCLE WITH UPPER RIGHT QUADRANT" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F8, id: "geometric_25F8", codepoint: 9720, block: "geometric_shapes", unicode_name: "UPPER LEFT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25F9, id: "geometric_25F9", codepoint: 9721, block: "geometric_shapes", unicode_name: "UPPER RIGHT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25FA, id: "geometric_25FA", codepoint: 9722, block: "geometric_shapes", unicode_name: "LOWER LEFT TRIANGLE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25FB, id: "geometric_25FB", codepoint: 9723, block: "geometric_shapes", unicode_name: "WHITE MEDIUM SQUARE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25FC, id: "geometric_25FC", codepoint: 9724, block: "geometric_shapes", unicode_name: "BLACK MEDIUM SQUARE" },
+    IconEntry { icon: geometric_shapes::GEOMETRIC_25FF, id: "geometric_25FF", codepoint: 9727, block: "geometric_shapes", unicode_name: "LOWER RIGHT TRIANGLE" },
+    IconEntry { icon: misc_symbols::MISC_2600, id: "misc_2600", codepoint: 9728, block: "misc_symbols", unicode_name: "BLACK SUN WITH RAYS" },
+    IconEntry { icon: misc_symbols::MISC_2601, id: "misc_2601", codepoint: 9729, block: "misc_symbols", unicode_name: "CLOUD" },
+    IconEntry { icon: misc_symbols::MISC_2602, id: "misc_2602", codepoint: 9730, block: "misc_symbols", unicode_name: "UMBRELLA" },
+    IconEntry { icon: misc_symbols::MISC_2603, id: "misc_2603", codepoint: 9731, block: "misc_symbols", unicode_name: "SNOWMAN" },
+    IconEntry { icon: misc_symbols::MISC_2604, id: "misc_2604", codepoint: 9732, block: "misc_symbols", unicode_name: "COMET" },
+    IconEntry { icon: misc_symbols::MISC_2605, id: "misc_2605", codepoint: 9733, block: "misc_symbols", unicode_name: "BLACK STAR" },
+    IconEntry { icon: misc_symbols::MISC_2606, id: "misc_2606", codepoint: 9734, block: "misc_symbols", unicode_name: "WHITE STAR" },
     IconEntry { icon: misc_symbols::MISC_2607, id: "misc_2607", codepoint: 9735, block: "misc_symbols", unicode_name: "LIGHTNING" },
+    IconEntry { icon: misc_symbols::MISC_2608, id: "misc_2608", codepoint: 9736, block: "misc_symbols", unicode_name: "THUNDERSTORM" },
+    IconEntry { icon: misc_symbols::MISC_2609, id: "misc_2609", codepoint: 9737, block: "misc_symbols", unicode_name: "SUN" },
+    IconEntry { icon: misc_symbols::MISC_260A, id: "misc_260A", codepoint: 9738, block: "misc_symbols", unicode_name: "ASCENDING NODE" },
+    IconEntry { icon: misc_symbols::MISC_260B, id: "misc_260B", codepoint: 9739, block: "misc_symbols", unicode_name: "DESCENDING NODE" },
+    IconEntry { icon: misc_symbols::MISC_260C, id: "misc_260C", codepoint: 9740, block: "misc_symbols", unicode_name: "CONJUNCTION" },
+    IconEntry { icon: misc_symbols::MISC_260D, id: "misc_260D", codepoint: 9741, block: "misc_symbols", unicode_name: "OPPOSITION" },
+    IconEntry { icon: misc_symbols::MISC_260E, id: "misc_260E", codepoint: 9742, block: "misc_symbols", unicode_name: "BLACK TELEPHONE" },
+    IconEntry { icon: misc_symbols::MISC_260F, id: "misc_260F", codepoint: 9743, block: "misc_symbols", unicode_name: "WHITE TELEPHONE" },
     IconEntry { icon: misc_symbols::MISC_2613, id: "misc_2613", codepoint: 9747, block: "misc_symbols", unicode_name: "SALTIRE" },
+    IconEntry { icon: misc_symbols::MISC_2616, id: "misc_2616", codepoint: 9750, block: "misc_symbols", unicode_name: "WHITE SHOGI PIECE" },
+    IconEntry { icon: misc_symbols::MISC_2617, id: "misc_2617", codepoint: 9751, block: "misc_symbols", unicode_name: "BLACK SHOGI PIECE" },
+    IconEntry { icon: misc_symbols::MISC_2618, id: "misc_2618", codepoint: 9752, block: "misc_symbols", unicode_name: "SHAMROCK" },
+    IconEntry { icon: misc_symbols::MISC_2619, id: "misc_2619", codepoint: 9753, block: "misc_symbols", unicode_name: "REVERSED ROTATED FLORAL HEART BULLET" },
+    IconEntry { icon: misc_symbols::MISC_261A, id: "misc_261A", codepoint: 9754, block: "misc_symbols", unicode_name: "BLACK LEFT POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_261B, id: "misc_261B", codepoint: 9755, block: "misc_symbols", unicode_name: "BLACK RIGHT POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_261C, id: "misc_261C", codepoint: 9756, block: "misc_symbols", unicode_name: "WHITE LEFT POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_261D, id: "misc_261D", codepoint: 9757, block: "misc_symbols", unicode_name: "WHITE UP POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_261E, id: "misc_261E", codepoint: 9758, block: "misc_symbols", unicode_name: "WHITE RIGHT POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_261F, id: "misc_261F", codepoint: 9759, block: "misc_symbols", unicode_name: "WHITE DOWN POINTING INDEX" },
+    IconEntry { icon: misc_symbols::MISC_2620, id: "misc_2620", codepoint: 9760, block: "misc_symbols", unicode_name: "SKULL AND CROSSBONES" },
+    IconEntry { icon: misc_symbols::MISC_2621, id: "misc_2621", codepoint: 9761, block: "misc_symbols", unicode_name: "CAUTION SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2622, id: "misc_2622", codepoint: 9762, block: "misc_symbols", unicode_name: "RADIOACTIVE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2623, id: "misc_2623", codepoint: 9763, block: "misc_symbols", unicode_name: "BIOHAZARD SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2624, id: "misc_2624", codepoint: 9764, block: "misc_symbols", unicode_name: "CADUCEUS" },
+    IconEntry { icon: misc_symbols::MISC_2625, id: "misc_2625", codepoint: 9765, block: "misc_symbols", unicode_name: "ANKH" },
+    IconEntry { icon: misc_symbols::MISC_2626, id: "misc_2626", codepoint: 9766, block: "misc_symbols", unicode_name: "ORTHODOX CROSS" },
+    IconEntry { icon: misc_symbols::MISC_2627, id: "misc_2627", codepoint: 9767, block: "misc_symbols", unicode_name: "CHI RHO" },
     IconEntry { icon: misc_symbols::MISC_2628, id: "misc_2628", codepoint: 9768, block: "misc_symbols", unicode_name: "CROSS OF LORRAINE" },
+    IconEntry { icon: misc_symbols::MISC_2629, id: "misc_2629", codepoint: 9769, block: "misc_symbols", unicode_name: "CROSS OF JERUSALEM" },
+    IconEntry { icon: misc_symbols::MISC_262A, id: "misc_262A", codepoint: 9770, block: "misc_symbols", unicode_name: "STAR AND CRESCENT" },
+    IconEntry { icon: misc_symbols::MISC_262B, id: "misc_262B", codepoint: 9771, block: "misc_symbols", unicode_name: "FARSI SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_262C, id: "misc_262C", codepoint: 9772, block: "misc_symbols", unicode_name: "ADI SHAKTI" },
+    IconEntry { icon: misc_symbols::MISC_262D, id: "misc_262D", codepoint: 9773, block: "misc_symbols", unicode_name: "HAMMER AND SICKLE" },
+    IconEntry { icon: misc_symbols::MISC_262E, id: "misc_262E", codepoint: 9774, block: "misc_symbols", unicode_name: "PEACE SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_262F, id: "misc_262F", codepoint: 9775, block: "misc_symbols", unicode_name: "YIN YANG" },
+    IconEntry { icon: misc_symbols::MISC_2638, id: "misc_2638", codepoint: 9784, block: "misc_symbols", unicode_name: "WHEEL OF DHARMA" },
+    IconEntry { icon: misc_symbols::MISC_2639, id: "misc_2639", codepoint: 9785, block: "misc_symbols", unicode_name: "WHITE FROWNING FACE" },
+    IconEntry { icon: misc_symbols::MISC_263A, id: "misc_263A", codepoint: 9786, block: "misc_symbols", unicode_name: "WHITE SMILING FACE" },
+    IconEntry { icon: misc_symbols::MISC_263B, id: "misc_263B", codepoint: 9787, block: "misc_symbols", unicode_name: "BLACK SMILING FACE" },
+    IconEntry { icon: misc_symbols::MISC_263C, id: "misc_263C", codepoint: 9788, block: "misc_symbols", unicode_name: "WHITE SUN WITH RAYS" },
+    IconEntry { icon: misc_symbols::MISC_263D, id: "misc_263D", codepoint: 9789, block: "misc_symbols", unicode_name: "FIRST QUARTER MOON" },
     IconEntry { icon: misc_symbols::MISC_263E, id: "misc_263E", codepoint: 9790, block: "misc_symbols", unicode_name: "LAST QUARTER MOON" },
     IconEntry { icon: misc_symbols::MISC_263F, id: "misc_263F", codepoint: 9791, block: "misc_symbols", unicode_name: "MERCURY" },
+    IconEntry { icon: misc_symbols::MISC_2640, id: "misc_2640", codepoint: 9792, block: "misc_symbols", unicode_name: "FEMALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2641, id: "misc_2641", codepoint: 9793, block: "misc_symbols", unicode_name: "EARTH" },
+    IconEntry { icon: misc_symbols::MISC_2642, id: "misc_2642", codepoint: 9794, block: "misc_symbols", unicode_name: "MALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2643, id: "misc_2643", codepoint: 9795, block: "misc_symbols", unicode_name: "JUPITER" },
     IconEntry { icon: misc_symbols::MISC_2644, id: "misc_2644", codepoint: 9796, block: "misc_symbols", unicode_name: "SATURN" },
+    IconEntry { icon: misc_symbols::MISC_2645, id: "misc_2645", codepoint: 9797, block: "misc_symbols", unicode_name: "URANUS" },
+    IconEntry { icon: misc_symbols::MISC_2646, id: "misc_2646", codepoint: 9798, block: "misc_symbols", unicode_name: "NEPTUNE" },
     IconEntry { icon: misc_symbols::MISC_2647, id: "misc_2647", codepoint: 9799, block: "misc_symbols", unicode_name: "PLUTO" },
+    IconEntry { icon: misc_symbols::MISC_2654, id: "misc_2654", codepoint: 9812, block: "misc_symbols", unicode_name: "WHITE CHESS KING" },
+    IconEntry { icon: misc_symbols::MISC_2655, id: "misc_2655", codepoint: 9813, block: "misc_symbols", unicode_name: "WHITE CHESS QUEEN" },
+    IconEntry { icon: misc_symbols::MISC_2656, id: "misc_2656", codepoint: 9814, block: "misc_symbols", unicode_name: "WHITE CHESS ROOK" },
+    IconEntry { icon: misc_symbols::MISC_2657, id: "misc_2657", codepoint: 9815, block: "misc_symbols", unicode_name: "WHITE CHESS BISHOP" },
+    IconEntry { icon: misc_symbols::MISC_2658, id: "misc_2658", codepoint: 9816, block: "misc_symbols", unicode_name: "WHITE CHESS KNIGHT" },
+    IconEntry { icon: misc_symbols::MISC_2659, id: "misc_2659", codepoint: 9817, block: "misc_symbols", unicode_name: "WHITE CHESS PAWN" },
+    IconEntry { icon: misc_symbols::MISC_265A, id: "misc_265A", codepoint: 9818, block: "misc_symbols", unicode_name: "BLACK CHESS KING" },
+    IconEntry { icon: misc_symbols::MISC_265B, id: "misc_265B", codepoint: 9819, block: "misc_symbols", unicode_name: "BLACK CHESS QUEEN" },
+    IconEntry { icon: misc_symbols::MISC_265C, id: "misc_265C", codepoint: 9820, block: "misc_symbols", unicode_name: "BLACK CHESS ROOK" },
+    IconEntry { icon: misc_symbols::MISC_265D, id: "misc_265D", codepoint: 9821, block: "misc_symbols", unicode_name: "BLACK CHESS BISHOP" },
+    IconEntry { icon: misc_symbols::MISC_265E, id: "misc_265E", codepoint: 9822, block: "misc_symbols", unicode_name: "BLACK CHESS KNIGHT" },
+    IconEntry { icon: misc_symbols::MISC_265F, id: "misc_265F", codepoint: 9823, block: "misc_symbols", unicode_name: "BLACK CHESS PAWN" },
+    IconEntry { icon: misc_symbols::MISC_2660, id: "misc_2660", codepoint: 9824, block: "misc_symbols", unicode_name: "BLACK SPADE SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2661, id: "misc_2661", codepoint: 9825, block: "misc_symbols", unicode_name: "WHITE HEART SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2662, id: "misc_2662", codepoint: 9826, block: "misc_symbols", unicode_name: "WHITE DIAMOND SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2663, id: "misc_2663", codepoint: 9827, block: "misc_symbols", unicode_name: "BLACK CLUB SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2664, id: "misc_2664", codepoint: 9828, block: "misc_symbols", unicode_name: "WHITE SPADE SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2665, id: "misc_2665", codepoint: 9829, block: "misc_symbols", unicode_name: "BLACK HEART SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2666, id: "misc_2666", codepoint: 9830, block: "misc_symbols", unicode_name: "BLACK DIAMOND SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2667, id: "misc_2667", codepoint: 9831, block: "misc_symbols", unicode_name: "WHITE CLUB SUIT" },
+    IconEntry { icon: misc_symbols::MISC_2668, id: "misc_2668", codepoint: 9832, block: "misc_symbols", unicode_name: "HOT SPRINGS" },
+    IconEntry { icon: misc_symbols::MISC_2669, id: "misc_2669", codepoint: 9833, block: "misc_symbols", unicode_name: "QUARTER NOTE" },
+    IconEntry { icon: misc_symbols::MISC_266A, id: "misc_266A", codepoint: 9834, block: "misc_symbols", unicode_name: "EIGHTH NOTE" },
+    IconEntry { icon: misc_symbols::MISC_266B, id: "misc_266B", codepoint: 9835, block: "misc_symbols", unicode_name: "BEAMED EIGHTH NOTES" },
+    IconEntry { icon: misc_symbols::MISC_266C, id: "misc_266C", codepoint: 9836, block: "misc_symbols", unicode_name: "BEAMED SIXTEENTH NOTES" },
     IconEntry { icon: misc_symbols::MISC_266D, id: "misc_266D", codepoint: 9837, block: "misc_symbols", unicode_name: "MUSIC FLAT SIGN" },
+    IconEntry { icon: misc_symbols::MISC_266E, id: "misc_266E", codepoint: 9838, block: "misc_symbols", unicode_name: "MUSIC NATURAL SIGN" },
     IconEntry { icon: misc_symbols::MISC_266F, id: "misc_266F", codepoint: 9839, block: "misc_symbols", unicode_name: "MUSIC SHARP SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2670, id: "misc_2670", codepoint: 9840, block: "misc_symbols", unicode_name: "WEST SYRIAC CROSS" },
+    IconEntry { icon: misc_symbols::MISC_2671, id: "misc_2671", codepoint: 9841, block: "misc_symbols", unicode_name: "EAST SYRIAC CROSS" },
+    IconEntry { icon: misc_symbols::MISC_2672, id: "misc_2672", codepoint: 9842, block: "misc_symbols", unicode_name: "UNIVERSAL RECYCLING SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_2673, id: "misc_2673", codepoint: 9843, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-1 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2674, id: "misc_2674", codepoint: 9844, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-2 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2675, id: "misc_2675", codepoint: 9845, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-3 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2676, id: "misc_2676", codepoint: 9846, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-4 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2677, id: "misc_2677", codepoint: 9847, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-5 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2678, id: "misc_2678", codepoint: 9848, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-6 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_2679, id: "misc_2679", codepoint: 9849, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR TYPE-7 PLASTICS" },
+    IconEntry { icon: misc_symbols::MISC_267A, id: "misc_267A", codepoint: 9850, block: "misc_symbols", unicode_name: "RECYCLING SYMBOL FOR GENERIC MATERIALS" },
+    IconEntry { icon: misc_symbols::MISC_267B, id: "misc_267B", codepoint: 9851, block: "misc_symbols", unicode_name: "BLACK UNIVERSAL RECYCLING SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_267C, id: "misc_267C", codepoint: 9852, block: "misc_symbols", unicode_name: "RECYCLED PAPER SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_267D, id: "misc_267D", codepoint: 9853, block: "misc_symbols", unicode_name: "PARTIALLY-RECYCLED PAPER SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_267E, id: "misc_267E", codepoint: 9854, block: "misc_symbols", unicode_name: "PERMANENT PAPER SIGN" },
+    IconEntry { icon: misc_symbols::MISC_2680, id: "misc_2680", codepoint: 9856, block: "misc_symbols", unicode_name: "DIE FACE-1" },
+    IconEntry { icon: misc_symbols::MISC_2681, id: "misc_2681", codepoint: 9857, block: "misc_symbols", unicode_name: "DIE FACE-2" },
+    IconEntry { icon: misc_symbols::MISC_2682, id: "misc_2682", codepoint: 9858, block: "misc_symbols", unicode_name: "DIE FACE-3" },
+    IconEntry { icon: misc_symbols::MISC_2683, id: "misc_2683", codepoint: 9859, block: "misc_symbols", unicode_name: "DIE FACE-4" },
+    IconEntry { icon: misc_symbols::MISC_2684, id: "misc_2684", codepoint: 9860, block: "misc_symbols", unicode_name: "DIE FACE-5" },
+    IconEntry { icon: misc_symbols::MISC_2685, id: "misc_2685", codepoint: 9861, block: "misc_symbols", unicode_name: "DIE FACE-6" },
+    IconEntry { icon: misc_symbols::MISC_2686, id: "misc_2686", codepoint: 9862, block: "misc_symbols", unicode_name: "WHITE CIRCLE WITH DOT RIGHT" },
+    IconEntry { icon: misc_symbols::MISC_2687, id: "misc_2687", codepoint: 9863, block: "misc_symbols", unicode_name: "WHITE CIRCLE WITH TWO DOTS" },
+    IconEntry { icon: misc_symbols::MISC_2688, id: "misc_2688", codepoint: 9864, block: "misc_symbols", unicode_name: "BLACK CIRCLE WITH WHITE DOT RIGHT" },
+    IconEntry { icon: misc_symbols::MISC_2689, id: "misc_2689", codepoint: 9865, block: "misc_symbols", unicode_name: "BLACK CIRCLE WITH TWO WHITE DOTS" },
+    IconEntry { icon: misc_symbols::MISC_2690, id: "misc_2690", codepoint: 9872, block: "misc_symbols", unicode_name: "WHITE FLAG" },
+    IconEntry { icon: misc_symbols::MISC_2691, id: "misc_2691", codepoint: 9873, block: "misc_symbols", unicode_name: "BLACK FLAG" },
+    IconEntry { icon: misc_symbols::MISC_2692, id: "misc_2692", codepoint: 9874, block: "misc_symbols", unicode_name: "HAMMER AND PICK" },
+    IconEntry { icon: misc_symbols::MISC_2694, id: "misc_2694", codepoint: 9876, block: "misc_symbols", unicode_name: "CROSSED SWORDS" },
+    IconEntry { icon: misc_symbols::MISC_2695, id: "misc_2695", codepoint: 9877, block: "misc_symbols", unicode_name: "STAFF OF AESCULAPIUS" },
+    IconEntry { icon: misc_symbols::MISC_2696, id: "misc_2696", codepoint: 9878, block: "misc_symbols", unicode_name: "SCALES" },
+    IconEntry { icon: misc_symbols::MISC_2697, id: "misc_2697", codepoint: 9879, block: "misc_symbols", unicode_name: "ALEMBIC" },
+    IconEntry { icon: misc_symbols::MISC_2698, id: "misc_2698", codepoint: 9880, block: "misc_symbols", unicode_name: "FLOWER" },
+    IconEntry { icon: misc_symbols::MISC_2699, id: "misc_2699", codepoint: 9881, block: "misc_symbols", unicode_name: "GEAR" },
+    IconEntry { icon: misc_symbols::MISC_269A, id: "misc_269A", codepoint: 9882, block: "misc_symbols", unicode_name: "STAFF OF HERMES" },
+    IconEntry { icon: misc_symbols::MISC_269B, id: "misc_269B", codepoint: 9883, block: "misc_symbols", unicode_name: "ATOM SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_269C, id: "misc_269C", codepoint: 9884, block: "misc_symbols", unicode_name: "FLEUR-DE-LIS" },
+    IconEntry { icon: misc_symbols::MISC_269E, id: "misc_269E", codepoint: 9886, block: "misc_symbols", unicode_name: "THREE LINES CONVERGING RIGHT" },
+    IconEntry { icon: misc_symbols::MISC_269F, id: "misc_269F", codepoint: 9887, block: "misc_symbols", unicode_name: "THREE LINES CONVERGING LEFT" },
+    IconEntry { icon: misc_symbols::MISC_26A0, id: "misc_26A0", codepoint: 9888, block: "misc_symbols", unicode_name: "WARNING SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A2, id: "misc_26A2", codepoint: 9890, block: "misc_symbols", unicode_name: "DOUBLED FEMALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A3, id: "misc_26A3", codepoint: 9891, block: "misc_symbols", unicode_name: "DOUBLED MALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A4, id: "misc_26A4", codepoint: 9892, block: "misc_symbols", unicode_name: "INTERLOCKED FEMALE AND MALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A5, id: "misc_26A5", codepoint: 9893, block: "misc_symbols", unicode_name: "MALE AND FEMALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A6, id: "misc_26A6", codepoint: 9894, block: "misc_symbols", unicode_name: "MALE WITH STROKE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A7, id: "misc_26A7", codepoint: 9895, block: "misc_symbols", unicode_name: "MALE WITH STROKE AND MALE AND FEMALE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A8, id: "misc_26A8", codepoint: 9896, block: "misc_symbols", unicode_name: "VERTICAL MALE WITH STROKE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26A9, id: "misc_26A9", codepoint: 9897, block: "misc_symbols", unicode_name: "HORIZONTAL MALE WITH STROKE SIGN" },
+    IconEntry { icon: misc_symbols::MISC_26AC, id: "misc_26AC", codepoint: 9900, block: "misc_symbols", unicode_name: "MEDIUM SMALL WHITE CIRCLE" },
+    IconEntry { icon: misc_symbols::MISC_26AD, id: "misc_26AD", codepoint: 9901, block: "misc_symbols", unicode_name: "MARRIAGE SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_26AE, id: "misc_26AE", codepoint: 9902, block: "misc_symbols", unicode_name: "DIVORCE SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_26AF, id: "misc_26AF", codepoint: 9903, block: "misc_symbols", unicode_name: "UNMARRIED PARTNERSHIP SYMBOL" },
+    IconEntry { icon: misc_symbols::MISC_26B0, id: "misc_26B0", codepoint: 9904, block: "misc_symbols", unicode_name: "COFFIN" },
+    IconEntry { icon: misc_symbols::MISC_26B1, id: "misc_26B1", codepoint: 9905, block: "misc_symbols", unicode_name: "FUNERAL URN" },
+    IconEntry { icon: misc_symbols::MISC_26B2, id: "misc_26B2", codepoint: 9906, block: "misc_symbols", unicode_name: "NEUTER" },
+    IconEntry { icon: misc_symbols::MISC_26B3, id: "misc_26B3", codepoint: 9907, block: "misc_symbols", unicode_name: "CERES" },
+    IconEntry { icon: misc_symbols::MISC_26B4, id: "misc_26B4", codepoint: 9908, block: "misc_symbols", unicode_name: "PALLAS" },
+    IconEntry { icon: misc_symbols::MISC_26B5, id: "misc_26B5", codepoint: 9909, block: "misc_symbols", unicode_name: "JUNO" },
+    IconEntry { icon: misc_symbols::MISC_26B6, id: "misc_26B6", codepoint: 9910, block: "misc_symbols", unicode_name: "VESTA" },
+    IconEntry { icon: misc_symbols::MISC_26B7, id: "misc_26B7", codepoint: 9911, block: "misc_symbols", unicode_name: "CHIRON" },
+    IconEntry { icon: misc_symbols::MISC_26B8, id: "misc_26B8", codepoint: 9912, block: "misc_symbols", unicode_name: "BLACK MOON LILITH" },
+    IconEntry { icon: misc_symbols::MISC_26C0, id: "misc_26C0", codepoint: 9920, block: "misc_symbols", unicode_name: "WHITE DRAUGHTS MAN" },
+    IconEntry { icon: misc_symbols::MISC_26C1, id: "misc_26C1", codepoint: 9921, block: "misc_symbols", unicode_name: "WHITE DRAUGHTS KING" },
+    IconEntry { icon: misc_symbols::MISC_26C2, id: "misc_26C2", codepoint: 9922, block: "misc_symbols", unicode_name: "BLACK DRAUGHTS MAN" },
+    IconEntry { icon: misc_symbols::MISC_26C3, id: "misc_26C3", codepoint: 9923, block: "misc_symbols", unicode_name: "BLACK DRAUGHTS KING" },
+    IconEntry { icon: misc_symbols::MISC_26C8, id: "misc_26C8", codepoint: 9928, block: "misc_symbols", unicode_name: "THUNDER CLOUD AND RAIN" },
+    IconEntry { icon: misc_symbols::MISC_26CF, id: "misc_26CF", codepoint: 9935, block: "misc_symbols", unicode_name: "PICK" },
+    IconEntry { icon: misc_symbols::MISC_26D1, id: "misc_26D1", codepoint: 9937, block: "misc_symbols", unicode_name: "HELMET WITH WHITE CROSS" },
+    IconEntry { icon: misc_symbols::MISC_26D3, id: "misc_26D3", codepoint: 9939, block: "misc_symbols", unicode_name: "CHAINS" },
+    IconEntry { icon: misc_symbols::MISC_26E2, id: "misc_26E2", codepoint: 9954, block: "misc_symbols", unicode_name: "ASTRONOMICAL SYMBOL FOR URANUS" },
+    IconEntry { icon: misc_symbols::MISC_26E9, id: "misc_26E9", codepoint: 9961, block: "misc_symbols", unicode_name: "SHINTO SHRINE" },
+    IconEntry { icon: misc_symbols::MISC_26F0, id: "misc_26F0", codepoint: 9968, block: "misc_symbols", unicode_name: "MOUNTAIN" },
+    IconEntry { icon: misc_symbols::MISC_26F1, id: "misc_26F1", codepoint: 9969, block: "misc_symbols", unicode_name: "UMBRELLA ON GROUND" },
+    IconEntry { icon: misc_symbols::MISC_26F4, id: "misc_26F4", codepoint: 9972, block: "misc_symbols", unicode_name: "FERRY" },
+    IconEntry { icon: misc_symbols::MISC_26F7, id: "misc_26F7", codepoint: 9975, block: "misc_symbols", unicode_name: "SKIER" },
+    IconEntry { icon: misc_symbols::MISC_26F8, id: "misc_26F8", codepoint: 9976, block: "misc_symbols", unicode_name: "ICE SKATE" },
+    IconEntry { icon: misc_symbols::MISC_26F9, id: "misc_26F9", codepoint: 9977, block: "misc_symbols", unicode_name: "PERSON WITH BALL" },
+    IconEntry { icon: dingbats::DINGBAT_2701, id: "dingbat_2701", codepoint: 9985, block: "dingbats", unicode_name: "UPPER BLADE SCISSORS" },
+    IconEntry { icon: dingbats::DINGBAT_2702, id: "dingbat_2702", codepoint: 9986, block: "dingbats", unicode_name: "BLACK SCISSORS" },
+    IconEntry { icon: dingbats::DINGBAT_2703, id: "dingbat_2703", codepoint: 9987, block: "dingbats", unicode_name: "LOWER BLADE SCISSORS" },
+    IconEntry { icon: dingbats::DINGBAT_2704, id: "dingbat_2704", codepoint: 9988, block: "dingbats", unicode_name: "WHITE SCISSORS" },
+    IconEntry { icon: dingbats::DINGBAT_2706, id: "dingbat_2706", codepoint: 9990, block: "dingbats", unicode_name: "TELEPHONE LOCATION SIGN" },
+    IconEntry { icon: dingbats::DINGBAT_2707, id: "dingbat_2707", codepoint: 9991, block: "dingbats", unicode_name: "TAPE DRIVE" },
+    IconEntry { icon: dingbats::DINGBAT_2708, id: "dingbat_2708", codepoint: 9992, block: "dingbats", unicode_name: "AIRPLANE" },
+    IconEntry { icon: dingbats::DINGBAT_2709, id: "dingbat_2709", codepoint: 9993, block: "dingbats", unicode_name: "ENVELOPE" },
+    IconEntry { icon: dingbats::DINGBAT_270C, id: "dingbat_270C", codepoint: 9996, block: "dingbats", unicode_name: "VICTORY HAND" },
+    IconEntry { icon: dingbats::DINGBAT_270D, id: "dingbat_270D", codepoint: 9997, block: "dingbats", unicode_name: "WRITING HAND" },
+    IconEntry { icon: dingbats::DINGBAT_270E, id: "dingbat_270E", codepoint: 9998, block: "dingbats", unicode_name: "LOWER RIGHT PENCIL" },
+    IconEntry { icon: dingbats::DINGBAT_270F, id: "dingbat_270F", codepoint: 9999, block: "dingbats", unicode_name: "PENCIL" },
+    IconEntry { icon: dingbats::DINGBAT_2710, id: "dingbat_2710", codepoint: 10000, block: "dingbats", unicode_name: "UPPER RIGHT PENCIL" },
+    IconEntry { icon: dingbats::DINGBAT_2711, id: "dingbat_2711", codepoint: 10001, block: "dingbats", unicode_name: "WHITE NIB" },
+    IconEntry { icon: dingbats::DINGBAT_2712, id: "dingbat_2712", codepoint: 10002, block: "dingbats", unicode_name: "BLACK NIB" },
+    IconEntry { icon: dingbats::DINGBAT_2713, id: "dingbat_2713", codepoint: 10003, block: "dingbats", unicode_name: "CHECK MARK" },
+    IconEntry { icon: dingbats::DINGBAT_2714, id: "dingbat_2714", codepoint: 10004, block: "dingbats", unicode_name: "HEAVY CHECK MARK" },
+    IconEntry { icon: dingbats::DINGBAT_2715, id: "dingbat_2715", codepoint: 10005, block: "dingbats", unicode_name: "MULTIPLICATION X" },
+    IconEntry { icon: dingbats::DINGBAT_2716, id: "dingbat_2716", codepoint: 10006, block: "dingbats", unicode_name: "HEAVY MULTIPLICATION X" },
+    IconEntry { icon: dingbats::DINGBAT_2717, id: "dingbat_2717", codepoint: 10007, block: "dingbats", unicode_name: "BALLOT X" },
+    IconEntry { icon: dingbats::DINGBAT_2718, id: "dingbat_2718", codepoint: 10008, block: "dingbats", unicode_name: "HEAVY BALLOT X" },
+    IconEntry { icon: dingbats::DINGBAT_2719, id: "dingbat_2719", codepoint: 10009, block: "dingbats", unicode_name: "OUTLINED GREEK CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271A, id: "dingbat_271A", codepoint: 10010, block: "dingbats", unicode_name: "HEAVY GREEK CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271B, id: "dingbat_271B", codepoint: 10011, block: "dingbats", unicode_name: "OPEN CENTRE CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271C, id: "dingbat_271C", codepoint: 10012, block: "dingbats", unicode_name: "HEAVY OPEN CENTRE CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271D, id: "dingbat_271D", codepoint: 10013, block: "dingbats", unicode_name: "LATIN CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271E, id: "dingbat_271E", codepoint: 10014, block: "dingbats", unicode_name: "SHADOWED WHITE LATIN CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_271F, id: "dingbat_271F", codepoint: 10015, block: "dingbats", unicode_name: "OUTLINED LATIN CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_2720, id: "dingbat_2720", codepoint: 10016, block: "dingbats", unicode_name: "MALTESE CROSS" },
+    IconEntry { icon: dingbats::DINGBAT_2721, id: "dingbat_2721", codepoint: 10017, block: "dingbats", unicode_name: "STAR OF DAVID" },
+    IconEntry { icon: dingbats::DINGBAT_2722, id: "dingbat_2722", codepoint: 10018, block: "dingbats", unicode_name: "FOUR TEARDROP-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2723, id: "dingbat_2723", codepoint: 10019, block: "dingbats", unicode_name: "FOUR BALLOON-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2724, id: "dingbat_2724", codepoint: 10020, block: "dingbats", unicode_name: "HEAVY FOUR BALLOON-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2725, id: "dingbat_2725", codepoint: 10021, block: "dingbats", unicode_name: "FOUR CLUB-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2726, id: "dingbat_2726", codepoint: 10022, block: "dingbats", unicode_name: "BLACK FOUR POINTED STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2727, id: "dingbat_2727", codepoint: 10023, block: "dingbats", unicode_name: "WHITE FOUR POINTED STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2729, id: "dingbat_2729", codepoint: 10025, block: "dingbats", unicode_name: "STRESS OUTLINED WHITE STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272A, id: "dingbat_272A", codepoint: 10026, block: "dingbats", unicode_name: "CIRCLED WHITE STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272B, id: "dingbat_272B", codepoint: 10027, block: "dingbats", unicode_name: "OPEN CENTRE BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272C, id: "dingbat_272C", codepoint: 10028, block: "dingbats", unicode_name: "BLACK CENTRE WHITE STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272D, id: "dingbat_272D", codepoint: 10029, block: "dingbats", unicode_name: "OUTLINED BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272E, id: "dingbat_272E", codepoint: 10030, block: "dingbats", unicode_name: "HEAVY OUTLINED BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_272F, id: "dingbat_272F", codepoint: 10031, block: "dingbats", unicode_name: "PINWHEEL STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2730, id: "dingbat_2730", codepoint: 10032, block: "dingbats", unicode_name: "SHADOWED WHITE STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2731, id: "dingbat_2731", codepoint: 10033, block: "dingbats", unicode_name: "HEAVY ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2732, id: "dingbat_2732", codepoint: 10034, block: "dingbats", unicode_name: "OPEN CENTRE ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2733, id: "dingbat_2733", codepoint: 10035, block: "dingbats", unicode_name: "EIGHT SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2734, id: "dingbat_2734", codepoint: 10036, block: "dingbats", unicode_name: "EIGHT POINTED BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2735, id: "dingbat_2735", codepoint: 10037, block: "dingbats", unicode_name: "EIGHT POINTED PINWHEEL STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2736, id: "dingbat_2736", codepoint: 10038, block: "dingbats", unicode_name: "SIX POINTED BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2737, id: "dingbat_2737", codepoint: 10039, block: "dingbats", unicode_name: "EIGHT POINTED RECTILINEAR BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2738, id: "dingbat_2738", codepoint: 10040, block: "dingbats", unicode_name: "HEAVY EIGHT POINTED RECTILINEAR BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2739, id: "dingbat_2739", codepoint: 10041, block: "dingbats", unicode_name: "TWELVE POINTED BLACK STAR" },
+    IconEntry { icon: dingbats::DINGBAT_273A, id: "dingbat_273A", codepoint: 10042, block: "dingbats", unicode_name: "SIXTEEN POINTED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_273B, id: "dingbat_273B", codepoint: 10043, block: "dingbats", unicode_name: "TEARDROP-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_273C, id: "dingbat_273C", codepoint: 10044, block: "dingbats", unicode_name: "OPEN CENTRE TEARDROP-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_273D, id: "dingbat_273D", codepoint: 10045, block: "dingbats", unicode_name: "HEAVY TEARDROP-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_273E, id: "dingbat_273E", codepoint: 10046, block: "dingbats", unicode_name: "SIX PETALLED BLACK AND WHITE FLORETTE" },
+    IconEntry { icon: dingbats::DINGBAT_273F, id: "dingbat_273F", codepoint: 10047, block: "dingbats", unicode_name: "BLACK FLORETTE" },
+    IconEntry { icon: dingbats::DINGBAT_2740, id: "dingbat_2740", codepoint: 10048, block: "dingbats", unicode_name: "WHITE FLORETTE" },
+    IconEntry { icon: dingbats::DINGBAT_2741, id: "dingbat_2741", codepoint: 10049, block: "dingbats", unicode_name: "EIGHT PETALLED OUTLINED BLACK FLORETTE" },
+    IconEntry { icon: dingbats::DINGBAT_2742, id: "dingbat_2742", codepoint: 10050, block: "dingbats", unicode_name: "CIRCLED OPEN CENTRE EIGHT POINTED STAR" },
+    IconEntry { icon: dingbats::DINGBAT_2743, id: "dingbat_2743", codepoint: 10051, block: "dingbats", unicode_name: "HEAVY TEARDROP-SPOKED PINWHEEL ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_2744, id: "dingbat_2744", codepoint: 10052, block: "dingbats", unicode_name: "SNOWFLAKE" },
+    IconEntry { icon: dingbats::DINGBAT_2745, id: "dingbat_2745", codepoint: 10053, block: "dingbats", unicode_name: "TIGHT TRIFOLIATE SNOWFLAKE" },
+    IconEntry { icon: dingbats::DINGBAT_2746, id: "dingbat_2746", codepoint: 10054, block: "dingbats", unicode_name: "HEAVY CHEVRON SNOWFLAKE" },
+    IconEntry { icon: dingbats::DINGBAT_2747, id: "dingbat_2747", codepoint: 10055, block: "dingbats", unicode_name: "SPARKLE" },
+    IconEntry { icon: dingbats::DINGBAT_2748, id: "dingbat_2748", codepoint: 10056, block: "dingbats", unicode_name: "HEAVY SPARKLE" },
+    IconEntry { icon: dingbats::DINGBAT_2749, id: "dingbat_2749", codepoint: 10057, block: "dingbats", unicode_name: "BALLOON-SPOKED ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_274A, id: "dingbat_274A", codepoint: 10058, block: "dingbats", unicode_name: "EIGHT TEARDROP-SPOKED PROPELLER ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_274B, id: "dingbat_274B", codepoint: 10059, block: "dingbats", unicode_name: "HEAVY EIGHT TEARDROP-SPOKED PROPELLER ASTERISK" },
+    IconEntry { icon: dingbats::DINGBAT_274D, id: "dingbat_274D", codepoint: 10061, block: "dingbats", unicode_name: "SHADOWED WHITE CIRCLE" },
+    IconEntry { icon: dingbats::DINGBAT_274F, id: "dingbat_274F", codepoint: 10063, block: "dingbats", unicode_name: "LOWER RIGHT DROP-SHADOWED WHITE SQUARE" },
+    IconEntry { icon: dingbats::DINGBAT_2750, id: "dingbat_2750", codepoint: 10064, block: "dingbats", unicode_name: "UPPER RIGHT DROP-SHADOWED WHITE SQUARE" },
+    IconEntry { icon: dingbats::DINGBAT_2752, id: "dingbat_2752", codepoint: 10066, block: "dingbats", unicode_name: "UPPER RIGHT SHADOWED WHITE SQUARE" },
+    IconEntry { icon: dingbats::DINGBAT_2756, id: "dingbat_2756", codepoint: 10070, block: "dingbats", unicode_name: "BLACK DIAMOND MINUS WHITE X" },
     IconEntry { icon: dingbats::DINGBAT_2758, id: "dingbat_2758", codepoint: 10072, block: "dingbats", unicode_name: "LIGHT VERTICAL BAR" },
     IconEntry { icon: dingbats::DINGBAT_2759, id: "dingbat_2759", codepoint: 10073, block: "dingbats", unicode_name: "MEDIUM VERTICAL BAR" },
     IconEntry { icon: dingbats::DINGBAT_275A, id: "dingbat_275A", codepoint: 10074, block: "dingbats", unicode_name: "HEAVY VERTICAL BAR" },
+    IconEntry { icon: dingbats::DINGBAT_275B, id: "dingbat_275B", codepoint: 10075, block: "dingbats", unicode_name: "HEAVY SINGLE TURNED COMMA QUOTATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_275C, id: "dingbat_275C", codepoint: 10076, block: "dingbats", unicode_name: "HEAVY SINGLE COMMA QUOTATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_275D, id: "dingbat_275D", codepoint: 10077, block: "dingbats", unicode_name: "HEAVY DOUBLE TURNED COMMA QUOTATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_275E, id: "dingbat_275E", codepoint: 10078, block: "dingbats", unicode_name: "HEAVY DOUBLE COMMA QUOTATION MARK ORNAMENT" },
     IconEntry { icon: dingbats::DINGBAT_2761, id: "dingbat_2761", codepoint: 10081, block: "dingbats", unicode_name: "CURVED STEM PARAGRAPH SIGN ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2762, id: "dingbat_2762", codepoint: 10082, block: "dingbats", unicode_name: "HEAVY EXCLAMATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2763, id: "dingbat_2763", codepoint: 10083, block: "dingbats", unicode_name: "HEAVY HEART EXCLAMATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2764, id: "dingbat_2764", codepoint: 10084, block: "dingbats", unicode_name: "HEAVY BLACK HEART" },
+    IconEntry { icon: dingbats::DINGBAT_2765, id: "dingbat_2765", codepoint: 10085, block: "dingbats", unicode_name: "ROTATED HEAVY BLACK HEART BULLET" },
+    IconEntry { icon: dingbats::DINGBAT_2766, id: "dingbat_2766", codepoint: 10086, block: "dingbats", unicode_name: "FLORAL HEART" },
+    IconEntry { icon: dingbats::DINGBAT_2767, id: "dingbat_2767", codepoint: 10087, block: "dingbats", unicode_name: "ROTATED FLORAL HEART BULLET" },
+    IconEntry { icon: dingbats::DINGBAT_2768, id: "dingbat_2768", codepoint: 10088, block: "dingbats", unicode_name: "MEDIUM LEFT PARENTHESIS ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2769, id: "dingbat_2769", codepoint: 10089, block: "dingbats", unicode_name: "MEDIUM RIGHT PARENTHESIS ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276A, id: "dingbat_276A", codepoint: 10090, block: "dingbats", unicode_name: "MEDIUM FLATTENED LEFT PARENTHESIS ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276B, id: "dingbat_276B", codepoint: 10091, block: "dingbats", unicode_name: "MEDIUM FLATTENED RIGHT PARENTHESIS ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276C, id: "dingbat_276C", codepoint: 10092, block: "dingbats", unicode_name: "MEDIUM LEFT-POINTING ANGLE BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276D, id: "dingbat_276D", codepoint: 10093, block: "dingbats", unicode_name: "MEDIUM RIGHT-POINTING ANGLE BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276E, id: "dingbat_276E", codepoint: 10094, block: "dingbats", unicode_name: "HEAVY LEFT-POINTING ANGLE QUOTATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_276F, id: "dingbat_276F", codepoint: 10095, block: "dingbats", unicode_name: "HEAVY RIGHT-POINTING ANGLE QUOTATION MARK ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2770, id: "dingbat_2770", codepoint: 10096, block: "dingbats", unicode_name: "HEAVY LEFT-POINTING ANGLE BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2771, id: "dingbat_2771", codepoint: 10097, block: "dingbats", unicode_name: "HEAVY RIGHT-POINTING ANGLE BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2772, id: "dingbat_2772", codepoint: 10098, block: "dingbats", unicode_name: "LIGHT LEFT TORTOISE SHELL BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2773, id: "dingbat_2773", codepoint: 10099, block: "dingbats", unicode_name: "LIGHT RIGHT TORTOISE SHELL BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2774, id: "dingbat_2774", codepoint: 10100, block: "dingbats", unicode_name: "MEDIUM LEFT CURLY BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2775, id: "dingbat_2775", codepoint: 10101, block: "dingbats", unicode_name: "MEDIUM RIGHT CURLY BRACKET ORNAMENT" },
+    IconEntry { icon: dingbats::DINGBAT_2776, id: "dingbat_2776", codepoint: 10102, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT ONE" },
+    IconEntry { icon: dingbats::DINGBAT_2777, id: "dingbat_2777", codepoint: 10103, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT TWO" },
+    IconEntry { icon: dingbats::DINGBAT_2778, id: "dingbat_2778", codepoint: 10104, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT THREE" },
+    IconEntry { icon: dingbats::DINGBAT_2779, id: "dingbat_2779", codepoint: 10105, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT FOUR" },
+    IconEntry { icon: dingbats::DINGBAT_277A, id: "dingbat_277A", codepoint: 10106, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT FIVE" },
+    IconEntry { icon: dingbats::DINGBAT_277B, id: "dingbat_277B", codepoint: 10107, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT SIX" },
+    IconEntry { icon: dingbats::DINGBAT_277C, id: "dingbat_277C", codepoint: 10108, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT SEVEN" },
+    IconEntry { icon: dingbats::DINGBAT_277D, id: "dingbat_277D", codepoint: 10109, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT EIGHT" },
+    IconEntry { icon: dingbats::DINGBAT_277E, id: "dingbat_277E", codepoint: 10110, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED DIGIT NINE" },
+    IconEntry { icon: dingbats::DINGBAT_277F, id: "dingbat_277F", codepoint: 10111, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED NUMBER TEN" },
+    IconEntry { icon: dingbats::DINGBAT_2780, id: "dingbat_2780", codepoint: 10112, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT ONE" },
+    IconEntry { icon: dingbats::DINGBAT_2781, id: "dingbat_2781", codepoint: 10113, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT TWO" },
+    IconEntry { icon: dingbats::DINGBAT_2782, id: "dingbat_2782", codepoint: 10114, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT THREE" },
+    IconEntry { icon: dingbats::DINGBAT_2783, id: "dingbat_2783", codepoint: 10115, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT FOUR" },
+    IconEntry { icon: dingbats::DINGBAT_2784, id: "dingbat_2784", codepoint: 10116, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT FIVE" },
+    IconEntry { icon: dingbats::DINGBAT_2785, id: "dingbat_2785", codepoint: 10117, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT SIX" },
+    IconEntry { icon: dingbats::DINGBAT_2786, id: "dingbat_2786", codepoint: 10118, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT SEVEN" },
+    IconEntry { icon: dingbats::DINGBAT_2787, id: "dingbat_2787", codepoint: 10119, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT EIGHT" },
+    IconEntry { icon: dingbats::DINGBAT_2788, id: "dingbat_2788", codepoint: 10120, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF DIGIT NINE" },
+    IconEntry { icon: dingbats::DINGBAT_2789, id: "dingbat_2789", codepoint: 10121, block: "dingbats", unicode_name: "DINGBAT CIRCLED SANS-SERIF NUMBER TEN" },
+    IconEntry { icon: dingbats::DINGBAT_278A, id: "dingbat_278A", codepoint: 10122, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE" },
+    IconEntry { icon: dingbats::DINGBAT_278B, id: "dingbat_278B", codepoint: 10123, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT TWO" },
+    IconEntry { icon: dingbats::DINGBAT_278C, id: "dingbat_278C", codepoint: 10124, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT THREE" },
+    IconEntry { icon: dingbats::DINGBAT_278D, id: "dingbat_278D", codepoint: 10125, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FOUR" },
+    IconEntry { icon: dingbats::DINGBAT_278E, id: "dingbat_278E", codepoint: 10126, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT FIVE" },
+    IconEntry { icon: dingbats::DINGBAT_278F, id: "dingbat_278F", codepoint: 10127, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SIX" },
+    IconEntry { icon: dingbats::DINGBAT_2790, id: "dingbat_2790", codepoint: 10128, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT SEVEN" },
+    IconEntry { icon: dingbats::DINGBAT_2791, id: "dingbat_2791", codepoint: 10129, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT EIGHT" },
+    IconEntry { icon: dingbats::DINGBAT_2792, id: "dingbat_2792", codepoint: 10130, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT NINE" },
+    IconEntry { icon: dingbats::DINGBAT_2793, id: "dingbat_2793", codepoint: 10131, block: "dingbats", unicode_name: "DINGBAT NEGATIVE CIRCLED SANS-SERIF NUMBER TEN" },
+    IconEntry { icon: dingbats::DINGBAT_2794, id: "dingbat_2794", codepoint: 10132, block: "dingbats", unicode_name: "HEAVY WIDE-HEADED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_2798, id: "dingbat_2798", codepoint: 10136, block: "dingbats", unicode_name: "HEAVY SOUTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_2799, id: "dingbat_2799", codepoint: 10137, block: "dingbats", unicode_name: "HEAVY RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279A, id: "dingbat_279A", codepoint: 10138, block: "dingbats", unicode_name: "HEAVY NORTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279B, id: "dingbat_279B", codepoint: 10139, block: "dingbats", unicode_name: "DRAFTING POINT RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279C, id: "dingbat_279C", codepoint: 10140, block: "dingbats", unicode_name: "HEAVY ROUND-TIPPED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279D, id: "dingbat_279D", codepoint: 10141, block: "dingbats", unicode_name: "TRIANGLE-HEADED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279E, id: "dingbat_279E", codepoint: 10142, block: "dingbats", unicode_name: "HEAVY TRIANGLE-HEADED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_279F, id: "dingbat_279F", codepoint: 10143, block: "dingbats", unicode_name: "DASHED TRIANGLE-HEADED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A0, id: "dingbat_27A0", codepoint: 10144, block: "dingbats", unicode_name: "HEAVY DASHED TRIANGLE-HEADED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A1, id: "dingbat_27A1", codepoint: 10145, block: "dingbats", unicode_name: "BLACK RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A2, id: "dingbat_27A2", codepoint: 10146, block: "dingbats", unicode_name: "THREE-D TOP-LIGHTED RIGHTWARDS ARROWHEAD" },
+    IconEntry { icon: dingbats::DINGBAT_27A3, id: "dingbat_27A3", codepoint: 10147, block: "dingbats", unicode_name: "THREE-D BOTTOM-LIGHTED RIGHTWARDS ARROWHEAD" },
+    IconEntry { icon: dingbats::DINGBAT_27A4, id: "dingbat_27A4", codepoint: 10148, block: "dingbats", unicode_name: "BLACK RIGHTWARDS ARROWHEAD" },
+    IconEntry { icon: dingbats::DINGBAT_27A5, id: "dingbat_27A5", codepoint: 10149, block: "dingbats", unicode_name: "HEAVY BLACK CURVED DOWNWARDS AND RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A6, id: "dingbat_27A6", codepoint: 10150, block: "dingbats", unicode_name: "HEAVY BLACK CURVED UPWARDS AND RIGHTWARDS ARROW" },
     IconEntry { icon: dingbats::DINGBAT_27A7, id: "dingbat_27A7", codepoint: 10151, block: "dingbats", unicode_name: "SQUAT BLACK RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A8, id: "dingbat_27A8", codepoint: 10152, block: "dingbats", unicode_name: "HEAVY CONCAVE-POINTED BLACK RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27A9, id: "dingbat_27A9", codepoint: 10153, block: "dingbats", unicode_name: "RIGHT-SHADED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AA, id: "dingbat_27AA", codepoint: 10154, block: "dingbats", unicode_name: "LEFT-SHADED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AB, id: "dingbat_27AB", codepoint: 10155, block: "dingbats", unicode_name: "BACK-TILTED SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AC, id: "dingbat_27AC", codepoint: 10156, block: "dingbats", unicode_name: "FRONT-TILTED SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AD, id: "dingbat_27AD", codepoint: 10157, block: "dingbats", unicode_name: "HEAVY LOWER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AE, id: "dingbat_27AE", codepoint: 10158, block: "dingbats", unicode_name: "HEAVY UPPER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27AF, id: "dingbat_27AF", codepoint: 10159, block: "dingbats", unicode_name: "NOTCHED LOWER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B1, id: "dingbat_27B1", codepoint: 10161, block: "dingbats", unicode_name: "NOTCHED UPPER RIGHT-SHADOWED WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B2, id: "dingbat_27B2", codepoint: 10162, block: "dingbats", unicode_name: "CIRCLED HEAVY WHITE RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B3, id: "dingbat_27B3", codepoint: 10163, block: "dingbats", unicode_name: "WHITE-FEATHERED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B4, id: "dingbat_27B4", codepoint: 10164, block: "dingbats", unicode_name: "BLACK-FEATHERED SOUTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B5, id: "dingbat_27B5", codepoint: 10165, block: "dingbats", unicode_name: "BLACK-FEATHERED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B6, id: "dingbat_27B6", codepoint: 10166, block: "dingbats", unicode_name: "BLACK-FEATHERED NORTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B7, id: "dingbat_27B7", codepoint: 10167, block: "dingbats", unicode_name: "HEAVY BLACK-FEATHERED SOUTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B8, id: "dingbat_27B8", codepoint: 10168, block: "dingbats", unicode_name: "HEAVY BLACK-FEATHERED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27B9, id: "dingbat_27B9", codepoint: 10169, block: "dingbats", unicode_name: "HEAVY BLACK-FEATHERED NORTH EAST ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27BA, id: "dingbat_27BA", codepoint: 10170, block: "dingbats", unicode_name: "TEARDROP-BARBED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27BB, id: "dingbat_27BB", codepoint: 10171, block: "dingbats", unicode_name: "HEAVY TEARDROP-SHANKED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27BC, id: "dingbat_27BC", codepoint: 10172, block: "dingbats", unicode_name: "WEDGE-TAILED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27BD, id: "dingbat_27BD", codepoint: 10173, block: "dingbats", unicode_name: "HEAVY WEDGE-TAILED RIGHTWARDS ARROW" },
+    IconEntry { icon: dingbats::DINGBAT_27BE, id: "dingbat_27BE", codepoint: 10174, block: "dingbats", unicode_name: "OPEN-OUTLINED RIGHTWARDS ARROW" },
     IconEntry { icon: braille::BRAILLE_2801, id: "braille_2801", codepoint: 10241, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1" },
     IconEntry { icon: braille::BRAILLE_2802, id: "braille_2802", codepoint: 10242, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2" },
     IconEntry { icon: braille::BRAILLE_2803, id: "braille_2803", codepoint: 10243, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12" },
@@ -402,6 +2929,62 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: braille::BRAILLE_2805, id: "braille_2805", codepoint: 10245, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13" },
     IconEntry { icon: braille::BRAILLE_2806, id: "braille_2806", codepoint: 10246, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23" },
     IconEntry { icon: braille::BRAILLE_2807, id: "braille_2807", codepoint: 10247, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123" },
+    IconEntry { icon: braille::BRAILLE_2808, id: "braille_2808", codepoint: 10248, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-4" },
+    IconEntry { icon: braille::BRAILLE_2809, id: "braille_2809", codepoint: 10249, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-14" },
+    IconEntry { icon: braille::BRAILLE_280A, id: "braille_280A", codepoint: 10250, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-24" },
+    IconEntry { icon: braille::BRAILLE_280B, id: "braille_280B", codepoint: 10251, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-124" },
+    IconEntry { icon: braille::BRAILLE_280C, id: "braille_280C", codepoint: 10252, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-34" },
+    IconEntry { icon: braille::BRAILLE_280D, id: "braille_280D", codepoint: 10253, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-134" },
+    IconEntry { icon: braille::BRAILLE_280E, id: "braille_280E", codepoint: 10254, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-234" },
+    IconEntry { icon: braille::BRAILLE_280F, id: "braille_280F", codepoint: 10255, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1234" },
+    IconEntry { icon: braille::BRAILLE_2810, id: "braille_2810", codepoint: 10256, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-5" },
+    IconEntry { icon: braille::BRAILLE_2811, id: "braille_2811", codepoint: 10257, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-15" },
+    IconEntry { icon: braille::BRAILLE_2812, id: "braille_2812", codepoint: 10258, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-25" },
+    IconEntry { icon: braille::BRAILLE_2813, id: "braille_2813", codepoint: 10259, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-125" },
+    IconEntry { icon: braille::BRAILLE_2814, id: "braille_2814", codepoint: 10260, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-35" },
+    IconEntry { icon: braille::BRAILLE_2815, id: "braille_2815", codepoint: 10261, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-135" },
+    IconEntry { icon: braille::BRAILLE_2816, id: "braille_2816", codepoint: 10262, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-235" },
+    IconEntry { icon: braille::BRAILLE_2817, id: "braille_2817", codepoint: 10263, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1235" },
+    IconEntry { icon: braille::BRAILLE_2818, id: "braille_2818", codepoint: 10264, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-45" },
+    IconEntry { icon: braille::BRAILLE_2819, id: "braille_2819", codepoint: 10265, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-145" },
+    IconEntry { icon: braille::BRAILLE_281A, id: "braille_281A", codepoint: 10266, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-245" },
+    IconEntry { icon: braille::BRAILLE_281B, id: "braille_281B", codepoint: 10267, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1245" },
+    IconEntry { icon: braille::BRAILLE_281C, id: "braille_281C", codepoint: 10268, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-345" },
+    IconEntry { icon: braille::BRAILLE_281D, id: "braille_281D", codepoint: 10269, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1345" },
+    IconEntry { icon: braille::BRAILLE_281E, id: "braille_281E", codepoint: 10270, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2345" },
+    IconEntry { icon: braille::BRAILLE_281F, id: "braille_281F", codepoint: 10271, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12345" },
+    IconEntry { icon: braille::BRAILLE_2820, id: "braille_2820", codepoint: 10272, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-6" },
+    IconEntry { icon: braille::BRAILLE_2821, id: "braille_2821", codepoint: 10273, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-16" },
+    IconEntry { icon: braille::BRAILLE_2822, id: "braille_2822", codepoint: 10274, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-26" },
+    IconEntry { icon: braille::BRAILLE_2823, id: "braille_2823", codepoint: 10275, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-126" },
+    IconEntry { icon: braille::BRAILLE_2824, id: "braille_2824", codepoint: 10276, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-36" },
+    IconEntry { icon: braille::BRAILLE_2825, id: "braille_2825", codepoint: 10277, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-136" },
+    IconEntry { icon: braille::BRAILLE_2826, id: "braille_2826", codepoint: 10278, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-236" },
+    IconEntry { icon: braille::BRAILLE_2827, id: "braille_2827", codepoint: 10279, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1236" },
+    IconEntry { icon: braille::BRAILLE_2828, id: "braille_2828", codepoint: 10280, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-46" },
+    IconEntry { icon: braille::BRAILLE_2829, id: "braille_2829", codepoint: 10281, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-146" },
+    IconEntry { icon: braille::BRAILLE_282A, id: "braille_282A", codepoint: 10282, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-246" },
+    IconEntry { icon: braille::BRAILLE_282B, id: "braille_282B", codepoint: 10283, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1246" },
+    IconEntry { icon: braille::BRAILLE_282C, id: "braille_282C", codepoint: 10284, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-346" },
+    IconEntry { icon: braille::BRAILLE_282D, id: "braille_282D", codepoint: 10285, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1346" },
+    IconEntry { icon: braille::BRAILLE_282E, id: "braille_282E", codepoint: 10286, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2346" },
+    IconEntry { icon: braille::BRAILLE_282F, id: "braille_282F", codepoint: 10287, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12346" },
+    IconEntry { icon: braille::BRAILLE_2830, id: "braille_2830", codepoint: 10288, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-56" },
+    IconEntry { icon: braille::BRAILLE_2831, id: "braille_2831", codepoint: 10289, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-156" },
+    IconEntry { icon: braille::BRAILLE_2832, id: "braille_2832", codepoint: 10290, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-256" },
+    IconEntry { icon: braille::BRAILLE_2833, id: "braille_2833", codepoint: 10291, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1256" },
+    IconEntry { icon: braille::BRAILLE_2834, id: "braille_2834", codepoint: 10292, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-356" },
+    IconEntry { icon: braille::BRAILLE_2835, id: "braille_2835", codepoint: 10293, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1356" },
+    IconEntry { icon: braille::BRAILLE_2836, id: "braille_2836", codepoint: 10294, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2356" },
+    IconEntry { icon: braille::BRAILLE_2837, id: "braille_2837", codepoint: 10295, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12356" },
+    IconEntry { icon: braille::BRAILLE_2838, id: "braille_2838", codepoint: 10296, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-456" },
+    IconEntry { icon: braille::BRAILLE_2839, id: "braille_2839", codepoint: 10297, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1456" },
+    IconEntry { icon: braille::BRAILLE_283A, id: "braille_283A", codepoint: 10298, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2456" },
+    IconEntry { icon: braille::BRAILLE_283B, id: "braille_283B", codepoint: 10299, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12456" },
+    IconEntry { icon: braille::BRAILLE_283C, id: "braille_283C", codepoint: 10300, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3456" },
+    IconEntry { icon: braille::BRAILLE_283D, id: "braille_283D", codepoint: 10301, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13456" },
+    IconEntry { icon: braille::BRAILLE_283E, id: "braille_283E", codepoint: 10302, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23456" },
+    IconEntry { icon: braille::BRAILLE_283F, id: "braille_283F", codepoint: 10303, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123456" },
     IconEntry { icon: braille::BRAILLE_2840, id: "braille_2840", codepoint: 10304, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-7" },
     IconEntry { icon: braille::BRAILLE_2841, id: "braille_2841", codepoint: 10305, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-17" },
     IconEntry { icon: braille::BRAILLE_2842, id: "braille_2842", codepoint: 10306, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-27" },
@@ -410,6 +2993,62 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: braille::BRAILLE_2845, id: "braille_2845", codepoint: 10309, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-137" },
     IconEntry { icon: braille::BRAILLE_2846, id: "braille_2846", codepoint: 10310, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-237" },
     IconEntry { icon: braille::BRAILLE_2847, id: "braille_2847", codepoint: 10311, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1237" },
+    IconEntry { icon: braille::BRAILLE_2848, id: "braille_2848", codepoint: 10312, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-47" },
+    IconEntry { icon: braille::BRAILLE_2849, id: "braille_2849", codepoint: 10313, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-147" },
+    IconEntry { icon: braille::BRAILLE_284A, id: "braille_284A", codepoint: 10314, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-247" },
+    IconEntry { icon: braille::BRAILLE_284B, id: "braille_284B", codepoint: 10315, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1247" },
+    IconEntry { icon: braille::BRAILLE_284C, id: "braille_284C", codepoint: 10316, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-347" },
+    IconEntry { icon: braille::BRAILLE_284D, id: "braille_284D", codepoint: 10317, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1347" },
+    IconEntry { icon: braille::BRAILLE_284E, id: "braille_284E", codepoint: 10318, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2347" },
+    IconEntry { icon: braille::BRAILLE_284F, id: "braille_284F", codepoint: 10319, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12347" },
+    IconEntry { icon: braille::BRAILLE_2850, id: "braille_2850", codepoint: 10320, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-57" },
+    IconEntry { icon: braille::BRAILLE_2851, id: "braille_2851", codepoint: 10321, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-157" },
+    IconEntry { icon: braille::BRAILLE_2852, id: "braille_2852", codepoint: 10322, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-257" },
+    IconEntry { icon: braille::BRAILLE_2853, id: "braille_2853", codepoint: 10323, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1257" },
+    IconEntry { icon: braille::BRAILLE_2854, id: "braille_2854", codepoint: 10324, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-357" },
+    IconEntry { icon: braille::BRAILLE_2855, id: "braille_2855", codepoint: 10325, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1357" },
+    IconEntry { icon: braille::BRAILLE_2856, id: "braille_2856", codepoint: 10326, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2357" },
+    IconEntry { icon: braille::BRAILLE_2857, id: "braille_2857", codepoint: 10327, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12357" },
+    IconEntry { icon: braille::BRAILLE_2858, id: "braille_2858", codepoint: 10328, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-457" },
+    IconEntry { icon: braille::BRAILLE_2859, id: "braille_2859", codepoint: 10329, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1457" },
+    IconEntry { icon: braille::BRAILLE_285A, id: "braille_285A", codepoint: 10330, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2457" },
+    IconEntry { icon: braille::BRAILLE_285B, id: "braille_285B", codepoint: 10331, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12457" },
+    IconEntry { icon: braille::BRAILLE_285C, id: "braille_285C", codepoint: 10332, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3457" },
+    IconEntry { icon: braille::BRAILLE_285D, id: "braille_285D", codepoint: 10333, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13457" },
+    IconEntry { icon: braille::BRAILLE_285E, id: "braille_285E", codepoint: 10334, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23457" },
+    IconEntry { icon: braille::BRAILLE_285F, id: "braille_285F", codepoint: 10335, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123457" },
+    IconEntry { icon: braille::BRAILLE_2860, id: "braille_2860", codepoint: 10336, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-67" },
+    IconEntry { icon: braille::BRAILLE_2861, id: "braille_2861", codepoint: 10337, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-167" },
+    IconEntry { icon: braille::BRAILLE_2862, id: "braille_2862", codepoint: 10338, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-267" },
+    IconEntry { icon: braille::BRAILLE_2863, id: "braille_2863", codepoint: 10339, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1267" },
+    IconEntry { icon: braille::BRAILLE_2864, id: "braille_2864", codepoint: 10340, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-367" },
+    IconEntry { icon: braille::BRAILLE_2865, id: "braille_2865", codepoint: 10341, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1367" },
+    IconEntry { icon: braille::BRAILLE_2866, id: "braille_2866", codepoint: 10342, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2367" },
+    IconEntry { icon: braille::BRAILLE_2867, id: "braille_2867", codepoint: 10343, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12367" },
+    IconEntry { icon: braille::BRAILLE_2868, id: "braille_2868", codepoint: 10344, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-467" },
+    IconEntry { icon: braille::BRAILLE_2869, id: "braille_2869", codepoint: 10345, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1467" },
+    IconEntry { icon: braille::BRAILLE_286A, id: "braille_286A", codepoint: 10346, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2467" },
+    IconEntry { icon: braille::BRAILLE_286B, id: "braille_286B", codepoint: 10347, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12467" },
+    IconEntry { icon: braille::BRAILLE_286C, id: "braille_286C", codepoint: 10348, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3467" },
+    IconEntry { icon: braille::BRAILLE_286D, id: "braille_286D", codepoint: 10349, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13467" },
+    IconEntry { icon: braille::BRAILLE_286E, id: "braille_286E", codepoint: 10350, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23467" },
+    IconEntry { icon: braille::BRAILLE_286F, id: "braille_286F", codepoint: 10351, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123467" },
+    IconEntry { icon: braille::BRAILLE_2870, id: "braille_2870", codepoint: 10352, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-567" },
+    IconEntry { icon: braille::BRAILLE_2871, id: "braille_2871", codepoint: 10353, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1567" },
+    IconEntry { icon: braille::BRAILLE_2872, id: "braille_2872", codepoint: 10354, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2567" },
+    IconEntry { icon: braille::BRAILLE_2873, id: "braille_2873", codepoint: 10355, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12567" },
+    IconEntry { icon: braille::BRAILLE_2874, id: "braille_2874", codepoint: 10356, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3567" },
+    IconEntry { icon: braille::BRAILLE_2875, id: "braille_2875", codepoint: 10357, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13567" },
+    IconEntry { icon: braille::BRAILLE_2876, id: "braille_2876", codepoint: 10358, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23567" },
+    IconEntry { icon: braille::BRAILLE_2877, id: "braille_2877", codepoint: 10359, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123567" },
+    IconEntry { icon: braille::BRAILLE_2878, id: "braille_2878", codepoint: 10360, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-4567" },
+    IconEntry { icon: braille::BRAILLE_2879, id: "braille_2879", codepoint: 10361, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-14567" },
+    IconEntry { icon: braille::BRAILLE_287A, id: "braille_287A", codepoint: 10362, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-24567" },
+    IconEntry { icon: braille::BRAILLE_287B, id: "braille_287B", codepoint: 10363, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-124567" },
+    IconEntry { icon: braille::BRAILLE_287C, id: "braille_287C", codepoint: 10364, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-34567" },
+    IconEntry { icon: braille::BRAILLE_287D, id: "braille_287D", codepoint: 10365, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-134567" },
+    IconEntry { icon: braille::BRAILLE_287E, id: "braille_287E", codepoint: 10366, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-234567" },
+    IconEntry { icon: braille::BRAILLE_287F, id: "braille_287F", codepoint: 10367, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1234567" },
     IconEntry { icon: braille::BRAILLE_2880, id: "braille_2880", codepoint: 10368, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-8" },
     IconEntry { icon: braille::BRAILLE_2881, id: "braille_2881", codepoint: 10369, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-18" },
     IconEntry { icon: braille::BRAILLE_2882, id: "braille_2882", codepoint: 10370, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-28" },
@@ -418,6 +3057,62 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: braille::BRAILLE_2885, id: "braille_2885", codepoint: 10373, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-138" },
     IconEntry { icon: braille::BRAILLE_2886, id: "braille_2886", codepoint: 10374, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-238" },
     IconEntry { icon: braille::BRAILLE_2887, id: "braille_2887", codepoint: 10375, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1238" },
+    IconEntry { icon: braille::BRAILLE_2888, id: "braille_2888", codepoint: 10376, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-48" },
+    IconEntry { icon: braille::BRAILLE_2889, id: "braille_2889", codepoint: 10377, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-148" },
+    IconEntry { icon: braille::BRAILLE_288A, id: "braille_288A", codepoint: 10378, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-248" },
+    IconEntry { icon: braille::BRAILLE_288B, id: "braille_288B", codepoint: 10379, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1248" },
+    IconEntry { icon: braille::BRAILLE_288C, id: "braille_288C", codepoint: 10380, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-348" },
+    IconEntry { icon: braille::BRAILLE_288D, id: "braille_288D", codepoint: 10381, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1348" },
+    IconEntry { icon: braille::BRAILLE_288E, id: "braille_288E", codepoint: 10382, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2348" },
+    IconEntry { icon: braille::BRAILLE_288F, id: "braille_288F", codepoint: 10383, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12348" },
+    IconEntry { icon: braille::BRAILLE_2890, id: "braille_2890", codepoint: 10384, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-58" },
+    IconEntry { icon: braille::BRAILLE_2891, id: "braille_2891", codepoint: 10385, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-158" },
+    IconEntry { icon: braille::BRAILLE_2892, id: "braille_2892", codepoint: 10386, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-258" },
+    IconEntry { icon: braille::BRAILLE_2893, id: "braille_2893", codepoint: 10387, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1258" },
+    IconEntry { icon: braille::BRAILLE_2894, id: "braille_2894", codepoint: 10388, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-358" },
+    IconEntry { icon: braille::BRAILLE_2895, id: "braille_2895", codepoint: 10389, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1358" },
+    IconEntry { icon: braille::BRAILLE_2896, id: "braille_2896", codepoint: 10390, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2358" },
+    IconEntry { icon: braille::BRAILLE_2897, id: "braille_2897", codepoint: 10391, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12358" },
+    IconEntry { icon: braille::BRAILLE_2898, id: "braille_2898", codepoint: 10392, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-458" },
+    IconEntry { icon: braille::BRAILLE_2899, id: "braille_2899", codepoint: 10393, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1458" },
+    IconEntry { icon: braille::BRAILLE_289A, id: "braille_289A", codepoint: 10394, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2458" },
+    IconEntry { icon: braille::BRAILLE_289B, id: "braille_289B", codepoint: 10395, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12458" },
+    IconEntry { icon: braille::BRAILLE_289C, id: "braille_289C", codepoint: 10396, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3458" },
+    IconEntry { icon: braille::BRAILLE_289D, id: "braille_289D", codepoint: 10397, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13458" },
+    IconEntry { icon: braille::BRAILLE_289E, id: "braille_289E", codepoint: 10398, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23458" },
+    IconEntry { icon: braille::BRAILLE_289F, id: "braille_289F", codepoint: 10399, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123458" },
+    IconEntry { icon: braille::BRAILLE_28A0, id: "braille_28A0", codepoint: 10400, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-68" },
+    IconEntry { icon: braille::BRAILLE_28A1, id: "braille_28A1", codepoint: 10401, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-168" },
+    IconEntry { icon: braille::BRAILLE_28A2, id: "braille_28A2", codepoint: 10402, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-268" },
+    IconEntry { icon: braille::BRAILLE_28A3, id: "braille_28A3", codepoint: 10403, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1268" },
+    IconEntry { icon: braille::BRAILLE_28A4, id: "braille_28A4", codepoint: 10404, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-368" },
+    IconEntry { icon: braille::BRAILLE_28A5, id: "braille_28A5", codepoint: 10405, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1368" },
+    IconEntry { icon: braille::BRAILLE_28A6, id: "braille_28A6", codepoint: 10406, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2368" },
+    IconEntry { icon: braille::BRAILLE_28A7, id: "braille_28A7", codepoint: 10407, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12368" },
+    IconEntry { icon: braille::BRAILLE_28A8, id: "braille_28A8", codepoint: 10408, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-468" },
+    IconEntry { icon: braille::BRAILLE_28A9, id: "braille_28A9", codepoint: 10409, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1468" },
+    IconEntry { icon: braille::BRAILLE_28AA, id: "braille_28AA", codepoint: 10410, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2468" },
+    IconEntry { icon: braille::BRAILLE_28AB, id: "braille_28AB", codepoint: 10411, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12468" },
+    IconEntry { icon: braille::BRAILLE_28AC, id: "braille_28AC", codepoint: 10412, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3468" },
+    IconEntry { icon: braille::BRAILLE_28AD, id: "braille_28AD", codepoint: 10413, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13468" },
+    IconEntry { icon: braille::BRAILLE_28AE, id: "braille_28AE", codepoint: 10414, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23468" },
+    IconEntry { icon: braille::BRAILLE_28AF, id: "braille_28AF", codepoint: 10415, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123468" },
+    IconEntry { icon: braille::BRAILLE_28B0, id: "braille_28B0", codepoint: 10416, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-568" },
+    IconEntry { icon: braille::BRAILLE_28B1, id: "braille_28B1", codepoint: 10417, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1568" },
+    IconEntry { icon: braille::BRAILLE_28B2, id: "braille_28B2", codepoint: 10418, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2568" },
+    IconEntry { icon: braille::BRAILLE_28B3, id: "braille_28B3", codepoint: 10419, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12568" },
+    IconEntry { icon: braille::BRAILLE_28B4, id: "braille_28B4", codepoint: 10420, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3568" },
+    IconEntry { icon: braille::BRAILLE_28B5, id: "braille_28B5", codepoint: 10421, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13568" },
+    IconEntry { icon: braille::BRAILLE_28B6, id: "braille_28B6", codepoint: 10422, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23568" },
+    IconEntry { icon: braille::BRAILLE_28B7, id: "braille_28B7", codepoint: 10423, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123568" },
+    IconEntry { icon: braille::BRAILLE_28B8, id: "braille_28B8", codepoint: 10424, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-4568" },
+    IconEntry { icon: braille::BRAILLE_28B9, id: "braille_28B9", codepoint: 10425, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-14568" },
+    IconEntry { icon: braille::BRAILLE_28BA, id: "braille_28BA", codepoint: 10426, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-24568" },
+    IconEntry { icon: braille::BRAILLE_28BB, id: "braille_28BB", codepoint: 10427, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-124568" },
+    IconEntry { icon: braille::BRAILLE_28BC, id: "braille_28BC", codepoint: 10428, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-34568" },
+    IconEntry { icon: braille::BRAILLE_28BD, id: "braille_28BD", codepoint: 10429, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-134568" },
+    IconEntry { icon: braille::BRAILLE_28BE, id: "braille_28BE", codepoint: 10430, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-234568" },
+    IconEntry { icon: braille::BRAILLE_28BF, id: "braille_28BF", codepoint: 10431, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1234568" },
     IconEntry { icon: braille::BRAILLE_28C0, id: "braille_28C0", codepoint: 10432, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-78" },
     IconEntry { icon: braille::BRAILLE_28C1, id: "braille_28C1", codepoint: 10433, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-178" },
     IconEntry { icon: braille::BRAILLE_28C2, id: "braille_28C2", codepoint: 10434, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-278" },
@@ -426,6 +3121,62 @@ pub static ICON_ENTRIES: &[IconEntry] = &[
     IconEntry { icon: braille::BRAILLE_28C5, id: "braille_28C5", codepoint: 10437, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1378" },
     IconEntry { icon: braille::BRAILLE_28C6, id: "braille_28C6", codepoint: 10438, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2378" },
     IconEntry { icon: braille::BRAILLE_28C7, id: "braille_28C7", codepoint: 10439, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12378" },
+    IconEntry { icon: braille::BRAILLE_28C8, id: "braille_28C8", codepoint: 10440, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-478" },
+    IconEntry { icon: braille::BRAILLE_28C9, id: "braille_28C9", codepoint: 10441, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1478" },
+    IconEntry { icon: braille::BRAILLE_28CA, id: "braille_28CA", codepoint: 10442, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2478" },
+    IconEntry { icon: braille::BRAILLE_28CB, id: "braille_28CB", codepoint: 10443, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12478" },
+    IconEntry { icon: braille::BRAILLE_28CC, id: "braille_28CC", codepoint: 10444, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3478" },
+    IconEntry { icon: braille::BRAILLE_28CD, id: "braille_28CD", codepoint: 10445, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13478" },
+    IconEntry { icon: braille::BRAILLE_28CE, id: "braille_28CE", codepoint: 10446, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23478" },
+    IconEntry { icon: braille::BRAILLE_28CF, id: "braille_28CF", codepoint: 10447, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123478" },
+    IconEntry { icon: braille::BRAILLE_28D0, id: "braille_28D0", codepoint: 10448, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-578" },
+    IconEntry { icon: braille::BRAILLE_28D1, id: "braille_28D1", codepoint: 10449, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1578" },
+    IconEntry { icon: braille::BRAILLE_28D2, id: "braille_28D2", codepoint: 10450, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2578" },
+    IconEntry { icon: braille::BRAILLE_28D3, id: "braille_28D3", codepoint: 10451, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12578" },
+    IconEntry { icon: braille::BRAILLE_28D4, id: "braille_28D4", codepoint: 10452, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3578" },
+    IconEntry { icon: braille::BRAILLE_28D5, id: "braille_28D5", codepoint: 10453, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13578" },
+    IconEntry { icon: braille::BRAILLE_28D6, id: "braille_28D6", codepoint: 10454, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23578" },
+    IconEntry { icon: braille::BRAILLE_28D7, id: "braille_28D7", codepoint: 10455, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123578" },
+    IconEntry { icon: braille::BRAILLE_28D8, id: "braille_28D8", codepoint: 10456, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-4578" },
+    IconEntry { icon: braille::BRAILLE_28D9, id: "braille_28D9", codepoint: 10457, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-14578" },
+    IconEntry { icon: braille::BRAILLE_28DA, id: "braille_28DA", codepoint: 10458, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-24578" },
+    IconEntry { icon: braille::BRAILLE_28DB, id: "braille_28DB", codepoint: 10459, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-124578" },
+    IconEntry { icon: braille::BRAILLE_28DC, id: "braille_28DC", codepoint: 10460, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-34578" },
+    IconEntry { icon: braille::BRAILLE_28DD, id: "braille_28DD", codepoint: 10461, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-134578" },
+    IconEntry { icon: braille::BRAILLE_28DE, id: "braille_28DE", codepoint: 10462, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-234578" },
+    IconEntry { icon: braille::BRAILLE_28DF, id: "braille_28DF", codepoint: 10463, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1234578" },
+    IconEntry { icon: braille::BRAILLE_28E0, id: "braille_28E0", codepoint: 10464, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-678" },
+    IconEntry { icon: braille::BRAILLE_28E1, id: "braille_28E1", codepoint: 10465, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1678" },
+    IconEntry { icon: braille::BRAILLE_28E2, id: "braille_28E2", codepoint: 10466, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2678" },
+    IconEntry { icon: braille::BRAILLE_28E3, id: "braille_28E3", codepoint: 10467, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12678" },
+    IconEntry { icon: braille::BRAILLE_28E4, id: "braille_28E4", codepoint: 10468, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-3678" },
+    IconEntry { icon: braille::BRAILLE_28E5, id: "braille_28E5", codepoint: 10469, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-13678" },
+    IconEntry { icon: braille::BRAILLE_28E6, id: "braille_28E6", codepoint: 10470, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-23678" },
+    IconEntry { icon: braille::BRAILLE_28E7, id: "braille_28E7", codepoint: 10471, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-123678" },
+    IconEntry { icon: braille::BRAILLE_28E8, id: "braille_28E8", codepoint: 10472, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-4678" },
+    IconEntry { icon: braille::BRAILLE_28E9, id: "braille_28E9", codepoint: 10473, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-14678" },
+    IconEntry { icon: braille::BRAILLE_28EA, id: "braille_28EA", codepoint: 10474, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-24678" },
+    IconEntry { icon: braille::BRAILLE_28EB, id: "braille_28EB", codepoint: 10475, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-124678" },
+    IconEntry { icon: braille::BRAILLE_28EC, id: "braille_28EC", codepoint: 10476, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-34678" },
+    IconEntry { icon: braille::BRAILLE_28ED, id: "braille_28ED", codepoint: 10477, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-134678" },
+    IconEntry { icon: braille::BRAILLE_28EE, id: "braille_28EE", codepoint: 10478, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-234678" },
+    IconEntry { icon: braille::BRAILLE_28EF, id: "braille_28EF", codepoint: 10479, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1234678" },
+    IconEntry { icon: braille::BRAILLE_28F0, id: "braille_28F0", codepoint: 10480, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-5678" },
+    IconEntry { icon: braille::BRAILLE_28F1, id: "braille_28F1", codepoint: 10481, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-15678" },
+    IconEntry { icon: braille::BRAILLE_28F2, id: "braille_28F2", codepoint: 10482, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-25678" },
+    IconEntry { icon: braille::BRAILLE_28F3, id: "braille_28F3", codepoint: 10483, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-125678" },
+    IconEntry { icon: braille::BRAILLE_28F4, id: "braille_28F4", codepoint: 10484, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-35678" },
+    IconEntry { icon: braille::BRAILLE_28F5, id: "braille_28F5", codepoint: 10485, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-135678" },
+    IconEntry { icon: braille::BRAILLE_28F6, id: "braille_28F6", codepoint: 10486, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-235678" },
+    IconEntry { icon: braille::BRAILLE_28F7, id: "braille_28F7", codepoint: 10487, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1235678" },
+    IconEntry { icon: braille::BRAILLE_28F8, id: "braille_28F8", codepoint: 10488, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-45678" },
+    IconEntry { icon: braille::BRAILLE_28F9, id: "braille_28F9", codepoint: 10489, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-145678" },
+    IconEntry { icon: braille::BRAILLE_28FA, id: "braille_28FA", codepoint: 10490, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-245678" },
+    IconEntry { icon: braille::BRAILLE_28FB, id: "braille_28FB", codepoint: 10491, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1245678" },
+    IconEntry { icon: braille::BRAILLE_28FC, id: "braille_28FC", codepoint: 10492, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-345678" },
+    IconEntry { icon: braille::BRAILLE_28FD, id: "braille_28FD", codepoint: 10493, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-1345678" },
+    IconEntry { icon: braille::BRAILLE_28FE, id: "braille_28FE", codepoint: 10494, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-2345678" },
+    IconEntry { icon: braille::BRAILLE_28FF, id: "braille_28FF", codepoint: 10495, block: "braille", unicode_name: "BRAILLE PATTERN DOTS-12345678" },
 ];
 
 /// Look up a verified icon by its catalog id (e.g. `"box_2502"`).
@@ -434,47 +3185,244 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
     match id {
         "ascii_0021" =>          Some(ascii::ASCII_0021),
         "ascii_0022" =>          Some(ascii::ASCII_0022),
+        "ascii_0023" =>          Some(ascii::ASCII_0023),
+        "ascii_0024" =>          Some(ascii::ASCII_0024),
+        "ascii_0025" =>          Some(ascii::ASCII_0025),
+        "ascii_0026" =>          Some(ascii::ASCII_0026),
         "ascii_0027" =>          Some(ascii::ASCII_0027),
         "ascii_0028" =>          Some(ascii::ASCII_0028),
         "ascii_0029" =>          Some(ascii::ASCII_0029),
+        "ascii_002A" =>          Some(ascii::ASCII_002A),
+        "ascii_002B" =>          Some(ascii::ASCII_002B),
         "ascii_002C" =>          Some(ascii::ASCII_002C),
+        "ascii_002D" =>          Some(ascii::ASCII_002D),
         "ascii_002E" =>          Some(ascii::ASCII_002E),
         "ascii_002F" =>          Some(ascii::ASCII_002F),
+        "ascii_0030" =>          Some(ascii::ASCII_0030),
+        "ascii_0031" =>          Some(ascii::ASCII_0031),
+        "ascii_0032" =>          Some(ascii::ASCII_0032),
+        "ascii_0033" =>          Some(ascii::ASCII_0033),
+        "ascii_0034" =>          Some(ascii::ASCII_0034),
+        "ascii_0035" =>          Some(ascii::ASCII_0035),
+        "ascii_0036" =>          Some(ascii::ASCII_0036),
+        "ascii_0037" =>          Some(ascii::ASCII_0037),
+        "ascii_0038" =>          Some(ascii::ASCII_0038),
+        "ascii_0039" =>          Some(ascii::ASCII_0039),
         "ascii_003A" =>          Some(ascii::ASCII_003A),
         "ascii_003B" =>          Some(ascii::ASCII_003B),
+        "ascii_003C" =>          Some(ascii::ASCII_003C),
+        "ascii_003D" =>          Some(ascii::ASCII_003D),
         "ascii_003E" =>          Some(ascii::ASCII_003E),
         "ascii_003F" =>          Some(ascii::ASCII_003F),
+        "ascii_0040" =>          Some(ascii::ASCII_0040),
+        "ascii_0041" =>          Some(ascii::ASCII_0041),
+        "ascii_0042" =>          Some(ascii::ASCII_0042),
+        "ascii_0043" =>          Some(ascii::ASCII_0043),
+        "ascii_0044" =>          Some(ascii::ASCII_0044),
+        "ascii_0045" =>          Some(ascii::ASCII_0045),
+        "ascii_0046" =>          Some(ascii::ASCII_0046),
+        "ascii_0047" =>          Some(ascii::ASCII_0047),
         "ascii_0049" =>          Some(ascii::ASCII_0049),
         "ascii_004A" =>          Some(ascii::ASCII_004A),
+        "ascii_004B" =>          Some(ascii::ASCII_004B),
+        "ascii_004C" =>          Some(ascii::ASCII_004C),
+        "ascii_004D" =>          Some(ascii::ASCII_004D),
+        "ascii_004E" =>          Some(ascii::ASCII_004E),
+        "ascii_004F" =>          Some(ascii::ASCII_004F),
+        "ascii_0050" =>          Some(ascii::ASCII_0050),
+        "ascii_0051" =>          Some(ascii::ASCII_0051),
+        "ascii_0052" =>          Some(ascii::ASCII_0052),
+        "ascii_0053" =>          Some(ascii::ASCII_0053),
+        "ascii_0054" =>          Some(ascii::ASCII_0054),
+        "ascii_0056" =>          Some(ascii::ASCII_0056),
+        "ascii_0057" =>          Some(ascii::ASCII_0057),
+        "ascii_0058" =>          Some(ascii::ASCII_0058),
+        "ascii_0059" =>          Some(ascii::ASCII_0059),
+        "ascii_005A" =>          Some(ascii::ASCII_005A),
         "ascii_005B" =>          Some(ascii::ASCII_005B),
         "ascii_005C" =>          Some(ascii::ASCII_005C),
         "ascii_005D" =>          Some(ascii::ASCII_005D),
         "ascii_005E" =>          Some(ascii::ASCII_005E),
+        "ascii_005F" =>          Some(ascii::ASCII_005F),
         "ascii_0060" =>          Some(ascii::ASCII_0060),
         "ascii_0061" =>          Some(ascii::ASCII_0061),
+        "ascii_0062" =>          Some(ascii::ASCII_0062),
         "ascii_0063" =>          Some(ascii::ASCII_0063),
+        "ascii_0064" =>          Some(ascii::ASCII_0064),
+        "ascii_0065" =>          Some(ascii::ASCII_0065),
+        "ascii_0066" =>          Some(ascii::ASCII_0066),
+        "ascii_0067" =>          Some(ascii::ASCII_0067),
+        "ascii_0068" =>          Some(ascii::ASCII_0068),
+        "ascii_0069" =>          Some(ascii::ASCII_0069),
         "ascii_006A" =>          Some(ascii::ASCII_006A),
+        "ascii_006B" =>          Some(ascii::ASCII_006B),
+        "ascii_006C" =>          Some(ascii::ASCII_006C),
+        "ascii_006D" =>          Some(ascii::ASCII_006D),
+        "ascii_006E" =>          Some(ascii::ASCII_006E),
+        "ascii_006F" =>          Some(ascii::ASCII_006F),
+        "ascii_0070" =>          Some(ascii::ASCII_0070),
+        "ascii_0071" =>          Some(ascii::ASCII_0071),
+        "ascii_0072" =>          Some(ascii::ASCII_0072),
         "ascii_0073" =>          Some(ascii::ASCII_0073),
         "ascii_0074" =>          Some(ascii::ASCII_0074),
+        "ascii_0075" =>          Some(ascii::ASCII_0075),
+        "ascii_0076" =>          Some(ascii::ASCII_0076),
+        "ascii_0077" =>          Some(ascii::ASCII_0077),
+        "ascii_0078" =>          Some(ascii::ASCII_0078),
+        "ascii_0079" =>          Some(ascii::ASCII_0079),
         "ascii_007A" =>          Some(ascii::ASCII_007A),
         "ascii_007B" =>          Some(ascii::ASCII_007B),
         "ascii_007C" =>          Some(ascii::ASCII_007C),
         "ascii_007D" =>          Some(ascii::ASCII_007D),
+        "ascii_007E" =>          Some(ascii::ASCII_007E),
+        "arrow_2190" =>          Some(arrows::ARROW_2190),
+        "arrow_2191" =>          Some(arrows::ARROW_2191),
+        "arrow_2192" =>          Some(arrows::ARROW_2192),
+        "arrow_2193" =>          Some(arrows::ARROW_2193),
+        "arrow_2194" =>          Some(arrows::ARROW_2194),
+        "arrow_2195" =>          Some(arrows::ARROW_2195),
+        "arrow_2196" =>          Some(arrows::ARROW_2196),
+        "arrow_2197" =>          Some(arrows::ARROW_2197),
+        "arrow_2198" =>          Some(arrows::ARROW_2198),
+        "arrow_2199" =>          Some(arrows::ARROW_2199),
+        "arrow_219A" =>          Some(arrows::ARROW_219A),
+        "arrow_219B" =>          Some(arrows::ARROW_219B),
+        "arrow_219C" =>          Some(arrows::ARROW_219C),
+        "arrow_219D" =>          Some(arrows::ARROW_219D),
+        "arrow_219E" =>          Some(arrows::ARROW_219E),
+        "arrow_219F" =>          Some(arrows::ARROW_219F),
+        "arrow_21A0" =>          Some(arrows::ARROW_21A0),
+        "arrow_21A1" =>          Some(arrows::ARROW_21A1),
+        "arrow_21A2" =>          Some(arrows::ARROW_21A2),
+        "arrow_21A3" =>          Some(arrows::ARROW_21A3),
+        "arrow_21A4" =>          Some(arrows::ARROW_21A4),
+        "arrow_21A5" =>          Some(arrows::ARROW_21A5),
+        "arrow_21A6" =>          Some(arrows::ARROW_21A6),
+        "arrow_21A7" =>          Some(arrows::ARROW_21A7),
         "arrow_21A8" =>          Some(arrows::ARROW_21A8),
+        "arrow_21A9" =>          Some(arrows::ARROW_21A9),
+        "arrow_21AA" =>          Some(arrows::ARROW_21AA),
+        "arrow_21AB" =>          Some(arrows::ARROW_21AB),
+        "arrow_21AC" =>          Some(arrows::ARROW_21AC),
+        "arrow_21AD" =>          Some(arrows::ARROW_21AD),
+        "arrow_21AE" =>          Some(arrows::ARROW_21AE),
+        "arrow_21AF" =>          Some(arrows::ARROW_21AF),
+        "arrow_21B0" =>          Some(arrows::ARROW_21B0),
+        "arrow_21B1" =>          Some(arrows::ARROW_21B1),
+        "arrow_21B2" =>          Some(arrows::ARROW_21B2),
+        "arrow_21B3" =>          Some(arrows::ARROW_21B3),
+        "arrow_21B4" =>          Some(arrows::ARROW_21B4),
+        "arrow_21B5" =>          Some(arrows::ARROW_21B5),
+        "arrow_21B6" =>          Some(arrows::ARROW_21B6),
+        "arrow_21B7" =>          Some(arrows::ARROW_21B7),
+        "arrow_21B8" =>          Some(arrows::ARROW_21B8),
+        "arrow_21B9" =>          Some(arrows::ARROW_21B9),
+        "arrow_21BA" =>          Some(arrows::ARROW_21BA),
+        "arrow_21BB" =>          Some(arrows::ARROW_21BB),
+        "arrow_21BC" =>          Some(arrows::ARROW_21BC),
+        "arrow_21BD" =>          Some(arrows::ARROW_21BD),
+        "arrow_21BE" =>          Some(arrows::ARROW_21BE),
+        "arrow_21BF" =>          Some(arrows::ARROW_21BF),
+        "arrow_21C0" =>          Some(arrows::ARROW_21C0),
+        "arrow_21C1" =>          Some(arrows::ARROW_21C1),
+        "arrow_21C2" =>          Some(arrows::ARROW_21C2),
+        "arrow_21C3" =>          Some(arrows::ARROW_21C3),
+        "arrow_21C4" =>          Some(arrows::ARROW_21C4),
+        "arrow_21C5" =>          Some(arrows::ARROW_21C5),
+        "arrow_21C6" =>          Some(arrows::ARROW_21C6),
+        "arrow_21C7" =>          Some(arrows::ARROW_21C7),
+        "arrow_21C8" =>          Some(arrows::ARROW_21C8),
+        "arrow_21C9" =>          Some(arrows::ARROW_21C9),
+        "arrow_21CA" =>          Some(arrows::ARROW_21CA),
+        "arrow_21CB" =>          Some(arrows::ARROW_21CB),
+        "arrow_21CC" =>          Some(arrows::ARROW_21CC),
+        "arrow_21CD" =>          Some(arrows::ARROW_21CD),
+        "arrow_21CE" =>          Some(arrows::ARROW_21CE),
+        "arrow_21CF" =>          Some(arrows::ARROW_21CF),
+        "arrow_21D0" =>          Some(arrows::ARROW_21D0),
+        "arrow_21D1" =>          Some(arrows::ARROW_21D1),
+        "arrow_21D2" =>          Some(arrows::ARROW_21D2),
+        "arrow_21D3" =>          Some(arrows::ARROW_21D3),
+        "arrow_21D4" =>          Some(arrows::ARROW_21D4),
+        "arrow_21D5" =>          Some(arrows::ARROW_21D5),
+        "arrow_21D6" =>          Some(arrows::ARROW_21D6),
+        "arrow_21D7" =>          Some(arrows::ARROW_21D7),
+        "arrow_21D8" =>          Some(arrows::ARROW_21D8),
+        "arrow_21D9" =>          Some(arrows::ARROW_21D9),
+        "arrow_21DA" =>          Some(arrows::ARROW_21DA),
+        "arrow_21DB" =>          Some(arrows::ARROW_21DB),
+        "arrow_21DC" =>          Some(arrows::ARROW_21DC),
+        "arrow_21DD" =>          Some(arrows::ARROW_21DD),
+        "arrow_21DE" =>          Some(arrows::ARROW_21DE),
+        "arrow_21DF" =>          Some(arrows::ARROW_21DF),
+        "arrow_21E0" =>          Some(arrows::ARROW_21E0),
+        "arrow_21E1" =>          Some(arrows::ARROW_21E1),
+        "arrow_21E2" =>          Some(arrows::ARROW_21E2),
+        "arrow_21E3" =>          Some(arrows::ARROW_21E3),
+        "arrow_21E4" =>          Some(arrows::ARROW_21E4),
+        "arrow_21E5" =>          Some(arrows::ARROW_21E5),
+        "arrow_21E6" =>          Some(arrows::ARROW_21E6),
+        "arrow_21E7" =>          Some(arrows::ARROW_21E7),
+        "arrow_21E8" =>          Some(arrows::ARROW_21E8),
+        "arrow_21E9" =>          Some(arrows::ARROW_21E9),
+        "arrow_21EA" =>          Some(arrows::ARROW_21EA),
+        "arrow_21EB" =>          Some(arrows::ARROW_21EB),
+        "arrow_21EC" =>          Some(arrows::ARROW_21EC),
+        "arrow_21ED" =>          Some(arrows::ARROW_21ED),
+        "arrow_21EE" =>          Some(arrows::ARROW_21EE),
+        "arrow_21EF" =>          Some(arrows::ARROW_21EF),
+        "arrow_21F0" =>          Some(arrows::ARROW_21F0),
+        "arrow_21F1" =>          Some(arrows::ARROW_21F1),
+        "arrow_21F2" =>          Some(arrows::ARROW_21F2),
+        "arrow_21F3" =>          Some(arrows::ARROW_21F3),
+        "arrow_21F4" =>          Some(arrows::ARROW_21F4),
+        "arrow_21F5" =>          Some(arrows::ARROW_21F5),
+        "arrow_21F6" =>          Some(arrows::ARROW_21F6),
+        "arrow_21F7" =>          Some(arrows::ARROW_21F7),
+        "arrow_21F8" =>          Some(arrows::ARROW_21F8),
+        "arrow_21F9" =>          Some(arrows::ARROW_21F9),
+        "arrow_21FA" =>          Some(arrows::ARROW_21FA),
+        "arrow_21FB" =>          Some(arrows::ARROW_21FB),
+        "arrow_21FC" =>          Some(arrows::ARROW_21FC),
+        "arrow_21FD" =>          Some(arrows::ARROW_21FD),
+        "arrow_21FE" =>          Some(arrows::ARROW_21FE),
+        "arrow_21FF" =>          Some(arrows::ARROW_21FF),
+        "box_2500" =>            Some(box_drawing::BOX_2500),
+        "box_2501" =>            Some(box_drawing::BOX_2501),
         "box_2502" =>            Some(box_drawing::BOX_2502),
         "box_2503" =>            Some(box_drawing::BOX_2503),
+        "box_2504" =>            Some(box_drawing::BOX_2504),
+        "box_2505" =>            Some(box_drawing::BOX_2505),
         "box_2506" =>            Some(box_drawing::BOX_2506),
         "box_2507" =>            Some(box_drawing::BOX_2507),
+        "box_2508" =>            Some(box_drawing::BOX_2508),
+        "box_2509" =>            Some(box_drawing::BOX_2509),
         "box_250A" =>            Some(box_drawing::BOX_250A),
         "box_250B" =>            Some(box_drawing::BOX_250B),
+        "box_250C" =>            Some(box_drawing::BOX_250C),
+        "box_250D" =>            Some(box_drawing::BOX_250D),
+        "box_250E" =>            Some(box_drawing::BOX_250E),
+        "box_250F" =>            Some(box_drawing::BOX_250F),
         "box_2510" =>            Some(box_drawing::BOX_2510),
         "box_2511" =>            Some(box_drawing::BOX_2511),
         "box_2512" =>            Some(box_drawing::BOX_2512),
         "box_2513" =>            Some(box_drawing::BOX_2513),
+        "box_2514" =>            Some(box_drawing::BOX_2514),
+        "box_2515" =>            Some(box_drawing::BOX_2515),
+        "box_2516" =>            Some(box_drawing::BOX_2516),
+        "box_2517" =>            Some(box_drawing::BOX_2517),
         "box_2518" =>            Some(box_drawing::BOX_2518),
         "box_2519" =>            Some(box_drawing::BOX_2519),
         "box_251A" =>            Some(box_drawing::BOX_251A),
         "box_251B" =>            Some(box_drawing::BOX_251B),
+        "box_251C" =>            Some(box_drawing::BOX_251C),
+        "box_251D" =>            Some(box_drawing::BOX_251D),
+        "box_251E" =>            Some(box_drawing::BOX_251E),
+        "box_251F" =>            Some(box_drawing::BOX_251F),
+        "box_2520" =>            Some(box_drawing::BOX_2520),
+        "box_2521" =>            Some(box_drawing::BOX_2521),
+        "box_2522" =>            Some(box_drawing::BOX_2522),
+        "box_2523" =>            Some(box_drawing::BOX_2523),
         "box_2524" =>            Some(box_drawing::BOX_2524),
         "box_2525" =>            Some(box_drawing::BOX_2525),
         "box_2526" =>            Some(box_drawing::BOX_2526),
@@ -483,49 +3431,545 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "box_2529" =>            Some(box_drawing::BOX_2529),
         "box_252A" =>            Some(box_drawing::BOX_252A),
         "box_252B" =>            Some(box_drawing::BOX_252B),
+        "box_252C" =>            Some(box_drawing::BOX_252C),
+        "box_252D" =>            Some(box_drawing::BOX_252D),
+        "box_252E" =>            Some(box_drawing::BOX_252E),
+        "box_252F" =>            Some(box_drawing::BOX_252F),
+        "box_2530" =>            Some(box_drawing::BOX_2530),
+        "box_2531" =>            Some(box_drawing::BOX_2531),
+        "box_2532" =>            Some(box_drawing::BOX_2532),
+        "box_2533" =>            Some(box_drawing::BOX_2533),
+        "box_2534" =>            Some(box_drawing::BOX_2534),
+        "box_2535" =>            Some(box_drawing::BOX_2535),
+        "box_2536" =>            Some(box_drawing::BOX_2536),
+        "box_2537" =>            Some(box_drawing::BOX_2537),
+        "box_2538" =>            Some(box_drawing::BOX_2538),
+        "box_2539" =>            Some(box_drawing::BOX_2539),
+        "box_253A" =>            Some(box_drawing::BOX_253A),
+        "box_253B" =>            Some(box_drawing::BOX_253B),
+        "box_253C" =>            Some(box_drawing::BOX_253C),
+        "box_253D" =>            Some(box_drawing::BOX_253D),
+        "box_253E" =>            Some(box_drawing::BOX_253E),
+        "box_253F" =>            Some(box_drawing::BOX_253F),
+        "box_2540" =>            Some(box_drawing::BOX_2540),
+        "box_2541" =>            Some(box_drawing::BOX_2541),
+        "box_2542" =>            Some(box_drawing::BOX_2542),
+        "box_2543" =>            Some(box_drawing::BOX_2543),
+        "box_2544" =>            Some(box_drawing::BOX_2544),
+        "box_2545" =>            Some(box_drawing::BOX_2545),
+        "box_2546" =>            Some(box_drawing::BOX_2546),
+        "box_2547" =>            Some(box_drawing::BOX_2547),
+        "box_2548" =>            Some(box_drawing::BOX_2548),
+        "box_2549" =>            Some(box_drawing::BOX_2549),
+        "box_254A" =>            Some(box_drawing::BOX_254A),
+        "box_254B" =>            Some(box_drawing::BOX_254B),
+        "box_254C" =>            Some(box_drawing::BOX_254C),
+        "box_254D" =>            Some(box_drawing::BOX_254D),
         "box_254E" =>            Some(box_drawing::BOX_254E),
         "box_254F" =>            Some(box_drawing::BOX_254F),
+        "box_2550" =>            Some(box_drawing::BOX_2550),
         "box_2551" =>            Some(box_drawing::BOX_2551),
+        "box_2552" =>            Some(box_drawing::BOX_2552),
+        "box_2553" =>            Some(box_drawing::BOX_2553),
+        "box_2554" =>            Some(box_drawing::BOX_2554),
         "box_2555" =>            Some(box_drawing::BOX_2555),
         "box_2556" =>            Some(box_drawing::BOX_2556),
         "box_2557" =>            Some(box_drawing::BOX_2557),
+        "box_2558" =>            Some(box_drawing::BOX_2558),
+        "box_2559" =>            Some(box_drawing::BOX_2559),
+        "box_255A" =>            Some(box_drawing::BOX_255A),
         "box_255B" =>            Some(box_drawing::BOX_255B),
         "box_255C" =>            Some(box_drawing::BOX_255C),
         "box_255D" =>            Some(box_drawing::BOX_255D),
+        "box_255E" =>            Some(box_drawing::BOX_255E),
+        "box_255F" =>            Some(box_drawing::BOX_255F),
+        "box_2560" =>            Some(box_drawing::BOX_2560),
         "box_2561" =>            Some(box_drawing::BOX_2561),
         "box_2562" =>            Some(box_drawing::BOX_2562),
         "box_2563" =>            Some(box_drawing::BOX_2563),
+        "box_2564" =>            Some(box_drawing::BOX_2564),
+        "box_2565" =>            Some(box_drawing::BOX_2565),
+        "box_2566" =>            Some(box_drawing::BOX_2566),
+        "box_2567" =>            Some(box_drawing::BOX_2567),
+        "box_2568" =>            Some(box_drawing::BOX_2568),
+        "box_2569" =>            Some(box_drawing::BOX_2569),
+        "box_256A" =>            Some(box_drawing::BOX_256A),
+        "box_256B" =>            Some(box_drawing::BOX_256B),
+        "box_256C" =>            Some(box_drawing::BOX_256C),
+        "box_256D" =>            Some(box_drawing::BOX_256D),
         "box_256E" =>            Some(box_drawing::BOX_256E),
         "box_256F" =>            Some(box_drawing::BOX_256F),
+        "box_2570" =>            Some(box_drawing::BOX_2570),
+        "box_2571" =>            Some(box_drawing::BOX_2571),
+        "box_2572" =>            Some(box_drawing::BOX_2572),
+        "box_2573" =>            Some(box_drawing::BOX_2573),
         "box_2574" =>            Some(box_drawing::BOX_2574),
         "box_2575" =>            Some(box_drawing::BOX_2575),
+        "box_2576" =>            Some(box_drawing::BOX_2576),
         "box_2577" =>            Some(box_drawing::BOX_2577),
         "box_2578" =>            Some(box_drawing::BOX_2578),
         "box_2579" =>            Some(box_drawing::BOX_2579),
+        "box_257A" =>            Some(box_drawing::BOX_257A),
         "box_257B" =>            Some(box_drawing::BOX_257B),
+        "box_257C" =>            Some(box_drawing::BOX_257C),
         "box_257D" =>            Some(box_drawing::BOX_257D),
+        "box_257E" =>            Some(box_drawing::BOX_257E),
         "box_257F" =>            Some(box_drawing::BOX_257F),
+        "block_2580" =>          Some(block_elements::BLOCK_2580),
+        "block_2581" =>          Some(block_elements::BLOCK_2581),
+        "block_2582" =>          Some(block_elements::BLOCK_2582),
+        "block_2583" =>          Some(block_elements::BLOCK_2583),
+        "block_2584" =>          Some(block_elements::BLOCK_2584),
+        "block_2585" =>          Some(block_elements::BLOCK_2585),
+        "block_2586" =>          Some(block_elements::BLOCK_2586),
+        "block_2587" =>          Some(block_elements::BLOCK_2587),
+        "block_2588" =>          Some(block_elements::BLOCK_2588),
+        "block_2589" =>          Some(block_elements::BLOCK_2589),
+        "block_258A" =>          Some(block_elements::BLOCK_258A),
+        "block_258B" =>          Some(block_elements::BLOCK_258B),
         "block_258C" =>          Some(block_elements::BLOCK_258C),
+        "block_258D" =>          Some(block_elements::BLOCK_258D),
+        "block_258E" =>          Some(block_elements::BLOCK_258E),
+        "block_2590" =>          Some(block_elements::BLOCK_2590),
+        "block_2591" =>          Some(block_elements::BLOCK_2591),
+        "block_2592" =>          Some(block_elements::BLOCK_2592),
+        "block_2593" =>          Some(block_elements::BLOCK_2593),
+        "block_2596" =>          Some(block_elements::BLOCK_2596),
+        "block_2597" =>          Some(block_elements::BLOCK_2597),
+        "block_2598" =>          Some(block_elements::BLOCK_2598),
+        "block_2599" =>          Some(block_elements::BLOCK_2599),
+        "block_259A" =>          Some(block_elements::BLOCK_259A),
+        "block_259B" =>          Some(block_elements::BLOCK_259B),
+        "block_259C" =>          Some(block_elements::BLOCK_259C),
+        "block_259D" =>          Some(block_elements::BLOCK_259D),
+        "block_259E" =>          Some(block_elements::BLOCK_259E),
+        "block_259F" =>          Some(block_elements::BLOCK_259F),
+        "geometric_25A0" =>      Some(geometric_shapes::GEOMETRIC_25A0),
+        "geometric_25A2" =>      Some(geometric_shapes::GEOMETRIC_25A2),
+        "geometric_25A3" =>      Some(geometric_shapes::GEOMETRIC_25A3),
+        "geometric_25A4" =>      Some(geometric_shapes::GEOMETRIC_25A4),
+        "geometric_25A5" =>      Some(geometric_shapes::GEOMETRIC_25A5),
+        "geometric_25A6" =>      Some(geometric_shapes::GEOMETRIC_25A6),
+        "geometric_25A7" =>      Some(geometric_shapes::GEOMETRIC_25A7),
+        "geometric_25A8" =>      Some(geometric_shapes::GEOMETRIC_25A8),
+        "geometric_25A9" =>      Some(geometric_shapes::GEOMETRIC_25A9),
         "geometric_25AA" =>      Some(geometric_shapes::GEOMETRIC_25AA),
         "geometric_25AB" =>      Some(geometric_shapes::GEOMETRIC_25AB),
+        "geometric_25AC" =>      Some(geometric_shapes::GEOMETRIC_25AC),
+        "geometric_25AD" =>      Some(geometric_shapes::GEOMETRIC_25AD),
+        "geometric_25AE" =>      Some(geometric_shapes::GEOMETRIC_25AE),
+        "geometric_25B0" =>      Some(geometric_shapes::GEOMETRIC_25B0),
+        "geometric_25B1" =>      Some(geometric_shapes::GEOMETRIC_25B1),
+        "geometric_25B2" =>      Some(geometric_shapes::GEOMETRIC_25B2),
+        "geometric_25B3" =>      Some(geometric_shapes::GEOMETRIC_25B3),
         "geometric_25B4" =>      Some(geometric_shapes::GEOMETRIC_25B4),
+        "geometric_25B5" =>      Some(geometric_shapes::GEOMETRIC_25B5),
+        "geometric_25B6" =>      Some(geometric_shapes::GEOMETRIC_25B6),
+        "geometric_25B7" =>      Some(geometric_shapes::GEOMETRIC_25B7),
         "geometric_25B8" =>      Some(geometric_shapes::GEOMETRIC_25B8),
+        "geometric_25B9" =>      Some(geometric_shapes::GEOMETRIC_25B9),
+        "geometric_25BA" =>      Some(geometric_shapes::GEOMETRIC_25BA),
+        "geometric_25BB" =>      Some(geometric_shapes::GEOMETRIC_25BB),
+        "geometric_25BC" =>      Some(geometric_shapes::GEOMETRIC_25BC),
+        "geometric_25BD" =>      Some(geometric_shapes::GEOMETRIC_25BD),
         "geometric_25BE" =>      Some(geometric_shapes::GEOMETRIC_25BE),
+        "geometric_25BF" =>      Some(geometric_shapes::GEOMETRIC_25BF),
+        "geometric_25C0" =>      Some(geometric_shapes::GEOMETRIC_25C0),
+        "geometric_25C1" =>      Some(geometric_shapes::GEOMETRIC_25C1),
         "geometric_25C2" =>      Some(geometric_shapes::GEOMETRIC_25C2),
+        "geometric_25C3" =>      Some(geometric_shapes::GEOMETRIC_25C3),
+        "geometric_25C4" =>      Some(geometric_shapes::GEOMETRIC_25C4),
+        "geometric_25C5" =>      Some(geometric_shapes::GEOMETRIC_25C5),
+        "geometric_25C6" =>      Some(geometric_shapes::GEOMETRIC_25C6),
+        "geometric_25C7" =>      Some(geometric_shapes::GEOMETRIC_25C7),
+        "geometric_25C8" =>      Some(geometric_shapes::GEOMETRIC_25C8),
+        "geometric_25C9" =>      Some(geometric_shapes::GEOMETRIC_25C9),
+        "geometric_25CA" =>      Some(geometric_shapes::GEOMETRIC_25CA),
+        "geometric_25CB" =>      Some(geometric_shapes::GEOMETRIC_25CB),
+        "geometric_25CC" =>      Some(geometric_shapes::GEOMETRIC_25CC),
+        "geometric_25CD" =>      Some(geometric_shapes::GEOMETRIC_25CD),
+        "geometric_25CE" =>      Some(geometric_shapes::GEOMETRIC_25CE),
+        "geometric_25CF" =>      Some(geometric_shapes::GEOMETRIC_25CF),
+        "geometric_25D0" =>      Some(geometric_shapes::GEOMETRIC_25D0),
+        "geometric_25D1" =>      Some(geometric_shapes::GEOMETRIC_25D1),
+        "geometric_25D2" =>      Some(geometric_shapes::GEOMETRIC_25D2),
+        "geometric_25D3" =>      Some(geometric_shapes::GEOMETRIC_25D3),
+        "geometric_25D4" =>      Some(geometric_shapes::GEOMETRIC_25D4),
+        "geometric_25D5" =>      Some(geometric_shapes::GEOMETRIC_25D5),
+        "geometric_25D6" =>      Some(geometric_shapes::GEOMETRIC_25D6),
+        "geometric_25D7" =>      Some(geometric_shapes::GEOMETRIC_25D7),
+        "geometric_25D8" =>      Some(geometric_shapes::GEOMETRIC_25D8),
+        "geometric_25D9" =>      Some(geometric_shapes::GEOMETRIC_25D9),
+        "geometric_25DA" =>      Some(geometric_shapes::GEOMETRIC_25DA),
+        "geometric_25DB" =>      Some(geometric_shapes::GEOMETRIC_25DB),
+        "geometric_25DC" =>      Some(geometric_shapes::GEOMETRIC_25DC),
+        "geometric_25DD" =>      Some(geometric_shapes::GEOMETRIC_25DD),
+        "geometric_25DE" =>      Some(geometric_shapes::GEOMETRIC_25DE),
+        "geometric_25DF" =>      Some(geometric_shapes::GEOMETRIC_25DF),
+        "geometric_25E0" =>      Some(geometric_shapes::GEOMETRIC_25E0),
+        "geometric_25E1" =>      Some(geometric_shapes::GEOMETRIC_25E1),
+        "geometric_25E2" =>      Some(geometric_shapes::GEOMETRIC_25E2),
+        "geometric_25E3" =>      Some(geometric_shapes::GEOMETRIC_25E3),
+        "geometric_25E4" =>      Some(geometric_shapes::GEOMETRIC_25E4),
+        "geometric_25E5" =>      Some(geometric_shapes::GEOMETRIC_25E5),
+        "geometric_25E6" =>      Some(geometric_shapes::GEOMETRIC_25E6),
+        "geometric_25E7" =>      Some(geometric_shapes::GEOMETRIC_25E7),
+        "geometric_25E8" =>      Some(geometric_shapes::GEOMETRIC_25E8),
+        "geometric_25E9" =>      Some(geometric_shapes::GEOMETRIC_25E9),
+        "geometric_25EA" =>      Some(geometric_shapes::GEOMETRIC_25EA),
+        "geometric_25EB" =>      Some(geometric_shapes::GEOMETRIC_25EB),
+        "geometric_25EC" =>      Some(geometric_shapes::GEOMETRIC_25EC),
+        "geometric_25ED" =>      Some(geometric_shapes::GEOMETRIC_25ED),
+        "geometric_25EE" =>      Some(geometric_shapes::GEOMETRIC_25EE),
+        "geometric_25EF" =>      Some(geometric_shapes::GEOMETRIC_25EF),
+        "geometric_25F3" =>      Some(geometric_shapes::GEOMETRIC_25F3),
+        "geometric_25F4" =>      Some(geometric_shapes::GEOMETRIC_25F4),
+        "geometric_25F5" =>      Some(geometric_shapes::GEOMETRIC_25F5),
+        "geometric_25F6" =>      Some(geometric_shapes::GEOMETRIC_25F6),
+        "geometric_25F7" =>      Some(geometric_shapes::GEOMETRIC_25F7),
+        "geometric_25F8" =>      Some(geometric_shapes::GEOMETRIC_25F8),
+        "geometric_25F9" =>      Some(geometric_shapes::GEOMETRIC_25F9),
+        "geometric_25FA" =>      Some(geometric_shapes::GEOMETRIC_25FA),
+        "geometric_25FB" =>      Some(geometric_shapes::GEOMETRIC_25FB),
+        "geometric_25FC" =>      Some(geometric_shapes::GEOMETRIC_25FC),
+        "geometric_25FF" =>      Some(geometric_shapes::GEOMETRIC_25FF),
+        "misc_2600" =>           Some(misc_symbols::MISC_2600),
+        "misc_2601" =>           Some(misc_symbols::MISC_2601),
+        "misc_2602" =>           Some(misc_symbols::MISC_2602),
+        "misc_2603" =>           Some(misc_symbols::MISC_2603),
+        "misc_2604" =>           Some(misc_symbols::MISC_2604),
+        "misc_2605" =>           Some(misc_symbols::MISC_2605),
+        "misc_2606" =>           Some(misc_symbols::MISC_2606),
         "misc_2607" =>           Some(misc_symbols::MISC_2607),
+        "misc_2608" =>           Some(misc_symbols::MISC_2608),
+        "misc_2609" =>           Some(misc_symbols::MISC_2609),
+        "misc_260A" =>           Some(misc_symbols::MISC_260A),
+        "misc_260B" =>           Some(misc_symbols::MISC_260B),
+        "misc_260C" =>           Some(misc_symbols::MISC_260C),
+        "misc_260D" =>           Some(misc_symbols::MISC_260D),
+        "misc_260E" =>           Some(misc_symbols::MISC_260E),
+        "misc_260F" =>           Some(misc_symbols::MISC_260F),
         "misc_2613" =>           Some(misc_symbols::MISC_2613),
+        "misc_2616" =>           Some(misc_symbols::MISC_2616),
+        "misc_2617" =>           Some(misc_symbols::MISC_2617),
+        "misc_2618" =>           Some(misc_symbols::MISC_2618),
+        "misc_2619" =>           Some(misc_symbols::MISC_2619),
+        "misc_261A" =>           Some(misc_symbols::MISC_261A),
+        "misc_261B" =>           Some(misc_symbols::MISC_261B),
+        "misc_261C" =>           Some(misc_symbols::MISC_261C),
+        "misc_261D" =>           Some(misc_symbols::MISC_261D),
+        "misc_261E" =>           Some(misc_symbols::MISC_261E),
+        "misc_261F" =>           Some(misc_symbols::MISC_261F),
+        "misc_2620" =>           Some(misc_symbols::MISC_2620),
+        "misc_2621" =>           Some(misc_symbols::MISC_2621),
+        "misc_2622" =>           Some(misc_symbols::MISC_2622),
+        "misc_2623" =>           Some(misc_symbols::MISC_2623),
+        "misc_2624" =>           Some(misc_symbols::MISC_2624),
+        "misc_2625" =>           Some(misc_symbols::MISC_2625),
+        "misc_2626" =>           Some(misc_symbols::MISC_2626),
+        "misc_2627" =>           Some(misc_symbols::MISC_2627),
         "misc_2628" =>           Some(misc_symbols::MISC_2628),
+        "misc_2629" =>           Some(misc_symbols::MISC_2629),
+        "misc_262A" =>           Some(misc_symbols::MISC_262A),
+        "misc_262B" =>           Some(misc_symbols::MISC_262B),
+        "misc_262C" =>           Some(misc_symbols::MISC_262C),
+        "misc_262D" =>           Some(misc_symbols::MISC_262D),
+        "misc_262E" =>           Some(misc_symbols::MISC_262E),
+        "misc_262F" =>           Some(misc_symbols::MISC_262F),
+        "misc_2638" =>           Some(misc_symbols::MISC_2638),
+        "misc_2639" =>           Some(misc_symbols::MISC_2639),
+        "misc_263A" =>           Some(misc_symbols::MISC_263A),
+        "misc_263B" =>           Some(misc_symbols::MISC_263B),
+        "misc_263C" =>           Some(misc_symbols::MISC_263C),
+        "misc_263D" =>           Some(misc_symbols::MISC_263D),
         "misc_263E" =>           Some(misc_symbols::MISC_263E),
         "misc_263F" =>           Some(misc_symbols::MISC_263F),
+        "misc_2640" =>           Some(misc_symbols::MISC_2640),
+        "misc_2641" =>           Some(misc_symbols::MISC_2641),
+        "misc_2642" =>           Some(misc_symbols::MISC_2642),
+        "misc_2643" =>           Some(misc_symbols::MISC_2643),
         "misc_2644" =>           Some(misc_symbols::MISC_2644),
+        "misc_2645" =>           Some(misc_symbols::MISC_2645),
+        "misc_2646" =>           Some(misc_symbols::MISC_2646),
         "misc_2647" =>           Some(misc_symbols::MISC_2647),
+        "misc_2654" =>           Some(misc_symbols::MISC_2654),
+        "misc_2655" =>           Some(misc_symbols::MISC_2655),
+        "misc_2656" =>           Some(misc_symbols::MISC_2656),
+        "misc_2657" =>           Some(misc_symbols::MISC_2657),
+        "misc_2658" =>           Some(misc_symbols::MISC_2658),
+        "misc_2659" =>           Some(misc_symbols::MISC_2659),
+        "misc_265A" =>           Some(misc_symbols::MISC_265A),
+        "misc_265B" =>           Some(misc_symbols::MISC_265B),
+        "misc_265C" =>           Some(misc_symbols::MISC_265C),
+        "misc_265D" =>           Some(misc_symbols::MISC_265D),
+        "misc_265E" =>           Some(misc_symbols::MISC_265E),
+        "misc_265F" =>           Some(misc_symbols::MISC_265F),
+        "misc_2660" =>           Some(misc_symbols::MISC_2660),
+        "misc_2661" =>           Some(misc_symbols::MISC_2661),
+        "misc_2662" =>           Some(misc_symbols::MISC_2662),
+        "misc_2663" =>           Some(misc_symbols::MISC_2663),
+        "misc_2664" =>           Some(misc_symbols::MISC_2664),
+        "misc_2665" =>           Some(misc_symbols::MISC_2665),
+        "misc_2666" =>           Some(misc_symbols::MISC_2666),
+        "misc_2667" =>           Some(misc_symbols::MISC_2667),
+        "misc_2668" =>           Some(misc_symbols::MISC_2668),
+        "misc_2669" =>           Some(misc_symbols::MISC_2669),
+        "misc_266A" =>           Some(misc_symbols::MISC_266A),
+        "misc_266B" =>           Some(misc_symbols::MISC_266B),
+        "misc_266C" =>           Some(misc_symbols::MISC_266C),
         "misc_266D" =>           Some(misc_symbols::MISC_266D),
+        "misc_266E" =>           Some(misc_symbols::MISC_266E),
         "misc_266F" =>           Some(misc_symbols::MISC_266F),
+        "misc_2670" =>           Some(misc_symbols::MISC_2670),
+        "misc_2671" =>           Some(misc_symbols::MISC_2671),
+        "misc_2672" =>           Some(misc_symbols::MISC_2672),
+        "misc_2673" =>           Some(misc_symbols::MISC_2673),
+        "misc_2674" =>           Some(misc_symbols::MISC_2674),
+        "misc_2675" =>           Some(misc_symbols::MISC_2675),
+        "misc_2676" =>           Some(misc_symbols::MISC_2676),
+        "misc_2677" =>           Some(misc_symbols::MISC_2677),
+        "misc_2678" =>           Some(misc_symbols::MISC_2678),
+        "misc_2679" =>           Some(misc_symbols::MISC_2679),
+        "misc_267A" =>           Some(misc_symbols::MISC_267A),
+        "misc_267B" =>           Some(misc_symbols::MISC_267B),
+        "misc_267C" =>           Some(misc_symbols::MISC_267C),
+        "misc_267D" =>           Some(misc_symbols::MISC_267D),
+        "misc_267E" =>           Some(misc_symbols::MISC_267E),
+        "misc_2680" =>           Some(misc_symbols::MISC_2680),
+        "misc_2681" =>           Some(misc_symbols::MISC_2681),
+        "misc_2682" =>           Some(misc_symbols::MISC_2682),
+        "misc_2683" =>           Some(misc_symbols::MISC_2683),
+        "misc_2684" =>           Some(misc_symbols::MISC_2684),
+        "misc_2685" =>           Some(misc_symbols::MISC_2685),
+        "misc_2686" =>           Some(misc_symbols::MISC_2686),
+        "misc_2687" =>           Some(misc_symbols::MISC_2687),
+        "misc_2688" =>           Some(misc_symbols::MISC_2688),
+        "misc_2689" =>           Some(misc_symbols::MISC_2689),
+        "misc_2690" =>           Some(misc_symbols::MISC_2690),
+        "misc_2691" =>           Some(misc_symbols::MISC_2691),
+        "misc_2692" =>           Some(misc_symbols::MISC_2692),
+        "misc_2694" =>           Some(misc_symbols::MISC_2694),
+        "misc_2695" =>           Some(misc_symbols::MISC_2695),
+        "misc_2696" =>           Some(misc_symbols::MISC_2696),
+        "misc_2697" =>           Some(misc_symbols::MISC_2697),
+        "misc_2698" =>           Some(misc_symbols::MISC_2698),
+        "misc_2699" =>           Some(misc_symbols::MISC_2699),
+        "misc_269A" =>           Some(misc_symbols::MISC_269A),
+        "misc_269B" =>           Some(misc_symbols::MISC_269B),
+        "misc_269C" =>           Some(misc_symbols::MISC_269C),
+        "misc_269E" =>           Some(misc_symbols::MISC_269E),
+        "misc_269F" =>           Some(misc_symbols::MISC_269F),
+        "misc_26A0" =>           Some(misc_symbols::MISC_26A0),
+        "misc_26A2" =>           Some(misc_symbols::MISC_26A2),
+        "misc_26A3" =>           Some(misc_symbols::MISC_26A3),
+        "misc_26A4" =>           Some(misc_symbols::MISC_26A4),
+        "misc_26A5" =>           Some(misc_symbols::MISC_26A5),
+        "misc_26A6" =>           Some(misc_symbols::MISC_26A6),
+        "misc_26A7" =>           Some(misc_symbols::MISC_26A7),
+        "misc_26A8" =>           Some(misc_symbols::MISC_26A8),
+        "misc_26A9" =>           Some(misc_symbols::MISC_26A9),
+        "misc_26AC" =>           Some(misc_symbols::MISC_26AC),
+        "misc_26AD" =>           Some(misc_symbols::MISC_26AD),
+        "misc_26AE" =>           Some(misc_symbols::MISC_26AE),
+        "misc_26AF" =>           Some(misc_symbols::MISC_26AF),
+        "misc_26B0" =>           Some(misc_symbols::MISC_26B0),
+        "misc_26B1" =>           Some(misc_symbols::MISC_26B1),
+        "misc_26B2" =>           Some(misc_symbols::MISC_26B2),
+        "misc_26B3" =>           Some(misc_symbols::MISC_26B3),
+        "misc_26B4" =>           Some(misc_symbols::MISC_26B4),
+        "misc_26B5" =>           Some(misc_symbols::MISC_26B5),
+        "misc_26B6" =>           Some(misc_symbols::MISC_26B6),
+        "misc_26B7" =>           Some(misc_symbols::MISC_26B7),
+        "misc_26B8" =>           Some(misc_symbols::MISC_26B8),
+        "misc_26C0" =>           Some(misc_symbols::MISC_26C0),
+        "misc_26C1" =>           Some(misc_symbols::MISC_26C1),
+        "misc_26C2" =>           Some(misc_symbols::MISC_26C2),
+        "misc_26C3" =>           Some(misc_symbols::MISC_26C3),
+        "misc_26C8" =>           Some(misc_symbols::MISC_26C8),
+        "misc_26CF" =>           Some(misc_symbols::MISC_26CF),
+        "misc_26D1" =>           Some(misc_symbols::MISC_26D1),
+        "misc_26D3" =>           Some(misc_symbols::MISC_26D3),
+        "misc_26E2" =>           Some(misc_symbols::MISC_26E2),
+        "misc_26E9" =>           Some(misc_symbols::MISC_26E9),
+        "misc_26F0" =>           Some(misc_symbols::MISC_26F0),
+        "misc_26F1" =>           Some(misc_symbols::MISC_26F1),
+        "misc_26F4" =>           Some(misc_symbols::MISC_26F4),
+        "misc_26F7" =>           Some(misc_symbols::MISC_26F7),
+        "misc_26F8" =>           Some(misc_symbols::MISC_26F8),
+        "misc_26F9" =>           Some(misc_symbols::MISC_26F9),
+        "dingbat_2701" =>        Some(dingbats::DINGBAT_2701),
+        "dingbat_2702" =>        Some(dingbats::DINGBAT_2702),
+        "dingbat_2703" =>        Some(dingbats::DINGBAT_2703),
+        "dingbat_2704" =>        Some(dingbats::DINGBAT_2704),
+        "dingbat_2706" =>        Some(dingbats::DINGBAT_2706),
+        "dingbat_2707" =>        Some(dingbats::DINGBAT_2707),
+        "dingbat_2708" =>        Some(dingbats::DINGBAT_2708),
+        "dingbat_2709" =>        Some(dingbats::DINGBAT_2709),
+        "dingbat_270C" =>        Some(dingbats::DINGBAT_270C),
+        "dingbat_270D" =>        Some(dingbats::DINGBAT_270D),
+        "dingbat_270E" =>        Some(dingbats::DINGBAT_270E),
+        "dingbat_270F" =>        Some(dingbats::DINGBAT_270F),
+        "dingbat_2710" =>        Some(dingbats::DINGBAT_2710),
+        "dingbat_2711" =>        Some(dingbats::DINGBAT_2711),
+        "dingbat_2712" =>        Some(dingbats::DINGBAT_2712),
+        "dingbat_2713" =>        Some(dingbats::DINGBAT_2713),
+        "dingbat_2714" =>        Some(dingbats::DINGBAT_2714),
+        "dingbat_2715" =>        Some(dingbats::DINGBAT_2715),
+        "dingbat_2716" =>        Some(dingbats::DINGBAT_2716),
+        "dingbat_2717" =>        Some(dingbats::DINGBAT_2717),
+        "dingbat_2718" =>        Some(dingbats::DINGBAT_2718),
+        "dingbat_2719" =>        Some(dingbats::DINGBAT_2719),
+        "dingbat_271A" =>        Some(dingbats::DINGBAT_271A),
+        "dingbat_271B" =>        Some(dingbats::DINGBAT_271B),
+        "dingbat_271C" =>        Some(dingbats::DINGBAT_271C),
+        "dingbat_271D" =>        Some(dingbats::DINGBAT_271D),
+        "dingbat_271E" =>        Some(dingbats::DINGBAT_271E),
+        "dingbat_271F" =>        Some(dingbats::DINGBAT_271F),
+        "dingbat_2720" =>        Some(dingbats::DINGBAT_2720),
+        "dingbat_2721" =>        Some(dingbats::DINGBAT_2721),
+        "dingbat_2722" =>        Some(dingbats::DINGBAT_2722),
+        "dingbat_2723" =>        Some(dingbats::DINGBAT_2723),
+        "dingbat_2724" =>        Some(dingbats::DINGBAT_2724),
+        "dingbat_2725" =>        Some(dingbats::DINGBAT_2725),
+        "dingbat_2726" =>        Some(dingbats::DINGBAT_2726),
+        "dingbat_2727" =>        Some(dingbats::DINGBAT_2727),
+        "dingbat_2729" =>        Some(dingbats::DINGBAT_2729),
+        "dingbat_272A" =>        Some(dingbats::DINGBAT_272A),
+        "dingbat_272B" =>        Some(dingbats::DINGBAT_272B),
+        "dingbat_272C" =>        Some(dingbats::DINGBAT_272C),
+        "dingbat_272D" =>        Some(dingbats::DINGBAT_272D),
+        "dingbat_272E" =>        Some(dingbats::DINGBAT_272E),
+        "dingbat_272F" =>        Some(dingbats::DINGBAT_272F),
+        "dingbat_2730" =>        Some(dingbats::DINGBAT_2730),
+        "dingbat_2731" =>        Some(dingbats::DINGBAT_2731),
+        "dingbat_2732" =>        Some(dingbats::DINGBAT_2732),
+        "dingbat_2733" =>        Some(dingbats::DINGBAT_2733),
+        "dingbat_2734" =>        Some(dingbats::DINGBAT_2734),
+        "dingbat_2735" =>        Some(dingbats::DINGBAT_2735),
+        "dingbat_2736" =>        Some(dingbats::DINGBAT_2736),
+        "dingbat_2737" =>        Some(dingbats::DINGBAT_2737),
+        "dingbat_2738" =>        Some(dingbats::DINGBAT_2738),
+        "dingbat_2739" =>        Some(dingbats::DINGBAT_2739),
+        "dingbat_273A" =>        Some(dingbats::DINGBAT_273A),
+        "dingbat_273B" =>        Some(dingbats::DINGBAT_273B),
+        "dingbat_273C" =>        Some(dingbats::DINGBAT_273C),
+        "dingbat_273D" =>        Some(dingbats::DINGBAT_273D),
+        "dingbat_273E" =>        Some(dingbats::DINGBAT_273E),
+        "dingbat_273F" =>        Some(dingbats::DINGBAT_273F),
+        "dingbat_2740" =>        Some(dingbats::DINGBAT_2740),
+        "dingbat_2741" =>        Some(dingbats::DINGBAT_2741),
+        "dingbat_2742" =>        Some(dingbats::DINGBAT_2742),
+        "dingbat_2743" =>        Some(dingbats::DINGBAT_2743),
+        "dingbat_2744" =>        Some(dingbats::DINGBAT_2744),
+        "dingbat_2745" =>        Some(dingbats::DINGBAT_2745),
+        "dingbat_2746" =>        Some(dingbats::DINGBAT_2746),
+        "dingbat_2747" =>        Some(dingbats::DINGBAT_2747),
+        "dingbat_2748" =>        Some(dingbats::DINGBAT_2748),
+        "dingbat_2749" =>        Some(dingbats::DINGBAT_2749),
+        "dingbat_274A" =>        Some(dingbats::DINGBAT_274A),
+        "dingbat_274B" =>        Some(dingbats::DINGBAT_274B),
+        "dingbat_274D" =>        Some(dingbats::DINGBAT_274D),
+        "dingbat_274F" =>        Some(dingbats::DINGBAT_274F),
+        "dingbat_2750" =>        Some(dingbats::DINGBAT_2750),
+        "dingbat_2752" =>        Some(dingbats::DINGBAT_2752),
+        "dingbat_2756" =>        Some(dingbats::DINGBAT_2756),
         "dingbat_2758" =>        Some(dingbats::DINGBAT_2758),
         "dingbat_2759" =>        Some(dingbats::DINGBAT_2759),
         "dingbat_275A" =>        Some(dingbats::DINGBAT_275A),
+        "dingbat_275B" =>        Some(dingbats::DINGBAT_275B),
+        "dingbat_275C" =>        Some(dingbats::DINGBAT_275C),
+        "dingbat_275D" =>        Some(dingbats::DINGBAT_275D),
+        "dingbat_275E" =>        Some(dingbats::DINGBAT_275E),
         "dingbat_2761" =>        Some(dingbats::DINGBAT_2761),
+        "dingbat_2762" =>        Some(dingbats::DINGBAT_2762),
+        "dingbat_2763" =>        Some(dingbats::DINGBAT_2763),
+        "dingbat_2764" =>        Some(dingbats::DINGBAT_2764),
+        "dingbat_2765" =>        Some(dingbats::DINGBAT_2765),
+        "dingbat_2766" =>        Some(dingbats::DINGBAT_2766),
+        "dingbat_2767" =>        Some(dingbats::DINGBAT_2767),
+        "dingbat_2768" =>        Some(dingbats::DINGBAT_2768),
+        "dingbat_2769" =>        Some(dingbats::DINGBAT_2769),
+        "dingbat_276A" =>        Some(dingbats::DINGBAT_276A),
+        "dingbat_276B" =>        Some(dingbats::DINGBAT_276B),
+        "dingbat_276C" =>        Some(dingbats::DINGBAT_276C),
+        "dingbat_276D" =>        Some(dingbats::DINGBAT_276D),
+        "dingbat_276E" =>        Some(dingbats::DINGBAT_276E),
+        "dingbat_276F" =>        Some(dingbats::DINGBAT_276F),
+        "dingbat_2770" =>        Some(dingbats::DINGBAT_2770),
+        "dingbat_2771" =>        Some(dingbats::DINGBAT_2771),
+        "dingbat_2772" =>        Some(dingbats::DINGBAT_2772),
+        "dingbat_2773" =>        Some(dingbats::DINGBAT_2773),
+        "dingbat_2774" =>        Some(dingbats::DINGBAT_2774),
+        "dingbat_2775" =>        Some(dingbats::DINGBAT_2775),
+        "dingbat_2776" =>        Some(dingbats::DINGBAT_2776),
+        "dingbat_2777" =>        Some(dingbats::DINGBAT_2777),
+        "dingbat_2778" =>        Some(dingbats::DINGBAT_2778),
+        "dingbat_2779" =>        Some(dingbats::DINGBAT_2779),
+        "dingbat_277A" =>        Some(dingbats::DINGBAT_277A),
+        "dingbat_277B" =>        Some(dingbats::DINGBAT_277B),
+        "dingbat_277C" =>        Some(dingbats::DINGBAT_277C),
+        "dingbat_277D" =>        Some(dingbats::DINGBAT_277D),
+        "dingbat_277E" =>        Some(dingbats::DINGBAT_277E),
+        "dingbat_277F" =>        Some(dingbats::DINGBAT_277F),
+        "dingbat_2780" =>        Some(dingbats::DINGBAT_2780),
+        "dingbat_2781" =>        Some(dingbats::DINGBAT_2781),
+        "dingbat_2782" =>        Some(dingbats::DINGBAT_2782),
+        "dingbat_2783" =>        Some(dingbats::DINGBAT_2783),
+        "dingbat_2784" =>        Some(dingbats::DINGBAT_2784),
+        "dingbat_2785" =>        Some(dingbats::DINGBAT_2785),
+        "dingbat_2786" =>        Some(dingbats::DINGBAT_2786),
+        "dingbat_2787" =>        Some(dingbats::DINGBAT_2787),
+        "dingbat_2788" =>        Some(dingbats::DINGBAT_2788),
+        "dingbat_2789" =>        Some(dingbats::DINGBAT_2789),
+        "dingbat_278A" =>        Some(dingbats::DINGBAT_278A),
+        "dingbat_278B" =>        Some(dingbats::DINGBAT_278B),
+        "dingbat_278C" =>        Some(dingbats::DINGBAT_278C),
+        "dingbat_278D" =>        Some(dingbats::DINGBAT_278D),
+        "dingbat_278E" =>        Some(dingbats::DINGBAT_278E),
+        "dingbat_278F" =>        Some(dingbats::DINGBAT_278F),
+        "dingbat_2790" =>        Some(dingbats::DINGBAT_2790),
+        "dingbat_2791" =>        Some(dingbats::DINGBAT_2791),
+        "dingbat_2792" =>        Some(dingbats::DINGBAT_2792),
+        "dingbat_2793" =>        Some(dingbats::DINGBAT_2793),
+        "dingbat_2794" =>        Some(dingbats::DINGBAT_2794),
+        "dingbat_2798" =>        Some(dingbats::DINGBAT_2798),
+        "dingbat_2799" =>        Some(dingbats::DINGBAT_2799),
+        "dingbat_279A" =>        Some(dingbats::DINGBAT_279A),
+        "dingbat_279B" =>        Some(dingbats::DINGBAT_279B),
+        "dingbat_279C" =>        Some(dingbats::DINGBAT_279C),
+        "dingbat_279D" =>        Some(dingbats::DINGBAT_279D),
+        "dingbat_279E" =>        Some(dingbats::DINGBAT_279E),
+        "dingbat_279F" =>        Some(dingbats::DINGBAT_279F),
+        "dingbat_27A0" =>        Some(dingbats::DINGBAT_27A0),
+        "dingbat_27A1" =>        Some(dingbats::DINGBAT_27A1),
+        "dingbat_27A2" =>        Some(dingbats::DINGBAT_27A2),
+        "dingbat_27A3" =>        Some(dingbats::DINGBAT_27A3),
+        "dingbat_27A4" =>        Some(dingbats::DINGBAT_27A4),
+        "dingbat_27A5" =>        Some(dingbats::DINGBAT_27A5),
+        "dingbat_27A6" =>        Some(dingbats::DINGBAT_27A6),
         "dingbat_27A7" =>        Some(dingbats::DINGBAT_27A7),
+        "dingbat_27A8" =>        Some(dingbats::DINGBAT_27A8),
+        "dingbat_27A9" =>        Some(dingbats::DINGBAT_27A9),
+        "dingbat_27AA" =>        Some(dingbats::DINGBAT_27AA),
+        "dingbat_27AB" =>        Some(dingbats::DINGBAT_27AB),
+        "dingbat_27AC" =>        Some(dingbats::DINGBAT_27AC),
+        "dingbat_27AD" =>        Some(dingbats::DINGBAT_27AD),
+        "dingbat_27AE" =>        Some(dingbats::DINGBAT_27AE),
+        "dingbat_27AF" =>        Some(dingbats::DINGBAT_27AF),
+        "dingbat_27B1" =>        Some(dingbats::DINGBAT_27B1),
+        "dingbat_27B2" =>        Some(dingbats::DINGBAT_27B2),
+        "dingbat_27B3" =>        Some(dingbats::DINGBAT_27B3),
+        "dingbat_27B4" =>        Some(dingbats::DINGBAT_27B4),
+        "dingbat_27B5" =>        Some(dingbats::DINGBAT_27B5),
+        "dingbat_27B6" =>        Some(dingbats::DINGBAT_27B6),
+        "dingbat_27B7" =>        Some(dingbats::DINGBAT_27B7),
+        "dingbat_27B8" =>        Some(dingbats::DINGBAT_27B8),
+        "dingbat_27B9" =>        Some(dingbats::DINGBAT_27B9),
+        "dingbat_27BA" =>        Some(dingbats::DINGBAT_27BA),
+        "dingbat_27BB" =>        Some(dingbats::DINGBAT_27BB),
+        "dingbat_27BC" =>        Some(dingbats::DINGBAT_27BC),
+        "dingbat_27BD" =>        Some(dingbats::DINGBAT_27BD),
+        "dingbat_27BE" =>        Some(dingbats::DINGBAT_27BE),
         "braille_2801" =>        Some(braille::BRAILLE_2801),
         "braille_2802" =>        Some(braille::BRAILLE_2802),
         "braille_2803" =>        Some(braille::BRAILLE_2803),
@@ -533,6 +3977,62 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2805" =>        Some(braille::BRAILLE_2805),
         "braille_2806" =>        Some(braille::BRAILLE_2806),
         "braille_2807" =>        Some(braille::BRAILLE_2807),
+        "braille_2808" =>        Some(braille::BRAILLE_2808),
+        "braille_2809" =>        Some(braille::BRAILLE_2809),
+        "braille_280A" =>        Some(braille::BRAILLE_280A),
+        "braille_280B" =>        Some(braille::BRAILLE_280B),
+        "braille_280C" =>        Some(braille::BRAILLE_280C),
+        "braille_280D" =>        Some(braille::BRAILLE_280D),
+        "braille_280E" =>        Some(braille::BRAILLE_280E),
+        "braille_280F" =>        Some(braille::BRAILLE_280F),
+        "braille_2810" =>        Some(braille::BRAILLE_2810),
+        "braille_2811" =>        Some(braille::BRAILLE_2811),
+        "braille_2812" =>        Some(braille::BRAILLE_2812),
+        "braille_2813" =>        Some(braille::BRAILLE_2813),
+        "braille_2814" =>        Some(braille::BRAILLE_2814),
+        "braille_2815" =>        Some(braille::BRAILLE_2815),
+        "braille_2816" =>        Some(braille::BRAILLE_2816),
+        "braille_2817" =>        Some(braille::BRAILLE_2817),
+        "braille_2818" =>        Some(braille::BRAILLE_2818),
+        "braille_2819" =>        Some(braille::BRAILLE_2819),
+        "braille_281A" =>        Some(braille::BRAILLE_281A),
+        "braille_281B" =>        Some(braille::BRAILLE_281B),
+        "braille_281C" =>        Some(braille::BRAILLE_281C),
+        "braille_281D" =>        Some(braille::BRAILLE_281D),
+        "braille_281E" =>        Some(braille::BRAILLE_281E),
+        "braille_281F" =>        Some(braille::BRAILLE_281F),
+        "braille_2820" =>        Some(braille::BRAILLE_2820),
+        "braille_2821" =>        Some(braille::BRAILLE_2821),
+        "braille_2822" =>        Some(braille::BRAILLE_2822),
+        "braille_2823" =>        Some(braille::BRAILLE_2823),
+        "braille_2824" =>        Some(braille::BRAILLE_2824),
+        "braille_2825" =>        Some(braille::BRAILLE_2825),
+        "braille_2826" =>        Some(braille::BRAILLE_2826),
+        "braille_2827" =>        Some(braille::BRAILLE_2827),
+        "braille_2828" =>        Some(braille::BRAILLE_2828),
+        "braille_2829" =>        Some(braille::BRAILLE_2829),
+        "braille_282A" =>        Some(braille::BRAILLE_282A),
+        "braille_282B" =>        Some(braille::BRAILLE_282B),
+        "braille_282C" =>        Some(braille::BRAILLE_282C),
+        "braille_282D" =>        Some(braille::BRAILLE_282D),
+        "braille_282E" =>        Some(braille::BRAILLE_282E),
+        "braille_282F" =>        Some(braille::BRAILLE_282F),
+        "braille_2830" =>        Some(braille::BRAILLE_2830),
+        "braille_2831" =>        Some(braille::BRAILLE_2831),
+        "braille_2832" =>        Some(braille::BRAILLE_2832),
+        "braille_2833" =>        Some(braille::BRAILLE_2833),
+        "braille_2834" =>        Some(braille::BRAILLE_2834),
+        "braille_2835" =>        Some(braille::BRAILLE_2835),
+        "braille_2836" =>        Some(braille::BRAILLE_2836),
+        "braille_2837" =>        Some(braille::BRAILLE_2837),
+        "braille_2838" =>        Some(braille::BRAILLE_2838),
+        "braille_2839" =>        Some(braille::BRAILLE_2839),
+        "braille_283A" =>        Some(braille::BRAILLE_283A),
+        "braille_283B" =>        Some(braille::BRAILLE_283B),
+        "braille_283C" =>        Some(braille::BRAILLE_283C),
+        "braille_283D" =>        Some(braille::BRAILLE_283D),
+        "braille_283E" =>        Some(braille::BRAILLE_283E),
+        "braille_283F" =>        Some(braille::BRAILLE_283F),
         "braille_2840" =>        Some(braille::BRAILLE_2840),
         "braille_2841" =>        Some(braille::BRAILLE_2841),
         "braille_2842" =>        Some(braille::BRAILLE_2842),
@@ -541,6 +4041,62 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2845" =>        Some(braille::BRAILLE_2845),
         "braille_2846" =>        Some(braille::BRAILLE_2846),
         "braille_2847" =>        Some(braille::BRAILLE_2847),
+        "braille_2848" =>        Some(braille::BRAILLE_2848),
+        "braille_2849" =>        Some(braille::BRAILLE_2849),
+        "braille_284A" =>        Some(braille::BRAILLE_284A),
+        "braille_284B" =>        Some(braille::BRAILLE_284B),
+        "braille_284C" =>        Some(braille::BRAILLE_284C),
+        "braille_284D" =>        Some(braille::BRAILLE_284D),
+        "braille_284E" =>        Some(braille::BRAILLE_284E),
+        "braille_284F" =>        Some(braille::BRAILLE_284F),
+        "braille_2850" =>        Some(braille::BRAILLE_2850),
+        "braille_2851" =>        Some(braille::BRAILLE_2851),
+        "braille_2852" =>        Some(braille::BRAILLE_2852),
+        "braille_2853" =>        Some(braille::BRAILLE_2853),
+        "braille_2854" =>        Some(braille::BRAILLE_2854),
+        "braille_2855" =>        Some(braille::BRAILLE_2855),
+        "braille_2856" =>        Some(braille::BRAILLE_2856),
+        "braille_2857" =>        Some(braille::BRAILLE_2857),
+        "braille_2858" =>        Some(braille::BRAILLE_2858),
+        "braille_2859" =>        Some(braille::BRAILLE_2859),
+        "braille_285A" =>        Some(braille::BRAILLE_285A),
+        "braille_285B" =>        Some(braille::BRAILLE_285B),
+        "braille_285C" =>        Some(braille::BRAILLE_285C),
+        "braille_285D" =>        Some(braille::BRAILLE_285D),
+        "braille_285E" =>        Some(braille::BRAILLE_285E),
+        "braille_285F" =>        Some(braille::BRAILLE_285F),
+        "braille_2860" =>        Some(braille::BRAILLE_2860),
+        "braille_2861" =>        Some(braille::BRAILLE_2861),
+        "braille_2862" =>        Some(braille::BRAILLE_2862),
+        "braille_2863" =>        Some(braille::BRAILLE_2863),
+        "braille_2864" =>        Some(braille::BRAILLE_2864),
+        "braille_2865" =>        Some(braille::BRAILLE_2865),
+        "braille_2866" =>        Some(braille::BRAILLE_2866),
+        "braille_2867" =>        Some(braille::BRAILLE_2867),
+        "braille_2868" =>        Some(braille::BRAILLE_2868),
+        "braille_2869" =>        Some(braille::BRAILLE_2869),
+        "braille_286A" =>        Some(braille::BRAILLE_286A),
+        "braille_286B" =>        Some(braille::BRAILLE_286B),
+        "braille_286C" =>        Some(braille::BRAILLE_286C),
+        "braille_286D" =>        Some(braille::BRAILLE_286D),
+        "braille_286E" =>        Some(braille::BRAILLE_286E),
+        "braille_286F" =>        Some(braille::BRAILLE_286F),
+        "braille_2870" =>        Some(braille::BRAILLE_2870),
+        "braille_2871" =>        Some(braille::BRAILLE_2871),
+        "braille_2872" =>        Some(braille::BRAILLE_2872),
+        "braille_2873" =>        Some(braille::BRAILLE_2873),
+        "braille_2874" =>        Some(braille::BRAILLE_2874),
+        "braille_2875" =>        Some(braille::BRAILLE_2875),
+        "braille_2876" =>        Some(braille::BRAILLE_2876),
+        "braille_2877" =>        Some(braille::BRAILLE_2877),
+        "braille_2878" =>        Some(braille::BRAILLE_2878),
+        "braille_2879" =>        Some(braille::BRAILLE_2879),
+        "braille_287A" =>        Some(braille::BRAILLE_287A),
+        "braille_287B" =>        Some(braille::BRAILLE_287B),
+        "braille_287C" =>        Some(braille::BRAILLE_287C),
+        "braille_287D" =>        Some(braille::BRAILLE_287D),
+        "braille_287E" =>        Some(braille::BRAILLE_287E),
+        "braille_287F" =>        Some(braille::BRAILLE_287F),
         "braille_2880" =>        Some(braille::BRAILLE_2880),
         "braille_2881" =>        Some(braille::BRAILLE_2881),
         "braille_2882" =>        Some(braille::BRAILLE_2882),
@@ -549,6 +4105,62 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_2885" =>        Some(braille::BRAILLE_2885),
         "braille_2886" =>        Some(braille::BRAILLE_2886),
         "braille_2887" =>        Some(braille::BRAILLE_2887),
+        "braille_2888" =>        Some(braille::BRAILLE_2888),
+        "braille_2889" =>        Some(braille::BRAILLE_2889),
+        "braille_288A" =>        Some(braille::BRAILLE_288A),
+        "braille_288B" =>        Some(braille::BRAILLE_288B),
+        "braille_288C" =>        Some(braille::BRAILLE_288C),
+        "braille_288D" =>        Some(braille::BRAILLE_288D),
+        "braille_288E" =>        Some(braille::BRAILLE_288E),
+        "braille_288F" =>        Some(braille::BRAILLE_288F),
+        "braille_2890" =>        Some(braille::BRAILLE_2890),
+        "braille_2891" =>        Some(braille::BRAILLE_2891),
+        "braille_2892" =>        Some(braille::BRAILLE_2892),
+        "braille_2893" =>        Some(braille::BRAILLE_2893),
+        "braille_2894" =>        Some(braille::BRAILLE_2894),
+        "braille_2895" =>        Some(braille::BRAILLE_2895),
+        "braille_2896" =>        Some(braille::BRAILLE_2896),
+        "braille_2897" =>        Some(braille::BRAILLE_2897),
+        "braille_2898" =>        Some(braille::BRAILLE_2898),
+        "braille_2899" =>        Some(braille::BRAILLE_2899),
+        "braille_289A" =>        Some(braille::BRAILLE_289A),
+        "braille_289B" =>        Some(braille::BRAILLE_289B),
+        "braille_289C" =>        Some(braille::BRAILLE_289C),
+        "braille_289D" =>        Some(braille::BRAILLE_289D),
+        "braille_289E" =>        Some(braille::BRAILLE_289E),
+        "braille_289F" =>        Some(braille::BRAILLE_289F),
+        "braille_28A0" =>        Some(braille::BRAILLE_28A0),
+        "braille_28A1" =>        Some(braille::BRAILLE_28A1),
+        "braille_28A2" =>        Some(braille::BRAILLE_28A2),
+        "braille_28A3" =>        Some(braille::BRAILLE_28A3),
+        "braille_28A4" =>        Some(braille::BRAILLE_28A4),
+        "braille_28A5" =>        Some(braille::BRAILLE_28A5),
+        "braille_28A6" =>        Some(braille::BRAILLE_28A6),
+        "braille_28A7" =>        Some(braille::BRAILLE_28A7),
+        "braille_28A8" =>        Some(braille::BRAILLE_28A8),
+        "braille_28A9" =>        Some(braille::BRAILLE_28A9),
+        "braille_28AA" =>        Some(braille::BRAILLE_28AA),
+        "braille_28AB" =>        Some(braille::BRAILLE_28AB),
+        "braille_28AC" =>        Some(braille::BRAILLE_28AC),
+        "braille_28AD" =>        Some(braille::BRAILLE_28AD),
+        "braille_28AE" =>        Some(braille::BRAILLE_28AE),
+        "braille_28AF" =>        Some(braille::BRAILLE_28AF),
+        "braille_28B0" =>        Some(braille::BRAILLE_28B0),
+        "braille_28B1" =>        Some(braille::BRAILLE_28B1),
+        "braille_28B2" =>        Some(braille::BRAILLE_28B2),
+        "braille_28B3" =>        Some(braille::BRAILLE_28B3),
+        "braille_28B4" =>        Some(braille::BRAILLE_28B4),
+        "braille_28B5" =>        Some(braille::BRAILLE_28B5),
+        "braille_28B6" =>        Some(braille::BRAILLE_28B6),
+        "braille_28B7" =>        Some(braille::BRAILLE_28B7),
+        "braille_28B8" =>        Some(braille::BRAILLE_28B8),
+        "braille_28B9" =>        Some(braille::BRAILLE_28B9),
+        "braille_28BA" =>        Some(braille::BRAILLE_28BA),
+        "braille_28BB" =>        Some(braille::BRAILLE_28BB),
+        "braille_28BC" =>        Some(braille::BRAILLE_28BC),
+        "braille_28BD" =>        Some(braille::BRAILLE_28BD),
+        "braille_28BE" =>        Some(braille::BRAILLE_28BE),
+        "braille_28BF" =>        Some(braille::BRAILLE_28BF),
         "braille_28C0" =>        Some(braille::BRAILLE_28C0),
         "braille_28C1" =>        Some(braille::BRAILLE_28C1),
         "braille_28C2" =>        Some(braille::BRAILLE_28C2),
@@ -557,6 +4169,62 @@ pub fn lookup(id: &str) -> Option<SafeIcon> {
         "braille_28C5" =>        Some(braille::BRAILLE_28C5),
         "braille_28C6" =>        Some(braille::BRAILLE_28C6),
         "braille_28C7" =>        Some(braille::BRAILLE_28C7),
+        "braille_28C8" =>        Some(braille::BRAILLE_28C8),
+        "braille_28C9" =>        Some(braille::BRAILLE_28C9),
+        "braille_28CA" =>        Some(braille::BRAILLE_28CA),
+        "braille_28CB" =>        Some(braille::BRAILLE_28CB),
+        "braille_28CC" =>        Some(braille::BRAILLE_28CC),
+        "braille_28CD" =>        Some(braille::BRAILLE_28CD),
+        "braille_28CE" =>        Some(braille::BRAILLE_28CE),
+        "braille_28CF" =>        Some(braille::BRAILLE_28CF),
+        "braille_28D0" =>        Some(braille::BRAILLE_28D0),
+        "braille_28D1" =>        Some(braille::BRAILLE_28D1),
+        "braille_28D2" =>        Some(braille::BRAILLE_28D2),
+        "braille_28D3" =>        Some(braille::BRAILLE_28D3),
+        "braille_28D4" =>        Some(braille::BRAILLE_28D4),
+        "braille_28D5" =>        Some(braille::BRAILLE_28D5),
+        "braille_28D6" =>        Some(braille::BRAILLE_28D6),
+        "braille_28D7" =>        Some(braille::BRAILLE_28D7),
+        "braille_28D8" =>        Some(braille::BRAILLE_28D8),
+        "braille_28D9" =>        Some(braille::BRAILLE_28D9),
+        "braille_28DA" =>        Some(braille::BRAILLE_28DA),
+        "braille_28DB" =>        Some(braille::BRAILLE_28DB),
+        "braille_28DC" =>        Some(braille::BRAILLE_28DC),
+        "braille_28DD" =>        Some(braille::BRAILLE_28DD),
+        "braille_28DE" =>        Some(braille::BRAILLE_28DE),
+        "braille_28DF" =>        Some(braille::BRAILLE_28DF),
+        "braille_28E0" =>        Some(braille::BRAILLE_28E0),
+        "braille_28E1" =>        Some(braille::BRAILLE_28E1),
+        "braille_28E2" =>        Some(braille::BRAILLE_28E2),
+        "braille_28E3" =>        Some(braille::BRAILLE_28E3),
+        "braille_28E4" =>        Some(braille::BRAILLE_28E4),
+        "braille_28E5" =>        Some(braille::BRAILLE_28E5),
+        "braille_28E6" =>        Some(braille::BRAILLE_28E6),
+        "braille_28E7" =>        Some(braille::BRAILLE_28E7),
+        "braille_28E8" =>        Some(braille::BRAILLE_28E8),
+        "braille_28E9" =>        Some(braille::BRAILLE_28E9),
+        "braille_28EA" =>        Some(braille::BRAILLE_28EA),
+        "braille_28EB" =>        Some(braille::BRAILLE_28EB),
+        "braille_28EC" =>        Some(braille::BRAILLE_28EC),
+        "braille_28ED" =>        Some(braille::BRAILLE_28ED),
+        "braille_28EE" =>        Some(braille::BRAILLE_28EE),
+        "braille_28EF" =>        Some(braille::BRAILLE_28EF),
+        "braille_28F0" =>        Some(braille::BRAILLE_28F0),
+        "braille_28F1" =>        Some(braille::BRAILLE_28F1),
+        "braille_28F2" =>        Some(braille::BRAILLE_28F2),
+        "braille_28F3" =>        Some(braille::BRAILLE_28F3),
+        "braille_28F4" =>        Some(braille::BRAILLE_28F4),
+        "braille_28F5" =>        Some(braille::BRAILLE_28F5),
+        "braille_28F6" =>        Some(braille::BRAILLE_28F6),
+        "braille_28F7" =>        Some(braille::BRAILLE_28F7),
+        "braille_28F8" =>        Some(braille::BRAILLE_28F8),
+        "braille_28F9" =>        Some(braille::BRAILLE_28F9),
+        "braille_28FA" =>        Some(braille::BRAILLE_28FA),
+        "braille_28FB" =>        Some(braille::BRAILLE_28FB),
+        "braille_28FC" =>        Some(braille::BRAILLE_28FC),
+        "braille_28FD" =>        Some(braille::BRAILLE_28FD),
+        "braille_28FE" =>        Some(braille::BRAILLE_28FE),
+        "braille_28FF" =>        Some(braille::BRAILLE_28FF),
         _ => None,
     }
 }

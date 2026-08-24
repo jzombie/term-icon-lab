@@ -389,8 +389,8 @@ mod tests {
                         }
                     }
                     IconKind::Wide => {
-                        // Extends past the central crop into the gutter.
-                        let right = (PITCH * 0.55) as i64;
+                        // Extends past the cell boundary into the gutter.
+                        let right = (PITCH * 0.5 + 2.0) as i64;
                         for y in top + 2..=bottom - 2 {
                             for dx in -(PITCH * 0.3) as i64..=right {
                                 img.put_pixel((cx + dx) as u32, y, Luma([FG]));
