@@ -5,7 +5,10 @@
 
 mod checks;
 mod geom;
+mod grid;
 mod schema;
+#[cfg(test)]
+mod testutil;
 mod validate;
 mod verdict;
 
@@ -32,19 +35,19 @@ use crate::verdict::{Verdict, VerdictReport, merge};
 )]
 struct Cli {
     /// Page screenshots in page order (one per sidecar page).
-    #[arg(long = "png", required_unless_present = "validate_only")]
+    #[arg(long = "png", required_unless_present_any = ["validate_only", "export_grid"])]
     pngs: Vec<PathBuf>,
 
     /// Harness sidecar describing the render.
-    #[arg(long, required_unless_present = "validate_only")]
+    #[arg(long, required_unless_present_any = ["validate_only", "export_grid"])]
     sidecar: Option<PathBuf>,
 
     /// Harness Pass-1 report.
-    #[arg(long, required_unless_present = "validate_only")]
+    #[arg(long, required_unless_present_any = ["validate_only", "export_grid"])]
     pass1: Option<PathBuf>,
 
     /// Output verdicts.json path.
-    #[arg(long, required_unless_present = "validate_only")]
+    #[arg(long, required_unless_present_any = ["validate_only", "export_grid"])]
     out: Option<PathBuf>,
 
     /// Minimum plausible-capture entropy in bits.
@@ -55,10 +58,50 @@ struct Cli {
     /// Used by orchestrators between `.ready` and `.ack`.
     #[arg(long)]
     validate_only: Option<PathBuf>,
+
+    /// Export preview PNGs + index for the icon ids listed in
+    /// `--grid-manifest` instead of asserting verdicts.
+    #[arg(
+        long,
+        conflicts_with_all = ["pngs", "sidecar", "pass1", "out", "validate_only"],
+        requires = "grid_manifest"
+    )]
+    export_grid: Option<PathBuf>,
+
+    /// Artifact root as label=dir (repeatable; requires --export-grid).
+    #[arg(long = "grid-input", requires = "export_grid")]
+    grid_inputs: Vec<String>,
+
+    /// Generated manifest defining the exact rendering set (ids are scraped
+    /// from it; the file is the single source of truth for the shipped set).
+    ///
+    /// `Option` deliberately: a bare `PathBuf` would make clap require this
+    /// flag on *every* invocation, breaking `--validate-only` and the normal
+    /// assert modes. Presence is enforced at dispatch instead.
+    #[arg(long, requires = "export_grid")]
+    grid_manifest: Option<PathBuf>,
+
+    /// Vendored UnicodeData extract supplying `unicode_name` for
+    /// grid-index.json.
+    #[arg(
+        long,
+        requires = "export_grid",
+        default_value = "crates/manifest-gen/ucd/UnicodeData.txt"
+    )]
+    grid_ucd: PathBuf,
 }
 
 fn main() -> std::process::ExitCode {
     let cli = Cli::parse();
+    if cli.export_grid.is_some() {
+        return match grid::run_export_grid(&cli) {
+            Ok(()) => std::process::ExitCode::SUCCESS,
+            Err(err) => {
+                eprintln!("pixel-assert: {err:#}");
+                std::process::ExitCode::from(2)
+            }
+        };
+    }
     if let Some(png) = &cli.validate_only {
         return match validate_one(&cli, png) {
             Ok(true) => std::process::ExitCode::SUCCESS,
@@ -163,22 +206,22 @@ fn run(cli: &Cli) -> Result<bool, anyhow::Error> {
         // strip, and keep the most uniform run if remnants survive.
         let clean = suppress_structural_lines(&gray, &model);
         let expected_rows = sidecar.rows_for_page(page);
-        let mut bands = find_text_bands(&clean, &model, expected_rows.len());
-        if bands.len() > expected_rows.len() {
-            bands = select_grid_bands(&bands, expected_rows.len());
-        }
+        let (cal, bands) = match page_geometry(&clean, &model, &expected_rows) {
+            Ok(ok) => ok,
+            Err(geom::GeometryError::BandMismatch { found, expected }) => {
+                structural_fail = Some(format!(
+                    "page {page}: {found} text bands rendered but sidecar declares {expected} rows"
+                ));
+                continue;
+            }
+            Err(e) => {
+                structural_fail = Some(format!("page {page}: calibration failed: {e:?}"));
+                continue;
+            }
+        };
 
-        if bands.len() != expected_rows.len() {
-            structural_fail = Some(format!(
-                "page {page}: {} text bands rendered but sidecar declares {} rows",
-                bands.len(),
-                expected_rows.len()
-            ));
-            continue;
-        }
-
-        match analyze_page(&clean, &model, &bands, &expected_rows) {
-            Ok((_cal, outcomes)) => {
+        match analyze_page(&clean, &model, cal, &bands, &expected_rows) {
+            Ok(outcomes) => {
                 for outcome in outcomes {
                     let RowEntry::Candidate { id, codepoint, .. } = outcome.entry else {
                         continue;
@@ -251,14 +294,24 @@ struct RowOutcome<'a> {
     no_bleed: bool,
 }
 
-/// Calibrate once from the control band, then assert every candidate row
-/// through fixed-grid slicing.
-fn analyze_page<'a>(
+/// Locate the rendered grid: band detection + uniform-run selection, then
+/// calibration from the control row. Band-count mismatches surface as
+/// `GeometryError::BandMismatch` so callers keep their own error context.
+fn page_geometry(
     gray: &image::GrayImage,
     model: &FgModel,
-    bands: &[Band],
-    expected_rows: &'a [&'a RowEntry],
-) -> Result<(Calibration, Vec<RowOutcome<'a>>), geom::GeometryError> {
+    expected_rows: &[&RowEntry],
+) -> Result<(Calibration, Vec<Band>), geom::GeometryError> {
+    let mut bands = find_text_bands(gray, model, expected_rows.len());
+    if bands.len() > expected_rows.len() {
+        bands = select_grid_bands(&bands, expected_rows.len());
+    }
+    if bands.len() != expected_rows.len() {
+        return Err(geom::GeometryError::BandMismatch {
+            found: bands.len(),
+            expected: expected_rows.len(),
+        });
+    }
     let control_row0 = expected_rows
         .first()
         .map(|r| usize::from(r.page_row()))
@@ -267,8 +320,26 @@ fn analyze_page<'a>(
         .get(control_row0)
         .ok_or(geom::GeometryError::MissingBars)?;
     let cal = calibrate(gray, model, control_band)?;
+    Ok((cal, bands))
+}
 
+/// Assert every candidate row through fixed-grid slicing against a
+/// pre-computed calibration (see [`page_geometry`]).
+fn analyze_page<'a>(
+    gray: &image::GrayImage,
+    model: &FgModel,
+    cal: Calibration,
+    bands: &[Band],
+    expected_rows: &'a [&'a RowEntry],
+) -> Result<Vec<RowOutcome<'a>>, geom::GeometryError> {
+    let control_row0 = expected_rows
+        .first()
+        .map(|r| usize::from(r.page_row()))
+        .unwrap_or(0);
     // Reference sentinel-B mask harvested from the clean `| A B |` slot.
+    let control_band = bands
+        .get(control_row0)
+        .ok_or(geom::GeometryError::MissingBars)?;
     let reference_b = checks::crop_mask(gray, model, &cal.cell_box(4, control_band));
 
     let mut out = Vec::with_capacity(expected_rows.len());
@@ -306,7 +377,7 @@ fn analyze_page<'a>(
             }
         }
     }
-    Ok((cal, out))
+    Ok(out)
 }
 
 /// Rec.601 grayscale, matching the luma used by the capture gate.
@@ -317,219 +388,18 @@ fn grayscale(img: &DynamicImage) -> image::GrayImage {
 
 /// Synthetic end-to-end fixtures: full pages are drawn programmatically, fed
 /// through `run()` with real sidecar/pass1/PNG files, and the merged verdicts
-/// are asserted. This carries the pipeline's logic in headless CI.
+/// are asserted. Fixture synthesis lives in [`crate::testutil`] so the
+/// export-grid tests reuse it; this module carries the pipeline assertions.
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::testutil::{
+        Fixture, IconKind, PageSpec, build_fixture, pass1_json, sidecar_json, tempfile_guard,
+    };
     use icon_catalog::Block;
     use image::{GrayImage, Luma};
 
-    const BG: u8 = 10;
-    const FG: u8 = 220;
-    const ORIGIN_X: f64 = 10.0;
-    const PITCH: f64 = 40.0;
-    const CELL_H: u32 = 16;
-    const ROW_STRIDE: u32 = CELL_H + 6; // blank gap keeps bands separated
-
-    #[derive(Clone, Copy, PartialEq)]
-    enum IconKind {
-        Solid,
-        Blank,
-        Wide,
-        BrailleDot,
-    }
-
-    struct PageSpec {
-        candidates: Vec<(u32, Block, IconKind)>, // (codepoint, block, kind)
-    }
-
-    fn draw_page(spec: &PageSpec) -> GrayImage {
-        let rows = spec.candidates.len() + 1; // + control
-        let h = 12 + u32::try_from(rows).unwrap() * ROW_STRIDE;
-        let w = 340;
-        let mut img = GrayImage::new(w, h);
-        for y in 0..h {
-            for x in 0..w {
-                img.put_pixel(x, y, Luma([BG]));
-            }
-        }
-
-        let draw_row = |img: &mut GrayImage, row: u32, icon: Option<IconKind>| {
-            let top = 6 + row * ROW_STRIDE;
-            let bottom = top + CELL_H - 1;
-            // Boundary bars at col 0 and col 6 (thin).
-            for col in [0usize, 6] {
-                let cx = (ORIGIN_X + col as f64 * PITCH).round() as i64;
-                for dx in [-1i64, 0] {
-                    for y in top..=bottom {
-                        img.put_pixel((cx + dx) as u32, y, Luma([FG]));
-                    }
-                }
-            }
-            // Sentinel blobs at col 2 ('A') and col 4 ('B').
-            for col in [2usize, 4] {
-                let cx = (ORIGIN_X + col as f64 * PITCH).round() as i64;
-                let half = (PITCH * 0.22) as i64;
-                for y in top..=bottom {
-                    for dx in -half..=half {
-                        img.put_pixel((cx + dx) as u32, y, Luma([FG]));
-                    }
-                }
-            }
-            // Icon slot at col 3.
-            if let Some(kind) = icon {
-                let cx = (ORIGIN_X + 3.0 * PITCH).round() as i64;
-                match kind {
-                    IconKind::Solid => {
-                        let half = (PITCH * 0.3) as i64;
-                        for y in top + 2..=bottom - 2 {
-                            for dx in -half..=half {
-                                img.put_pixel((cx + dx) as u32, y, Luma([FG]));
-                            }
-                        }
-                    }
-                    IconKind::Wide => {
-                        // Models a 2-cell render: ink fills the entire next
-                        // cell, saturating sentinel B's central crop.
-                        let right = PITCH as i64;
-                        for y in top + 2..=bottom - 2 {
-                            for dx in -(PITCH * 0.3) as i64..=right {
-                                img.put_pixel((cx + dx) as u32, y, Luma([FG]));
-                            }
-                        }
-                    }
-                    IconKind::BrailleDot => {
-                        img.put_pixel(cx as u32, top + CELL_H / 2, Luma([FG]));
-                    }
-                    IconKind::Blank => {}
-                }
-            }
-        };
-
-        draw_row(&mut img, 0, None); // control row | A B |
-        for (r, (_, _, kind)) in spec.candidates.iter().enumerate() {
-            draw_row(&mut img, r as u32 + 1, Some(*kind));
-        }
-        img
-    }
-
-    fn sidecar_json(pages: &[PageSpec]) -> serde_json::Value {
-        let mut rows = Vec::new();
-        for (p, page) in pages.iter().enumerate() {
-            rows.push(serde_json::json!({
-                "kind": "control", "page": p, "page_row": 0,
-            }));
-            for (ri, (cp, block, _)) in page.candidates.iter().enumerate() {
-                rows.push(serde_json::json!({
-                    "kind": "candidate",
-                    "id": format!("c_{p}_{ri}"),
-                    "codepoint": cp,
-                    "block": block,
-                    "page": p,
-                    "page_row": ri + 1,
-                    "expected_end_col": 8,
-                }));
-            }
-        }
-        serde_json::json!({
-            "schema_version": 1,
-            "platform": "test/platform",
-            "host": "xterm",
-            "pass1_support": true,
-            "pass1_method": "batched-dsr",
-            "page_rows": 24,
-            "pages": pages.len(),
-            "rows": rows,
-        })
-    }
-
-    /// `statuses`: id → pass1 status; missing ids become `inconclusive`.
-    fn pass1_json(statuses: &[(&str, &str)]) -> serde_json::Value {
-        let results: Vec<serde_json::Value> = statuses
-            .iter()
-            .map(|(id, status)| serde_json::json!({ "id": id, "codepoint": 0, "status": status }))
-            .collect();
-        serde_json::json!({ "pass1_support": true, "results": results })
-    }
-
-    struct Fixture {
-        _dir: tempfile_guard::DirGuard,
-        cli: Cli,
-    }
-
-    mod tempfile_guard {
-        use std::fs;
-        use std::ops::{Deref, DerefMut};
-        use std::path::{Path, PathBuf};
-
-        pub struct DirGuard(PathBuf);
-        impl DirGuard {
-            pub fn new(name: &str) -> Self {
-                let dir = std::env::temp_dir().join(format!("ti_px_{name}_{}", std::process::id()));
-                let _ = fs::remove_dir_all(&dir);
-                fs::create_dir_all(&dir).unwrap();
-                DirGuard(dir)
-            }
-            pub fn path(&self) -> &Path {
-                &self.0
-            }
-        }
-        impl Drop for DirGuard {
-            fn drop(&mut self) {
-                let _ = fs::remove_dir_all(&self.0);
-            }
-        }
-        impl Deref for DirGuard {
-            type Target = PathBuf;
-            fn deref(&self) -> &PathBuf {
-                &self.0
-            }
-        }
-        impl DerefMut for DirGuard {
-            fn deref_mut(&mut self) -> &mut PathBuf {
-                &mut self.0
-            }
-        }
-    }
-
-    fn build_fixture(
-        name: &str,
-        pages: &[PageSpec],
-        png_count: usize,
-        pass1: serde_json::Value,
-    ) -> Fixture {
-        let dir = tempfile_guard::DirGuard::new(name);
-        let mut pngs = Vec::new();
-        for (p, page) in pages.iter().enumerate() {
-            let path = dir.path().join(format!("shot_page_{p}.png"));
-            image::save_buffer(
-                &path,
-                draw_page(page).as_raw(),
-                draw_page(page).width(),
-                draw_page(page).height(),
-                image::ColorType::L8,
-            )
-            .unwrap();
-            if p < png_count {
-                pngs.push(path);
-            }
-        }
-        let sidecar_path = dir.path().join("sidecar.json");
-        std::fs::write(&sidecar_path, sidecar_json(pages).to_string()).unwrap();
-        let pass1_path = dir.path().join("pass1.json");
-        std::fs::write(&pass1_path, pass1.to_string()).unwrap();
-        let _out_path = dir.path().join("verdicts.json");
-
-        let cli = Cli {
-            pngs,
-            sidecar: Some(sidecar_path),
-            pass1: Some(pass1_path),
-            out: Some(dir.path().join("verdicts.json")),
-            min_entropy: 0.3,
-            validate_only: None,
-        };
-        Fixture { _dir: dir, cli }
-    }
+    const BG: u8 = crate::testutil::BG;
 
     fn read_verdicts(fx: &Fixture) -> VerdictReport {
         let raw = std::fs::read(fx.cli.out.as_deref().unwrap()).unwrap();
@@ -577,14 +447,14 @@ mod tests {
                 (0x2591, Block::BlockElements, IconKind::Solid),
             ],
         }];
-        let statuses: Vec<(String, String)> = (0..4)
-            .map(|ri| (format!("c_0_{ri}"), "pass".into()))
-            .collect();
-        let borrowed: Vec<(&str, &str)> = statuses
-            .iter()
-            .map(|(a, b)| (a.as_str(), b.as_str()))
-            .collect();
-        let fx = build_fixture("perfect2", &pages, 1, pass1_json(&borrowed));
+        // Catalog ids resolved by the fixture sidecar, in row order.
+        let statuses = [
+            ("box_2502", "pass"),
+            ("ascii_0041", "pass"),
+            ("braille_2801", "pass"),
+            ("block_2591", "pass"),
+        ];
+        let fx = build_fixture("perfect2", &pages, 1, pass1_json(&statuses));
         let ok = run(&fx.cli).unwrap();
         let report = read_verdicts(&fx);
         eprintln!(
@@ -604,16 +474,21 @@ mod tests {
             ],
         }];
         let statuses = [
-            ("c_0_0", "pass"),
-            ("c_0_1", "fail"), // PTY-level expansion detected by harness
-            ("c_0_2", "pass"),
+            ("box_2502", "pass"),
+            ("block_2588", "fail"), // PTY-level expansion detected by harness
+            ("braille_2801", "pass"),
         ];
         let fx = build_fixture("mixed", &pages, 1, pass1_json(&statuses));
         assert!(!run(&fx.cli).unwrap());
         let report = read_verdicts(&fx);
         assert_eq!(report.results[0].overall, "pass");
         assert_eq!(report.results[1].overall, "fail");
-        assert!(report.results.iter().all(|v| v.visible || v.id == "c_0_2"));
+        assert!(
+            report
+                .results
+                .iter()
+                .all(|v| v.visible || v.id == "braille_2801")
+        );
         assert!(!report.results[1].no_bleed);
         assert!(!report.results[2].visible);
     }
@@ -625,6 +500,64 @@ mod tests {
         }];
         let fx = build_fixture("count", &pages, 0, pass1_json(&[])); // 0 pngs, 1 page
         assert!(run(&fx.cli).is_err());
+    }
+
+    /// Regression: every invocation shape used by the capture orchestrators
+    /// and CI must parse. `grid_manifest` was once a bare `PathBuf`, which
+    /// made clap demand it (and `--export-grid`) on *all* modes and broke
+    /// `--validate-only` mid-capture on every platform.
+    #[test]
+    fn cli_arg_requirements_per_mode() {
+        use clap::Parser as _;
+        let ok = |args: &[&str]| {
+            Cli::try_parse_from(std::iter::once("pixel-assert").chain(args.iter().copied()))
+                .unwrap_or_else(|e| panic!("{args:?}: {e}"));
+        };
+        let err = |args: &[&str]| {
+            assert!(
+                Cli::try_parse_from(std::iter::once("pixel-assert").chain(args.iter().copied()))
+                    .is_err(),
+                "{args:?} should not parse"
+            );
+        };
+
+        // Capture orchestrators, per page:
+        ok(&["--validate-only", "shot_page_0.png"]);
+        // Normal assert mode (capture scripts' pass 2):
+        ok(&[
+            "--png",
+            "p0.png",
+            "--sidecar",
+            "s.json",
+            "--pass1",
+            "p1.json",
+            "--out",
+            "v.json",
+        ]);
+        // Export mode:
+        ok(&[
+            "--export-grid",
+            "assets",
+            "--grid-manifest",
+            "m.rs",
+            "--grid-input",
+            "linux=l",
+            "--grid-input",
+            "macos=m",
+            "--grid-input",
+            "windows=w",
+        ]);
+        // Export without its required manifest → usage error.
+        err(&["--export-grid", "assets"]);
+        // Modes are mutually exclusive.
+        err(&[
+            "--validate-only",
+            "x.png",
+            "--export-grid",
+            "assets",
+            "--grid-manifest",
+            "m.rs",
+        ]);
     }
 
     #[test]
@@ -653,8 +586,7 @@ mod tests {
             sidecar: Some(sidecar_path),
             pass1: Some(pass1_path),
             out: Some(dir.path().join("v.json")),
-            min_entropy: 0.3,
-            validate_only: None,
+            ..crate::testutil::base_cli()
         };
         assert!(!run(&cli).unwrap());
         let report: VerdictReport =

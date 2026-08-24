@@ -11,11 +11,12 @@
 mod codegen;
 
 use std::collections::{HashMap, HashSet};
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 use anyhow::Context;
 use clap::Parser;
 use icon_catalog::{Block, candidates};
+use manifest_gen::{load_ucd_names, previous_ids};
 use serde::Deserialize;
 
 /// Sanctioned host emulators per platform prefix.
@@ -87,36 +88,8 @@ fn validate_host(platform: &str, host: &str) -> Result<(), String> {
 
 /// Load the vendored UCD extract into a codepoint → official-name map.
 ///
-/// Parsing is bounds-checked: fields are pulled from the `;`-split iterator
-/// by `next()`, never by slice indexing — malformed or truncated lines are
-/// skipped with a counted warning rather than panicking.
-fn load_ucd_names(path: &Path) -> Result<HashMap<u32, String>, anyhow::Error> {
-    let raw = std::fs::read_to_string(path)
-        .with_context(|| format!("read UCD extract {}", path.display()))?;
-    let mut names = HashMap::new();
-    let mut skipped = 0usize;
-    for line in raw.lines() {
-        let mut fields = line.split(';');
-        let (Some(raw_cp), Some(name)) = (fields.next(), fields.next()) else {
-            skipped += 1;
-            continue;
-        };
-        match u32::from_str_radix(raw_cp, 16) {
-            Ok(cp) => {
-                names.insert(cp, name.to_string());
-            }
-            Err(_) => skipped += 1,
-        }
-    }
-    if skipped > 0 {
-        eprintln!(
-            "warning: skipped {skipped} malformed UCD lines in {}",
-            path.display()
-        );
-    }
-    Ok(names)
-}
-
+/// Parsing lives in the library target (`manifest_gen::load_ucd_names`) so
+/// sibling tools resolve names from the same vendored file.
 fn entry_for(candidate: &icon_catalog::Candidate, names: &HashMap<u32, String>) -> codegen::Entry {
     let module = match candidate.block {
         Block::Ascii => "ascii",
@@ -150,23 +123,9 @@ candidates; it is replaced by the first successful CI matrix run."
 }
 
 /// Ids present in a previously committed generated manifest.
-fn previous_ids(path: &Path) -> HashSet<String> {
-    let raw = match std::fs::read_to_string(path) {
-        Ok(raw) => raw,
-        Err(_) => return HashSet::new(),
-    };
-    let mut ids = HashSet::new();
-    for line in raw.lines() {
-        let Some(pos) = line.find("id: \"") else {
-            continue;
-        };
-        let rest = &line[pos + 5..];
-        let Some(end) = rest.find('"') else { continue };
-        ids.insert(rest[..end].to_string());
-    }
-    ids
-}
-
+///
+/// Scraping lives in the library target (`manifest_gen::previous_ids`) so
+/// downstream visualizers consume the identical extraction.
 fn generate_from_inputs(
     inputs: &[PathBuf],
     names: &HashMap<u32, String>,
@@ -313,6 +272,7 @@ fn main() -> std::process::ExitCode {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::path::Path;
 
     fn verdicts_json(platform: &str, host: &str, passing: &[&str], all: &[&str]) -> String {
         let results: Vec<serde_json::Value> = all
