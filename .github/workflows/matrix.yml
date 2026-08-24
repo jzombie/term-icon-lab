@@ -9,7 +9,6 @@ name: matrix
 
 on:
   push:
-    branches: [main, dev--draft]
   pull_request:
   workflow_dispatch:
 
@@ -158,12 +157,12 @@ jobs:
             --grid-input macos=artifacts/verdicts-macos \
             --grid-input windows=artifacts/verdicts-windows \
             --grid-ucd crates/manifest-gen/ucd/UnicodeData.txt
-      # Draft branches get the grids committed straight onto the branch so the
-      # rendered README/GALLERY can be previewed without a PR round-trip.
-      # Runs before the drift check on purpose: previews stay in sync with the
-      # gate output even when manifest drift fails the job afterwards.
-      - name: Commit preview grids to draft branch
-        if: github.ref == 'refs/heads/dev--draft'
+      # Any pushed branch gets the grids committed straight onto itself so
+      # the rendered README/GALLERY can be previewed at that ref without a
+      # PR round-trip. Deterministic output + [skip ci] make this a no-op on
+      # the retrigger, so the loop always terminates.
+      - name: Commit preview grids to branch
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
         run: |
           git config user.name "term-icon-ci"
           git config user.email "term-icon-ci@users.noreply.github.com"
