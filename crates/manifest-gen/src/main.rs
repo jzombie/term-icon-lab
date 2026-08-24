@@ -157,7 +157,9 @@ fn previous_ids(path: &Path) -> HashSet<String> {
     };
     let mut ids = HashSet::new();
     for line in raw.lines() {
-        let Some(pos) = line.find("id: \"") else { continue };
+        let Some(pos) = line.find("id: \"") else {
+            continue;
+        };
         let rest = &line[pos + 5..];
         let Some(end) = rest.find('"') else { continue };
         ids.insert(rest[..end].to_string());
@@ -229,7 +231,10 @@ fn generate_from_inputs(
     }
     let mut failure_counts: HashMap<String, usize> = HashMap::new();
     for id in &universes.first().cloned().unwrap_or_default() {
-        let failures = passing_sets.iter().filter(|p| !p.contains(id.as_str())).count();
+        let failures = passing_sets
+            .iter()
+            .filter(|p| !p.contains(id.as_str()))
+            .count();
         failure_counts.insert(id.clone(), failures);
     }
     for (id, failures) in &failure_counts {
@@ -379,7 +384,10 @@ mod tests {
             "hyst",
             &[
                 ("l.json", verdicts_json("linux/xterm", "xterm", &all, &all)),
-                ("m.json", verdicts_json("macos/terminal-app", "terminal-app", &all, &all)),
+                (
+                    "m.json",
+                    verdicts_json("macos/terminal-app", "terminal-app", &all, &all),
+                ),
                 (
                     "w.json",
                     verdicts_json("windows/wt", "wt", &["ascii_0021"], &all),
@@ -387,8 +395,7 @@ mod tests {
             ],
         );
         let previous: HashSet<String> = all.iter().map(|s| s.to_string()).collect();
-        let survivors =
-            generate_from_inputs(&inputs, &HashMap::new(), &previous).unwrap();
+        let survivors = generate_from_inputs(&inputs, &HashMap::new(), &previous).unwrap();
         let ids: HashSet<String> = survivors.into_iter().map(|e| e.id).collect();
         assert_eq!(ids, previous, "incumbent survives a single-platform flip");
 
@@ -401,8 +408,14 @@ mod tests {
         let inputs = write_inputs(
             "hyst2",
             &[
-                ("l.json", verdicts_json("linux/xterm", "xterm", &["ascii_0021"], &all)),
-                ("m.json", verdicts_json("macos/terminal-app", "terminal-app", &["ascii_0021"], &all)),
+                (
+                    "l.json",
+                    verdicts_json("linux/xterm", "xterm", &["ascii_0021"], &all),
+                ),
+                (
+                    "m.json",
+                    verdicts_json("macos/terminal-app", "terminal-app", &["ascii_0021"], &all),
+                ),
                 ("w.json", verdicts_json("windows/wt", "wt", &all, &all)),
             ],
         );
