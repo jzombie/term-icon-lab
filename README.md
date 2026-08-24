@@ -16,16 +16,17 @@ character cell (1×1)** with no bleed into neighbors, simultaneously on:
 ## What actually renders
 
 <p>
-  <img src="assets/universal-catalog.png" width="440" alt="Specimen chart of every verified icon with its U+ codepoint">
+  <img src="assets/universal-catalog.png" width="440" alt="Specimen grid: every verified icon rendered on macOS, Windows, and Linux, labeled with its U+ codepoint">
 </p>
 
-Every verified icon, captured from a real terminal in CI and labeled with
-the codepoint that activates it (`U+2502` → `char::from_u32(0x2502)`). The
-pictured set is **exactly** what ships: it is generated from
-`src/generated_manifest.rs`, the same file the AND-gate produces, so the
-chart can never claim more than the last verification run proved.
-[`assets/grid-index.json`](assets/grid-index.json) maps every cell to its
-id, official Unicode name, and chart position.
+Every verified icon × all three stock terminals **in one grid**: each cell
+shows the glyph as actually rasterized on macOS, Windows, and Linux
+(left → right, always that order), labeled with the `U+XXXX` codepoint that
+activates it. Sections are headed by Unicode block; the pictured set is
+**exactly** what ships — it is generated from `src/generated_manifest.rs`,
+the same file the AND-gate produces, so the chart can never claim more than
+the last verification run proved. [`assets/grid-index.json`](assets/grid-index.json)
+maps every cell to its id, official Unicode name, and chart position.
 
 ### Cross-platform comparison
 

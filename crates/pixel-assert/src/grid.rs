@@ -46,13 +46,20 @@ const MATRIX_PNG: &str = "universal-matrix.png";
 const SPECIMEN_PNG: &str = "universal-catalog.png";
 
 /// Specimen-chart look constants: nearest-neighbour zoom factor for crops,
-/// target overall width, and cell padding/gap metrics.
+/// target overall width, cell padding/gap metrics, and band heights. The
+/// canvas mixes three band types with different heights (legend, block
+/// headers, tile rows), so Y positions are always tracked cumulatively.
 const LABEL_SCALE: u32 = 2;
 const SPECIMEN_TARGET_WIDTH: f64 = 480.0;
 const SPECIMEN_PAD_X: u32 = 6;
 const SPECIMEN_PAD_Y: u32 = 5;
 const SPECIMEN_LABEL_GAP: u32 = 6;
+const INNER_GAP: u32 = 4;
 const LABEL_COLOR: Rgb<u8> = Rgb([200, 200, 200]);
+/// Height of the M/W-L platform legend strip at the canvas top.
+const LEGEND_BAND_H: u32 = font5x7::FONT_H + 6;
+/// Height of a named Unicode-block header band.
+const HEADER_BAND_H: u32 = font5x7::FONT_H * 2 + 8;
 
 #[derive(Debug)]
 pub(crate) struct GridInput {
@@ -263,50 +270,131 @@ pub(crate) fn export_grid(
     }
 
     // -- universal-catalog.png: font-repo specimen sheet (~480 px wide).
-    // Each cell = full-cell glyph render (2× nearest-neighbour) above its
-    // `U+XXXX` activation label.
-    let zoomed: Vec<RgbImage> = targets
-        .iter()
-        .map(|t| {
-            let crop = crops
-                .get(&(CANONICAL_TILE_PLATFORM, t.id.as_str()))
-                .with_context(|| format!("missing linux crop for '{}'", t.id))?;
-            Ok(image::imageops::resize(
-                crop,
-                crop.width() * LABEL_SCALE,
-                crop.height() * LABEL_SCALE,
-                FilterType::Nearest,
-            ))
-        })
-        .collect::<anyhow::Result<Vec<_>>>()?;
-    let glyph_w = zoomed.iter().map(RgbImage::width).max().unwrap_or(1);
-    let glyph_h = zoomed.iter().map(RgbImage::height).max().unwrap_or(1);
+    // Each cell = full-cell renders from ALL THREE platforms (×2 nearest-
+    // neighbour, ordered macOS | Windows | Linux) above the `U+XXXX`
+    // activation label. A platform legend band tops the canvas; Unicode
+    // blocks are separated by NAMED header bands.
+    let zoom = |label: &str, id: &str| -> anyhow::Result<RgbImage> {
+        let crop = crops
+            .get(&(label, id))
+            .with_context(|| format!("missing {label} crop for '{id}'"))?;
+        Ok(image::imageops::resize(
+            crop,
+            crop.width() * LABEL_SCALE,
+            crop.height() * LABEL_SCALE,
+            FilterType::Nearest,
+        ))
+    };
+
+    let glyph_w = crops.values().map(RgbImage::width).max().unwrap_or(1) * LABEL_SCALE;
+    let glyph_h = crops.values().map(RgbImage::height).max().unwrap_or(1) * LABEL_SCALE;
     let label_w = font5x7::text_width("U+0000".len(), LABEL_SCALE);
-    let cell_w = glyph_w.max(label_w) + SPECIMEN_PAD_X * 2;
+    let inner_w =
+        glyph_w * PLATFORM_ORDER.len() as u32 + INNER_GAP * (PLATFORM_ORDER.len() - 1) as u32;
+    let cell_w = inner_w.max(label_w) + SPECIMEN_PAD_X * 2;
     let cell_h = glyph_h + SPECIMEN_LABEL_GAP + font5x7::FONT_H * LABEL_SCALE + SPECIMEN_PAD_Y * 2;
     let specimen_cols = ((SPECIMEN_TARGET_WIDTH / cell_w as f64).floor() as usize).clamp(3, 8);
-    let (spec_place, spec_rows) = block_separated_placements(&targets, specimen_cols);
-    let mut catalog_canvas = RgbImage::from_pixel(
-        specimen_cols as u32 * cell_w,
-        spec_rows as u32 * cell_h,
-        Rgb([0, 0, 0]),
-    );
-    for (ti, r, c) in &spec_place {
-        let t = targets[*ti];
-        let x0 = *c as u32 * cell_w;
-        let y0 = *r as u32 * cell_h;
-        let glyph = &zoomed[*ti];
-        image::imageops::overlay(
+
+    // Band walk: legend row 0, then per-block header band + chunked tile
+    // rows. Heights differ per band type, so Y is tracked cumulatively —
+    // never derived by scalar row multiplication.
+    struct SpecimenTile {
+        ti: usize,
+        col: usize,
+        canvas_row: usize,
+        pixel_y: u32,
+    }
+    let mut spec_tiles: Vec<SpecimenTile> = Vec::with_capacity(targets.len());
+    let mut header_rows: BTreeMap<usize, (String, u32)> = BTreeMap::new();
+
+    let mut y = LEGEND_BAND_H;
+    let mut canvas_row = 1usize; // row 0 is the platform legend
+    let mut ti = 0usize;
+    while ti < targets.len() {
+        let block = targets[ti].block;
+        let run_start = ti;
+        while ti < targets.len() && targets[ti].block == block {
+            ti += 1;
+        }
+        header_rows.insert(canvas_row, (block_display_name(block).to_string(), y));
+        y += HEADER_BAND_H;
+        canvas_row += 1;
+        for chunk in targets[run_start..ti].chunks(specimen_cols) {
+            for (k, _) in chunk.iter().enumerate() {
+                spec_tiles.push(SpecimenTile {
+                    ti: run_start + k,
+                    col: k,
+                    canvas_row,
+                    pixel_y: y,
+                });
+            }
+            y += cell_h;
+            canvas_row += 1;
+        }
+    }
+    let catalog_h = y;
+
+    let mut catalog_canvas =
+        RgbImage::from_pixel(specimen_cols as u32 * cell_w, catalog_h, Rgb([0, 0, 0]));
+
+    // Platform legend: M W L repeated across every active column, each
+    // letter centred over its platform's slot.
+    let letter_x = |c: usize, p: usize| -> i64 {
+        let x = c as u32 * cell_w
+            + SPECIMEN_PAD_X
+            + p as u32 * (glyph_w + INNER_GAP)
+            + (glyph_w.saturating_sub(font5x7::FONT_W)) / 2;
+        i64::from(x)
+    };
+    let legend_y = i64::from((LEGEND_BAND_H - font5x7::FONT_H) / 2);
+    for c in 0..specimen_cols {
+        for (p, ch) in ["M", "W", "L"].iter().enumerate() {
+            font5x7::draw_text(
+                &mut catalog_canvas,
+                letter_x(c, p),
+                legend_y,
+                ch,
+                1,
+                LABEL_COLOR,
+            );
+        }
+    }
+
+    // Block header bands: named, left-aligned at scale 2.
+    for (name, hy) in header_rows.values() {
+        font5x7::draw_text(
             &mut catalog_canvas,
-            glyph,
-            i64::from(x0 + (cell_w - glyph.width()) / 2),
-            i64::from(y0 + SPECIMEN_PAD_Y),
+            i64::from(SPECIMEN_PAD_X),
+            i64::from(*hy + (HEADER_BAND_H - font5x7::FONT_H * 2) / 2),
+            name,
+            2,
+            LABEL_COLOR,
         );
+    }
+
+    // Tiles: three zoomed crops + activation label per cell.
+    for st in &spec_tiles {
+        let t = targets[st.ti];
+        let x0 = st.col as u32 * cell_w;
+        for (p, label) in PLATFORM_ORDER.iter().enumerate() {
+            let g = zoom(label, t.id.as_str())?;
+
+            image::imageops::overlay(
+                &mut catalog_canvas,
+                &g,
+                i64::from(
+                    x0 + SPECIMEN_PAD_X
+                        + p as u32 * (glyph_w + INNER_GAP)
+                        + (glyph_w - g.width()) / 2,
+                ),
+                i64::from(st.pixel_y + SPECIMEN_PAD_Y + (glyph_h - g.height()) / 2),
+            );
+        }
         let text = format!("U+{:04X}", t.codepoint);
         font5x7::draw_text(
             &mut catalog_canvas,
             i64::from(x0 + (cell_w - label_w) / 2),
-            i64::from(y0 + SPECIMEN_PAD_Y + glyph_h + SPECIMEN_LABEL_GAP),
+            i64::from(st.pixel_y + SPECIMEN_PAD_Y + glyph_h + SPECIMEN_LABEL_GAP),
             &text,
             LABEL_SCALE,
             LABEL_COLOR,
@@ -320,13 +408,15 @@ pub(crate) fn export_grid(
         .enumerate()
         .map(|(i, t)| {
             let (_, grid_row, grid_col) = placements[i];
-            let (_, specimen_row, specimen_col) = spec_place[i];
+            let st = &spec_tiles[i];
             TileMeta {
                 index: i,
                 grid_row,
                 grid_col,
-                specimen_row,
-                specimen_col,
+                specimen_row: st.canvas_row,
+                specimen_col: st.col,
+                canvas_row: st.canvas_row,
+                pixel_y: st.pixel_y,
                 id: t.id.as_str(),
                 codepoint: t.codepoint,
                 block: t.block,
@@ -339,10 +429,16 @@ pub(crate) fn export_grid(
             }
         })
         .collect();
+    let header_map: BTreeMap<usize, &str> = header_rows
+        .iter()
+        .map(|(row, (name, _))| (*row, name.as_str()))
+        .collect();
     let index = GridIndexFile {
-        schema_version: 3,
+        schema_version: 4,
         columns: GRID_COLUMNS,
         specimen_columns: specimen_cols,
+        specimen_platform_order: PLATFORM_ORDER,
+        block_header_rows: header_map,
         cell_width_px: slot_w,
         cell_height_px: slot_h,
         platform_order: PLATFORM_ORDER,
@@ -498,6 +594,8 @@ struct GridIndexFile<'a> {
     schema_version: u32,
     columns: usize,
     specimen_columns: usize,
+    specimen_platform_order: [&'a str; 3],
+    block_header_rows: BTreeMap<usize, &'a str>,
     cell_width_px: u32,
     cell_height_px: u32,
     platform_order: [&'a str; 3],
@@ -511,11 +609,29 @@ struct TileMeta<'a> {
     grid_col: usize,
     specimen_row: usize,
     specimen_col: usize,
+    /// Visual row on the specimen canvas (legend = row 0, headers included).
+    canvas_row: usize,
+    /// Cumulative pixel Y of this tile row's top edge.
+    pixel_y: u32,
     id: &'a str,
     codepoint: u32,
     block: icon_catalog::Block,
     unicode_name: &'a str,
     matrix_col: BTreeMap<&'static str, usize>,
+}
+
+/// Human-readable name of a Unicode block, as drawn in specimen headers.
+fn block_display_name(block: icon_catalog::Block) -> &'static str {
+    match block {
+        icon_catalog::Block::Ascii => "ASCII",
+        icon_catalog::Block::Arrows => "ARROWS",
+        icon_catalog::Block::BoxDrawing => "BOX DRAWING",
+        icon_catalog::Block::BlockElements => "BLOCK ELEMENTS",
+        icon_catalog::Block::GeometricShapes => "GEOMETRIC SHAPES",
+        icon_catalog::Block::MiscSymbols => "MISC SYMBOLS",
+        icon_catalog::Block::Dingbats => "DINGBATS",
+        icon_catalog::Block::Braille => "BRAILLE",
+    }
 }
 
 #[cfg(test)]
@@ -613,7 +729,12 @@ mod tests {
     }
 
     fn read_index(out: &Path) -> serde_json::Value {
-        serde_json::from_slice(&std::fs::read(out.join(INDEX_FILE)).unwrap()).unwrap()
+        let v: serde_json::Value =
+            serde_json::from_slice(&std::fs::read(out.join(INDEX_FILE)).unwrap()).unwrap();
+        if std::env::var_os("TI_DEBUG").is_some() {
+            eprintln!("DBGIDX {}", serde_json::to_string(&v).unwrap());
+        }
+        v
     }
 
     #[test]
@@ -631,7 +752,7 @@ mod tests {
         export_grid(&inputs, &opts, &out).expect("export succeeds");
 
         let index = read_index(&out);
-        assert_eq!(index["schema_version"], 3);
+        assert_eq!(index["schema_version"], 4);
         assert_eq!(index["columns"], 16);
         assert_eq!(
             index["platform_order"],
@@ -665,59 +786,175 @@ mod tests {
         assert_eq!(tiles[2]["grid_row"], 2);
         assert_eq!(tiles[3]["grid_row"], 4);
 
-        // Specimen chart: ~480 px wide, same block-separated layout, and
-        // every tile carries its specimen coordinates.
+        // Specimen chart (schema v4): three platforms per cell, named
+        // block headers, explicit visual coordinates from the band walk.
         assert!(out.join(SPECIMEN_PNG).is_file(), "catalog chart written");
         let spec_cols = index["specimen_columns"].as_u64().unwrap() as u32;
-        assert!((3..=8).contains(&spec_cols));
+        assert_eq!(spec_cols, 3);
+        assert_eq!(
+            index["specimen_platform_order"],
+            serde_json::json!(["macos", "windows", "linux"])
+        );
         let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap();
         assert!(
             (400..=520).contains(&catalog.width()),
             "specimen width {} outside font-repo range",
             catalog.width()
         );
-        assert_eq!(tiles[0]["specimen_row"], 0);
-        assert_eq!(tiles[0]["specimen_col"], 0);
+
+        // Band walk: legend(13) + headers(22 each) + tile rows(cell_h each).
+        // Fixture spans three blocks ⇒ three header bands.
+        // Tallest fixture native cell = WINDOWS_GEOM.cell_h (24) ⇒ zoomed
+        // 48; specimen cell height = 48 + gap 6 + label 14 + pad 10 = 78.
+        let spec_cell_h = 78u64;
+        let headers: BTreeMap<String, String> =
+            serde_json::from_value(index["block_header_rows"].clone()).unwrap();
         assert_eq!(
-            tiles[2]["specimen_row"], 2,
-            "block separator before geometric"
+            headers,
+            BTreeMap::from([
+                ("1".to_string(), "BOX DRAWING".to_string()),
+                ("3".to_string(), "GEOMETRIC SHAPES".to_string()),
+                ("5".to_string(), "MISC SYMBOLS".to_string()),
+            ]),
+            "\nindex was:\n{}",
+            serde_json::to_string_pretty(&index).unwrap()
         );
-        assert_eq!(tiles[3]["specimen_row"], 4, "block separator before misc");
+        // tiles[0,1] → BOX DRAWING row; tiles[2] geometric; tiles[3] misc.
+        let rows: Vec<u64> = tiles
+            .iter()
+            .map(|t| t["canvas_row"].as_u64().unwrap())
+            .collect();
+        assert_eq!(
+            rows,
+            [2, 2, 4, 6],
+            "\nindex:\n{}",
+            serde_json::to_string_pretty(&index).unwrap()
+        );
+        let pys: Vec<u64> = tiles
+            .iter()
+            .map(|t| t["pixel_y"].as_u64().unwrap())
+            .collect();
+        assert_eq!(
+            pys,
+            [
+                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64,
+                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64,
+                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64 + spec_cell_h + HEADER_BAND_H as u64,
+                LEGEND_BAND_H as u64
+                    + HEADER_BAND_H as u64
+                    + spec_cell_h
+                    + HEADER_BAND_H as u64
+                    + spec_cell_h
+                    + HEADER_BAND_H as u64,
+            ],
+            "\nindex:\n{}",
+            serde_json::to_string_pretty(&index).unwrap()
+        );
+        assert_eq!(tiles[0]["specimen_col"], 0);
+        assert_eq!(tiles[1]["specimen_col"], 1);
+        // Canvas height: legend + per-block (header band + tile row).
+        // Fixture blocks hold 2/1/1 tiles ⇒ one tile row each at cols=3.
+        assert_eq!(
+            catalog.height() as u64,
+            LEGEND_BAND_H as u64 + 3 * (HEADER_BAND_H as u64 + spec_cell_h)
+        );
     }
 
-    /// `universal-grid.png` must be composed from the canonical (linux)
-    /// crops: its tiles are byte-identical to the matrix's linux column.
+    /// Every specimen cell must show ALL THREE platforms: the ink width of
+    /// a `FullSpan` glyph scales linearly with each platform's pitch, so the
+    /// three cell thirds must carry strictly ordered ink widths — and the
+    /// legend must label every column.
     #[test]
-    fn grid_tiles_come_from_canonical_linux_platform() {
-        let pages = fixture_pages();
-        let roots = three_roots("pinning", &pages);
+    fn catalog_cells_show_all_three_platforms_with_legend() {
+        let pages = vec![PageSpec {
+            candidates: vec![(
+                0x2588,
+                icon_catalog::Block::BlockElements,
+                IconKind::FullSpan,
+            )],
+        }];
+        let roots = three_roots("pin3", &pages);
         let inputs = inputs_from(&roots);
-        let dir = tempfile_guard::DirGuard::new("pinning_out");
-        let opts = opts_in(&dir, &["box_2502"]);
+        let dir = tempfile_guard::DirGuard::new("pin3_out");
+        let opts = opts_in(&dir, &["block_2588"]);
         let out = dir.path().join("assets");
 
         export_grid(&inputs, &opts, &out).unwrap();
 
         let index = read_index(&out);
-        let cw = index["cell_width_px"].as_u64().unwrap() as u32;
-        let ch = index["cell_height_px"].as_u64().unwrap() as u32;
-        let grid = image::open(out.join(GRID_PNG)).unwrap().to_rgb8();
-        let matrix = image::open(out.join(MATRIX_PNG)).unwrap().to_rgb8();
+        let spec_cols = index["specimen_columns"].as_u64().unwrap() as usize;
+        assert_eq!(spec_cols, 3);
+        let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap().to_rgb8();
 
-        let linux_col = image::imageops::crop_imm(&matrix, 2 * cw, 0, cw, ch).to_image();
-        let grid_tile = image::imageops::crop_imm(&grid, 0, 0, cw, ch).to_image();
-        assert_eq!(linux_col.as_raw(), grid_tile.as_raw());
+        // Cell geometry recomputed from fixture metrics (see testutil):
+        // FullSpan native crop widths at pitch 14/18/22 are 14/18/22 px
+        // ⇒ zoomed (×LABEL_SCALE) 28/36/44; the widest anchors glyph_w.
+        let glyph_w = 22u32 * LABEL_SCALE; // windows FullSpan native width
+        let gap = INNER_GAP;
 
-        // Sanity: platforms differ enough that a wrong pin would fail above —
-        // macos and windows columns really do differ from linux.
-        for p in 0..2usize {
-            let other = image::imageops::crop_imm(&matrix, p as u32 * cw, 0, cw, ch).to_image();
-            assert_ne!(
-                other.as_raw(),
-                grid_tile.as_raw(),
-                "platform {p} collides with linux"
-            );
+        // Legend letters present over EVERY column's three slots.
+        let col_w = catalog.width() / spec_cols as u32;
+        for c in 0..spec_cols {
+            for p in 0..3usize {
+                let x0 = c as u32 * col_w
+                    + SPECIMEN_PAD_X
+                    + p as u32 * (glyph_w + gap)
+                    + (glyph_w.saturating_sub(font5x7::FONT_W)) / 2;
+                let mut strip: Vec<u8> = Vec::new();
+                for y in 0..LEGEND_BAND_H {
+                    for x in x0..x0 + font5x7::FONT_W {
+                        strip.push(catalog.get_pixel(x, y)[0]);
+                    }
+                }
+                assert!(
+                    strip.iter().any(|v| *v > 128),
+                    "legend letter missing at column {c} platform {p}"
+                );
+            }
         }
+
+        // Ink bbox width per platform SLOT — strictly ordered like the
+        // fixture pitches (macos 14px < linux 18px < windows 22px native,
+        // ×LABEL_SCALE when zoomed).
+        let tile = &index["tiles"][0];
+        let pixel_y = tile["pixel_y"].as_u64().unwrap() as u32;
+        let mut widths = Vec::new();
+        for p in 0..3usize {
+            let x0 = SPECIMEN_PAD_X + p as u32 * (glyph_w + gap);
+            let mut min_x = None;
+            let mut max_x = None;
+            for y in pixel_y + SPECIMEN_PAD_Y..pixel_y + SPECIMEN_PAD_Y + 40 {
+                for dx in 0..glyph_w {
+                    if catalog.get_pixel(x0 + dx, y)[0] > 128 {
+                        min_x = Some(min_x.map_or(dx, |v: u32| v.min(dx)));
+                        max_x = Some(max_x.map_or(dx, |v: u32| v.max(dx)));
+                    }
+                }
+            }
+            let w = max_x.unwrap() - min_x.unwrap() + 1;
+            widths.push(w);
+        }
+        assert_eq!(
+            widths,
+            vec![28, 44, 36],
+            "platform slots follow PLATFORM_ORDER by pitch"
+        );
+
+        // Header band for BLOCK ELEMENTS carries text ink near its start;
+        // the first header band begins immediately after the legend strip.
+        let header_row = index["block_header_rows"]["1"].as_str().unwrap();
+        assert_eq!(header_row, "BLOCK ELEMENTS");
+        let header_y = LEGEND_BAND_H; // first header starts right after legend
+        let mut strip: Vec<u8> = Vec::new();
+        for y in header_y..header_y + HEADER_BAND_H {
+            for x in SPECIMEN_PAD_X..SPECIMEN_PAD_X + 60 {
+                strip.push(catalog.get_pixel(x, y)[0]);
+            }
+        }
+        assert!(
+            strip.iter().any(|v| *v > 128),
+            "block header band must contain rendered text"
+        );
     }
 
     #[test]

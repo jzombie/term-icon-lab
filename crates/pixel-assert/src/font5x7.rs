@@ -1,9 +1,10 @@
 //! Embedded 5×7 bitmap font for specimen-chart labels.
 //!
-//! Exactly the character domain needed by `"U+XXXX"` activation labels —
-//! 19 glyphs: `' '`, `'+'`, `'0'..='9'`, `'A'..'F'`, `'U'`. Each glyph is
-//! authored as seven 5-character rows (`#` = ink) so the shapes stay
-//! human-readable and testable in source form.
+//! Exactly the character domain needed by `"U+XXXX"` activation labels,
+//! `U+XXXX`/platform legends and Unicode-block header names — 38 glyphs:
+//! `' '`, `'+'`, `'0'..='9'`, `'A'..='Z'`. Each glyph is authored as seven
+//! 5-character rows (`#` = ink) so the shapes stay human-readable and
+//! testable in source form.
 
 use image::{Rgb, RgbImage};
 
@@ -24,7 +25,7 @@ macro_rules! glyph {
     };
 }
 
-/// The full label character domain — 19 entries, no more, no less.
+/// The full label character domain — 38 entries, no more, no less.
 pub(crate) const FONT5X7: &[Glyph] = &[
     glyph!(
         ' ',
@@ -135,9 +136,123 @@ pub(crate) const FONT5X7: &[Glyph] = &[
         ]
     ),
     glyph!(
+        'G',
+        [
+            ".###.", "#...#", "#....", "#.###", "#...#", "#...#", ".###."
+        ]
+    ),
+    glyph!(
+        'H',
+        [
+            "#...#", "#...#", "#...#", "#####", "#...#", "#...#", "#...#"
+        ]
+    ),
+    glyph!(
+        'I',
+        [
+            ".###.", "..#..", "..#..", "..#..", "..#..", "..#..", ".###."
+        ]
+    ),
+    glyph!(
+        'J',
+        [
+            "...##", "....#", "....#", "....#", "....#", "#...#", ".###."
+        ]
+    ),
+    glyph!(
+        'K',
+        [
+            "#...#", "#..#.", "#.#..", "##...", "#.#..", "#..#.", "#...#"
+        ]
+    ),
+    glyph!(
+        'L',
+        [
+            "#....", "#....", "#....", "#....", "#....", "#....", "#####"
+        ]
+    ),
+    glyph!(
+        'M',
+        [
+            "#...#", "##.##", "#.#.#", "#.#.#", "#...#", "#...#", "#...#"
+        ]
+    ),
+    glyph!(
+        'N',
+        [
+            "#...#", "##..#", "#.#.#", "#..##", "#...#", "#...#", "#...#"
+        ]
+    ),
+    glyph!(
+        'O',
+        [
+            ".###.", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."
+        ]
+    ),
+    glyph!(
+        'P',
+        [
+            "####.", "#...#", "#...#", "####.", "#....", "#....", "#...."
+        ]
+    ),
+    glyph!(
+        'Q',
+        [
+            ".###.", "#...#", "#...#", "#...#", "#.#.#", "#..#.", ".##.#"
+        ]
+    ),
+    glyph!(
+        'R',
+        [
+            "####.", "#...#", "#...#", "####.", "#.#..", "#..#.", "#...#"
+        ]
+    ),
+    glyph!(
+        'S',
+        [
+            ".####", "#....", "#....", ".###.", "....#", "....#", "####."
+        ]
+    ),
+    glyph!(
+        'T',
+        [
+            "#####", "..#..", "..#..", "..#..", "..#..", "..#..", "..#.."
+        ]
+    ),
+    glyph!(
         'U',
         [
             "#...#", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."
+        ]
+    ),
+    glyph!(
+        'V',
+        [
+            "#...#", "#...#", "#...#", "#...#", "#...#", ".#.#.", "..#.."
+        ]
+    ),
+    glyph!(
+        'W',
+        [
+            "#...#", "#...#", "#...#", "#.#.#", "#.#.#", "##.##", "#...#"
+        ]
+    ),
+    glyph!(
+        'X',
+        [
+            "#...#", "#...#", ".#.#.", "..#..", ".#.#.", "#...#", "#...#"
+        ]
+    ),
+    glyph!(
+        'Y',
+        [
+            "#...#", "#...#", ".#.#.", "..#..", "..#..", "..#..", "..#.."
+        ]
+    ),
+    glyph!(
+        'Z',
+        [
+            "#####", "....#", "...#.", "..#..", ".#...", "#....", "#####"
         ]
     ),
 ];
@@ -205,13 +320,13 @@ mod tests {
     }
 
     #[test]
-    fn font_domain_is_exactly_nineteen_label_glyphs() {
-        assert_eq!(FONT5X7.len(), 19);
+    fn font_domain_is_exactly_thirty_eight_label_glyphs() {
+        assert_eq!(FONT5X7.len(), 38);
         let mut chars: Vec<char> = FONT5X7.iter().map(|g| g.ch).collect();
         chars.sort_unstable();
-        let mut expected: Vec<char> = vec![' ', '+', 'U'];
+        let mut expected: Vec<char> = vec![' ', '+'];
         expected.extend('0'..='9');
-        expected.extend('A'..='F');
+        expected.extend('A'..='Z');
         expected.sort_unstable();
         assert_eq!(chars, expected, "{chars:?}");
         // Every row string is 5 wide, 7 tall.
