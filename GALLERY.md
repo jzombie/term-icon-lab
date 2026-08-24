@@ -2,6 +2,16 @@
 
 Every glyph below passed dual-pass verification (PTY + pixel) on macOS Terminal.app, Windows conhost/WT, and Linux xterm simultaneously.
 
+![Universal icon grid](assets/universal-grid.png)
+
+Rendered preview of the full verified set, tiled 16 columns wide in canonical
+Linux/xterm rasterization — one blank row separates Unicode blocks, ordering
+is block order then codepoint. Each tile's exact grid position and official
+Unicode name are mapped in
+[`assets/grid-index.json`](assets/grid-index.json); the per-platform matrix
+(live screenshots from all three terminals) lives in
+[`README-DRAFT.md`](README-DRAFT.md).
+
 ## ascii
 
 | Glyph | Id | Codepoint | Unicode name | Fallback |

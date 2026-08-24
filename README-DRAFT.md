@@ -13,6 +13,21 @@ character cell (1×1)** with no bleed into neighbors, simultaneously on:
 | macOS (macos runner) | Terminal.app | stock SF Mono/Menlo |
 | Windows (windows runner) | `conhost` | Consolas |
 
+## What actually renders
+
+![Universal Render Matrix](assets/universal-matrix.png)
+
+Real screenshots, not font mockups: every row above is one verified icon,
+captured from each platform's terminal in CI — columns are always
+`macOS | Windows | Linux`, rows always follow catalog block order then
+codepoint (see [`assets/grid-index.json`](assets/grid-index.json) for exact
+positions). The pictured set is **exactly** what ships: it is read from
+`src/generated_manifest.rs`, the same file the AND-gate produces, so the
+gallery can never claim more than the last verification run proved.
+
+A companion sheet, [`GALLERY.md`](GALLERY.md), shows all icons tiled in a
+single canonical (Linux/xterm) rasterization.
+
 The verification matrix runs on every push. A glyph that renders 2 cells
 wide, paints into its neighbor, or doesn't render at all on **any** of the
 three is permanently excluded. What ships is what a stock, unmodified OS

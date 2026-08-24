@@ -242,6 +242,11 @@ pub enum GeometryError {
     BarsTooWide,
     ImplausiblePitch,
     SentinelSpacingMismatch,
+    /// Detected text-band count disagrees with the sidecar-declared row count.
+    BandMismatch {
+        found: usize,
+        expected: usize,
+    },
 }
 
 /// Calibrate against the control band `| A B |` (pure ASCII, no touching
