@@ -142,12 +142,13 @@ catalog (1165 candidates: ASCII, Arrows, Box Drawing, Block Elements,
    │  * no bleed: no ink past the cell boundary beyond anti-aliasing
    │    tolerance; sentinel B's cell pixel-identical to the control row
    │
-   ▼  manifest-gen — THE AND GATE: keep only glyphs that passed every
-      pass on every platform, resolve their official Unicode names from
-      a vendored UnicodeData extract, and emit src/generated_manifest.rs.
-      Exit hysteresis keeps the set stable: an already-verified icon is
-      dropped only if it fails on 2+ platforms in a single run (one
-      runner's subpixel rendering difference can't purge it).
+    ▼  manifest-gen — THE AND GATE: keep only glyphs that passed every
+       pass on every platform, resolve their official Unicode names from
+       a vendored UnicodeData extract, and emit src/generated_manifest.rs.
+       Zero tolerance: a glyph that overflows its cell on any platform —
+       left or right, by more than one anti-aliasing pixel — fails that
+       platform, and the AND gate purges it everywhere. No stability
+       exceptions.
 ```
 
 CI (`.github/workflows/matrix.yml`) runs the full loop on all three

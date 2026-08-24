@@ -372,6 +372,18 @@ impl Calibration {
             self.cell_center(4) - self.pitch * 0.35,
         )
     }
+
+    /// Mirror of [`Calibration::gutter_span`] on the sentinel-A side: from
+    /// A's central-crop right edge to the icon cell's **left** boundary.
+    /// Overflow toward A is just as much a spatial-contract violation as
+    /// overflow toward B.
+    #[must_use]
+    pub fn left_gutter_span(&self) -> (f64, f64) {
+        (
+            self.cell_center(2) + self.pitch * 0.35,
+            self.cell_center(3) - self.pitch * 0.5,
+        )
+    }
 }
 
 #[cfg(test)]

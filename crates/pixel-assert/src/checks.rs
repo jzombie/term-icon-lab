@@ -8,11 +8,19 @@
 //!   bbox corners), so hollow outline glyphs (○ △ ☆ ◇) are never mistaken for
 //!   missing-glyph boxes.
 //! * **Bleed** compares sentinel B's crop against the clean reference from
-//!   the control row and scans the icon→B gutter for intrusion.
+//!   the control row and scans BOTH gutters — icon→A and icon→B — for
+//!   intrusion, with the anti-aliasing allowance anchored to the icon
+//!   boundary on each side.
 
 use crate::geom::{Band, Calibration, CellBox, FgModel};
 use icon_catalog::Block;
 use image::GrayImage;
+
+/// How many gutter columns past the first count as anti-aliasing rather than
+/// intrusion. 1 forgives exactly the column adjacent to the icon boundary
+/// (where fractional-pitch anti-aliasing lands); 0 would be an absolute-zero
+/// policy. The sentinel-facing end always keeps a fixed 1 px standoff.
+const AA_FORGIVENESS_PX: i64 = 1;
 
 /// Assertion thresholds (defaults per plan; CLI-overridable).
 #[derive(Clone, Copy, Debug)]
@@ -162,12 +170,61 @@ pub enum BleedVerdict {
     Intrusion,
 }
 
+/// Which end of a gutter span hosts the icon cell — determines where the
+/// anti-aliasing forgiveness is applied. The two gutters have **opposite**
+/// anchoring: a shared helper that always offsets `span.0` would grant the
+/// tolerance to the sentinel instead of the icon on one side.
+#[derive(Clone, Copy)]
+enum GutterSide {
+    /// Icon sits at `span.1`; forgiveness shrinks the scan's right end.
+    Left,
+    /// Icon sits at `span.0`; forgiveness pushes the scan's left start.
+    Right,
+}
+
+/// Any foreground pixel inside the gutter — after icon-side AA forgiveness,
+/// within `band`'s rows? Empty ranges (very small pitches) scan nothing.
+fn scan_gutter(
+    gray: &GrayImage,
+    model: &FgModel,
+    band: &Band,
+    span: (f64, f64),
+    side: GutterSide,
+) -> bool {
+    let w = i64::from(gray.width().saturating_sub(1));
+    let y_max = band.bottom.min(gray.height().saturating_sub(1));
+    let (g0, g1) = span;
+    let (lo, hi) = match side {
+        // First gutter pixel is g0+1; forgive AA_FORGIVENESS_PX beyond it.
+        GutterSide::Right => (
+            g0.round() as i64 + 1 + AA_FORGIVENESS_PX,
+            (g1.round() as i64).min(w) - 1,
+        ),
+        // Last gutter pixel is g1-1; forgiveness extends leftward from it.
+        GutterSide::Left => (
+            (g0.round() as i64).max(0) + 1,
+            (g1.round() as i64).min(w) - 1 - AA_FORGIVENESS_PX,
+        ),
+    };
+    if lo > hi {
+        return false;
+    }
+    for y in band.top..=y_max {
+        for x in lo..=hi.min(w) {
+            if x >= 0 && model.is_fg(gray, x as u32, y) {
+                return true;
+            }
+        }
+    }
+    false
+}
+
 /// Compare the candidate's B-cell crop against the control-row reference crop
-/// and scan the icon→B gutter for intrusion.
+/// and scan BOTH gutters for intrusion.
 ///
 /// `reference_b` is harvested once per page from the control band; solid
-/// glyphs that legitimately fill their own cell never enter B's central crop,
-/// while a wide (2-cell) render physically does.
+/// glyphs that legitimately fill their own cell never enter either sentinel's
+/// central crop, while a wide (2-cell) render physically does.
 pub fn check_bleed(
     gray: &GrayImage,
     model: &FgModel,
@@ -178,27 +235,19 @@ pub fn check_bleed(
 ) -> BleedVerdict {
     let b_box = cal.cell_box(4, band);
 
-    // Gutter between the icon cell's right boundary and B's central crop.
-    // The icon's own cell — including its full width out to the cell edge —
-    // is legitimate ink territory (█ ▐ ─ and wide letters fill it), so the
-    // scan starts two columns past the cell boundary: the boundary column
-    // and one beyond it are where anti-aliasing legitimately lands, and
-    // keeping them out of the scan makes verdicts stable against subpixel
-    // rendering differences between runs. At very small pitches this range
-    // can be empty; collision detection then falls through to the
-    // reference-B symmetric difference below. A genuine 2-cell render spills
-    // ~a full pitch, far beyond this tolerance.
-    let (g0, g1) = cal.gutter_span();
-    let gutter_left = (g0.round() as i64) + 2;
-    let gutter_right = (g1.round() as i64).min(i64::from(gray.width().saturating_sub(1))) - 1;
-    if gutter_left <= gutter_right {
-        for y in band.top..=band.bottom.min(gray.height() - 1) {
-            for x in gutter_left..=gutter_right {
-                if model.is_fg(gray, x as u32, y) {
-                    return BleedVerdict::Intrusion;
-                }
-            }
-        }
+    // Both gutters are scanned: overflow toward sentinel B **and** toward
+    // sentinel A. The icon's own cell — including its full width out to the
+    // cell edges — is legitimate ink territory (█ ▐ ─ fill it), so each scan
+    // skips AA_FORGIVENESS_PX columns past its icon-facing boundary, where
+    // fractional-pitch anti-aliasing legitimately lands, and keeps a fixed
+    // 1 px standoff before the sentinel crop. At very small pitches a range
+    // can be empty; detection then falls through to the reference-B
+    // symmetric difference below. A genuine 2-cell render spills ~a full
+    // pitch, far beyond this tolerance.
+    if scan_gutter(gray, model, band, cal.left_gutter_span(), GutterSide::Left)
+        || scan_gutter(gray, model, band, cal.gutter_span(), GutterSide::Right)
+    {
+        return BleedVerdict::Intrusion;
     }
 
     // Symmetric difference against the reference B mask.
@@ -479,6 +528,90 @@ mod tests {
             }
         }
         let reference_b = vec![false; 200];
+        assert_eq!(
+            check_bleed(
+                &c.img,
+                &c.model,
+                &cal,
+                &band,
+                &reference_b,
+                &Thresholds::default()
+            ),
+            BleedVerdict::Intrusion
+        );
+    }
+
+    #[test]
+    fn left_overflow_into_sentinel_a_side_bleeds() {
+        // Mirror case: ink spilling LEFT past the icon's boundary by more
+        // than the AA forgiveness must be caught — this side was previously
+        // never scanned.
+        let mut c = Canvas::new(320, 24);
+        let band = Band { top: 2, bottom: 21 };
+        let cal = c.cal(10.0, 40.0);
+        let left = (cal.cell_center(3) - cal.pitch * 0.5).round() as i64 - 3;
+        let right = (cal.cell_center(3) + cal.pitch * 0.5).round() as i64;
+        for x in left..=right {
+            for y in 4..=20 {
+                c.img.put_pixel(x as u32, y, Luma([FG]));
+            }
+        }
+        let reference_b = vec![false; 200];
+        assert_eq!(
+            check_bleed(
+                &c.img,
+                &c.model,
+                &cal,
+                &band,
+                &reference_b,
+                &Thresholds::default()
+            ),
+            BleedVerdict::Intrusion
+        );
+    }
+
+    #[test]
+    fn single_aa_column_past_either_boundary_is_forgiven() {
+        // Exactly one spill column on each side sits inside the AA
+        // forgiveness zone ⇒ Clean. (Two would fail.)
+        let mut c = Canvas::new(320, 24);
+        let band = Band { top: 2, bottom: 21 };
+        let cal = c.cal(10.0, 40.0);
+        let l = (cal.cell_center(3) - cal.pitch * 0.5).round() as i64;
+        let r = (cal.cell_center(3) + cal.pitch * 0.5).round() as i64;
+        for x in (l - 1)..=(r + 1) {
+            for y in 4..=20 {
+                c.img.put_pixel(x as u32, y, Luma([FG]));
+            }
+        }
+        let reference_b = vec![false; 200];
+        assert_eq!(
+            check_bleed(
+                &c.img,
+                &c.model,
+                &cal,
+                &band,
+                &reference_b,
+                &Thresholds::default()
+            ),
+            BleedVerdict::Clean
+        );
+
+        // One extra column on either side flips the verdict.
+        c.rect((l - 2) as u32, 4, (l - 2) as u32, 20, FG);
+        assert_eq!(
+            check_bleed(
+                &c.img,
+                &c.model,
+                &cal,
+                &band,
+                &reference_b,
+                &Thresholds::default()
+            ),
+            BleedVerdict::Intrusion
+        );
+        c.rect((l - 2) as u32, 4, (l - 2) as u32, 20, BG);
+        c.rect((r + 2) as u32, 4, (r + 2) as u32, 20, FG);
         assert_eq!(
             check_bleed(
                 &c.img,
