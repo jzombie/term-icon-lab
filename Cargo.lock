@@ -599,6 +599,7 @@ dependencies = [
  "clap",
  "icon-catalog",
  "image",
+ "manifest-gen",
  "serde",
  "serde_json",
 ]

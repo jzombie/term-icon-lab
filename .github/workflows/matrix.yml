@@ -9,12 +9,16 @@ name: matrix
 
 on:
   push:
-    branches: [main, dev--draft]
   pull_request:
   workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
+
+# Runner jobs stay root-scoped read-only; only the manifest job may push
+# branches and open the assets PR.
+permissions:
+  contents: read
 
 jobs:
   quality:
@@ -121,6 +125,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [linux, macos, windows]
     timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
@@ -131,12 +138,40 @@ jobs:
       - name: Regenerate manifest through the AND gate
         run: |
           cargo run -q -p manifest-gen -- \
-            --previous src/generated_manifest.rs \
             --inputs \
               artifacts/verdicts-linux/verdicts.json \
               artifacts/verdicts-macos/verdicts.json \
               artifacts/verdicts-windows/verdicts.json \
             --out /tmp/generated_manifest.rs
+      # Downstream of regeneration on purpose: the grids visualize exactly the
+      # set this run's gate produced (/tmp/generated_manifest.rs), so a drift
+      # failure later cannot desync them from the verified truth.
+      - name: Generate platform preview grids
+        run: |
+          mkdir -p assets
+          cargo run -q -p pixel-assert -- \
+            --export-grid assets \
+            --grid-manifest /tmp/generated_manifest.rs \
+            --grid-input linux=artifacts/verdicts-linux \
+            --grid-input macos=artifacts/verdicts-macos \
+            --grid-input windows=artifacts/verdicts-windows \
+            --grid-ucd crates/manifest-gen/ucd/UnicodeData.txt
+      # Any pushed branch gets the grids committed straight onto itself so
+      # the rendered README/GALLERY can be previewed at that ref without a
+      # PR round-trip. Deterministic output + [skip ci] make this a no-op on
+      # the retrigger, so the loop always terminates.
+      - name: Commit preview grids to branch
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
+        run: |
+          git config user.name "term-icon-ci"
+          git config user.email "term-icon-ci@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then
+            echo "assets unchanged — nothing to commit"
+          else
+            git commit -m "chore(assets): update platform grid previews [skip ci]"
+            git push
+          fi
       - name: Drift check (committed manifest must match AND-gate output)
         run: |
           if ! diff -u src/generated_manifest.rs /tmp/generated_manifest.rs; then
@@ -151,3 +186,25 @@ jobs:
         with:
           name: generated_manifest
           path: /tmp/generated_manifest.rs
+      - name: Upload preview grids
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: universal-icon-grids
+          path: assets/
+      - name: Open assets update PR
+        # Asset PRs only from main pushes/dispatches; never PR-triggered runs.
+        # create-pull-request is a no-op when assets/ matches the base branch.
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          base: main
+          branch: chore/update-assets
+          add-paths: assets/*
+          commit-message: "chore(assets): update platform grid previews"
+          title: "chore(assets): update platform grid previews"
+          body: |
+            Automated platform preview grids from CI matrix execution.
+            Review the visual diff and merge. If src/generated_manifest.rs
+            also drifted, regenerate it locally per the drift-check output
+            before merging.

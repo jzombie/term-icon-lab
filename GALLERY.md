@@ -2,6 +2,16 @@
 
 Every glyph below passed dual-pass verification (PTY + pixel) on macOS Terminal.app, Windows conhost/WT, and Linux xterm simultaneously.
 
+<img src="assets/universal-catalog.png" width="440" alt="Specimen grid: every verified icon rendered on macOS, Windows, and Linux, labeled with its U+ codepoint">
+
+Specimen grid of the full verified set: each cell shows the glyph as
+actually rasterized on macOS, Windows, and Linux (left → right) with the
+`U+XXXX` codepoint that activates it. Sections run drawing primitives first (Block Elements, Box Drawing, Geometric Shapes), then symbol sets, Braille, and ASCII last — each headed by its Unicode block;
+ordering is block order then codepoint. Every cell's exact position, id,
+and official Unicode name are mapped in
+[`assets/grid-index.json`](assets/grid-index.json); the tall three-platform
+strip lives at [`assets/universal-matrix.png`](assets/universal-matrix.png).
+
 ## ascii
 
 | Glyph | Id | Codepoint | Unicode name | Fallback |

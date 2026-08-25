@@ -242,6 +242,11 @@ pub enum GeometryError {
     BarsTooWide,
     ImplausiblePitch,
     SentinelSpacingMismatch,
+    /// Detected text-band count disagrees with the sidecar-declared row count.
+    BandMismatch {
+        found: usize,
+        expected: usize,
+    },
 }
 
 /// Calibrate against the control band `| A B |` (pure ASCII, no touching
@@ -337,6 +342,24 @@ impl Calibration {
         }
     }
 
+    /// The full single-cell extent of `col0` — for *display* crops.
+    ///
+    /// No safety insets: capture rows sandwich the glyph between
+    /// side-bearing ASCII sentinels (`| A<glyph>B |`), so only the glyph's
+    /// own ink reaches these bounds, and full-width primitives (`█ ─ ▐`)
+    /// span them exactly. Verification keeps its narrower assertion window
+    /// ([`Calibration::cell_box`]).
+    #[must_use]
+    pub fn cell_box_full(&self, col0: u16, band: &Band) -> CellBox {
+        let center = self.cell_center(col0);
+        CellBox {
+            left: (center - self.pitch / 2.0).round() as u32,
+            right: (center + self.pitch / 2.0).round() as u32 - 1,
+            top: band.top,
+            bottom: band.bottom,
+        }
+    }
+
     /// The gutter between the icon cell's right **boundary** and sentinel B's
     /// central crop — any ink here means the candidate rendered past its own
     /// cell. The icon's full cell width (out to `center3 + pitch/2`) is
@@ -347,6 +370,18 @@ impl Calibration {
         (
             self.cell_center(3) + self.pitch * 0.5,
             self.cell_center(4) - self.pitch * 0.35,
+        )
+    }
+
+    /// Mirror of [`Calibration::gutter_span`] on the sentinel-A side: from
+    /// A's central-crop right edge to the icon cell's **left** boundary.
+    /// Overflow toward A is just as much a spatial-contract violation as
+    /// overflow toward B.
+    #[must_use]
+    pub fn left_gutter_span(&self) -> (f64, f64) {
+        (
+            self.cell_center(2) + self.pitch * 0.35,
+            self.cell_center(3) - self.pitch * 0.5,
         )
     }
 }
@@ -560,6 +595,33 @@ mod tests {
         }
         let bands = find_text_bands(&img, &model, 6);
         assert_eq!(bands.len(), 6);
+    }
+
+    /// Display boxes span the full cell, strictly contain their assertion
+    /// windows, and never overlap the neighbouring cells' display boxes —
+    /// across integer and fractional pitches alike.
+    #[test]
+    fn full_cell_box_contains_assertion_box_without_neighbour_overlap() {
+        let band = Band { top: 6, bottom: 19 };
+        for &origin_x in &[8.0, 12.7] {
+            for &pitch in &[9.33, 14.0, 22.5] {
+                let cal = Calibration { origin_x, pitch };
+                let prev = cal.cell_box_full(2, &band);
+                let full = cal.cell_box_full(3, &band);
+                let next = cal.cell_box_full(4, &band);
+                let inner = cal.cell_box(3, &band);
+
+                assert!(full.left <= inner.left && full.right >= inner.right);
+                assert!(
+                    full.left > prev.right,
+                    "left neighbour overlap: {full:?} vs {prev:?}"
+                );
+                assert!(
+                    next.left > full.right,
+                    "right neighbour overlap: {next:?} vs {full:?}"
+                );
+            }
+        }
     }
 
     #[test]

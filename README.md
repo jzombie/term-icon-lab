@@ -13,6 +13,34 @@ character cell (1×1)** with no bleed into neighbors, simultaneously on:
 | macOS (macos runner) | Terminal.app | stock SF Mono/Menlo |
 | Windows (windows runner) | `conhost` | Consolas |
 
+## What actually renders
+
+<p>
+  <img src="assets/universal-catalog.png" width="440" alt="Specimen grid: every verified icon rendered on macOS, Windows, and Linux, labeled with its U+ codepoint">
+</p>
+
+Every verified icon × all three stock terminals **in one grid**: each cell
+shows the glyph as actually rasterized on macOS, Windows, and Linux
+(left → right, always that order), labeled with the `U+XXXX` codepoint that
+activates it. Sections run drawing primitives first (Block Elements, Box Drawing, Geometric Shapes), then symbol sets, Braille, and ASCII last — each headed by its Unicode block; the pictured set is
+**exactly** what ships — it is generated from `src/generated_manifest.rs`,
+the same file the AND-gate produces, so the chart can never claim more than
+the last verification run proved. [`assets/grid-index.json`](assets/grid-index.json)
+maps every cell to its id, official Unicode name, and chart position.
+
+### Cross-platform comparison
+
+The [full-resolution matrix](assets/universal-matrix.png) shows one row per
+icon with columns pinned `macOS | Windows | Linux` — real screenshots from
+each runner's stock terminal, same ordering everywhere
+([`universal-grid.png`](assets/universal-grid.png) tiles the canonical
+Linux/xterm rasterization 16 columns wide). Open it at full resolution:
+differences between columns are *authentic* — stock fonts disagree on
+symbol coverage (Windows' fallback renders ⚀–⚅ as broken rectangles), fill
+style (macOS solid-circled digits vs Windows outlined), and metrics
+(macOS `█` is 7 px wide, Linux 9 px at identical cell counts). Those
+differences are the measurement, not an artifact.
+
 The verification matrix runs on every push. A glyph that renders 2 cells
 wide, paints into its neighbor, or doesn't render at all on **any** of the
 three is permanently excluded. What ships is what a stock, unmodified OS
@@ -46,8 +74,8 @@ for entry in universal::search("star") {
     );
 }
 
-// Icons are grouped per Unicode block.
-let gear_like = &universal::misc_symbols::MISC_2699;
+// Icons are grouped per Unicode block — every const here is verified.
+let star = &universal::misc_symbols::MISC_2605; // ★ BLACK STAR
 
 // Every icon carries a conservative ASCII fallback for degraded
 // environments (logging, non-Unicode sinks, missing font coverage).
@@ -115,12 +143,13 @@ catalog (1165 candidates: ASCII, Arrows, Box Drawing, Block Elements,
    │  * no bleed: no ink past the cell boundary beyond anti-aliasing
    │    tolerance; sentinel B's cell pixel-identical to the control row
    │
-   ▼  manifest-gen — THE AND GATE: keep only glyphs that passed every
-      pass on every platform, resolve their official Unicode names from
-      a vendored UnicodeData extract, and emit src/generated_manifest.rs.
-      Exit hysteresis keeps the set stable: an already-verified icon is
-      dropped only if it fails on 2+ platforms in a single run (one
-      runner's subpixel rendering difference can't purge it).
+    ▼  manifest-gen — THE AND GATE: keep only glyphs that passed every
+       pass on every platform, resolve their official Unicode names from
+       a vendored UnicodeData extract, and emit src/generated_manifest.rs.
+       Zero tolerance: a glyph that overflows its cell on any platform —
+       left or right, by more than one anti-aliasing pixel — fails that
+       platform, and the AND gate purges it everywhere. No stability
+       exceptions.
 ```
 
 CI (`.github/workflows/matrix.yml`) runs the full loop on all three
