@@ -22,7 +22,7 @@ character cell (1×1)** with no bleed into neighbors, simultaneously on:
 Every verified icon × all three stock terminals **in one grid**: each cell
 shows the glyph as actually rasterized on macOS, Windows, and Linux
 (left → right, always that order), labeled with the `U+XXXX` codepoint that
-activates it. Sections are headed by Unicode block; the pictured set is
+activates it. Sections run drawing primitives first (Block Elements, Box Drawing, Geometric Shapes), then symbol sets, Braille, and ASCII last — each headed by its Unicode block; the pictured set is
 **exactly** what ships — it is generated from `src/generated_manifest.rs`,
 the same file the AND-gate produces, so the chart can never claim more than
 the last verification run proved. [`assets/grid-index.json`](assets/grid-index.json)

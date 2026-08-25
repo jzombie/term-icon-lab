@@ -60,6 +60,8 @@ const LABEL_COLOR: Rgb<u8> = Rgb([200, 200, 200]);
 const LEGEND_BAND_H: u32 = font5x7::FONT_H + 6;
 /// Height of a named Unicode-block header band.
 const HEADER_BAND_H: u32 = font5x7::FONT_H * 2 + 8;
+/// Extra vertical padding drawn above every Unicode-block header band.
+const SECTION_GAP_PX: u32 = 18;
 
 #[derive(Debug)]
 pub(crate) struct GridInput {
@@ -144,7 +146,7 @@ pub(crate) fn export_grid(
             })
         })
         .collect::<anyhow::Result<Vec<_>>>()?;
-    targets.sort_by_key(|c| (block_rank(c.block), c.codepoint));
+    targets = order_targets_for_export(targets);
 
     // -- Sidecars: every platform must describe the identical render.
     let mut sidecars: HashMap<&str, Sidecar> = HashMap::new();
@@ -316,6 +318,9 @@ pub(crate) fn export_grid(
         while ti < targets.len() && targets[ti].block == block {
             ti += 1;
         }
+        // Breathing room before the section label — including the first
+        // one, so the legend never sits flush against a header band.
+        y += SECTION_GAP_PX;
         header_rows.insert(canvas_row, (block_display_name(block).to_string(), y));
         y += HEADER_BAND_H;
         canvas_row += 1;
@@ -505,12 +510,24 @@ fn block_separated_placements(
     (placements, rows)
 }
 
-/// Catalog-block ordering rank (`Block::ALL` manifest order).
-fn block_rank(block: icon_catalog::Block) -> usize {
-    icon_catalog::Block::ALL
-        .iter()
-        .position(|b| *b == block)
-        .unwrap_or(usize::MAX)
+/// Canonical display order shared by EVERY exported view (catalog chart,
+/// grid, matrix, index): drawing primitives lead, letter-like sets trail,
+/// ASCII closes the chart. Single producer — nothing else re-orders.
+fn order_targets_for_export(mut targets: Vec<&Candidate>) -> Vec<&Candidate> {
+    fn rank(block: icon_catalog::Block) -> usize {
+        match block {
+            icon_catalog::Block::BlockElements => 0,
+            icon_catalog::Block::BoxDrawing => 1,
+            icon_catalog::Block::GeometricShapes => 2,
+            icon_catalog::Block::MiscSymbols => 3,
+            icon_catalog::Block::Dingbats => 4,
+            icon_catalog::Block::Arrows => 5,
+            icon_catalog::Block::Braille => 6,
+            icon_catalog::Block::Ascii => 7,
+        }
+    }
+    targets.sort_by_key(|c| (rank(c.block), c.codepoint));
+    targets
 }
 
 /// Ordered `(id, codepoint, page, page_row)` tuples of a sidecar's candidate
@@ -832,40 +849,72 @@ mod tests {
             "\nindex:\n{}",
             serde_json::to_string_pretty(&index).unwrap()
         );
+        let legend_h = LEGEND_BAND_H as u64;
+        let header_h = HEADER_BAND_H as u64;
         let pys: Vec<u64> = tiles
             .iter()
             .map(|t| t["pixel_y"].as_u64().unwrap())
             .collect();
+        let gap = SECTION_GAP_PX as u64;
         assert_eq!(
             pys,
             [
-                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64,
-                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64,
-                LEGEND_BAND_H as u64 + HEADER_BAND_H as u64 + spec_cell_h + HEADER_BAND_H as u64,
-                LEGEND_BAND_H as u64
-                    + HEADER_BAND_H as u64
-                    + spec_cell_h
-                    + HEADER_BAND_H as u64
-                    + spec_cell_h
-                    + HEADER_BAND_H as u64,
+                legend_h + gap + header_h,
+                legend_h + gap + header_h,
+                legend_h + 2 * (gap + header_h) + spec_cell_h,
+                legend_h + 3 * (gap + header_h) + 2 * spec_cell_h,
             ],
             "\nindex:\n{}",
             serde_json::to_string_pretty(&index).unwrap()
         );
         assert_eq!(tiles[0]["specimen_col"], 0);
         assert_eq!(tiles[1]["specimen_col"], 1);
-        // Canvas height: legend + per-block (header band + tile row).
-        // Fixture blocks hold 2/1/1 tiles ⇒ one tile row each at cols=3.
+        // Canvas height: legend + per-block (section gap + header band +
+        // tile row). Fixture blocks hold 2/1/1 tiles ⇒ one tile row each.
         assert_eq!(
             catalog.height() as u64,
-            LEGEND_BAND_H as u64 + 3 * (HEADER_BAND_H as u64 + spec_cell_h)
+            LEGEND_BAND_H as u64 + 3 * (SECTION_GAP_PX as u64 + HEADER_BAND_H as u64 + spec_cell_h)
         );
     }
 
-    /// Every specimen cell must show ALL THREE platforms: the ink width of
-    /// a `FullSpan` glyph scales linearly with each platform's pitch, so the
-    /// three cell thirds must carry strictly ordered ink widths — and the
-    /// legend must label every column.
+    /// The single-producer display order: drawing primitives lead, ASCII
+    /// closes — regardless of the catalog's own block ordering.
+    #[test]
+    fn sections_follow_primitives_first_order() {
+        // Manifest deliberately lists blocks in a NON-display order.
+        let pages = vec![PageSpec {
+            candidates: vec![
+                (0x0041, icon_catalog::Block::Ascii, IconKind::Solid),
+                (0x2801, icon_catalog::Block::Braille, IconKind::FullSpan),
+                (0x2588, icon_catalog::Block::BlockElements, IconKind::Solid),
+                (0x2502, icon_catalog::Block::BoxDrawing, IconKind::Solid),
+            ],
+        }];
+        let roots = three_roots("order", &pages);
+        let inputs = inputs_from(&roots);
+        let dir = tempfile_guard::DirGuard::new("order_out");
+        let opts = opts_in(
+            &dir,
+            &["ascii_0041", "braille_2801", "block_2588", "box_2502"],
+        );
+        let out = dir.path().join("assets");
+
+        export_grid(&inputs, &opts, &out).unwrap();
+
+        let index = read_index(&out);
+        let ids: Vec<&str> = index["tiles"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|t| t["id"].as_str().unwrap())
+            .collect();
+        assert_eq!(
+            ids,
+            ["block_2588", "box_2502", "braille_2801", "ascii_0041"],
+            "primitives first, braille, ascii last"
+        );
+    }
+
     /// A block run LONGER than one specimen row must wrap onto new rows
     /// without re-rendering its first row — the chunk-offset bug shipped
     /// identical glyphs repeated vertically down long blocks.
@@ -925,8 +974,8 @@ mod tests {
             .map(|t| t["pixel_y"].as_u64().unwrap())
             .collect();
         // Rows hold 3/3/1 tiles; each row starts one spec_cell_h after the
-        // previous, following the single header band.
-        let r0 = LEGEND_BAND_H as u64 + HEADER_BAND_H as u64;
+        // previous, following the section gap and the single header band.
+        let r0 = LEGEND_BAND_H as u64 + SECTION_GAP_PX as u64 + HEADER_BAND_H as u64;
         let expected_pys = [
             r0,
             r0,
@@ -969,6 +1018,7 @@ mod tests {
     /// Specimen chart basics on a single-tile export: all three platform
     /// renders present in their ordered slots, M/W/L legend across every
     /// column, named block header band drawn.
+
     #[test]
     fn catalog_cells_show_all_three_platforms_with_legend() {
         let pages = vec![PageSpec {
@@ -995,7 +1045,10 @@ mod tests {
         );
         let tile = &index["tiles"][0];
         assert_eq!(tile["canvas_row"], 2);
-        assert_eq!(tile["pixel_y"], LEGEND_BAND_H + HEADER_BAND_H);
+        assert_eq!(
+            tile["pixel_y"],
+            LEGEND_BAND_H + SECTION_GAP_PX + HEADER_BAND_H
+        );
         assert_eq!(tile["specimen_col"], 0);
 
         let catalog = image::open(out.join(SPECIMEN_PNG)).unwrap().to_rgb8();
@@ -1043,7 +1096,7 @@ mod tests {
 
         // Header band carries rendered text.
         let mut strip: Vec<u8> = Vec::new();
-        for y in LEGEND_BAND_H..LEGEND_BAND_H + HEADER_BAND_H {
+        for y in LEGEND_BAND_H..LEGEND_BAND_H + SECTION_GAP_PX + HEADER_BAND_H {
             for x in SPECIMEN_PAD_X..SPECIMEN_PAD_X + 60 {
                 strip.push(catalog.get_pixel(x, y)[0]);
             }
